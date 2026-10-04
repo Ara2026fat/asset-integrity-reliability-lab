@@ -737,6 +737,31 @@ select.lkin{width:100%;appearance:none;background-image:none}
 .cta.rcmc{color:#fff;background:linear-gradient(180deg,#8B5CF6,#5B21B6);box-shadow:0 14px 22px -14px rgba(91,33,182,.8),inset 0 1.5px 0 rgba(255,255,255,.35)}
 .cta.rcmc .ctn{background:rgba(255,255,255,.2)}.cta.rcmc .ctn b{color:#fff}
 @media (max-height:700px){.ctas .ctx small{display:none}}
+
+/* ===== header: the whole name in large type ===== */
+.logo .nm{display:flex!important;flex-direction:column;gap:0;min-width:0;line-height:1.05}
+.logo .nm .b1{display:block;white-space:nowrap;font-weight:900;color:var(--n3,#14307F);letter-spacing:-.2px}
+.logo .nm .b2{display:block;white-space:nowrap;font-weight:900;color:#E2641B;letter-spacing:-.2px}
+body .top .logo svg{width:40px;height:40px}
+/* ===== two zones on the home screen ===== */
+.homew{height:100%;display:flex;flex-direction:column;gap:8px;min-height:0}
+.modesw{flex:none;display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border-radius:99px;background:rgba(255,255,255,.7);box-shadow:inset 0 0 0 1.5px rgba(120,140,190,.28)}
+.modesw button{border:0;font:inherit;font-weight:900;font-size:14px;padding:8px;border-radius:99px;background:none;color:var(--mut);cursor:pointer}
+.modesw button.on{color:#fff;background:linear-gradient(180deg,var(--n1,#6C8CFF),var(--n2,#3B5BDB));box-shadow:0 8px 14px -8px var(--ag,rgba(59,91,219,.5))}
+.homew>.stage{flex:1;min-height:0}
+.lnstage{display:flex;flex-direction:column;gap:8px}.lnstage .hero{flex:1;min-height:0}
+.lnc2{background:rgba(255,255,255,.9)!important;box-shadow:inset 0 0 0 1.5px rgba(242,113,28,.4)!important}
+/* ===== learning path ===== */
+.lnl{display:flex;align-items:center;gap:10px;padding:9px 12px}.lnb{flex:none;display:grid;place-items:center}.lns{flex:none;color:#F2A93B;font-size:15px;letter-spacing:1px}
+.lnout{background:linear-gradient(180deg,#FFF6E3,#FFEBC2)!important;border-color:rgba(242,169,59,.5)!important}
+.lnr{width:100%;accent-color:var(--n2,#F2711C);height:30px}
+.lnq{display:block;width:100%;text-align:start;margin:6px 0 0;padding:10px 12px;border-radius:14px;border:1.5px solid rgba(120,140,190,.35);background:rgba(255,255,255,.92);font:inherit;font-weight:700;font-size:14px;color:var(--ink);cursor:pointer}
+.lnq.ok{background:#DDF7EA;border-color:#2FB384}.lnq.no{background:#FDE3E5;border-color:#E5484D}
+body[data-tool=learn]{--n1:#FFC46B;--n1b:#FFC46B;--n2:#F2711C;--n3:#8A3A07;--em:#F2711C;--em2:#D9610F;--em3:#8A3A07;--ag:rgba(242,113,28,.42)}
+@media (max-height:700px){.lnstage .hero .htxt span,.lnstage .hchips{display:none}}
+
+@media (max-height:900px){.homew .bft{display:none}.homew .bf>b{font-size:13.5px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}.homew .gx small{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.homew .gt{display:none}.homew .gp{padding:7px 11px}}
+@media (max-height:760px){.homew .gx small{display:none}.homew .bf>b{-webkit-line-clamp:3;font-size:13px}.homew .bf small{display:none}.homew .ctas .ctx small{display:none}.homew .gp{min-height:46px}}
 </style>
 </head>
 <body>
@@ -1456,7 +1481,7 @@ function renderNav(){
 }
 let SETPREV='home';
 function openSettings(){if(V!=='set')SETPREV=V;nav('set')}
-function closeSettings(){const v=SETPREV||'home';nav(v,(v==='inc'||v==='proc'||v==='life'||v==='rbi'||v==='rcm'||v==='strat'||v==='bad'||v==='prio'||v==='story'||v==='tribal')?'keep':undefined)}
+function closeSettings(){const v=SETPREV||'home';nav(v,(v==='inc'||v==='proc'||v==='life'||v==='rbi'||v==='rcm'||v==='strat'||v==='bad'||v==='prio'||v==='story'||v==='tribal'||v==='learn')?'keep':undefined)}
 function renderTop(){
   const tl=toolOf(V),el=$('.top');
   const gear=`<button class="chip" id="gear" onclick="openSettings()" aria-label="${T[L].nav[5]}" title="${T[L].nav[5]}">${ICN.set}</button>`;
@@ -1503,7 +1528,7 @@ const TL={
 const FAM={improve:{tab:'famImprove',icon:'bulb',nic:'n-bulb',tools:['idea'],p:['#2F55C8','#14307F','#0B1B52']},
  learn:{tab:'famLearn',icon:'doc',nic:'n-doc',tools:['inc','proc'],p:['#4A5370','#232B42','#11151F']},
  field:{tab:'famField',icon:'permit',nic:'n-permit',tools:['permit','hand','tbt','gas'],p:['#C26A0B','#7A3E08','#3F1E04']}};
-const toolOf=v=>({story:'story',tribal:'tribal',prio:'prio',bad:'bad',strat:'strat',life:'life',rbi:'rbi',rcm:'rcm',new:'idea',dash:'idea',inc:'inc',proc:'proc',permit:'permit',hand:'hand',tbt:'tbt',gas:'gas'})[v]||null;
+const toolOf=v=>({learn:'learn',story:'story',tribal:'tribal',prio:'prio',bad:'bad',strat:'strat',life:'life',rbi:'rbi',rcm:'rcm',new:'idea',dash:'idea',inc:'inc',proc:'proc',permit:'permit',hand:'hand',tbt:'tbt',gas:'gas'})[v]||null;
 let HK='improve';
 function hubSel(k){HK=k;view(false)}
 function gHome(){GV='home';view(true)}
@@ -1689,7 +1714,7 @@ function shareIdea(id){
 }
 
 /* ---------- version ---------- */
-/*BUILD*/const BUILD={version:"AIR 1.5 GitHub",id:"20261004-1827",date:"2026-10-04T18:27:37Z"};/*END BUILD*/
+/*BUILD*/const BUILD={version:"AIR 1.6 GitHub",id:"20261004-1926",date:"2026-10-04T19:26:11Z"};/*END BUILD*/
 const fmtBuild=()=>new Date(BUILD.date).toLocaleString(L==='ar'?'ar-u-ca-gregory-nu-latn':'en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
 function verCard(){
   return`<div class="card"><span class="tag">${t('verT')}</span><p style="margin:0 0 6px;font-size:17px;font-weight:800;color:var(--ink)">${t('verL')} ${BUILD.version}</p><p class="dr" style="margin-top:0">${t('relL')}: ${fmtBuild()}</p></div>`;
@@ -5406,6 +5431,91 @@ function otTab(k){TOTAB=k;view(false)}
 Object.assign(TN,{tribal:[["nav('home')",'n-home','navHub',()=>false],["nav('tribal');TOV='list';view(true)",'n-talk','navLib',()=>V==='tribal'&&TOV==='list'],["nav('tribal','x');TOV='list';view(true)",'n-plus','navNew',()=>false]]});
 
 
+/* ================= LEARN: the enrichment zone. Short lessons, a live example, a quick check ================= */
+Object.assign(T.en,{toolLearn:"Learning path",toolLearnD:"Learn the logic, then apply it",mdGo:"Compete",mdLearn:"Learn"});
+Object.assign(T.ar,{toolLearn:"المسار التعليمي",toolLearnD:"تعلّم المنطق ثم طبّقه",mdGo:"المنافسة",mdLearn:"التعلّم"});
+TL.learn={icon:'bulb',nic:'n-bulb',ci:0,n:'toolLearn',d:'toolLearnD',p:['#FFC46B','#F2711C','#8A3A07'],go:"nav('learn')"};
+let LNV='list',LNID='',LNTAB='learn',LNT={},LNA={};
+const LNK='air_learn';let LNP={};try{LNP=JSON.parse(localStorage.getItem(LNK)||'{}')}catch(e){}
+const lnSave=()=>{try{localStorage.setItem(LNK,JSON.stringify(LNP))}catch(e){}};
+const OPT=(a,b,c,ok)=>({o:[a,b,c],ok});
+function LSN(){
+  const bnd=r=>r>=15?xl('High: unacceptable','عالية: غير مقبولة'):r>=10?xl('Medium-high: unacceptable','متوسطة إلى عالية: غير مقبولة'):r>=5?xl('Medium: acceptable','متوسطة: مقبولة'):xl('Low: acceptable','منخفضة: مقبولة');
+  return[
+  {id:'life',ci:2,icon:'hour',n:xl('Remaining life','العمر المتبقي'),why:xl('How many years until the wall reaches its minimum thickness?','كم سنة قبل أن يبلغ الجدار أدنى سماكة؟'),
+   pts:[xl('Corrosion rate = thickness lost ÷ time.','معدل التآكل = السماكة المفقودة ÷ الزمن.'),xl('Remaining life = (thickness now − minimum) ÷ rate.','العمر المتبقي = (السماكة الآن − الأدنى) ÷ المعدل.'),xl('Inspect again at half of the remaining life.','افحص مجددًا عند نصف العمر المتبقي.')],app:["nav('life')",xl('Open Inspection Life','افتح عمر المعدة')],
+   tryS:[['t','Thickness now (mm)','السماكة الآن (مم)',6,14,.1,8.3],['m','Minimum (mm)','الأدنى (مم)',3,9,.1,6.7],['r','Rate (mm/year)','المعدل (مم/سنة)',.05,1.5,.01,.42]],
+   out:v=>{const rl=Math.max(0,(v.t-v.m)/v.r);return`<b style="font-size:30px">${rl.toFixed(1)} ${xl('years','سنة')}</b><p class="dr">${xl('Next inspection in','الفحص القادم بعد')} <b>${(rl/2).toFixed(1)} ${xl('years','سنة')}</b> (${xl('half of it','نصفها')}).</p>`},
+   q:[{t:xl('Wall 8.3 mm, minimum 6.7 mm, rate 0.4 mm/year. Remaining life?','الجدار 8.3 مم والأدنى 6.7 مم والمعدل 0.4 مم/سنة. العمر المتبقي؟'),...OPT(xl('2 years','سنتان'),xl('4 years','4 سنوات'),xl('8 years','8 سنوات'),1),e:xl('(8.3 − 6.7) ÷ 0.4 = 4 years.','(8.3 − 6.7) ÷ 0.4 = 4 سنوات.')},{t:xl('With 4 years of life left, when is the next inspection?','بقي 4 سنوات من العمر. متى الفحص القادم؟'),...OPT(xl('In 1 year','بعد سنة'),xl('In 2 years','بعد سنتين'),xl('In 4 years','بعد 4 سنوات'),1),e:xl('Half of the remaining life: 2 years.','نصف العمر المتبقي: سنتان.')}]},
+  {id:'mech',ci:1,icon:'warn',n:xl('Damage mechanisms','آليات التلف'),why:xl('The same wall loss can have different causes. The cause tells you where to look and how fast it moves.','قد يكون لفقد الجدار نفسه أسباب مختلفة. والسبب يحدد أين تنظر وبأي سرعة يتحرك.'),
+   pts:[xl('Flow-accelerated: bends and downstream of valves.','تآكل بالجريان: الانحناءات وما بعد الصمامات.'),xl('Under insulation: wet insulation, cycling lines.','تحت العزل: عزل مبتل وخطوط متقلبة الحرارة.'),xl('Cooling water: deposits, microbes, chloride.','مياه التبريد: رواسب وكائنات دقيقة وكلوريد.')],app:["nav('rbi')",xl('Open RBI','افتح RBI')],
+   pick:[['fac',xl('Flow-accelerated','بالجريان'),xl('Elbows, reducers, after control valves','الانحناءات والمخفضات وما بعد صمامات التحكم'),xl('Local thinning, scalloped surface','ترقق موضعي وسطح متموج'),xl('Thickness grid at the elbow','شبكة سماكة عند الانحناء')],['cui',xl('Under insulation','تحت العزل'),xl('Damaged insulation, low points, cycling 60–150 °C','عزل تالف ونقاط منخفضة وتقلب بين 60 و150 °م'),xl('Rust staining, wet insulation','صدأ وعزل مبتل'),xl('Strip insulation at suspect points','أزل العزل عند النقاط المشبوهة')],['mic',xl('Cooling water','مياه التبريد'),xl('Stagnant zones, deposits, tube sides','مناطق راكدة ورواسب وجوانب الأنابيب'),xl('Pitting, deposits, chloride rise','تنقّر ورواسب وارتفاع الكلوريد'),xl('Chemistry trend plus tube inspection','اتجاه الكيمياء وفحص الأنابيب')],['gen',xl('General corrosion','تآكل عام'),xl('Whole surface, uniform','السطح كله بانتظام'),xl('Even thinning','ترقق متجانس'),xl('Spot thickness readings','قراءات سماكة نقطية')]],
+   q:[{t:xl('Wall loss at an elbow right after a control valve points to:','فقد جدار عند انحناء بعد صمام تحكم مباشرة يشير إلى:'),...OPT(xl('Flow-accelerated damage','تآكل بالجريان'),xl('Corrosion under insulation','تآكل تحت العزل'),xl('Fatigue','كلال'),0),e:xl('High velocity and turbulence thin the wall locally.','السرعة العالية والاضطراب يرققان الجدار موضعيًا.')},{t:xl('A line with wet, damaged insulation is most at risk of:','خط بعزل مبتل وتالف أكثر عرضة لـ:'),...OPT(xl('Erosion','التعرية'),xl('Corrosion under insulation','تآكل تحت العزل'),xl('Creep','الزحف'),1),e:xl('Water trapped under insulation corrodes unseen.','الماء المحبوس تحت العزل يسبب تآكلًا لا يُرى.')}]},
+  {id:'risk',ci:3,icon:'grid',n:xl('Risk: chance × consequence','المخاطر: الاحتمال × العاقبة'),why:xl('Not every thin wall is urgent. Risk tells you which ones are.','ليس كل جدار رقيق عاجلًا. والمخاطر تخبرك أيها العاجل.'),
+   pts:[xl('Risk = chance of failure × consequence.','المخاطر = احتمال الفشل × العاقبة.'),xl('High risk is unacceptable: act.','المخاطر العالية غير مقبولة: تصرّف.'),xl('Low and medium can be accepted with monitoring.','المنخفضة والمتوسطة تُقبل مع المراقبة.')],app:["nav('rbi')",xl('Open RBI','افتح RBI')],
+   tryS:[['c','Chance (1 to 5)','الاحتمال (1 إلى 5)',1,5,1,4],['s','Consequence (1 to 5)','العاقبة (1 إلى 5)',1,5,1,5]],out:v=>`<b style="font-size:30px">${v.c*v.s}</b><p class="dr">${bnd(v.c*v.s)}</p>`,
+   q:[{t:xl('Chance 4 and consequence 5 give a risk of:','احتمال 4 وعاقبة 5 يعطيان مخاطر:'),...OPT('9','20','25',1),e:xl('4 × 5 = 20: high, unacceptable.','4 × 5 = 20: عالية وغير مقبولة.')},{t:xl('Which one can be accepted without extra action?','أيّها يُقبل دون إجراء إضافي؟'),...OPT(xl('Low risk','مخاطر منخفضة'),xl('High risk','مخاطر عالية'),xl('Extreme risk','مخاطر قصوى'),0),e:xl('Low risk is acceptable, with normal monitoring.','المنخفضة مقبولة مع مراقبة عادية.')}]},
+  {id:'iow',ci:4,icon:'target',n:xl('Operating window (IOW)','نافذة التشغيل (IOW)'),why:xl('Damage follows the operation. Leave the window and it speeds up.','التلف يتبع التشغيل. وإذا خرجتَ من النافذة تسارع.'),
+   pts:[xl('An IOW is a limit on velocity, pH, temperature, chloride...','النافذة حد على السرعة أو pH أو الحرارة أو الكلوريد...'),xl('An excursion is a reading beyond the limit.','التجاوز قراءة خارج الحد.'),xl('Excursions raise the damage risk before the next inspection.','التجاوزات ترفع خطر التلف قبل الفحص القادم.')],app:["nav('prio','x');PRTAB='iow';view(true)",xl('Open IOW data','افتح بيانات IOW')],
+   tryS:[['v','Velocity (m/s)','السرعة (م/ث)',2,8,.1,5.4],['l','Limit (m/s)','الحد (م/ث)',3,6,.1,4.5]],out:v=>{const x=(v.v-v.l)/v.l*100;return`<b style="font-size:30px">${x>0?x.toFixed(0)+'%':xl('inside','داخل النافذة')}</b><p class="dr">${x<=0?xl('Inside the window.','داخل النافذة.'):x>10?xl('Critical: more than 10% beyond the limit.','حرج: أكثر من 10% فوق الحد.'):xl('Alert: beyond the limit.','إنذار: فوق الحد.')}</p>`},
+   q:[{t:xl('Velocity 5.4 against a limit of 4.5. The excursion is:','سرعة 5.4 مقابل حد 4.5. التجاوز:'),...OPT('10%','20%','5%',1),e:xl('(5.4 − 4.5) ÷ 4.5 = 20%.','(5.4 − 4.5) ÷ 4.5 = 20%.')},{t:xl('Why does an excursion raise the RBI risk?','لماذا يرفع التجاوز مخاطر RBI؟'),...OPT(xl('It speeds up the damage','يسرّع التلف'),xl('It lowers the consequence','يخفض العاقبة'),xl('It does not','لا يرفعها'),0),e:xl('Faster damage means a higher chance of failure.','التلف الأسرع يعني احتمال فشل أعلى.')}]},
+  {id:'curve',ci:5,icon:'clock',n:xl('The failure curve','منحنى الفشل'),why:xl('Failures follow three patterns. Each one needs a different action.','للفشل ثلاثة أنماط. ولكل نمط إجراء مختلف.'),
+   pts:[xl('Early life: after installation, repair or setup.','مبكر: بعد التركيب أو الإصلاح أو الضبط.'),xl('Random: unpredictable, but often detectable.','عشوائي: لا يُتوقع لكن غالبًا يُكتشف.'),xl('Wear-out: it fails with age.','بلى: يفشل مع العمر.')],app:["nav('rcm')",xl('Open RCM','افتح RCM')],
+   pick:[['infant',xl('Early life','مبكر'),xl('After intervention','بعد التدخل'),RCPATH().infant,xl('Procedures, training, verify the work','إجراءات وتدريب وتحقق من العمل')],['rand',xl('Random','عشوائي'),xl('Useful life','العمر المفيد'),RCPATH().rand,xl('Condition checks, predictive tools','فحص بحسب الحالة وأدوات تنبؤية')],['wear',xl('Wear-out','البلى'),xl('End of life','نهاية العمر'),RCPATH().wear,xl('Scheduled rebuild or replacement','إعادة بناء أو استبدال مجدول')]],
+   q:[{t:xl('Failures right after a repair point to:','أعطال بعد إصلاح مباشرة تشير إلى:'),...OPT(xl('Early life','مبكر'),xl('Wear-out','بلى'),xl('Random','عشوائي'),0),e:xl('Invasive work can introduce errors: fix the procedure.','التدخل قد يُدخل أخطاء: أصلح الإجراء.')},{t:xl('Wear-out is best handled by:','أفضل علاج للبلى:'),...OPT(xl('Running to failure','التشغيل حتى الفشل'),xl('Scheduled replacement before the wear-out age','استبدال مجدول قبل عمر البلى'),xl('More training','مزيد من التدريب'),1),e:xl('Act at about 80% of the typical life.','تصرّف عند نحو 80% من العمر المعتاد.')}]},
+  {id:'rpn',ci:1,icon:'gears',n:xl('FMEA and RPN','FMEA وRPN'),why:xl('Rank failure modes so you start with the ones that matter.','رتّب أنماط الفشل لتبدأ بالأهم.'),
+   pts:[xl('RPN = severity × occurrence × detection.','RPN = الأثر × الحدوث × الكشف.'),xl('Hidden failures score 5 on detection.','الفشل الخفي يأخذ 5 في الكشف.'),xl('Start from the highest RPN: a Pareto of the risk.','ابدأ بأعلى RPN: باريتو للمخاطر.')],app:["nav('rcm')",xl('Open RCM','افتح RCM')],
+   tryS:[['s','Severity (1 to 5)','الأثر (1 إلى 5)',1,5,1,5],['o','Occurrence (1 to 5)','الحدوث (1 إلى 5)',1,5,1,2],['d','Detection (1 easy, 5 hidden)','الكشف (1 سهل، 5 خفي)',1,5,1,5]],out:v=>`<b style="font-size:30px">RPN ${v.s*v.o*v.d}</b><p class="dr">${v.s*v.o*v.d>=50?xl('High: start here.','عالٍ: ابدأ من هنا.'):v.s*v.o*v.d>=20?xl('Medium: plan it.','متوسط: خطّط له.'):xl('Low: monitor.','منخفض: راقب.')}</p>`,
+   q:[{t:xl('Severity 5, occurrence 2, detection 5. RPN?','أثر 5 وحدوث 2 وكشف 5. RPN؟'),...OPT('25','50','10',1),e:xl('5 × 2 × 5 = 50.','5 × 2 × 5 = 50.')},{t:xl('A hidden failure has a detection score near:','فشل خفي تقترب درجة كشفه من:'),...OPT('1','3','5',2),e:xl('Nobody sees it until it is needed: the worst detection.','لا يراه أحد حتى تلزم الوظيفة: أسوأ كشف.')}]},
+  {id:'rcm',ci:2,icon:'gears',n:xl('RCM: the right task','RCM: المهمة المناسبة'),why:xl('Not every failure needs a preventive task. RCM picks the right one, or none.','ليس كل فشل يحتاج مهمة وقائية. و RCM يختار المناسبة أو لا شيء.'),
+   pts:[xl('Hidden failure: a failure-finding test.','فشل خفي: اختبار كشف فشل.'),xl('Early warning: a condition check at half the P-F interval.','إنذار مبكر: فحص عند نصف فترة P-F.'),xl('Safety with no effective task: redesign.','سلامة بلا مهمة فعّالة: أعد التصميم.')],app:["nav('rcm')",xl('Open RCM','افتح RCM')],
+   toggles:[['ev',xl('Visible to the operator','ظاهر للمشغّل'),1],['wn',xl('Has an early warning','له إنذار مبكر'),0],['ag',xl('Fails with age','يفشل مع العمر'),0],['sf',xl('Safety consequence','أثر سلامة'),1]],tryS:[['pf','P-F interval (days)','فترة P-F (أيام)',0,120,5,30]],
+   out:v=>{const d=rcDecide({fm:'x',part:'x',ev:!!v.ev,warn:v.wn?'sign':'',pf:v.wn?v.pf:'',age:!!v.ag,life:v.ag?48:'',cons:v.sf?'saf':'ops',mtbf:8,pat:'rand',scr:'keep'});return`<b style="font-size:20px">${rcSt()[d.k][0]}${d.iv&&d.iv!=='—'?' · '+d.iv:''}</b><p class="dr">${esc(d.task||'')}</p>`},
+   q:[{t:xl('A hidden failure (a protective device) needs:','فشل خفي (جهاز حماية) يحتاج:'),...OPT(xl('Run to failure','التشغيل حتى الفشل'),xl('A failure-finding test','اختبار كشف فشل'),xl('A yearly overhaul','صيانة سنوية'),1),e:xl('Test it to prove it works when needed.','اختبره لإثبات أنه يعمل عند الحاجة.')},{t:xl('Safety consequence, no warning, no age pattern:','أثر سلامة بلا إنذار ولا نمط عمر:'),...OPT(xl('Redesign','إعادة تصميم'),xl('Run to failure','تشغيل حتى الفشل'),xl('Check monthly','فحص شهري'),0),e:xl('No task is effective: change the design or the process.','لا مهمة فعّالة: غيّر التصميم أو العملية.')}]},
+  {id:'pf',ci:3,icon:'clock',n:xl('P-F interval and cadence','فترة P-F والوتيرة'),why:xl('How often to check, so you catch the warning with time to act.','كم مرة تفحص لتلتقط الإنذار وفي الوقت متسع للتصرف.'),
+   pts:[xl('P-F is the time from the first sign (P) to failure (F).','P-F الزمن من أول علامة (P) إلى الفشل (F).'),xl('Check at half of it, so you see it at least once.','افحص عند نصفه لترى العلامة مرة على الأقل.'),xl('Round to a cadence: weekly, monthly, quarterly.','قرّب إلى وتيرة: أسبوعية أو شهرية أو ربع سنوية.')],app:["nav('rcm')",xl('Open RCM','افتح RCM')],
+   tryS:[['pf','P-F interval (days)','فترة P-F (أيام)',4,180,2,30]],out:v=>{const d=Math.max(1,Math.floor(v.pf/2)),c=rcCad(d/30.4375);return`<b style="font-size:30px">${xl('every','كل')} ${d} ${xl('days','يومًا')}</b><p class="dr">${xl('Cadence','الوتيرة')}: <b>${c.label}</b></p>`},
+   q:[{t:xl('P-F is 60 days. Check about every:','فترة P-F 60 يومًا. افحص تقريبًا كل:'),...OPT(xl('15 days','15 يومًا'),xl('30 days','30 يومًا'),xl('60 days','60 يومًا'),1),e:xl('Half of 60 days.','نصف 60 يومًا.')},{t:xl('Why half of the P-F interval?','لماذا نصف فترة P-F؟'),...OPT(xl('To see the sign at least once, with time to act','لنرى العلامة مرة على الأقل والوقت يسمح بالتصرف'),xl('It is cheaper','أرخص'),xl('No reason','بلا سبب'),0),e:xl('Checking once per P-F interval can miss it.','الفحص مرة كل فترة P-F قد يفوّتها.')}]}
+  ];
+}
+const lnStars=id=>LNP[id]||0,lnTotal=()=>LSN().reduce((s,l)=>s+lnStars(l.id),0),lnMax=()=>LSN().length*2;
+function lnOpen(id){LNV='lesson';LNID=id;LNTAB='learn';LNT={};LNA[id]={};const L=LSN().find(x=>x.id===id);(L.tryS||[]).forEach(([k,,,,,,d])=>LNT[k]=d);(L.toggles||[]).forEach(([k,,d])=>LNT[k]=d);if(L.pick)LNT.pick=L.pick[0][0];nav('learn','x');view(true)}
+function lnTab(k){LNTAB=k;view(false)}
+function lnTry(k,v){LNT[k]=+v;const L=LSN().find(x=>x.id===LNID),e=$('#lnout');if(e)e.innerHTML=L.out(LNT);const s=document.getElementById('lnv_'+k);if(s)s.textContent=v}
+function lnTog(k,v){LNT[k]=v?1:0;view(false)}
+function lnPick(k){LNT.pick=k;view(false)}
+function lnAns(qi,oi){const L=LSN().find(x=>x.id===LNID);if(LNA[LNID][qi]!=null)return;LNA[LNID][qi]=oi;const ok=Object.entries(LNA[LNID]).filter(([i,o])=>L.q[+i].ok===o).length;if(ok>(LNP[LNID]||0)){LNP[LNID]=ok;lnSave()}view(false)}
+function lnNext(){const A=LSN(),i=A.findIndex(x=>x.id===LNID);if(i<A.length-1)lnOpen(A[i+1].id);else{LNV='list';view(true)}}
+function vLearn(){
+  const A=LSN();
+  if(LNV==='lesson'){
+    const L=A.find(x=>x.id===LNID);if(!L){LNV='list';return vLearn()}
+    let body='';
+    if(LNTAB==='learn')body=`<div class="card"><span class="tag">${xl('Why it matters','لماذا يهم')}</span><p class="sub" style="margin:6px 0 0"><b>${L.why}</b></p></div><div class="card"><span class="tag">${xl('Remember','تذكّر')}</span>${L.pts.map((p,i)=>`<div class="tkr" style="display:flex;gap:10px;align-items:flex-start"><span class="rcn" style="width:26px;height:26px;font-size:13px;flex:none">${i+1}</span><p class="tkt" style="-webkit-line-clamp:3;margin:0">${p}</p></div>`).join('')}</div><button class="btn g" onclick="${L.app[0]}">${L.app[1]}</button>`;
+    else if(LNTAB==='try'){
+      const sl=(L.tryS||[]).map(([k,en,ar,mn,mx,st])=>`<div style="margin:8px 0"><div style="display:flex;justify-content:space-between;font-weight:800;font-size:13.5px"><span>${xl(en,ar)}</span><b id="lnv_${k}">${LNT[k]}</b></div><input type="range" class="lnr" min="${mn}" max="${mx}" step="${st}" value="${LNT[k]}" oninput="lnTry('${k}',this.value)"></div>`).join('');
+      const tg=(L.toggles||[]).map(([k,lab])=>`<button class="chip3${LNT[k]?' on':''}" onclick="lnTog('${k}',${LNT[k]?0:1})">${lab}</button>`).join('');
+      const pk=L.pick?`<div class="chips3">${L.pick.map(p=>`<button class="chip3${LNT.pick===p[0]?' on':''}" onclick="lnPick('${p[0]}')">${p[1]}</button>`).join('')}</div>${(()=>{const p=L.pick.find(x=>x[0]===LNT.pick)||L.pick[0];return`<div class="card" style="margin-top:8px"><p class="sub" style="margin:0"><b>${p[1]}</b> · ${p[2]}</p><p class="dr" style="margin:6px 0 0">${p[3]}</p><p class="sub" style="margin:6px 0 0">${xl('Do this','افعل هذا')}: <b>${p[4]}</b></p></div>`})()}`:'';
+      body=L.pick?`<div class="card"><span class="tag">${xl('Try it','جرّبه')}</span>${pk}</div>`:`<div class="card"><span class="tag">${xl('Try it','جرّبه')}</span>${tg?`<div class="chips3" style="margin:6px 0">${tg}</div>`:''}${sl}</div><div class="card lnout"><div id="lnout">${L.out(LNT)}</div></div>`;
+    }else{
+      const done=Object.keys(LNA[LNID]||{}).length===L.q.length;
+      body=L.q.map((q,qi)=>{const a=LNA[LNID][qi];return`<div class="card"><span class="tag">${xl('Question','سؤال')} ${qi+1}</span><p class="sub" style="margin:6px 0"><b>${q.t}</b></p>${q.o.map((o,oi)=>`<button class="lnq${a==null?'':oi===q.ok?' ok':oi===a?' no':''}" onclick="lnAns(${qi},${oi})">${o}</button>`).join('')}${a!=null?`<p class="dr" style="margin:6px 0 0">${a===q.ok?'✓ ':''}${q.e}</p>`:''}</div>`}).join('')+(done?`<div class="card lnout"><b style="font-size:18px">${xl('Score','النتيجة')}: ${lnStars(LNID)}/${L.q.length}</b></div><button class="btn g" onclick="lnNext()">${A.findIndex(x=>x.id===LNID)<A.length-1?xl('Next lesson','الدرس التالي'):xl('Finish','أنهِ')}</button>`:'');
+    }
+    return`<button class="link" onclick="LNV='list';view(true)">‹ ${t('toolLearn')}</button>${T3([['learn',xl('Learn','تعلّم')],['try',xl('Try','جرّب')],['quiz',xl('Check','تحقّق')]],LNTAB,'lnTab')}<div class="tp" key="${LNTAB}">${body}</div>`;
+  }
+  const tot=lnTotal(),mx=lnMax();
+  return`<div class="card lnout" style="padding:10px 12px"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">${xl('Your progress','تقدّمك')}</b><b>${tot}/${mx}</b></div><div class="kbar" style="height:12px;margin-top:6px"><i style="width:${Math.max(3,100*tot/mx)}%;background:linear-gradient(90deg,#FFC46B,#F2711C)"></i></div></div>${A.map((l,i)=>`<button class="hi lnl" onclick="lnOpen('${l.id}')"><span class="lnb">${badge(l.ci,40,l.icon)}</span><span style="flex:1;min-width:0;text-align:start"><b style="display:block;font-size:15px">${i+1}. ${l.n}</b><small class="dr" style="display:block;margin-top:2px;line-height:1.3">${l.why}</small></span><span class="lns">${'★'.repeat(lnStars(l.id))}${'☆'.repeat(2-lnStars(l.id))}</span></button>`).join('')}`;
+}
+/* the learn side of the home screen: the creative touch from the first apps */
+let HMODE='go';try{HMODE=localStorage.getItem('air_mode')==='learn'?'learn':'go'}catch(e){}
+function hmode(k){HMODE=k;try{localStorage.setItem('air_mode',k)}catch(e){}view(false)}
+function vHomeLearn(){
+  const tot=lnTotal(),mx=lnMax(),nxt=LSN().find(l=>lnStars(l.id)<2)||LSN()[0];
+  return`<div class="stage lnstage" style="--t1:#FFA24D;--t2:#E2641B;--t3:#9A3A0A"><div class="hero" key="learn"><div class="hscene">${hubScene('integ')}</div><div class="htxt"><b>${xl('Learn the logic, then apply it','تعلّم المنطق ثم طبّقه')}</b><span>${xl('Eight short lessons: a live example and a quick check','ثمانية دروس قصيرة: مثال حي وتحقّق سريع')}</span></div><div class="hchips"><i>${xl('Remaining life','العمر المتبقي')}</i><i>${xl('Risk','المخاطر')}</i><i>RCM</i></div></div><button class="cta" onclick="LNV='list';nav('learn','x');view(true)"><span class="ctx"><b>${xl('Start the learning path','ابدأ المسار التعليمي')}</b><small>${tot}/${mx} ${xl('checks passed','اختبارات ناجحة')}</small></span><span class="ctn"><b>★</b><small>${tot}</small></span></button><button class="cta lnc2" onclick="lnOpen('${nxt.id}')"><span class="ctx"><b>${xl('Next lesson','الدرس التالي')}</b><small>${nxt.n}</small></span></button></div>`;
+}
+Object.assign(TN,{learn:[["nav('home')",'n-home','navHub',()=>false],["nav('learn','x');LNV='list';view(true)",'n-bulb','navLib',()=>V==='learn'],["nav('learn','x');LNV='list';view(true)",'n-plus','navNew',()=>false]]});
+
+
 /* ================= Asset Passport: one A4 page per asset, every signal in one place ================= */
 Object.assign(T.en,{apBtn:"Passport"});Object.assign(T.ar,{apBtn:"الجواز"});
 async function apSheet(tag){
@@ -5511,7 +5621,7 @@ function dkSheet(kind){
   const m=document.createElement('div');m.className='bsh';
   let body='';
   if(kind==='qs'){
-    const Q=[['rcm',"nav('rcm','x');rcOpenNew()"],['life',"nav('life','x');ilOpenNew();ILTAB='data';view(true)"],['prio',"nav('prio','x');prIowNew(false)"],['bad',"nav('bad','x');bdOpenNew(false)"],['story',"nav('story')"],['tribal',"nav('tribal','x');TOV='list';view(true)"],['strat',"nav('strat','x');smOpenNew()"],['rbi',"nav('rbi','x');rbOpenNew()"],['inc',"nav('inc');incNewView()"]];
+    const Q=[['learn',"nav('learn','x');LNV='list';view(true)"],['rcm',"nav('rcm','x');rcOpenNew()"],['life',"nav('life','x');ilOpenNew();ILTAB='data';view(true)"],['prio',"nav('prio','x');prIowNew(false)"],['bad',"nav('bad','x');bdOpenNew(false)"],['story',"nav('story')"],['tribal',"nav('tribal','x');TOV='list';view(true)"],['strat',"nav('strat','x');smOpenNew()"],['rbi',"nav('rbi','x');rbOpenNew()"],['inc',"nav('inc');incNewView()"]];
     body=`<h3>${t('qsT')}</h3><button class="qd" onclick="dkClose();seedDemo(true)"><span>${t('qsDemo')}</span></button><div class="qg">${Q.map(([k,js])=>{const d=TL[k];return`<button class="qt" style="--c:${d.p[1]}" onclick="dkClose();${js}"><span>${t(d.n)}</span></button>`}).join('')}</div>`;
   }else{
     const st=!SAMPLE?'no':AIPREF?'on':'off',tot=AIL.reduce((a,e)=>a+aiCalc(e).net,0);
@@ -5522,6 +5632,7 @@ function dkSheet(kind){
 function dkClose2(){const s=document.querySelector('.bsh');if(s)s.remove()}
 function dkAI(){dkSheet('ai')}
 /* ---- header: the full tool name, always on one line ---- */
+function brandBig(){const e=$('#brand');if(e)e.innerHTML=`<b class="b1">${t('brandA')}</b><b class="b2">${t('brandB')}</b>`;document.title='AIR Lab';const w=e&&e.parentElement?e.parentElement.clientWidth-50:240;e&&e.querySelectorAll('b').forEach(b=>{let fs=19;b.style.fontSize=fs+'px';while(b.scrollWidth>Math.max(120,w)&&fs>12){fs-=.5;b.style.fontSize=fs+'px'}})}
 function renderTop(){
   const tl=toolOf(V),el=$('.top');let h;
   if(V==='set'||V==='lib'||V==='impact'||tl){
@@ -5529,7 +5640,7 @@ function renderTop(){
     const ic='';
     h=`<button class="tback" onclick="${back}" aria-label="${t('setBack')}">${L==='ar'?'›':'‹'}</button><div class="tt">${ic}<span class="tn" id="tn">${name}</span></div>`;
   }else h=`<div class="logo"><svg style="flex:none" width="38" height="38" viewBox="-26 -26 52 52" aria-hidden="true"><circle r="23" fill="url(#gNavy)" stroke="url(#gGold)" stroke-width="4"/><circle r="23" fill="url(#gGloss)"/><use href="#i-hour" class="ico"/></svg><span class="nm" id="brand"></span></div>`;
-  el.innerHTML=h;if(!tl&&V!=='set'&&V!=='lib'&&V!=='impact')brand();fitTitle();
+  el.innerHTML=h;if(!tl&&V!=='set'&&V!=='lib'&&V!=='impact')brandBig();fitTitle();
 }
 function fitTitle(){
   const e=$('#tn');if(!e)return;let fs=18;e.style.fontSize=fs+'px';const box=e.parentElement;
@@ -5609,7 +5720,7 @@ function pgMenu(){
   bar.appendChild(m);
 }
 /* view(): same screens, now paged */
-const VM=()=>({story:vStory,tribal:vTribal,home:vHome,dash:vDash,impact:vImpact,prio:vPrio,bad:vBad,strat:vStrat,life:vLife,rbi:vRbi,rcm:vRcm,inc:vInc,proc:vProc,permit:vPermit,hand:vHand,tbt:vTbt,gas:vGas,lib:vLib,set:vSet});
+const VM=()=>({learn:vLearn,story:vStory,tribal:vTribal,home:vHome,dash:vDash,impact:vImpact,prio:vPrio,bad:vBad,strat:vStrat,life:vLife,rbi:vRbi,rcm:vRcm,inc:vInc,proc:vProc,permit:vPermit,hand:vHand,tbt:vTbt,gas:vGas,lib:vLib,set:vSet});
 function view(scroll){
   renderNav();$('#stepsBox').innerHTML='';
   const fn=VM()[V];if(scroll)PGS.fresh=true;
@@ -5673,10 +5784,12 @@ const BRIEF=()=>({
 });
 function vHome(){
   const B=BRIEF(),P=prioCalc(),now=P.list.filter(x=>x.tier==='now').length,rcN=CACHE.filter(x=>x.kind==='rcm').length;
-  return`<div class="stage bfs"><div class="bf"><small>${xl('The challenge','التحدي')}</small><b>${B.q}</b><div class="bft">${B.track.map(x=>`<i>${x}</i>`).join('')}</div></div>
+  const sw=`<div class="modesw" role="tablist"><button class="${HMODE==='go'?'on':''}" onclick="hmode('go')">${t('mdGo')}</button><button class="${HMODE==='learn'?'on':''}" onclick="hmode('learn')">${t('mdLearn')}</button></div>`;
+  if(HMODE==='learn')return`<div class="homew">${sw}${vHomeLearn()}</div>`;
+  return`<div class="homew">${sw}<div class="stage bfs"><div class="bf"><small>${xl('The challenge','التحدي')}</small><b>${B.q}</b><div class="bft">${B.track.map(x=>`<i>${x}</i>`).join('')}</div></div>
 <div class="gaps">${B.gaps.map(([n,g,a,js,tool])=>`<button class="gp" onclick="${js}"><span class="gn">${n}</span><span class="gx"><b>${g}</b><small>${a}</small></span><span class="gt">${tool}</span></button>`).join('')}</div>
 <div class="ctas"><button class="cta" onclick="${B.cta[2]}"><span class="ctx"><b>${B.cta[0]}</b><small>${B.cta[1]}</small></span>${P.list.length?`<span class="ctn"><b>${now}</b><small>${xl('now','الآن')}</small></span>`:''}</button><button class="cta rcmc" onclick="${B.rcm[2]}"><span class="ctx"><b>${B.rcm[0]}</b><small>${B.rcm[1]}</small></span>${rcN?`<span class="ctn"><b>${rcN}</b><small>${xl('studies','دراسات')}</small></span>`:''}</button></div>
-<div class="more"><span>${xl('More tools','أدوات أخرى')}</span>${B.more.map(([l,js])=>`<button onclick="${js}">${l}</button>`).join('')}</div></div>`;
+<div class="more"><span>${xl('More tools','أدوات أخرى')}</span>${B.more.map(([l,js])=>`<button onclick="${js}">${l}</button>`).join('')}</div></div></div>`;
 }
 /* about: the challenge and where each part is answered */
 (function(){const old=vSet;vSet=function(){const h=old();if(typeof SETTAB!=='undefined'&&SETTAB==='about'){const B=BRIEF(),card=`<div class="card sc"><span class="tag">${xl('The challenge','التحدي')}</span><p class="sub" style="margin:6px 0">${B.q}</p>${B.gaps.map(([n,g,a,js,tool])=>`<div class="srow"><div class="sx"><b>${n} · ${g}</b><small>${a} (${tool})</small></div></div>`).join('')}</div>`;return h.replace('<div class="tp" key="about">','<div class="tp" key="about">'+card)}return h}})();
@@ -5692,7 +5805,7 @@ async function bootApp(){
   if(CLOUD)startSync();
 }
 
-function brand(){const e=$('#brand');if(e)e.innerHTML=`<small>${t('brandA')}</small><em>${t('brandB')}</em><u>${t('brandT')}</u>`;document.title='AIR Lab'}
+function brand(){const e=$('#brand');if(e)e.innerHTML=`<small>${t('brandA')}</small><em>${t('brandB')}</em><u>${t('brandT')}</u>`;document.title=t('brand')+' — '+t('brandT')}
 document.documentElement.lang=L;document.documentElement.dir=L==='ar'?'rtl':'ltr';
 /* ---------- GitHub build: API key card, App Lock, offline support, update notice ---------- */
 const ghGet=k=>{try{return localStorage.getItem(k)||''}catch(e){return''}};
