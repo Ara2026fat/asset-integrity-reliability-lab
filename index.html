@@ -2,6 +2,8 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://api.anthropic.com; manifest-src 'self'; worker-src 'self'; media-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#14307F">
 <meta name="color-scheme" content="light">
@@ -16,7 +18,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="AIR Lab">
 <title>AIR Lab</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>:root{--n1:#2F55C8;--n2:#14307F;--n3:#0B1B52;--n1b:#3A62D4;--nav:#1B3A9E;--glow:rgba(52,96,224,.55)}
 body[data-tool=inc]{--n1:#4A5370;--n2:#232B42;--n3:#11151F;--n1b:#5A6482;--nav:#232B42;--glow:rgba(196,39,28,.45)}
 body[data-tool=proc]{--n1:#5B52D6;--n2:#2E2A8F;--n3:#16134A;--n1b:#6C63E6;--nav:#2E2A8F;--glow:rgba(110,100,240,.55)}
@@ -439,6 +441,16 @@ body[data-tool=strat]::before{background:radial-gradient(420px 320px at 10% 6%,r
 .kbar{height:10px;border-radius:99px;background:rgba(120,140,190,.2);overflow:hidden;margin-top:4px}.kbar i{display:block;height:100%;border-radius:99px;transition:width .4s}
 
 .stats.s2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+body[data-tool=bad]{--n1:#3DDC97;--n1b:#3DDC97;--n2:#12A878;--n3:#0B6E4E;--em:#12A878;--em2:#0E9467;--em3:#0B6E4E;--ag:rgba(18,168,120,.45)}
+body[data-tool=bad]::before{background:radial-gradient(420px 320px at 10% 6%,rgba(120,235,185,.42),transparent 70%),radial-gradient(520px 380px at 96% 30%,rgba(110,200,255,.28),transparent 70%)}
+.bdsw{transform-origin:180px 180px;animation:rdsp 6s linear infinite}.bdp{animation:bdpl 1.9s ease-in-out infinite;transform-box:fill-box;transform-origin:center}@keyframes bdpl{50%{opacity:.15;transform:scale(1.5)}}
+.bdb{transition:transform .15s;transform-box:fill-box;transform-origin:center}.bdb:active{transform:scale(1.18)}.bdb.sel{animation:bdsel 1.2s ease-in-out infinite}@keyframes bdsel{50%{transform:scale(1.12)}}
+.bdc{background:radial-gradient(120% 90% at 50% 0%,rgba(255,255,255,.95),rgba(214,246,232,.7))!important}
+.bdlg{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px;font-size:12px;font-weight:800;color:var(--mut)}.bdlg i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-inline-end:5px}
+
+body[data-tool=prio]{--n1:#FF9F6B;--n1b:#FF9F6B;--n2:#F4511E;--n3:#B93710;--em:#F4511E;--em2:#DB4515;--em3:#B93710;--ag:rgba(244,81,30,.45)}
+body[data-tool=prio]::before{background:radial-gradient(420px 320px at 10% 6%,rgba(255,170,120,.45),transparent 70%),radial-gradient(520px 380px at 96% 30%,rgba(255,226,122,.3),transparent 70%)}
 /* ===================== Design layer: Aero Glass Pro ===================== */
 :root{--ink:#0F1B3D;--mut:#5B6B8C;--line:rgba(110,130,180,.30);--cream:#F3F6FF;--panel:#EDF1FC;--gold:#F0A91E;--goldd:#B7791F;
  --n1:#6E9BFF;--n1b:#5B8CFF;--n2:#3B6FEF;--n3:#1F3FB0;--em:#3B6FEF;--em2:#2A57D8;--em3:#1F3FB0;--nav:#3B6FEF;--ag:rgba(59,111,239,.45)}
@@ -570,6 +582,161 @@ body.hub .wrap{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 12px)}
  .top .logo svg{width:30px;height:30px}
  body .top{padding:7px 8px}
 }
+/* ===================== SHELL v2: one screen, never scrolls ===================== */
+:root{--dock-h:78px}
+html,body{height:100%;overflow:hidden;overscroll-behavior:none}
+body{position:fixed;inset:0;width:100%}
+.wrap,body.hub .wrap{position:relative;height:100%;max-width:560px;margin:0 auto;padding:calc(env(safe-area-inset-top,0px) + 6px) 12px 0;display:flex;flex-direction:column;overflow:hidden}
+@media (min-width:900px){.wrap{max-width:900px}body.hub .wrap{max-width:1240px}}
+body .top,body.hub .top{position:relative;flex:none;margin:0 -2px 8px;padding:7px 10px;top:auto;min-height:52px;display:flex;align-items:center;gap:10px}
+#stepsBox{display:none!important}
+main#app,body.hub main#app{flex:1;min-height:0;position:relative;overflow:hidden;padding-bottom:calc(var(--dock-h) + env(safe-area-inset-bottom,0px) + 12px)}
+#app>.reveal{height:100%;display:flex;flex-direction:column;animation:none}
+#app>.reveal>.stage{flex:1;min-height:0}
+#app>.reveal.pgroot>*{flex:none}
+#app>.reveal.pgroot>.pgv{flex:1;min-height:0}
+.pgv{position:relative;overflow:hidden}.pgm{position:absolute;left:0;top:0;width:100%;visibility:hidden;pointer-events:none}
+.pg{position:absolute;inset:0;overflow:hidden;display:none;animation:pgin .28s ease both}.pg.on{display:block}
+@keyframes pgin{from{opacity:0;transform:translateY(8px) scale(.99)}}
+.pgbar{position:relative;flex:none;height:40px;margin:2px 0 0;display:flex;align-items:center;gap:8px}
+.pgb{flex:none;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.95);background:rgba(255,255,255,.88);color:var(--n3);font-size:22px;font-weight:900;line-height:1;cursor:pointer;box-shadow:0 8px 16px -10px rgba(30,60,160,.55),inset 0 0 0 1px rgba(120,140,190,.25);padding:0 0 3px}
+.pgb:disabled{opacity:.35}.pgb:active{transform:scale(.92)}
+.pgt{flex:1;min-width:0;height:36px;border-radius:99px;border:0;background:linear-gradient(180deg,var(--n1),var(--n2));color:#fff;font:inherit;font-weight:800;font-size:13.5px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 14px;cursor:pointer;box-shadow:0 10px 18px -10px var(--ag),inset 0 1px 0 rgba(255,255,255,.4)}
+.pgt span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pgt b{flex:none;background:rgba(255,255,255,.25);border-radius:99px;padding:2px 9px;font-size:12px}
+.pgd{position:absolute;left:50%;transform:translateX(-50%);bottom:-5px;display:flex;gap:4px}.pgd i{width:5px;height:5px;border-radius:50%;background:rgba(120,140,190,.4);transition:.2s}.pgd i.on{width:16px;border-radius:5px;background:var(--n2)}
+.pgmenu{position:absolute;left:0;right:0;bottom:44px;z-index:40;border-radius:20px;padding:6px;background:rgba(255,255,255,.96);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid #fff;box-shadow:0 24px 44px -14px rgba(25,50,140,.6);max-height:46vh;overflow:hidden;display:flex;flex-direction:column;gap:2px}
+.pgmenu button{display:flex;align-items:center;gap:10px;border:0;background:none;font:inherit;font-weight:800;font-size:14px;color:var(--ink);padding:8px 10px;border-radius:14px;text-align:start;cursor:pointer}.pgmenu button b{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:rgba(120,140,190,.2);font-size:12px}.pgmenu button.on{background:linear-gradient(180deg,var(--n1),var(--n2));color:#fff}.pgmenu button.on b{background:rgba(255,255,255,.3)}
+/* ---------- header: the full tool name ---------- */
+.tt{flex:1;min-width:0;display:flex;align-items:center;gap:10px}.tn{flex:1;min-width:0;white-space:nowrap;overflow:visible;font-weight:900;color:var(--n3);letter-spacing:-.1px}
+.hic{flex:none;width:32px;height:32px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(180deg,var(--n1),var(--n2));color:#fff;box-shadow:0 8px 14px -8px var(--ag)}.hic svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+body .top .tback{flex:none}
+.logo{flex:1;min-width:0}
+/* ---------- the dock ---------- */
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;justify-content:center;padding:0 10px calc(10px + env(safe-area-inset-bottom,0px));pointer-events:none}
+.dock2{position:relative;pointer-events:auto;width:100%;max-width:480px;height:70px;display:grid;grid-template-columns:repeat(5,1fr);align-items:center;padding:0 6px;border-radius:30px;background:linear-gradient(180deg,rgba(255,255,255,.88),rgba(255,255,255,.66));-webkit-backdrop-filter:blur(24px) saturate(1.9);backdrop-filter:blur(24px) saturate(1.9);box-shadow:0 26px 50px -20px var(--ag),0 8px 18px -10px rgba(25,50,140,.35),inset 0 1.5px 0 #fff,inset 0 -1px 0 rgba(120,140,190,.18)}
+.dock2::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.6px;background:linear-gradient(135deg,var(--n1),rgba(255,255,255,.15) 45%,var(--n2));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.9}
+.lens{position:absolute;top:7px;bottom:7px;inset-inline-start:6px;width:calc((100% - 12px)/5);border-radius:23px;background:linear-gradient(180deg,var(--n1),var(--n2));box-shadow:0 14px 22px -10px var(--ag),inset 0 1.5px 0 rgba(255,255,255,.55);transition:transform .45s cubic-bezier(.3,1.45,.4,1),opacity .3s;pointer-events:none}
+.nv2{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;height:100%;border:0;background:none;color:var(--mut);font:inherit;font-size:10.5px;font-weight:800;line-height:1;cursor:pointer;transition:color .25s,transform .12s;-webkit-tap-highlight-color:transparent}
+.nv2:active{transform:scale(.92)}.nv2 .ni{position:relative;display:grid;place-items:center;width:28px;height:26px}
+.nv2 .ni svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s cubic-bezier(.3,1.6,.4,1)}
+.nv2.on{color:#fff}.nv2.on .ni svg{transform:translateY(-2px) scale(1.08)}
+.dtp{position:absolute;top:-2px;inset-inline-end:-3px;width:9px;height:9px;border-radius:50%;background:#B7C0D6;border:2px solid #fff;box-sizing:content-box}.dtp.on,.dtp.ok{background:#10B981}.dtp.warn{background:#F2A93B}.dtp.bad{background:#E5484D}
+.nv2.orb{overflow:visible}.nv2.orb .ob{position:relative;margin-top:-30px;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;color:#4A2C00;background:radial-gradient(circle at 34% 26%,#FFF3B8,#FFC83D 55%,#F59E0B);box-shadow:0 18px 26px -8px rgba(245,158,11,.85),0 0 0 6px rgba(255,255,255,.95),inset 0 2px 0 rgba(255,255,255,.8);transition:transform .15s}
+.nv2.orb .ob::before{content:"";position:absolute;inset:-6px;border-radius:50%;background:conic-gradient(from 0deg,var(--n1),transparent 30%,var(--n2),transparent 70%,var(--n1));-webkit-mask:radial-gradient(circle,transparent 66%,#000 68%);mask:radial-gradient(circle,transparent 66%,#000 68%);animation:orbspin 7s linear infinite;opacity:.9}
+.nv2.orb .ob svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2.8;stroke-linecap:round;position:relative}
+.nv2.orb:active .ob{transform:scale(.92)}.nv2.orb .nl{margin-top:2px;color:var(--n3)}
+@keyframes orbspin{to{transform:rotate(360deg)}}
+.lite .dock2,.lite .pgt{background:#fff!important;backdrop-filter:none!important}.lite .nv2.orb .ob::before{animation:none}
+/* ---------- bottom sheets ---------- */
+.bsh{position:fixed;inset:0;z-index:80;display:flex;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .2s}.bsh.in{opacity:1}
+.bso{position:absolute;inset:0;background:rgba(15,27,61,.42);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.bsp{position:relative;width:100%;max-width:520px;margin:0 8px calc(8px + env(safe-area-inset-bottom,0px));padding:10px 16px 16px;border-radius:30px;background:linear-gradient(180deg,rgba(255,255,255,.97),rgba(243,246,255,.97));box-shadow:0 -10px 40px -10px rgba(15,27,61,.5),inset 0 1.5px 0 #fff;transform:translateY(30px);transition:transform .35s cubic-bezier(.3,1.3,.4,1)}.bsh.in .bsp{transform:none}
+.bsh-h{display:block;width:44px;height:5px;border-radius:5px;background:rgba(120,140,190,.4);margin:0 auto 10px}.bsp h3{font-size:18px;font-weight:900;color:var(--n3);margin:0 0 10px}
+.qd{display:block;width:100%;border:0;border-radius:18px;padding:11px;margin-bottom:10px;font:inherit;font-weight:900;font-size:14.5px;color:#3A2600;background:linear-gradient(180deg,#FFE48F,#FFB62E);box-shadow:0 10px 18px -10px rgba(245,158,11,.8),inset 0 1px 0 rgba(255,255,255,.8);cursor:pointer}
+.qg{display:grid;grid-template-columns:1fr 1fr;gap:8px}.qt{display:flex;align-items:center;gap:10px;border:1px solid #fff;border-radius:18px;background:rgba(255,255,255,.9);padding:9px 10px;font:inherit;font-weight:800;font-size:13.5px;color:var(--ink);text-align:start;cursor:pointer;box-shadow:0 10px 18px -14px rgba(30,60,160,.6)}.qt:active{transform:scale(.97)}.qt span{min-width:0;line-height:1.15}
+.aih2{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:18px;background:rgba(237,241,252,.8)}.aih2>div{flex:1}.aih2 b{display:block;font-size:16px}.aih2 small{display:block;color:var(--mut);font-size:12.5px;margin-top:2px}
+.sw{flex:none;width:50px;height:30px;border-radius:99px;border:0;background:#CBD5E8;position:relative;cursor:pointer;transition:background .25s;padding:0}.sw i{position:absolute;top:3px;inset-inline-start:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 3px 8px rgba(0,0,0,.25);transition:inset-inline-start .25s cubic-bezier(.3,1.5,.4,1)}.sw.on{background:linear-gradient(180deg,#34D399,#10B981)}.sw.on i{inset-inline-start:23px}
+/* ---------- settings: compact ---------- */
+.card.sc{padding:4px 12px}.srow{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(120,140,190,.2)}.srow:last-child{border-bottom:0}
+.si{flex:none;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(180deg,rgba(255,255,255,.9),var(--panel));box-shadow:inset 0 0 0 1px rgba(120,140,190,.3);color:var(--n3)}.si svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.sx{flex:1;min-width:0}.sx b{display:block;font-size:14.5px;font-weight:800}.sx small{display:block;color:var(--mut);font-size:12px;font-weight:600;line-height:1.3;margin-top:1px}
+.sseg{flex:none;display:flex;padding:3px;border-radius:99px;background:rgba(120,140,190,.2)}.sseg button{border:0;background:none;font:inherit;font-weight:800;font-size:12.5px;padding:6px 12px;border-radius:99px;color:var(--mut);cursor:pointer}.sseg button.on{background:#fff;color:var(--n3);box-shadow:0 4px 10px -4px rgba(30,60,160,.45)}
+.sbt{flex:none;border:0;border-radius:99px;padding:8px 14px;font:inherit;font-weight:800;font-size:12.5px;color:var(--n3);background:rgba(255,255,255,.9);box-shadow:inset 0 0 0 1.5px rgba(120,140,190,.35);cursor:pointer}.sbt.g{color:#3A2600;background:linear-gradient(180deg,#FFE48F,#FFB62E);box-shadow:0 8px 14px -8px rgba(245,158,11,.8)}
+/* ---------- density: more fits on one screen ---------- */
+#app .card{padding:10px 12px;margin:0 0 8px;border-radius:18px}
+#app .tag{font-size:12.5px;padding:3px 10px}
+#app .btn{padding:10px 12px;font-size:14.5px;margin:8px 0 4px;border-radius:14px}
+#app .sub{font-size:14px;line-height:1.4;margin:0 0 8px}#app .dr{font-size:12px;line-height:1.35}
+#app h2{font-size:17px;margin:6px 0}#app .rh{margin:6px 0}
+#app .verd.pfl{padding:8px 12px;margin:0 0 8px}#app .verd b{font-size:15px}#app .verd small{font-size:12px;line-height:1.25}
+#app .tabs3{margin:0 0 8px;padding:3px}#app .t3{padding:7px 4px;font-size:12.5px}
+#app .stats{gap:8px;margin:0 0 8px}#app .st{padding:8px 6px}#app .st b{font-size:24px}
+#app .hi{padding:10px 12px;margin:0 0 8px}
+#app .chip3{padding:6px 12px;font-size:13px}
+#app .lkin,#app .ta{padding:9px 12px;font-size:15px}
+#app .link{font-size:13.5px;margin:0 0 6px;padding:2px 0}
+.toast{bottom:calc(var(--dock-h) + 22px + env(safe-area-inset-bottom,0px))!important;top:auto!important}
+/* ---- dock: beat the old .nav>div rules ---- */
+.nav>.dock2{display:grid!important;gap:0!important;border:0!important;padding:0 6px!important;max-width:480px!important;background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.68))!important;border-radius:30px!important;box-shadow:0 26px 50px -20px var(--ag),0 8px 18px -10px rgba(25,50,140,.35),inset 0 1.5px 0 #fff,inset 0 -1px 0 rgba(120,140,190,.18)!important;-webkit-backdrop-filter:blur(24px) saturate(1.9)!important;backdrop-filter:blur(24px) saturate(1.9)!important}
+.nav>.dock2::before{content:""!important;position:absolute!important;inset:0!important;height:auto!important;border-radius:inherit!important;padding:1.6px!important;background:linear-gradient(135deg,var(--n1),rgba(255,255,255,.15) 45%,var(--n2))!important;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0)!important;-webkit-mask-composite:xor!important;mask-composite:exclude!important}
+.nav>.dock2 .nv2{padding:0!important;background:none!important;box-shadow:none!important;border:0!important}
+.nav>.dock2 .nv2.on{background:none!important}
+.nav>.dock2 .lens{margin:0}
+.nv2 .nl{font-size:10.5px;font-weight:800;letter-spacing:0;color:inherit}
+.nv2.on .nl{color:#fff}
+#app .act2{margin:0 0 4px}
+
+.tkr{padding:7px 0;border-bottom:1px dashed var(--line)}.tkr:last-child{border-bottom:0}.tkt{margin:3px 0 0;font-size:13.5px;line-height:1.3;font-weight:700;color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.tkw{margin:2px 0 0!important;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+#app .lcs{gap:6px}#app .lc{padding:6px 4px}#app .lc b{font-size:20px}
+
+.crg{display:grid;grid-template-columns:78px repeat(5,1fr);gap:4px;align-items:center;margin-top:5px}.crh small{font-size:9.5px;font-weight:800;color:var(--mut);text-align:center;line-height:1.05}
+.crl{display:flex;align-items:center;gap:5px;font-weight:800;font-size:12.5px;white-space:nowrap}.crl i{width:9px;height:9px;border-radius:50%;flex:none}
+.crc{height:30px;border-radius:10px;border:1.5px solid rgba(120,140,190,.35);background:rgba(255,255,255,.9);font:inherit;font-weight:800;font-size:11.5px;color:var(--ink);cursor:pointer;padding:0}.crc.on{background:linear-gradient(180deg,var(--n1),var(--n2));color:#fff;border-color:transparent;box-shadow:0 6px 12px -8px var(--ag)}
+.calc{padding:5px 11px!important;border-radius:13px!important;font-size:12px!important}.calc b{font-size:16px!important}.calc small{font-size:10px!important}
+
+.tkl{display:flex;align-items:center;gap:4px;flex-wrap:nowrap;overflow:hidden}.tkl .stc,.tkl .rcs{font-size:10.5px!important;padding:2px 7px!important;line-height:1.2;white-space:nowrap;margin:0!important;flex:none}.tkl .dr{white-space:nowrap;flex:none}
+.jpb{padding:4px 10px!important;font-size:11.5px!important;margin:0!important;flex:none}.tkr{padding:6px 0}.tkt{font-size:13px!important;margin:3px 0 0!important}.tkw{font-size:11.5px!important;line-height:1.25!important;margin-top:1px!important}
+.pmg{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:6px}.pmg .lkin{padding:7px 3px!important;font-size:13px!important;text-align:center;direction:ltr;min-width:0}
+
+/* ===================== CALM: fewer icons, quieter colour ===================== */
+.hero::after{animation:none!important;display:none}
+.bdp{animation:none!important}.bdb.sel{animation:none!important}
+.nv2.orb .ob::before{display:none}
+.nav>.dock2::before{display:none!important}
+.nav>.dock2{background:rgba(255,255,255,.94)!important;box-shadow:0 14px 30px -16px rgba(25,50,140,.45),0 0 0 1px rgba(120,140,190,.22)!important;-webkit-backdrop-filter:blur(12px)!important;backdrop-filter:blur(12px)!important;height:64px!important}
+.dock2 .lens{background:var(--n2)!important;opacity:.14!important;box-shadow:none!important;border-radius:18px;top:8px;bottom:8px}
+.nv2{color:#7B88A6;font-size:10.5px;font-weight:700}.nv2 .ni svg{width:22px;height:22px;stroke-width:1.7}
+.nv2.on{color:var(--n3)!important}.nv2.on .nl{color:var(--n3)!important}.nv2.on .ni svg{transform:none}
+.nv2.orb .ob{width:52px;height:52px;margin-top:-22px;box-shadow:0 10px 18px -8px rgba(245,158,11,.7),0 0 0 5px #fff}.nv2.orb .ob svg{width:24px;height:24px}
+.nv2 .ni .dtp{width:7px;height:7px;border-width:1.5px;top:-1px}
+.pgd{display:none}.pgbar{height:36px}
+.pgt{background:rgba(255,255,255,.9);color:var(--n3);box-shadow:inset 0 0 0 1.5px rgba(120,140,190,.3);height:34px}.pgt b{background:var(--n2);color:#fff}
+.pgb{width:34px;height:34px;box-shadow:inset 0 0 0 1.5px rgba(120,140,190,.3)}
+.stc,.stc.new,.stc.working{background:rgba(120,140,190,.14)!important;color:var(--ink)!important;box-shadow:none!important;border:0!important;font-weight:700!important}
+.stc.process{background:#FDE3E5!important;color:#B42318!important}
+.htabs svg,.htabs .ico{display:none!important}
+.qt{border-inline-start:5px solid var(--c,#ccd)}.qd{background:rgba(255,226,140,.6);box-shadow:none;color:#5A3B00}
+.bsp{box-shadow:0 -6px 24px -10px rgba(15,27,61,.4)}
+.tile .badge,.tile svg.bg{transform:scale(.88)}
+
+/* ---- five tools on one hub screen ---- */
+.tiles.t4,.tiles.t5{grid-template-columns:1fr 1fr}
+.tiles.t4 .tile,.tiles.t5 .tile{padding:7px 8px;gap:6px}.tiles.t4 .tile small,.tiles.t5 .tile small{display:none}.tiles.t4 .tile b,.tiles.t5 .tile b{font-size:12.5px}.tiles.t5 .tile:last-child:nth-child(odd){grid-column:1/-1}
+.tiles.t4 .tile>span,.tiles.t5 .tile>span{padding-inline-end:0}
+@media (min-width:900px){.tiles.t4,.tiles.t5{grid-template-columns:1fr!important}.tiles.t4 .tile small,.tiles.t5 .tile small{display:block}}
+body[data-tool=story]{--n1:#C79BFF;--n1b:#C79BFF;--n2:#7C3AED;--n3:#4C1D95;--em:#7C3AED;--em2:#6D28D9;--em3:#4C1D95;--ag:rgba(124,58,237,.42)}
+body[data-tool=tribal]{--n1:#F0C27A;--n1b:#F0C27A;--n2:#B7791F;--n3:#6B4410;--em:#B7791F;--em2:#9A6516;--em3:#6B4410;--ag:rgba(183,121,31,.42)}
+select.lkin{width:100%;appearance:none;background-image:none}
+
+/* ===== home: the brief ===== */
+.stage.bfs{display:flex;flex-direction:column;gap:8px;height:100%;min-height:0;max-width:720px;margin:0 auto;width:100%}
+.bf{flex:none;position:relative;padding:11px 14px 12px;border-radius:22px;color:#fff;background:linear-gradient(160deg,#1F3FB0,#3B5BDB 55%,#5B7CF0);box-shadow:0 18px 30px -20px rgba(31,63,176,.8),inset 0 1px 0 rgba(255,255,255,.35)}
+.bf small{display:block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.8;margin-bottom:3px}
+.bf>b{display:block;font-size:14.5px;line-height:1.4;font-weight:800}
+.bft{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}.bft i{font-style:normal;font-size:11px;font-weight:800;padding:3px 9px;border-radius:99px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3)}
+.gaps{flex:1;min-height:0;display:flex;flex-direction:column;gap:8px}
+.gp{flex:1;min-height:0;display:flex;align-items:center;gap:11px;padding:8px 12px;border-radius:20px;border:1px solid #fff;background:rgba(255,255,255,.92);box-shadow:0 12px 22px -16px rgba(30,60,160,.55);font:inherit;color:var(--ink);text-align:start;cursor:pointer;transition:transform .12s}
+.gp:active{transform:scale(.985)}
+.gn{flex:none;width:38px;height:38px;border-radius:13px;display:grid;place-items:center;font-weight:900;font-size:16px;color:#fff;background:linear-gradient(180deg,#FF9F6B,#F4511E)}
+.gp:nth-child(2) .gn{background:linear-gradient(180deg,#6C8CFF,#3B5BDB)}.gp:nth-child(3) .gn{background:linear-gradient(180deg,#34D399,#0E9467)}
+.gx{flex:1;min-width:0}.gx b{display:block;font-size:14px;line-height:1.25}.gx small{display:block;font-size:12px;color:var(--mut);font-weight:600;line-height:1.3;margin-top:2px}
+.gt{flex:none;font-size:10.5px;font-weight:800;color:var(--n3);background:rgba(120,140,190,.16);border-radius:99px;padding:3px 8px;max-width:74px;text-align:center;line-height:1.15}
+.cta{flex:none;display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:20px;border:0;font:inherit;text-align:start;cursor:pointer;color:#3A2600;background:linear-gradient(180deg,#FFE48F,#FFB62E);box-shadow:0 14px 22px -14px rgba(245,158,11,.85),inset 0 1.5px 0 rgba(255,255,255,.8)}
+.cta:active{transform:scale(.985)}.ctx{flex:1}.ctx b{display:block;font-size:16.5px}.ctx small{display:block;font-size:12px;font-weight:700;opacity:.8;margin-top:1px}
+.ctn{flex:none;text-align:center;background:rgba(255,255,255,.55);border-radius:14px;padding:3px 12px}.ctn b{display:block;font-size:22px;line-height:1.1;color:#B42318}.ctn small{font-size:10px;font-weight:800}
+.more{flex:none;display:flex;flex-wrap:wrap;align-items:center;gap:5px 6px}.more span{font-size:11px;font-weight:800;color:var(--mut);margin-inline-end:2px}
+.more button{border:0;font:inherit;font-weight:800;font-size:12px;padding:6px 11px;border-radius:99px;background:rgba(255,255,255,.85);color:var(--n3);box-shadow:inset 0 0 0 1.3px rgba(120,140,190,.3);cursor:pointer}
+@media (max-height:780px){.bft{display:none}.bf>b{font-size:13.5px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}.gx small{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.gt{display:none}}
+@media (max-height:700px){.bf small{display:none}.bf>b{-webkit-line-clamp:3;font-size:13px}.gx small{display:none}.gp{min-height:50px}.gn{width:32px;height:32px;font-size:14px}.gx b{font-size:13.5px}.cta{padding:8px 12px}.ctx small{display:none}}
+@media (min-width:900px){.stage.bfs{max-width:760px}.bf>b{font-size:19px}.gx b{font-size:17px}.gx small{font-size:14px}.ctx b{font-size:20px}}
+
+.gp{flex:1 1 auto;min-height:52px}
+
+.ctas{flex:none;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ctas .cta{min-width:0;padding:10px 12px;gap:8px}.ctas .ctx b{font-size:15px;line-height:1.2}.ctas .ctx small{font-size:11.5px;line-height:1.25}
+.cta.rcmc{color:#fff;background:linear-gradient(180deg,#8B5CF6,#5B21B6);box-shadow:0 14px 22px -14px rgba(91,33,182,.8),inset 0 1.5px 0 rgba(255,255,255,.35)}
+.cta.rcmc .ctn{background:rgba(255,255,255,.2)}.cta.rcmc .ctn b{color:#fff}
+@media (max-height:700px){.ctas .ctx small{display:none}}
 </style>
 </head>
 <body>
@@ -1289,7 +1456,7 @@ function renderNav(){
 }
 let SETPREV='home';
 function openSettings(){if(V!=='set')SETPREV=V;nav('set')}
-function closeSettings(){const v=SETPREV||'home';nav(v,(v==='inc'||v==='proc'||v==='life'||v==='rbi'||v==='rcm'||v==='strat')?'keep':undefined)}
+function closeSettings(){const v=SETPREV||'home';nav(v,(v==='inc'||v==='proc'||v==='life'||v==='rbi'||v==='rcm'||v==='strat'||v==='bad'||v==='prio'||v==='story'||v==='tribal')?'keep':undefined)}
 function renderTop(){
   const tl=toolOf(V),el=$('.top');
   const gear=`<button class="chip" id="gear" onclick="openSettings()" aria-label="${T[L].nav[5]}" title="${T[L].nav[5]}">${ICN.set}</button>`;
@@ -1312,14 +1479,14 @@ function nav(v,arg){
   if(v==='hand'&&arg===undefined&&!HLOAD)HV='list';
   if(v==='tbt'&&arg===undefined&&!TLOAD)TV='list';
   if(v==='gas'&&arg===undefined)GV='home';
-  if(v==='strat'&&arg===undefined)SMV='list';if(v==='life'&&arg===undefined)ILV='list';if(v==='rbi'&&arg===undefined)RBV='list';if(v==='rcm'&&arg===undefined)RCV='list';
+  if(v==='bad'&&arg===undefined)BDV='list';if(v==='strat'&&arg===undefined)SMV='list';if(v==='life'&&arg===undefined)ILV='list';if(v==='rbi'&&arg===undefined)RBV='list';if(v==='rcm'&&arg===undefined)RCV='list';
   V=v;document.body.dataset.tool=toolOf(v)||'';document.body.classList.toggle('hub',v==='home');renderTop();renderNav();
   if(v==='new'){steps();if(S.ld)loading(S.ldMsg);else render(S.step)}
   else view(true);
 }
 function view(scroll){
   renderNav();$('#stepsBox').innerHTML='';
-  const fn={home:vHome,dash:vDash,impact:vImpact,strat:vStrat,life:vLife,rbi:vRbi,rcm:vRcm,inc:vInc,proc:vProc,permit:vPermit,hand:vHand,tbt:vTbt,gas:vGas,lib:vLib,set:vSet}[V];
+  const fn={home:vHome,dash:vDash,impact:vImpact,prio:vPrio,bad:vBad,strat:vStrat,life:vLife,rbi:vRbi,rcm:vRcm,inc:vInc,proc:vProc,permit:vPermit,hand:vHand,tbt:vTbt,gas:vGas,lib:vLib,set:vSet}[V];
   $('#app').innerHTML=`<div class="reveal">${fn()}</div>`;
   if(scroll)window.scrollTo({top:0});
   after(-1);
@@ -1336,7 +1503,7 @@ const TL={
 const FAM={improve:{tab:'famImprove',icon:'bulb',nic:'n-bulb',tools:['idea'],p:['#2F55C8','#14307F','#0B1B52']},
  learn:{tab:'famLearn',icon:'doc',nic:'n-doc',tools:['inc','proc'],p:['#4A5370','#232B42','#11151F']},
  field:{tab:'famField',icon:'permit',nic:'n-permit',tools:['permit','hand','tbt','gas'],p:['#C26A0B','#7A3E08','#3F1E04']}};
-const toolOf=v=>({impact:null,strat:'strat',life:'life',rbi:'rbi',rcm:'rcm',new:'idea',dash:'idea',inc:'inc',proc:'proc',permit:'permit',hand:'hand',tbt:'tbt',gas:'gas'})[v]||null;
+const toolOf=v=>({story:'story',tribal:'tribal',prio:'prio',bad:'bad',strat:'strat',life:'life',rbi:'rbi',rcm:'rcm',new:'idea',dash:'idea',inc:'inc',proc:'proc',permit:'permit',hand:'hand',tbt:'tbt',gas:'gas'})[v]||null;
 let HK='improve';
 function hubSel(k){HK=k;view(false)}
 function gHome(){GV='home';view(true)}
@@ -1499,7 +1666,7 @@ async function openReport(d){
   const cv=await drawCard(d),blob=await new Promise(r=>cv.toBlob(r,'image/png')),url=URL.createObjectURL(blob);
   const txt=reportSummary(d)+'\n\n'+t('brand')+' · IQI™ · IIC™';
   const m=document.createElement('div');m.className='modal';
-  m.innerHTML=`<div class="card" style="max-width:460px;max-height:94vh;overflow:auto"><img src="${url}" alt="" style="width:100%;display:block;border-radius:14px;border:1.5px solid var(--line)"><button class="btn g" id="rsh">${t('waBtn')}</button><button class="btn l" id="rdl">${t('dl')}</button><a class="link" id="rwa" href="https://wa.me/?text=${encodeURIComponent(txt)}" target="_blank" rel="noopener" style="display:block;text-align:center">WhatsApp</a><button class="link" id="rcl" style="width:100%;text-align:center">${t('close')}</button></div>`;
+  m.innerHTML=`<div class="card" style="max-width:460px;max-height:94vh;overflow:auto"><img src="${url}" alt="" style="width:100%;display:block;border-radius:14px;border:1.5px solid var(--line)"><button class="btn g" id="rsh">${t('waBtn')}</button><button class="btn l" id="rdl">${t('dl')}</button><button class="link" id="rcl" style="width:100%;text-align:center">${t('close')}</button></div>`;
   document.body.appendChild(m);
   const close=()=>{m.remove();URL.revokeObjectURL(url)};
   const save=async()=>{const dl=await cap('downloads');if(!dl){toast(t('dlNA'));return false}try{await dl.save({filename:'IQI-report.png',data:blob});toast(t('imgSaved'));return true}catch(e){if(!e||e.code!=='declined')toast(t('dlNA'));return false}};
@@ -1522,7 +1689,7 @@ function shareIdea(id){
 }
 
 /* ---------- version ---------- */
-/*BUILD*/const BUILD={version:"AIR 0.8 GitHub",id:"20261004-1151",date:"2026-10-04T11:51:31Z"};/*END BUILD*/
+/*BUILD*/const BUILD={version:"AIR 1.5 GitHub",id:"20261004-1827",date:"2026-10-04T18:27:37Z"};/*END BUILD*/
 const fmtBuild=()=>new Date(BUILD.date).toLocaleString(L==='ar'?'ar-u-ca-gregory-nu-latn':'en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
 function verCard(){
   return`<div class="card"><span class="tag">${t('verT')}</span><p style="margin:0 0 6px;font-size:17px;font-weight:800;color:var(--ink)">${t('verL')} ${BUILD.version}</p><p class="dr" style="margin-top:0">${t('relL')}: ${fmtBuild()}</p></div>`;
@@ -2089,7 +2256,7 @@ async function incShare(){
 function incSummary(I){const vs=I.versions,cur=vs[vs.length-1],f=vs[0];return`${I.title}\n${cur.a.summary||''}\nRQI: ${vs.length>1?f.total+' → ':''}${cur.total}/100\n\n${t('brand')} · RQI™`}
 function showImg(blob,txt,fname){
   const url=URL.createObjectURL(blob),m=document.createElement('div');m.className='modal';
-  m.innerHTML=`<div class="card" style="max-width:460px;max-height:94vh;overflow:auto"><img src="${url}" alt="" style="width:100%;display:block;border-radius:14px;border:1.5px solid var(--line)"><button class="btn g" id="rsh">${t('waBtn')}</button><button class="btn l" id="rdl">${t('dl')}</button><a class="link" id="rwa" href="https://wa.me/?text=${encodeURIComponent(txt)}" target="_blank" rel="noopener" style="display:block;text-align:center">WhatsApp</a><button class="link" id="rcl" style="width:100%;text-align:center">${t('close')}</button></div>`;
+  m.innerHTML=`<div class="card" style="max-width:460px;max-height:94vh;overflow:auto"><img src="${url}" alt="" style="width:100%;display:block;border-radius:14px;border:1.5px solid var(--line)"><button class="btn g" id="rsh">${t('waBtn')}</button><button class="btn l" id="rdl">${t('dl')}</button><button class="link" id="rcl" style="width:100%;text-align:center">${t('close')}</button></div>`;
   document.body.appendChild(m);
   const close=()=>{m.remove();URL.revokeObjectURL(url)};
   const save=async()=>{const dl=await cap('downloads');if(!dl){toast(t('dlNA'));return false}try{await dl.save({filename:fname,data:blob});toast(t('imgSaved'));return true}catch(e){if(!e||e.code!=='declined')toast(t('dlNA'));return false}};
@@ -3926,12 +4093,12 @@ function libItems(){
   const o=[];
   CACHE.forEach(x=>{
     const k=KIND2K[x.kind||''];if(!k)return;
-    const g={strat:`openStrat('${x.id}')`,life:`openLife('${x.id}')`,rbi:`openRbi('${x.id}')`,rcm:`openRcm('${x.id}')`,idea:`nav('dash','${x.id}')`,inc:`openInc('${x.id}')`,proc:`openProc('${x.id}')`,permit:`openPM('${x.id}')`,hand:`openH('${x.id}')`,tbt:`openT('${x.id}')`}[k];
+    const g={tribal:`openTribal('${x.id}')`,iow:`openIow('${x.id}')`,bad:`openBad('${x.id}')`,strat:`openStrat('${x.id}')`,life:`openLife('${x.id}')`,rbi:`openRbi('${x.id}')`,rcm:`openRcm('${x.id}')`,idea:`nav('dash','${x.id}')`,inc:`openInc('${x.id}')`,proc:`openProc('${x.id}')`,permit:`openPM('${x.id}')`,hand:`openH('${x.id}')`,tbt:`openT('${x.id}')`}[k];
     o.push({k,id:x.id,doc:x,title:k==='idea'?(x.idea||'').trim().replace(/\s+/g,' ').slice(0,90):String(x.title||''),u:x.updated||0,s:lastScoreOf(x),go:g});
   });
   return o.sort((a,b)=>b.u-a.u);
 }
-function docFull(it){const x=it.doc;return it.k==='idea'?(x.idea||''):it.k==='proc'?docText(x,'text'):it.k==='inc'?docText(x,'report'):it.k==='permit'?(x.text||'')+' '+(x.other||''):it.k==='hand'?(x.notes||''):it.k==='strat'?(x.tag+' '+(x.pm||[]).map(p=>p.task).join(' ')):it.k==='life'?(x.tag+' '+x.comp+' '+x.mech):it.k==='rbi'?(x.tag+' '+x.desc+' '+x.svc):it.k==='rcm'?(x.tag+' '+x.fn+' '+x.rows.map(r=>r.fm+' '+r.eff+' '+r.warn).join(' ')):(x.jobs||'')+' '+(x.yest||'')}
+function docFull(it){const x=it.doc;return it.k==='idea'?(x.idea||''):it.k==='proc'?docText(x,'text'):it.k==='inc'?docText(x,'report'):it.k==='permit'?(x.text||'')+' '+(x.other||''):it.k==='hand'?(x.notes||''):it.k==='tribal'?(x.title+' '+Object.values(x.ans||{}).join(' ')):it.k==='iow'?(x.title+' '+(x.limits||[]).map(l=>l.tag+' '+l.param).join(' ')):it.k==='bad'?(x.title+' '+(x.wos||[]).slice(0,200).map(w=>w.tag+' '+w.fm).join(' ')):it.k==='strat'?(x.tag+' '+(x.pm||[]).map(p=>p.task).join(' ')):it.k==='life'?(x.tag+' '+x.comp+' '+x.mech):it.k==='rbi'?(x.tag+' '+x.desc+' '+x.svc):it.k==='rcm'?(x.tag+' '+x.fn+' '+x.rows.map(r=>r.fm+' '+r.eff+' '+r.warn).join(' ')):(x.jobs||'')+' '+(x.yest||'')}
 function libFilter(){
   let a=libItems();const n={all:a.length};a.forEach(i=>n[i.k]=(n[i.k]||0)+1);
   if(LF!=='all')a=a.filter(i=>i.k===LF);
@@ -3973,7 +4140,7 @@ ${bkDue()?`<div class="ribbon" style="background:linear-gradient(180deg,#FFD36A,
 <div id="lres">${libRes()}</div>`;
 }
 /* ---- backup file (everything, in full) ---- */
-const BKKINDS=[undefined,'incident','procedure','permit','hand','tbt','ptext','life','rbi','rcm','strat'];
+const BKKINDS=[undefined,'incident','procedure','permit','hand','tbt','ptext','life','rbi','rcm','strat','bad','iow','tribal'];
 async function sha256(str){try{const h=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));return[...new Uint8Array(h)].map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){return''}}
 async function exportBackup(){
   const dl=await cap('downloads');if(!dl){toast(t('dlNA'));return}
@@ -4061,7 +4228,7 @@ function hubScene(k){
 function lastScore(k){
   const f=a=>a.length?a[0]:null,L1=x=>x&&x.versions&&x.versions.length?x.versions[x.versions.length-1].total:null;
   const by=kd=>CACHE.filter(x=>x.kind===kd).sort((a,b)=>b.updated-a.updated);
-  if(k==='life')return L1(f(by('life')));if(k==='rbi')return L1(f(by('rbi')));if(k==='rcm')return L1(f(by('rcm')));if(k==='strat')return L1(f(by('strat')));
+  if(k==='story'||k==='tribal')return L1(f(by(k)));if(k==='bad')return L1(f(by('bad')));if(k==='life')return L1(f(by('life')));if(k==='rbi')return L1(f(by('rbi')));if(k==='rcm')return L1(f(by('rcm')));if(k==='strat')return L1(f(by('strat')));
   if(k==='inc')return L1(f(incs()));
   return null;
 }
@@ -4074,7 +4241,7 @@ const ILMECH_=[['gen','General corrosion','تآكل عام'],['fac','Erosion / f
 const ilMechL=()=>ILMECH_.map(([v,e,a])=>[v,xl(e,a)]);
 const ilNew=()=>({tag:'',comp:'',mech:'gen',nominal:'',tmin:'',cap:10,floor:0.05,readings:[{d:'',t:''},{d:'',t:''}],dlog:[]});
 const ILEX={bfw:()=>({tag:'BFW-RECIRC-L2301',comp:xl('6 in minimum-flow line after the control valve','خط إعادة التدوير 6 بوصة بعد صمام التحكم'),mech:'fac',nominal:10.97,tmin:6.7,cap:10,floor:0.05,readings:[{d:'2019-05',t:10.62},{d:'2022-05',t:9.55},{d:'2025-05',t:8.30}],dlog:[]}),
- cw:()=>({tag:'CW-EXCH-E2205',comp:xl('Cooling water exchanger shell','غلاف مبادل مياه التبريد'),mech:'mic',nominal:12.7,tmin:9.5,cap:10,floor:0.05,readings:[{d:'2018-09',t:12.5},{d:'2022-09',t:11.9},{d:'2026-09',t:11.6}],dlog:[]}),
+ cw:()=>({tag:'E-2205B',comp:xl('Cooling water exchanger shell','غلاف مبادل مياه التبريد'),mech:'mic',nominal:12.7,tmin:9.5,cap:10,floor:0.05,readings:[{d:'2018-09',t:12.5},{d:'2022-09',t:11.9},{d:'2026-09',t:11.6}],dlog:[]}),
  cond:()=>({tag:'COND-LINE-L2410',comp:xl('Condensate line, insulated','خط المتكاثف المعزول'),mech:'cui',nominal:7.11,tmin:4.5,cap:10,floor:0.05,readings:[{d:'2017-06',t:6.9},{d:'2021-06',t:6.2},{d:'2025-06',t:5.3}],dlog:[]})};
 function ilCalc(W,o){
   o=o||{};
@@ -4162,7 +4329,7 @@ function ilPanel(){
 <div class="card"><span class="tag">${xl('Thickness limits (mm)','حدود السماكة (مم)')}</span><div class="two"><div><small class="dr">${xl('Nominal','الاسمية')}</small>${xinp('iln',W.nominal,'10.97',"ilSet('nominal',this.value)",'number')}</div><div><small class="dr">${xl('Minimum required','الحد الأدنى المطلوب')}</small>${xinp('ilm',W.tmin,'6.7',"ilSet('tmin',this.value)",'number')}</div></div><p class="dr">${xl('Use your own design basis for the minimum. Training defaults below can be changed.','استخدم أساس التصميم عندك للحد الأدنى. القيم التدريبية أدناه قابلة للتغيير.')}</p><div class="two"><div><small class="dr">${xl('Max interval (years)','أقصى فترة (سنوات)')}</small>${xinp('ilcp',W.cap,'10',"ilSet('cap',this.value)",'number')}</div><div><small class="dr">${xl('Min corrosion rate (mm/y)','أدنى معدل تآكل (مم/سنة)')}</small>${xinp('ilfl',W.floor,'0.05',"ilSet('floor',this.value)",'number')}</div></div></div>
 <div class="card"><span class="tag">${xl('Thickness readings (same point each time)','قراءات السماكة (النقطة نفسها)')}</span>${W.readings.map((r,i)=>`<div class="ilr"><input class="lkin" type="month" value="${esc(r.d)}" onchange="ilRd(${i},'d',this.value)" style="font-size:15px" aria-label="${xl('Date','التاريخ')}"><input class="lkin" type="number" step="any" inputmode="decimal" value="${esc(r.t)}" placeholder="mm" oninput="ilRd(${i},'t',this.value)" style="font-size:16px;direction:ltr" aria-label="mm"><button class="x" onclick="ilDelRd(${i})" aria-label="x">✕</button></div>`).join('')}<button class="btn l" onclick="ilAddRd()" ${W.readings.length>=10?'disabled':''}>${xl('+ Add reading','+ أضف قراءة')}</button></div>
 <div class="card"><span class="tag">${xl('Save time: paste from Excel','وفّر وقتك: الصق من Excel')}</span><textarea class="ta" id="ilpaste" style="min-height:90px;direction:ltr" placeholder="2019-05  10.62&#10;2022-05  9.55&#10;2025-05  8.30"></textarea><button class="btn l" onclick="ilPaste()">${xl('Use the pasted readings','استخدم القراءات الملصقة')}</button></div>
-<div class="card"><span class="tag">${xl('Save time: read a report with the AI','وفّر وقتك: اقرأ تقريرًا بالذكاء الاصطناعي')}</span><textarea class="ta" id="ilrep" style="min-height:90px" placeholder="${xl('Paste the inspection report text','الصق نص تقرير الفحص')}"></textarea><button class="btn l" onclick="ilReadAI()">${xl('Fill the form from the report','املأ النموذج من التقرير')}</button><p class="dr">${xl('Each reading is checked against the report text. Always verify the values.','تُفحص كل قراءة مقابل نص التقرير. تحقق دائمًا من القيم.')}</p></div>`;
+<div class="card"><span class="tag">${xl('Save time: read a report with the AI','وفّر وقتك: اقرأ تقريرًا بالذكاء الاصطناعي')}</span><textarea class="ta" id="ilrep" style="min-height:90px" placeholder="${xl('Paste the inspection report text','الصق نص تقرير الفحص')}"></textarea>${photoBtn('ilrep')}<button class="btn l" onclick="ilReadAI()">${xl('Fill the form from the report','املأ النموذج من التقرير')}</button><p class="dr">${xl('Each reading is checked against the report text. Always verify the values.','تُفحص كل قراءة مقابل نص التقرير. تحقق دائمًا من القيم.')}</p></div>`;
   if(!c.ok)return`<div class="card">${xl('Enter at least two readings with dates, and the minimum thickness, in the Data tab.','أدخل قراءتين بتواريخهما والحد الأدنى للسماكة في تبويب البيانات.')}</div>`;
   if(ILTAB==='clock')return aiBanner('life')+`<div class="card" style="text-align:center">${ilHourglass(c.rl)}<div style="font-size:44px;font-weight:900;color:var(--n2);line-height:1.1;margin-top:6px">${c.rl>=20?'20+':c.rl.toFixed(1)}</div><small class="dr" style="text-align:center">${xl('years to minimum thickness at the governing rate','سنة حتى الحد الأدنى بالمعدل الحاكم')}</small></div>
 <div class="stats s3"><div class="st"><span class="tag">${xl('Rate mm/y','المعدل مم/سنة')}</span><b>${c.cr.toFixed(2)}</b><small>${xl('short','قصير')} ${c.st.toFixed(2)} · ${xl('long','طويل')} ${c.lt.toFixed(2)}</small></div><div class="st"><span class="tag">${xl('Now mm','الآن مم')}</span><b>${c.tNow.toFixed(2)}</b><small>+${(c.tNow-c.tmin).toFixed(2)} ${xl('above min','فوق الأدنى')}</small></div><div class="st hl"><span class="tag">${xl('Next','القادم')}</span><b style="font-size:20px">${xfmt(xy2ym(c.next))}</b><small>${xl('every','كل')} ${c.interval.toFixed(1)} ${xl('y','سنة')}</small></div></div>
@@ -4201,14 +4368,15 @@ function rbCalc(W){
   const lf=W.tag?CACHE.filter(x=>x.kind==='life'&&x.tag===W.tag).sort((a,b)=>b.updated-a.updated)[0]:null;
   let margin=+W.margin||3,fromLife=false,rl=null;
   if(lf&&lf.versions&&lf.versions.length){const v=lf.versions[lf.versions.length-1];if(v.a&&isFinite(v.a.rl)){rl=v.a.rl;margin=rl>15?1:rl>10?2:rl>5?3:rl>2?4:5;fromLife=true}}
+  const io=W.tag?iowSig(W.tag):null,iowAdd=io?(io.status==='crit'?2:io.status==='alert'?1:0):0,We=Object.assign({},W,{sus:Math.min(5,(+W.sus||1)+iowAdd)});
   const pofP=o=>{const x=(+o.sus||1)*.35+margin*.30+(+o.eff||1)*.20+(+o.hist||1)*.15;return{x,c:Math.max(1,Math.min(5,Math.round(x)))}};
-  const pf=pofP(W),cb=((+W.haz||1)+(+W.inv||1)+(+W.loc||1)+(+W.cond||1))/4,cx=Math.max(cb,+W.prod||1),cof=Math.max(1,Math.min(5,Math.round(cx)));
+  const pf=pofP(We),cb=((+W.haz||1)+(+W.inv||1)+(+W.loc||1)+(+W.cond||1))/4,cx=Math.max(cb,+W.prod||1),cof=Math.max(1,Math.min(5,Math.round(cx)));
   const risk=pf.c*cof,band=risk>=15?'high':risk>=10?'mh':risk>=5?'med':'low';
   let interval={high:2,mh:4,med:6,low:10}[band];if(margin>=5)interval=Math.min(interval,1);
   const l=xym(W.last),next=l!=null?l+interval:null;
-  const rA=pofP(Object.assign({},W,{eff:Math.max(1,(+W.eff||1)-2)})).c*cof,rB=pofP(Object.assign({},W,{sus:Math.max(1,(+W.sus||1)-1)})).c*cof;
+  const rA=pofP(Object.assign({},We,{eff:Math.max(1,(+We.eff||1)-2)})).c*cof,rB=pofP(Object.assign({},We,{sus:Math.max(1,(+We.sus||1)-1)})).c*cof;
   const best=rA<=rB?{k:'eff',to:rA}:{k:'sus',to:rB};best.drop=risk-best.to;
-  return{pof:pf.c,pofx:pf.x,cof,cofx:cx,risk,band,margin,fromLife,rl,interval,next,overdue:next!=null&&next<xnow(),best};
+  return{pof:pf.c,pofx:pf.x,cof,cofx:cx,risk,band,margin,fromLife,rl,interval,next,overdue:next!=null&&next<xnow(),best,iow:io,iowAdd};
 }
 const rbItems=()=>CACHE.filter(x=>x.kind==='rbi').map(D=>Object.assign({id:D.id,doc:D},rbCalc(D))).sort((a,b)=>b.risk-a.risk||b.pofx-a.pofx).map((x,i)=>Object.assign(x,{n:i+1}));
 function rbMatrix(items,sel){
@@ -4233,7 +4401,7 @@ function rbSave(){
 function rbBar(c){const b=rbBand();const st=c.band==='high'?'act':c.band==='mh'||c.band==='med'?'caution':'ok';const un=c.band==='high'||c.band==='mh';return lfLamp(st,`${xl('Risk','المخاطر')} ${c.risk} · ${b[c.band]} · ${un?xl('Unacceptable','غير مقبولة'):xl('Acceptable','مقبولة')}`,`${xl('Failure chance','احتمال الفشل')} ${c.pof}/5 × ${xl('Consequence','الأثر')} ${c.cof}/5`)}
 function rbPanel(){
   const W=RBW,c=rbCalc(W),F=rbFac();
-  const grp=(g,tt)=>`<div class="card"><span class="tag">${tt}</span>${F.filter(f=>f[3]===g).map(f=>{const auto=f[0]==='margin'&&c.fromLife;return`<div style="margin:10px 0 2px"><b style="font-size:15px">${f[1]}</b>${auto?` <span class="stc new" style="margin:0 6px">${xl('from Inspection Life','من عمر المعدة')}: ${c.rl.toFixed(1)} ${xl('y','سنة')} → ${c.margin}</span>`:''}</div>${auto?'':`<div class="chips3">${[1,2,3,4,5].map(n=>chip3((+W[f[0]]||0)===n,`rbSet('${f[0]}',${n})`,String(n))).join('')}</div>`}<p class="dr" style="margin:4px 0 0">${f[2]}</p>`}).join('')}</div>`;
+  const grp=(g,tt)=>`<div class="card"><span class="tag">${tt}</span>${F.filter(f=>f[3]===g).map(f=>{const auto=f[0]==='margin'&&c.fromLife;return`<div style="margin:10px 0 2px"><b style="font-size:15px">${f[1]}</b>${auto?` <span class="stc new" style="margin:0 6px">${xl('from Inspection Life','من عمر المعدة')}: ${c.rl.toFixed(1)} ${xl('y','سنة')} → ${c.margin}</span>`:''}${f[0]==='sus'&&c.iowAdd>0?` <span class="stc process" style="margin:0 6px">${xl('IOW excursions','تجاوزات IOW')}: +${c.iowAdd} · ${c.iow.worst.toFixed(0)}%</span>`:''}</div>${auto?'':`<div class="chips3">${[1,2,3,4,5].map(n=>chip3((+W[f[0]]||0)===n,`rbSet('${f[0]}',${n})`,String(n))).join('')}</div>`}<p class="dr" style="margin:4px 0 0">${f[2]}</p>`}).join('')}</div>`;
   if(RBTAB==='inputs')return aiBanner('rbi')+`<div class="card"><span class="tag">${xl('AI suggestion','اقتراح الذكاء الاصطناعي')}</span><textarea class="ta" id="rbai" style="min-height:80px" placeholder="${xl('Describe the service: fluid, temperature, pressure, material, known issues','صف الخدمة: المائع والحرارة والضغط والمادة والمشاكل المعروفة')}">${esc(W.aiSvc||'')}</textarea><button class="btn g" onclick="rbAI()">${xl('Suggest mechanism and factors','اقترح آلية التلف والعوامل')}</button>${W.aiWhy?`<p class="sub" style="margin:8px 0 0"><b>${xl('AI rationale','مبررات الذكاء')}:</b> ${esc(W.aiWhy)}</p><p class="dr"><b>${xl('Verify on site','تحقق في الموقع')}:</b> ${esc(W.aiWatch||'')}</p>`:''}</div><div class="card"><span class="tag">${xl('Equipment','المعدة')}</span>${xinp('rbt',W.tag,xl('Tag (same as in Inspection Life to link)','الرمز (نفسه في عمر المعدة للربط)'),"rbTxt('tag',this.value)")}<div style="height:8px"></div>${xinp('rbd',W.desc,xl('Description','الوصف'),"rbTxt('desc',this.value)")}<div style="height:8px"></div>${xinp('rbs',W.svc,xl('Service','الخدمة'),"rbTxt('svc',this.value)")}<span class="tag" style="margin-top:10px">${xl('Damage mechanism','آلية التلف')}</span>${xchips(ilMechL(),W.mech,"rbMech")}<span class="tag" style="margin-top:10px">${xl('Last inspection','آخر فحص')}</span><div class="pn"><input class="lkin" type="month" value="${esc(W.last)}" onchange="rbTxt('last',this.value)" style="font-size:16px"></div></div>${grp('pof',xl('Chance of failure','احتمال الفشل'))}${grp('cof',xl('Consequence of failure','أثر الفشل'))}`;
   const b=rbBand(),others=rbItems(),me=others.find(x=>x.id===RBID),all=me?others:others.concat([Object.assign({id:'__cur',n:others.length+1},c)]);
   if(RBTAB==='risk')return`<div class="card">${rbMatrix(all,me?RBID:'__cur')}</div><div class="stats s3"><div class="st"><span class="tag">${xl('Chance','الاحتمال')}</span><b>${c.pof}</b><small>${c.pofx.toFixed(1)}</small></div><div class="st"><span class="tag">${xl('Consequence','الأثر')}</span><b>${c.cof}</b><small>${c.cofx.toFixed(1)}</small></div><div class="st hl"><span class="tag">${xl('Risk','المخاطر')}</span><b>${c.risk}</b><small>${b[c.band]}</small></div></div>
@@ -4339,7 +4507,7 @@ const rcBand=risk=>risk>=15?'high':risk>=10?'mh':risk>=5?'med':'low';
 function rcRow(r,i){
   const d=rcDecide(r),S=rcSt(),op=RCOPEN===i,k=rcRisk(r),B=rbBand(),parts=RCPARTS(),LK=RCLIK();
   const yn=(v,kk)=>`<div class="chips3">${chip3(v===true,`rcTog(${i},'${kk}',true)`,xl('Yes','نعم'))}${chip3(v===false,`rcTog(${i},'${kk}',false)`,xl('No','لا'))}</div>`;
-  return`<div class="card" style="padding:12px 14px"><button class="rch" onclick="rcOpen(${i})"><span class="rcn">${i+1}</span><span style="flex:1;text-align:start"><b>${esc(r.fm||xl('New failure mode','نمط فشل جديد'))}</b><br>${r.part?`<span class="stc new" style="margin:2px 4px 0 0">${esc(r.part)}</span>`:''}<span class="stc ${rcBand(k.risk)==='high'?'process':rcBand(k.risk)==='low'?'new':'working'}" style="margin:2px 4px 0 0">${xl('Risk','المخاطر')} ${k.risk}</span><span class="stc new" style="margin:2px 4px 0 0">RPN ${k.rpn}</span><span class="stc working" style="margin:2px 4px 0 0">${xl('Class','الفئة')} ${rcClass(r)}</span><span class="rcs" style="background:${S[d.k][1]}">${S[d.k][0]}${d.iv&&d.iv!=='—'?' · '+d.iv:''}</span></span><span>${op?'▾':'▸'}</span></button>
+  return`<div class="card" style="padding:12px 14px"><button class="rch" onclick="rcOpen(${i})"><span class="rcn">${i+1}</span><span style="flex:1;text-align:start"><b>${esc(r.fm||xl('New failure mode','نمط فشل جديد'))}</b><br>${r.part?`<span class="stc new" style="margin:2px 4px 0 0">${esc(r.part)}</span>`:''}<span class="stc ${rcBand(k.risk)==='high'?'process':rcBand(k.risk)==='low'?'new':'working'}" style="margin:2px 4px 0 0">${xl('Risk','المخاطر')} ${k.risk}</span><span class="rcs" style="background:${S[d.k][1]}">${S[d.k][0]}${d.iv&&d.iv!=='—'?' · '+d.iv:''}</span></span><span>${op?'▾':'▸'}</span></button>
 ${op?`<div style="margin-top:10px"><span class="tag">${xl('1. Part affected','1. الجزء المتأثر')}</span><div class="chips3">${parts.map(p=>chip3(r.part===p,`rcPart(${i},'${p.replace(/'/g,"\\'")}')`,p)).join('')}</div><div style="height:8px"></div>${xinp('rcpt'+i,r.part,xl('Or type the part','أو اكتب الجزء'),`rcSet(${i},'part',this.value)`)}
 <span class="tag" style="margin-top:12px">${xl('2. Failure mode, cause and effect','2. نمط الفشل وسببه وأثره')}</span>${xinp('rcf'+i,r.fm,xl('What fails','ما الذي يفشل'),`rcSet(${i},'fm',this.value)`)}<div style="height:8px"></div>${xinp('rcca'+i,r.cause,xl('Cause: why it fails','السبب: لماذا يفشل'),`rcSet(${i},'cause',this.value)`)}<div style="height:8px"></div>${xinp('rce'+i,r.eff,xl('Effect: what happens','الأثر: ماذا يحدث'),`rcSet(${i},'eff',this.value)`)}<span class="tag" style="margin-top:12px">${xl('Screen this failure mode','افرز نمط الفشل هذا')}</span><div class="chips3">${RCSCR().map(([v,l])=>chip3((r.scr||'keep')===v,`rcTog(${i},'scr','${v}')`,l)).join('')}</div><p class="dr" style="margin:4px 0 0">${xl('Rare event, implausible, or human error only: drop it from further consideration. Not practical to maintain: replace it when it fails.','حدث نادر أو غير معقول أو خطأ بشري فقط: أسقطه من النظر. غير عملي للصيانة: استبدله عند الفشل.')}</p>
 <span class="tag" style="margin-top:12px">${xl('3. Consequence','3. العاقبة')}</span><div class="chips3">${[['saf',xl('Safety / environment','سلامة / بيئة')],['ops',xl('Operational','تشغيلي')],['non',xl('Non-operational','غير تشغيلي')]].map(([v,l])=>chip3(r.cons===v,`rcTog(${i},'cons','${v}')`,l)).join('')}</div>
@@ -4362,7 +4530,7 @@ function rcTasksHtml(){
   const W=RCW,S=rcSt(),ds=W.rows.map(rcDecide),B=rbBand();
   const items=W.rows.map((r,i)=>({r,d:ds[i],i,k:rcRisk(r)})).filter(x=>x.d.k!=='none');
   const cads=RCCAD(),byC={};items.filter(x=>['cb','sr','ff'].includes(x.d.k)).forEach(x=>{(byC[x.d.cad]=byC[x.d.cad]||[]).push(x)});
-  const itemHtml=x=>`<div style="margin:10px 0 0;padding-top:8px;border-top:1px dashed var(--line)">${x.r.part?`<span class="stc new" style="margin:0 4px 0 0">${esc(x.r.part)}</span>`:''}<span class="rcs" style="background:${S[x.d.k][1]}">${S[x.d.k][0]}</span> <span class="stc ${rcBand(x.k.risk)==='high'?'process':rcBand(x.k.risk)==='low'?'new':'working'}" style="margin:0 4px">${xl('Risk','المخاطر')} ${x.k.risk}</span><p class="sub" style="margin:4px 0 0"><b>${esc(x.r.fm)}</b><br>${esc(x.d.task||'')}</p><p class="dr" style="margin:2px 0 0">${esc(x.d.why||'')}</p></div>`;
+  const itemHtml=x=>`<div class="tkr"><div class="tkl">${x.r.part?`<span class="stc new">${esc(x.r.part)}</span>`:''}<span class="rcs" style="background:${S[x.d.k][1]}">${S[x.d.k][0]}</span><span class="stc ${rcBand(x.k.risk)==='high'?'process':rcBand(x.k.risk)==='low'?'new':'working'}">${xl('Risk','المخاطر')} ${x.k.risk}</span></div><p class="tkt"><b>${esc(x.r.fm)}</b>: ${esc(x.d.task||'')}</p><p class="dr tkw">${esc(x.d.why||'')}</p></div>`;
   let out='';
   const par=items.filter(x=>x.d.k!=='drop').map(x=>({l:`${x.r.part?x.r.part+' · ':''}${x.r.fm}`,v:x.k.rpn})).sort((a,b)=>b.v-a.v);
   if(par.length>1)out+=`<div class="card"><span class="tag">${xl('Where the risk is: RPN Pareto','أين المخاطر: باريتو RPN')}</span>${smPareto(par,'')}<p class="dr">${xl('RPN = severity × likelihood × detection. Higher means more urgent.','RPN = الأثر × الاحتمال × الكشف. الأعلى أكثر إلحاحًا.')}</p></div>`;
@@ -4398,9 +4566,10 @@ function seedDemo(show){
   const rb=[['rbd1',{tag:'BFW-RECIRC-L2301',desc:xl('BFW minimum-flow line after the control valve','خط إعادة تدوير مضخة التغذية بعد صمام التحكم'),svc:xl('Boiler feedwater','ماء تغذية الغلاية'),mech:'fac',last:'2025-05',sus:4,margin:3,eff:3,hist:3,haz:2,inv:2,loc:3,cond:4,prod:5}],
    ['rbd2',{tag:'HP-STEAM-H2001',desc:xl('HP steam header on the pipe rack','مجمّع البخار عالي الضغط على حامل الأنابيب'),svc:xl('High-pressure steam','بخار عالي الضغط'),mech:'gen',last:'2024-03',sus:3,margin:3,eff:3,hist:3,haz:3,inv:4,loc:4,cond:5,prod:5}],
    ['rbd3',{tag:'COND-LINE-L2410',desc:xl('Insulated condensate return line','خط عودة المتكاثف المعزول'),svc:xl('Condensate','متكاثف'),mech:'cui',last:'2025-06',sus:4,margin:3,eff:4,hist:4,haz:2,inv:1,loc:3,cond:2,prod:2}],
-   ['rbd4',{tag:'CW-EXCH-E2205',desc:xl('Cooling water exchanger shell','غلاف مبادل مياه التبريد'),svc:xl('Cooling water','مياه التبريد'),mech:'mic',last:'2026-09',sus:3,margin:1,eff:2,hist:2,haz:1,inv:3,loc:2,cond:2,prod:3}]];
+   ['rbd4',{tag:'E-2205B',desc:xl('Cooling water exchanger shell','غلاف مبادل مياه التبريد'),svc:xl('Cooling water','مياه التبريد'),mech:'mic',last:'2026-09',sus:3,margin:1,eff:2,hist:2,haz:1,inv:3,loc:2,cond:2,prod:3}]];
   rb.forEach(([id,W],i)=>{CACHE=a;const c=rbCalc(W);put(Object.assign(xdoc('rbi',id,W.tag,{}),W,{id,kind:'rbi',title:W.tag,updated:now-i*1000,versions:[{date:now,total:c.risk,a:{pof:c.pof,cof:c.cof,band:c.band,interval:c.interval,next:c.next!=null?xy2ym(c.next):''}}]}))});
   const W=rcEx();put(Object.assign(xdoc('rcm','rcd1',W.tag,{}),JSON.parse(JSON.stringify(W)),{id:'rcd1',kind:'rcm',title:W.tag,updated:now,versions:[{date:now,total:rcScore(W),a:{n:W.rows.length}}]}));
+  const BDD={name:xl('Utility unit','وحدة المرافق'),wos:bdDemo(),op:8760},bdC=bdCalc(BDD);const IOD=Object.assign({name:xl('Operating data','بيانات التشغيل')},iowDemo());CACHE=a;put(Object.assign(xdoc('iow','iowd1',IOD.name,{}),IOD,{id:'iowd1',kind:'iow',title:IOD.name,updated:now,versions:[{date:now,total:3,a:{tags:5}}]}));CACHE=a;put(Object.assign(xdoc('bad','badd1',BDD.name,{}),BDD,{id:'badd1',kind:'bad',title:BDD.name,updated:now,versions:[{date:now,total:bdC.bad.length,a:{n:bdC.nCur,bad:bdC.bad.length,share:Math.round(bdC.dtShare)}}]}));
   const SM=smNew('P-2301A',true);SM.spares=[{name:'Mechanical seal cartridge',qty:1,stock:0,lead:14,part:'seal'},{name:'Bearing set',qty:1,stock:1,lead:6,part:'bearing'},{name:'Strainer basket and gasket',qty:1,stock:0,lead:3,part:'strainer'}];const jk=(smPlan('P-2301A',SM.hrs).tasks.find(t=>t.kind==='cb')||{}).key;if(jk)SM.jp[jk]={steps:smJpSteps('cb').join('\n'),craft:xl('Operator or technician','مشغّل أو فني'),hrs:0.25,spares:'',iso:'',acc:''};CACHE=a;const sr=smReview(SM),kp=smKpi(SM,sr);put(Object.assign(xdoc('strat','smd1','P-2301A',{}),SM,{id:'smd1',kind:'strat',title:'P-2301A',updated:now,versions:[{date:now,total:kp.score!=null?kp.score:sr.covered,a:{before:Math.round(sr.before),after:Math.round(sr.after),gaps:sr.gaps.length+sr.planGaps.length,cands:sr.cands,cls:smCrit(SM).cls}}]}));
   persist(a);if(show){toast(n?xl(`Loaded ${n} fictional records.`,`حُمّلت ${n} سجلات وهمية.`):xl('The fictional unit is already loaded.','الوحدة الوهمية محمّلة بالفعل.'));view(false)}
 }
@@ -4413,7 +4582,8 @@ Object.assign(T.en,{aboutD:"Asset Integrity & Reliability Lab turns inspection d
 Object.assign(T.ar,{aboutD:"مختبر سلامة الأصول والموثوقية يحوّل بيانات الفحص وسجل الأعطال إلى قرارات: العمر المتبقي وأولويات الفحص بحسب المخاطر ومهام الصيانة. قواعد ثابتة ظاهرة تحسب. والذكاء الاصطناعي يقرأ ويسأل. والإنسان يقرر. قيم تدريبية فقط.",ver:"تُحفظ سجلاتك على هذا الجهاز فقط.",copy2:"قيم تدريبية فقط. اتبع معايير شركتك."});
 
 /* ---------------- Maintenance Strategy: criticality, templates, job plans, PM health, corrective, spares, sheet ---------------- */
-let SMV='list',SMW=null,SMID=null,SMTAB='plan',SMJP='',SMTP={cls:'pump',tag:''};
+let SMV='list',SMW=null,SMID=null,SMTAB='plan',SMJP='',SMPMO=-1,SMTP={cls:'pump',tag:''};
+function smPmOpen(i){SMPMO=SMPMO===i?-1:i;view(false)}
 const SMH0=()=>({cb:0.25,sr:8,ff:2,insp:6});
 const smTags=()=>{const s=new Set();CACHE.forEach(x=>{if(['life','rbi','rcm','strat'].includes(x.kind)&&x.tag)s.add(x.tag)});return[...s]};
 const smMonTx=m=>m<1?`${Math.max(1,Math.round(m*4.345))} ${xl('weeks','أسبوعًا')}`:m<24?`${Math.round(m*10)/10} ${xl('months','شهرًا')}`:`${Math.round(m/12*10)/10} ${xl('years','سنة')}`;
@@ -4437,11 +4607,14 @@ function smCrit(W){
 }
 const smPolicy=cls=>({A:xl('Class A: unacceptable if it fails, so prevent it at any cost. Include it in the RCM study. Condition monitoring and inspection, failure-finding on every protective device, critical spares in stock, strategy reviewed every year.','الفئة A: فشلها غير مقبول، فامنعه مهما كلّف. أدخلها في دراسة RCM. مراقبة بحسب الحالة وفحص واختبار كشف فشل لكل جهاز حماية وقطع غيار حرجة في المخزن ومراجعة سنوية.'),B:xl('Class B: corrective measures should be considered at a reasonable cost. Time-based tasks and routine rounds, condition checks where they are cheap, spares by lead time, review every two years.','الفئة B: تُنظر إجراءات تصحيحية بكلفة معقولة. مهام مجدولة وجولات روتينية وفحص بحسب الحالة حيث يكون رخيصًا وقطع بحسب زمن التوريد ومراجعة كل سنتين.'),C:xl('Class C: acceptable. Run to failure is a valid strategy. Minimal preventive work, buy spares on demand.','الفئة C: مقبول. التشغيل حتى الفشل استراتيجية صالحة. صيانة وقائية بالحد الأدنى وتُشترى القطع عند الطلب.')})[cls];
 function smCritCard(W,cr){
-  const C2=W.crit2||smCritLegacy(W.crit||{}),lv=CRLVL(),D=CRDS(),zc={U:'#E5484D',C:'#F2A93B',A:'#2FB384'},zn={U:xl('Unacceptable','غير مقبول'),C:xl('Corrective measures to consider','تُنظر إجراءات تصحيحية'),A:xl('Acceptable','مقبول')};
-  return`<div class="card"><span class="tag">${xl('Criticality','الأهمية')} · ${xl('Class','الفئة')} ${cr.cls}</span><p class="dr" style="margin:0 0 4px">${xl('Rate the worst realistic consequence of a failure in each category. The criteria are company dependent: use your own limits.','قيّم أسوأ عاقبة واقعية للفشل في كل فئة. المعايير تعتمد على الشركة: استخدم حدودك أنت.')}</p>${CRCAT().map(([k,lab])=>{const i=C2[k]||5,z=cr.zones[k];return`<div style="margin:12px 0 0"><div style="display:flex;justify-content:space-between;align-items:center;font-weight:900"><span>${lab}</span><span style="font-size:12.5px;color:${zc[z]}">● ${zn[z]}</span></div><div class="chips3">${lv.map((l,n)=>chip3(i===n+1,`smCr2('${k}',${n+1})`,(n<4?CRR[k][n]+' · ':'')+l)).join('')}</div>${i<=4?`<p class="dr" style="margin:3px 0 0">${D[k][i-1]}</p>`:''}</div>`}).join('')}
-<span class="tag" style="margin-top:12px">${xl('Redundancy (spare unit)','التكرار (وحدة احتياطية)')}</span><div class="chips3">${[['none',xl('None','لا يوجد')],['partial',xl('Partial','جزئي')],['full',xl('Full','كامل')]].map(([v,l])=>chip3((W.crit||{}).red===v,`smCrS('red','${v}')`,l)).join('')}</div>
-<p class="sub" style="margin:10px 0 0"><b>${smPolicy(cr.cls)}</b>${cr.why.length?'<br><span class="dr">'+cr.why.join(' · ')+'</span>':''}</p><p class="dr" style="margin:6px 0 0">${cr.msi?xl('Maintenance significant item: include it in the RCM analysis.','بند مهم للصيانة: أدخله في تحليل RCM.'):xl('Not a maintenance significant item unless a safety consequence appears.','ليس بندًا مهمًا للصيانة ما لم يظهر أثر سلامة.')}</p></div>`;
+  const C2=W.crit2||smCritLegacy(W.crit||{}),lv=CRLVL(),D=CRDS(),zc={U:'#E5484D',C:'#F2A93B',A:'#2FB384'},zn={U:xl('Unacceptable','غير مقبول'),C:xl('Corrective measures','إجراءات تصحيحية'),A:xl('Acceptable','مقبول')};
+  const last=window.CRLAST&&C2[window.CRLAST]&&C2[window.CRLAST]<=4?`<p class="dr" style="margin:6px 0 0"><b>${CRCAT().find(c=>c[0]===window.CRLAST)[1]} ${CRR[window.CRLAST][C2[window.CRLAST]-1]}:</b> ${D[window.CRLAST][C2[window.CRLAST]-1]}</p>`:'';
+  return`<div class="card"><span class="tag">${xl('Criticality','الأهمية')} · ${xl('Class','الفئة')} ${cr.cls}</span><p class="dr" style="margin:4px 0 6px">${xl('Worst realistic consequence of a failure, per category. Use your own limits.','أسوأ عاقبة واقعية للفشل لكل فئة. استخدم حدودك أنت.')}</p>
+<div class="crg crh"><span></span>${lv.map(l=>`<small>${l}</small>`).join('')}</div>${CRCAT().map(([k,lab])=>{const i=C2[k]||5,z=cr.zones[k];return`<div class="crg"><span class="crl"><i style="background:${zc[z]}"></i>${lab.split(' ')[0]}</span>${lv.map((l,n)=>`<button class="crc${i===n+1?' on':''}" onclick="CRLAST='${k}';smCr2('${k}',${n+1})" aria-label="${l}">${n<4?CRR[k][n]:'–'}</button>`).join('')}</div>`}).join('')}${last}
+<div style="display:flex;gap:6px;align-items:center;margin-top:8px"><span class="dr" style="flex:none">${xl('Redundancy','التكرار')}</span><div class="chips3" style="flex:1;margin:0">${[['none',xl('None','لا')],['partial',xl('Partial','جزئي')],['full',xl('Full','كامل')]].map(([v,l])=>chip3((W.crit||{}).red===v,`smCrS('red','${v}')`,l)).join('')}</div></div></div>
+<div class="card"><p class="sub" style="margin:0"><b>${smPolicy(cr.cls)}</b>${cr.why.length?'<br><span class="dr">'+cr.why.join(' · ')+'</span>':''}</p><p class="dr" style="margin:6px 0 0">${cr.msi?xl('Maintenance significant item: include it in the RCM analysis.','بند مهم للصيانة: أدخله في تحليل RCM.'):xl('Not a maintenance significant item unless a safety consequence appears.','ليس بندًا مهمًا للصيانة ما لم يظهر أثر سلامة.')}</p></div>`;
 }
+function smHoursCard(W){return`<div class="card"><span class="tag">${xl('Hours per task execution','ساعات كل تنفيذ')}</span><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:6px">${[['insp',xl('Inspect','فحص')],['cb',xl('Check','فحص حالة')],['sr',xl('Overhaul','مجدول')],['ff',xl('Test','اختبار')]].map(([k,l])=>`<div><small class="dr" style="display:block;text-align:center">${l}</small><input class="lkin" type="number" step="any" inputmode="decimal" value="${esc(W.hrs[k])}" oninput="smHr('${k}',this.value)" style="font-size:15px;text-align:center;padding:8px 2px;direction:ltr"></div>`).join('')}</div><p class="dr" style="margin:6px 0 0">${xl('Training defaults. Use your planner estimates.','قيم تدريبية. استخدم تقديرات المخطط عندك.')}</p></div>`}
 function smCr2(k,v){if(!SMW.crit2)SMW.crit2=smCritLegacy(SMW.crit||{});SMW.crit2[k]=v;view(false)}
 /* ---- S2 templates by equipment class (text in English) ---- */
 const SMTPL=()=>[
@@ -4576,15 +4749,16 @@ async function smJpAI(key){
     aiTrack('strat',xl('Job plan draft','مسودة خطة عمل'),st.length,performance.now()-t0,'jp');view(false);toast(xl('Job plan drafted. Review it.','صيغت خطة العمل. راجعها.'));
   }catch(e){toast(xl('The AI could not draft this job plan.','تعذّر على الذكاء الاصطناعي صياغة خطة العمل.'))}
 }
-function smJpHtml(t){
-  const j=SMW.jp[t.key],has=j&&j.steps,op=SMJP===t.key,kk=t.key.replace(/'/g,"\\'");
-  let h=`<button class="btn l" style="margin:6px 0 0;padding:8px 12px;width:auto" onclick="smJpOpen('${kk}')">${has?'✓ ':''}${xl('Job plan','خطة العمل')} ${op?'▾':'▸'}</button>`;
+function smJpBtn(t){const j=SMW.jp[t.key],has=j&&j.steps,op=SMJP===t.key,kk=t.key.replace(/'/g,"\\'");return`<button class="sbt jpb" onclick="smJpOpen('${kk}')">${has?'✓ ':''}${xl('Job plan','خطة العمل')} ${op?'▾':'▸'}</button>`}
+function smJpEd(t){
+  const op=SMJP===t.key,kk=t.key.replace(/'/g,"\\'");let h='';
   if(op){const o=smJpGet(t.key);h+=`<div class="pn" style="margin-top:8px;padding:10px"><div class="act2" style="margin:0 0 8px"><button class="btn l" style="margin:0" onclick="smJpTplGo('${kk}','${t.kind}')">${xl('From template','من قالب')}</button><button class="btn g" style="margin:0" onclick="smJpAI('${kk}')">${xl('Draft with AI','صِغ بالذكاء')}</button></div>
 <small class="dr">${xl('Steps, one per line','الخطوات، خطوة في كل سطر')}</small><textarea class="ta" style="min-height:110px" oninput="smJpSet('${kk}','steps',this.value)">${esc(o.steps)}</textarea>
 <div class="two"><div><small class="dr">${xl('Craft','الحرفة')}</small>${xinp('jpc',o.craft,'',`smJpSet('${kk}','craft',this.value)`)}</div><div><small class="dr">${xl('Hours','الساعات')}</small>${xinp('jph',o.hrs,'',`smJpSet('${kk}','hrs',this.value)`,'number')}</div></div>
 <small class="dr">${xl('Spares and materials','القطع والمواد')}</small>${xinp('jps',o.spares,'',`smJpSet('${kk}','spares',this.value)`)}<small class="dr">${xl('Isolation or permit','العزل أو التصريح')}</small>${xinp('jpi',o.iso,'',`smJpSet('${kk}','iso',this.value)`)}<small class="dr">${xl('Acceptance and safety note','معيار القبول وملاحظة السلامة')}</small>${xinp('jpa',o.acc,'',`smJpSet('${kk}','acc',this.value)`)}</div>`}
   return h
 }
+function smJpHtml(t){return smJpBtn(t)+smJpEd(t)}
 /* ---- UI helpers and tabs ---- */
 function smTab(k){SMTAB=k;view(false)}
 function smSet(i,k,v){SMW.pm[i][k]=v}
@@ -4630,21 +4804,19 @@ function smKpiHtml(){
 }
 function smPanel(){
   const W=SMW,r=smReview(W),K=smKind(),A=smAct(),cr=smCrit(W);
+  if(SMTAB==='crit')return smCritCard(W,cr)+smHoursCard(W);
   if(SMTAB==='plan'){
     const tags=smTags(),C=W.crit,sc=(k,lab)=>`<span class="tag" style="margin-top:8px">${lab}</span><div class="chips3">${[1,2,3,4,5].map(n=>chip3(smN(C[k])===n,`smCrS('${k}',${n})`,String(n))).join('')}</div>`;
-    return aiBanner('strat')+`<div class="card"><span class="tag">${xl('Equipment tag','رمز المعدة')}</span>${tags.length?`<div class="chips3">${tags.map(x=>chip3(W.tag===x,`smPickTag('${x.replace(/'/g,'')}')`,x)).join('')}</div>`:''}<div style="height:8px"></div>${xinp('smtg',W.tag,xl('Tag','الرمز'),"SMW.tag=this.value;ilLiveSm()")}<p class="dr">${xl('The plan is built from every study that uses this tag.','تُبنى الخطة من كل دراسة تحمل هذا الرمز.')} <b>${r.plan.hasLife?'✓ Life ':'· Life '}${r.plan.hasRbi?'✓ RBI ':'· RBI '}${r.plan.hasRcm?'✓ RCM':'· RCM'}</b></p></div>
-${smCritCard(W,cr)}
+    return aiBanner('strat')+`<div class="card"><span class="tag">${xl('Equipment tag','رمز المعدة')}</span>${tags.length?`<div class="chips3">${tags.map(x=>chip3(W.tag===x,`smPickTag('${x.replace(/'/g,'')}')`,x)).join('')}</div>`:''}<div class="pn" style="margin:6px 0 4px"><input class="lkin" id="smtg" value="${esc(W.tag)}" placeholder="${xl('Tag','الرمز')}" oninput="SMW.tag=this.value;ilLiveSm()" style="font-size:15px;padding:7px 10px;direction:ltr"></div><p class="dr">${xl('Built from every study with this tag.','تُبنى من كل دراسة بهذا الرمز.')} <b>${r.plan.hasLife?'✓ Life ':'· Life '}${r.plan.hasRbi?'✓ RBI ':'· RBI '}${r.plan.hasRcm?'✓ RCM':'· RCM'}</b></p></div>
 ${r.plan.gaps.length?`<div class="card" style="border-color:#E5484D"><span class="tag" style="background:#D6403F">${xl('Redesign decisions','قرارات إعادة التصميم')}</span>${r.plan.gaps.map(g=>`<p class="sub" style="margin:6px 0 0"><b>${esc(g.text)}</b><br><span class="dr">${esc(g.why)}</span></p>`).join('')}</div>`:''}
 <div class="card"><span class="tag">${xl('Task calendar','تقويم المهام')}</span><div class="chips3">${RCCAD().map(c=>{const g=r.plan.tasks.filter(t=>t.kind!=='rtf'&&t.m>0&&rcCad(t.m).k===c[0]);return g.length?`<span class="calc"><b>${g.length}</b> ${c[2]}<small>${Math.round(g.reduce((s,t)=>s+t.hy,0))} ${xl('h/year','ساعة/سنة')}</small></span>`:''}).join('')||`<span class="dr">${xl('No scheduled tasks yet.','لا مهام مجدولة بعد.')}</span>`}</div></div>
-<div class="card"><span class="tag">${xl('Proposed tasks','المهام المقترحة')} · ${r.plan.tasks.filter(t=>t.kind!=='rtf'&&t.kind!=='pro').length}</span>${r.plan.tasks.length?r.plan.tasks.map(t=>`<div style="margin:10px 0 0;padding-top:8px;border-top:1px dashed var(--line)"><span class="rcs" style="background:${K[t.kind][1]}">${K[t.kind][0]}</span> ${t.src.map(s=>`<span class="stc new" style="margin:0 2px">${s}</span>`).join('')}${t.m>0?` <span class="stc working" style="margin:0 2px">${t.cad||(xl('every','كل')+' '+smMonTx(t.m))}</span>`:''}${t.due!=null?` <span class="dr">${xl('due','الاستحقاق')} ${xfmt(xy2ym(t.due))}</span>`:''}<p class="sub" style="margin:4px 0 0">${esc(t.text)}</p><p class="dr" style="margin:2px 0 0">${esc(t.why)}${t.hy>0?` · ${Math.round(t.hy)} ${xl('h/year','ساعة/سنة')}`:''}</p>${t.kind!=='rtf'&&t.kind!=='pro'?smJpHtml(t):''}</div>`).join(''):`<p class="dr">${xl('Nothing yet. Add studies with this tag, or start from an equipment template.','لا شيء بعد. أضف دراسات بهذا الرمز أو ابدأ من قالب معدة.')}</p>`}</div>
-<div class="card"><span class="tag">${xl('Hours per task execution','ساعات كل تنفيذ')}</span><div class="two">${[['insp',xl('Inspection','فحص')],['cb',xl('Condition check','فحص حالة')],['sr',xl('Scheduled task','مهمة مجدولة')],['ff',xl('Failure-finding','كشف فشل')]].map(([k,l])=>`<div><small class="dr">${l}</small>${xinp('smh'+k,W.hrs[k],'',`smHr('${k}',this.value)`,'number')}</div>`).join('')}</div><p class="dr">${xl('Training defaults. Use your planner estimates.','قيم تدريبية. استخدم تقديرات المخطط عندك.')}</p></div>`;
+<div class="card"><span class="tag">${xl('Proposed tasks','المهام المقترحة')} · ${r.plan.tasks.filter(t=>t.kind!=='rtf'&&t.kind!=='pro').length}</span>${r.plan.tasks.length?r.plan.tasks.map(t=>`<div class="tkr"><div class="tkl"><span class="rcs" style="background:${K[t.kind][1]};margin:0">${K[t.kind][0]}</span>${t.src.map(s=>`<span class="stc new" style="margin:0">${s}</span>`).join('')}${t.m>0?`<span class="stc working" style="margin:0">${t.cad||(xl('every','كل')+' '+smMonTx(t.m))}</span>`:''}${t.hy>0?`<span class="dr">${Math.round(t.hy)}${xl('h/y','س/سنة')}</span>`:''}<span style="flex:1"></span>${t.kind!=='rtf'&&t.kind!=='pro'?smJpBtn(t):''}</div><p class="tkt">${esc(t.text)}</p><p class="dr tkw">${esc(t.why)}</p>${t.kind!=='rtf'&&t.kind!=='pro'?smJpEd(t):''}</div>`).join(''):`<p class="dr">${xl('Nothing yet. Add studies with this tag, or start from an equipment template.','لا شيء بعد. أضف دراسات بهذا الرمز أو ابدأ من قالب معدة.')}</p>`}</div>
+`;
   }
   if(SMTAB==='pm'){
     const k=smKpi(W,r),kp=W.kpi,field=(f,l,ph)=>`<div><small class="dr">${l}</small>${xinp('smk'+f,kp[f],ph||'',`smK('${f}',this.value)`,'number')}</div>`;
     return`<div class="card" id="smkpi">${smKpiHtml()}</div><div class="card"><span class="tag">${xl('Numbers for the last 12 months','أرقام آخر 12 شهرًا')}</span><div class="two">${field('sched',xl('PM work orders scheduled','أوامر الصيانة الوقائية المجدولة'))}${field('ontime',xl('Completed on time','المكتملة في وقتها'))}</div><div class="two">${field('backlog',xl('Backlog hours (ready)','ساعات المتراكم (الجاهز)'))}${field('cap',xl('Crew hours per week','ساعات الفريق أسبوعيًا'))}</div></div>
-<p class="dr" style="margin:6px 0">${xl('List the tasks of the current PM program. Add how many times each ran, how often it found a problem, and how many failures still happened. The optimizer then tells you what to extend, shorten or stop.','اكتب مهام برنامج الصيانة الوقائية الحالي. أضف عدد مرات تنفيذ كل مهمة، وكم مرة وجدت مشكلة، وكم عطلًا وقع رغم ذلك. بعدها يبيّن المحسّن ما تمدّده أو تقصّره أو توقفه.')}</p>${r.rows.map((x,i)=>{const p=W.pm[i];return`<div class="card" style="padding:12px 14px">${xinp('smt'+i,p.task,xl('PM task','مهمة الصيانة'),`smSet(${i},'task',this.value)`)}<div class="ilr" style="margin-top:8px;grid-template-columns:1fr 1fr auto"><input class="lkin" type="number" step="any" inputmode="decimal" value="${esc(p.iv)}" placeholder="${xl('every (months)','كل (أشهر)')}" oninput="smSet(${i},'iv',this.value)" style="font-size:15px;direction:ltr"><input class="lkin" type="number" step="any" inputmode="decimal" value="${esc(p.hrs)}" placeholder="${xl('hours','ساعات')}" oninput="smSet(${i},'hrs',this.value)" style="font-size:15px;direction:ltr"><button class="x" onclick="smDelPm(${i})" aria-label="x">✕</button></div>
-<div class="ilr" style="grid-template-columns:1fr 1fr 1fr"><input class="lkin" type="number" step="any" inputmode="decimal" value="${esc(p.runs)}" placeholder="${xl('runs','تنفيذات')}" oninput="smSet(${i},'runs',this.value)" style="font-size:15px;direction:ltr"><input class="lkin" type="number" step="any" inputmode="decimal" value="${esc(p.finds)}" placeholder="${xl('found issue','وجدت مشكلة')}" oninput="smSet(${i},'finds',this.value)" style="font-size:15px;direction:ltr"><input class="lkin" type="number" step="any" inputmode="decimal" value="${esc(p.fails)}" placeholder="${xl('failures','أعطال')}" oninput="smSet(${i},'fails',this.value)" style="font-size:15px;direction:ltr"></div>
-${p.task&&x.m>0?`<div class="verd ${x.act==='stop'||x.act==='shorten'?'vc':'vo'} pfl" style="margin-top:8px"><div style="flex:1"><b>${A[x.act][0]}${x.yld!=null?' · '+xl('yield','الإنتاجية')+' '+Math.round(x.yld*100)+'%':''}</b><small>${esc(x.note)}</small></div></div>`:''}</div>`}).join('')}<div class="act2"><button class="btn l" onclick="smAddPm()">${xl('+ Add PM task','+ أضف مهمة')}</button><button class="btn l" onclick="SMW.pm=smPmEx();view(false)">${xl('Load example PM tasks','حمّل مهام مثال')}</button></div>${r.gaps.length?`<div class="card"><span class="tag" style="background:#6B4EE6">${xl('Gaps: tasks the studies need','ثغرات: مهام تحتاجها الدراسات')} · ${r.gaps.length}</span>${r.gaps.map(g=>`<p class="sub" style="margin:8px 0 0"><b>${esc(g.t.src.join('+'))}</b> · ${esc(g.t.text)} · ${g.t.cad||smMonTx(g.t.m)}</p>`).join('')}</div>`:''}<div class="card" id="smmix">${smMixHtml()}</div>`;
+<p class="dr" style="margin:6px 0">${xl('List the tasks of the current PM program. Add how many times each ran, how often it found a problem, and how many failures still happened. The optimizer then tells you what to extend, shorten or stop.','اكتب مهام برنامج الصيانة الوقائية الحالي. أضف عدد مرات تنفيذ كل مهمة، وكم مرة وجدت مشكلة، وكم عطلًا وقع رغم ذلك. بعدها يبيّن المحسّن ما تمدّده أو تقصّره أو توقفه.')}</p>${r.rows.map((x,i)=>{const p=W.pm[i],op=SMPMO===i;return`<div class="card" style="padding:9px 12px"><button class="rch" onclick="smPmOpen(${i})"><span class="rcn" style="width:26px;height:26px;font-size:13px">${i+1}</span><span style="flex:1;text-align:start;min-width:0"><b style="font-size:14px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(p.task||xl('New PM task','مهمة جديدة'))}</b>${p.task&&x.m>0?`<span class="rcs" style="background:${A[x.act][1]};margin:2px 0 0">${A[x.act][0]}</span>`:''}</span><span>${op?'▾':'▸'}</span></button>${op?`<div style="margin-top:8px">${xinp('smt'+i,p.task,xl('PM task','مهمة الصيانة'),`smSet(${i},'task',this.value)`)}<div class="pmg">${[['iv',xl('every (months)','كل (أشهر)')],['hrs',xl('hours','ساعات')],['runs',xl('runs','تنفيذات')],['finds',xl('found','وجدت')],['fails',xl('failures','أعطال')]].map(([f,ph])=>`<input class="lkin" type="number" step="any" inputmode="decimal" value="${esc(p[f])}" placeholder="${ph}" oninput="smSet(${i},'${f}',this.value)" aria-label="${ph}">`).join('')}</div>${p.task&&x.m>0?`<div class="verd ${x.act==='stop'||x.act==='shorten'?'vc':'vo'} pfl" style="margin-top:6px"><div style="flex:1"><b>${A[x.act][0]}${x.yld!=null?' · '+xl('yield','الإنتاجية')+' '+Math.round(x.yld*100)+'%':''}</b><small>${esc(x.note)}</small></div></div>`:''}<button class="sbt" style="margin-top:6px" onclick="smDelPm(${i})">${xl('Remove','احذف')}</button></div>`:''}</div>`}).join('')}<div class="act2"><button class="btn l" onclick="smAddPm()">${xl('+ Add PM task','+ أضف مهمة')}</button><button class="btn l" onclick="SMW.pm=smPmEx();view(false)">${xl('Load example PM tasks','حمّل مهام مثال')}</button></div>${r.gaps.length?`<div class="card"><span class="tag" style="background:#6B4EE6">${xl('Gaps: tasks the studies need','ثغرات: مهام تحتاجها الدراسات')} · ${r.gaps.length}</span>${r.gaps.map(g=>`<p class="sub" style="margin:8px 0 0"><b>${esc(g.t.src.join('+'))}</b> · ${esc(g.t.text)} · ${g.t.cad||smMonTx(g.t.m)}</p>`).join('')}</div>`:''}<div class="card" id="smmix">${smMixHtml()}</div>`;
   }
   if(SMTAB==='cm'){
     const w=smWoWin(W),gs=smGroups(W),tot=w.list.reduce((s,x)=>s+smN(x.hrs),0),dt=w.list.reduce((s,x)=>s+smN(x.dt),0),em=w.list.filter(x=>x.pri==='emergency').length,T=W.rcaT,op=smN(T.op)||8760,mtbf=w.list.length?Math.max(0,op-dt)/w.list.length:0;
@@ -4707,7 +4879,7 @@ async function smSheet(){
 function vStrat(){
   if(SMV==='bench'){
     smFix(SMW);
-    return`<button class="link" onclick="SMV='list';view(true)" style="margin-bottom:4px">‹ ${xl('Maintenance Strategy','استراتيجية الصيانة')}</button><div id="smlive">${smBar()}</div>${T3([['plan',xl('Plan','الخطة')],['pm',xl('PM program','برنامج الوقائية')],['cm',xl('Corrective','التصحيحية')],['sp',xl('Spares','القطع')],['export',xl('Sheet','الورقة')]],SMTAB,'smTab')}<div class="tp" key="${SMTAB}">${smPanel()}</div><button class="btn g" onclick="smSave()">${xl('Save strategy','احفظ الاستراتيجية')}</button>`;
+    return`<button class="link" onclick="SMV='list';view(true)" style="margin-bottom:4px">‹ ${xl('Maintenance Strategy','استراتيجية الصيانة')}</button><div id="smlive">${smBar()}</div>${T3([['plan',xl('Plan','الخطة')],['crit',xl('Class','الفئة')],['pm',xl('PM','الوقائية')],['cm',xl('Fix','التصحيحية')],['sp',xl('Spares','القطع')],['export',xl('Sheet','الورقة')]],SMTAB,'smTab')}<div class="tp" key="${SMTAB}">${smPanel()}</div><button class="btn g" onclick="smSave()">${xl('Save strategy','احفظ الاستراتيجية')}</button>`;
   }
   const a=CACHE.filter(x=>x.kind==='strat').sort((x,y)=>y.updated-x.updated),tags=smTags(),TP=SMTPL();
   return`<p class="sub">${xl('One maintenance strategy built from Inspection Life, RBI and RCM: criticality, tasks by cadence, job plans, the health of your PM program, corrective work, spares, and a one-page sheet.','استراتيجية صيانة واحدة تُبنى من عمر المعدة وRBI وRCM: الأهمية والمهام بحسب الوتيرة وخطط العمل وصحة برنامج الوقائية والصيانة التصحيحية والقطع وورقة من صفحة واحدة.')}</p>
@@ -4765,6 +4937,284 @@ async function ilReadAI(){
   }catch(e){toast(xl('The AI could not read thickness data from this text.','تعذّر على الذكاء الاصطناعي قراءة بيانات السماكة من هذا النص.'))}
 }
 
+
+/* ================= Bad Actor Radar ================= */
+Object.assign(T.en,{toolBad:"Bad Actors",toolBadD:"Rank the equipment that fail most"});
+Object.assign(T.ar,{toolBad:"المعدات كثيرة الأعطال",toolBadD:"رتّب المعدات الأكثر فشلًا"});
+(function(){const g=document.querySelector('svg defs')||document.querySelector('svg');if(!g)return;const h=document.createElementNS('http://www.w3.org/2000/svg','g');
+h.innerHTML=`<g id="i-radar"><circle r="14" fill="none" stroke="url(#gGoldV)" stroke-width="2.6"/><circle r="7" fill="none" stroke="url(#gGoldV)" stroke-width="2"/><path d="M0 0L11-9" stroke="url(#gGoldV)" stroke-width="3" stroke-linecap="round"/><circle cx="6" cy="6" r="2.6" fill="url(#gGoldV)"/></g>
+<g id="i-n-radar"><circle r="14" fill="none" stroke="url(#gDG)" stroke-width="2.6"/><circle r="7" fill="none" stroke="url(#gDG)" stroke-width="2"/><path d="M0 0L11-9" stroke="url(#gDG)" stroke-width="3" stroke-linecap="round"/><circle cx="6" cy="6" r="2.6" fill="url(#gDG)"/></g>`;
+while(h.firstChild)g.appendChild(h.firstChild)})();
+TL.bad={icon:'radar',nic:'n-radar',ci:5,n:'toolBad',d:'toolBadD',p:['#3DDC97','#12A878','#0B6E4E'],go:"nav('bad')"};
+FAM.rel.tools=['bad','rcm','inc'];
+LKS.bad={ci:5,icon:'radar',n:'toolBad',c:'#12A878'};KIND2K.bad='bad';FL.en.libTool.bad='Bad actors';FL.ar.libTool.bad='كثيرة الأعطال';
+T.en.hc_rel=["Bad actors","RCM tasks","Root causes"];T.ar.hc_rel=["كثيرة الأعطال","مهام RCM","الأسباب الجذرية"];
+const BSEC=()=>[['pump',xl('Pumps','المضخات'),/^(P|PP|PU)[-_ ]?\d/i],['comp',xl('Compressors','الضواغط'),/^(K|C|CP|CMP)[-_ ]?\d/i],['hx',xl('Exchangers','المبادلات'),/^(E|HX|EX)[-_ ]?\d/i],['vess',xl('Vessels, lines','أوعية وخطوط'),/^(V|D|T|L)[-_ ]?\d/i],['heat',xl('Boilers, heaters','غلايات وسخانات'),/^(B|H|F|BL)[-_ ]?\d/i],['valve',xl('Valves','الصمامات'),/^(FV|CV|XV|PCV|LCV|PSV|SV|HV)[-_ ]?\d/i],['inst',xl('Instruments','الأجهزة'),/^(TT|PT|FT|LT|AT|PI|TI|FI|LI|ST|VT)[-_ ]?\d/i],['oth',xl('Other','أخرى'),/./]];
+const bSecOf=tag=>{const t=String(tag||'').trim();for(const s of BSEC())if(s[2].test(t))return s[0];return'oth'};
+const bPartOf=txt=>{const s=String(txt||'').toLowerCase();const M=[['seal',xl('Mechanical seal','الخانق الميكانيكي')],['bearing',xl('Bearing','المحمل')],['coupling',xl('Coupling','القارنة')],['impeller',xl('Impeller','الدافع')],['strainer',xl('Strainer','المصفاة')],['positioner',xl('Positioner','المحدِّد')],['valve',xl('Valve','الصمام')],['lube',xl('Lube system','نظام التزييت')],['oil',xl('Lube system','نظام التزييت')],['foul',xl('Tubes','الأنابيب')],['tube',xl('Tubes','الأنابيب')],['gasket',xl('Gasket','الحشية')],['transmitter',xl('Instrument or trip','جهاز أو فصل')],['trip',xl('Instrument or trip','جهاز أو فصل')],['burner',xl('Burner','الشعلة')]];for(const[k,v]of M)if(s.includes(k))return v;return''};
+/* fictional utility unit: deterministic, no company data */
+function bdDemo(){
+  let sd=7;const rnd=()=>{sd=(sd*1103515245+12345)&0x7fffffff;return sd/0x7fffffff};
+  const FM={seal:['Mechanical seal leak',15,20,4200],strainer:['Plugged suction strainer',5,5,400],bearing:['Bearing high temperature',20,28,9000],coupling:['Coupling insert worn',6,2,1200],plate:['Compressor valve plate failure',18,16,3800],lube:['Lube oil pressure low',8,4,900],vib:['Vibration trip spurious',4,0,500],foul:['Exchanger fouling',14,10,2500],tubeleak:['Tube leak',40,60,14000],pos:['Positioner fault',6,3,900],drift:['Transmitter drift',3,0,300],burner:['Burner flame instability',10,8,2000],gasket:['Gasket leak',8,0,400],mis:['Minor repair',4,0,300]};
+  const EQ=[['P-2301A',[['seal',4,1],['strainer',2,1],['bearing',1,1]]],['P-2301B',[['mis',1,1]]],['P-2310A',[['seal',1,1],['mis',1,1]]],['P-2310B',[['mis',0,1]]],['P-2320A',[['coupling',3,1]]],['P-2320B',[['mis',1,1]]],['K-2501',[['plate',3,2],['lube',2,1],['vib',1,1]]],['K-2502',[['mis',1,2]]],['E-2205A',[['gasket',1,1]]],['E-2205B',[['foul',3,2],['tubeleak',1,0]]],['E-2210',[['foul',2,2]]],['FV-2301',[['pos',5,2]]],['FV-2302',[['mis',1,0]]],['PCV-2410',[['pos',3,3]]],['PSV-2301',[['mis',1,0]]],['PT-2305',[['drift',3,1]]],['LT-2301',[['drift',2,2]]],['TT-2410',[['drift',1,0]]],['B-2101',[['burner',2,1]]],['H-2105',[['mis',1,1]]],['V-2301',[['mis',1,0]]],['L-2410',[['gasket',2,1]]]];
+  const out=[];
+  EQ.forEach(([tag,list])=>list.forEach(([k,nc,np])=>{const f=FM[k];for(let w=0;w<2;w++){const n=w===0?nc:np;for(let i=0;i<n;i++){const m=1+Math.floor(rnd()*12),yr=w===0?2025:2024,sc=0.8+rnd()*0.5,dt=Math.round(f[2]*sc),h=Math.round(f[1]*sc*10)/10;out.push({d:yr+'-'+String(m).padStart(2,'0'),tag,pri:dt>=15?'emergency':dt>0?'urgent':'planned',part:bPartOf(f[0]),fm:f[0],hrs:h,dt,cost:Math.round(f[3]*sc)})}}}));
+  return out;
+}
+/* parse pasted work orders: date, tag, priority, failure, hours, downtime, cost */
+function bdParse(txt){
+  const out=[];String(txt||'').split(/\r?\n/).forEach(line=>{const l=line.trim();if(!l)return;const f=l.split(/\t|\||;|,(?=\s*\S)/).map(x=>x.trim()).filter(x=>x!=='');
+    const dm=l.match(/(\d{4})[-\/.](\d{1,2})/);if(!dm)return;const d=dm[1]+'-'+String(dm[2]).padStart(2,'0');
+    const tag=(f.find(x=>/^[A-Za-z]{1,4}[-_ ]?\d{2,5}[A-Za-z]?([-_]\w+)*$/.test(x)&&!/\d{4}[-\/.]\d/.test(x))||'').toUpperCase();if(!tag)return;
+    const pri=/emerg|break|طارئ/i.test(l)?'emergency':/urgent|عاجل/i.test(l)?'urgent':'planned';
+    const nums=f.filter(x=>/^\d+(\.\d+)?$/.test(x)).map(Number),txts=f.filter(x=>!/^\d+(\.\d+)?$/.test(x)&&!/\d{4}[-\/.]\d/.test(x)&&x.toUpperCase()!==tag&&!/^(emergency|urgent|planned|breakdown)$/i.test(x));
+    const fm=txts.sort((a,b)=>b.length-a.length)[0]||'';out.push({d,tag,pri,part:bPartOf(fm),fm,hrs:nums[0]||'',dt:nums[1]||'',cost:nums[2]||''})});
+  return out;
+}
+/* the bad actor index: shares of downtime, failures, cost and repeat failures */
+function bdCalc(D){
+  const L=(D.wos||[]).map(x=>Object.assign({},x,{y:xym(String(x.d).slice(0,7))})).filter(x=>x.y!=null&&x.tag);if(!L.length)return{ok:false,A:[],bad:[]};
+  const end=Math.max(...L.map(x=>x.y)),cur=L.filter(x=>x.y>end-1+1/12-1e-9),prev=L.filter(x=>x.y<=end-1+1/12-1e-9&&x.y>end-2+1/12-1e-9),op=smN(D.op)||8760,Tm={};
+  const get=tag=>Tm[tag]=Tm[tag]||{tag,sec:bSecOf(tag),n:0,em:0,hrs:0,dt:0,cost:0,prev:0,g:{},gt:{}};
+  cur.forEach(x=>{const o=get(x.tag);o.n++;if(x.pri==='emergency')o.em++;o.hrs+=smN(x.hrs);o.dt+=smN(x.dt);o.cost+=smN(x.cost);const gk=(x.part||bPartOf(x.fm)||'—')+'|'+smNorm(x.fm);o.g[gk]=(o.g[gk]||0)+1;o.gt[gk]=o.gt[gk]||{part:x.part||bPartOf(x.fm),fm:x.fm}});
+  prev.forEach(x=>{get(x.tag).prev++});
+  const A=Object.values(Tm),sm=k=>A.reduce((s,x)=>s+x[k],0)||1;
+  A.forEach(x=>{x.rep=Math.max(0,...Object.values(x.g));x.mttr=x.n?x.hrs/x.n:0;x.mtbf=x.n?Math.max(0,op-x.dt)/x.n:0;x.trend=x.prev===0?(x.n>0?1:0):(x.n-x.prev)/x.prev});
+  const sR=A.reduce((s,x)=>s+(x.rep>=2?x.rep:0),0)||1,SD=sm('dt'),SN=sm('n'),SC=sm('cost');
+  A.forEach(x=>{x.idx=100*(0.4*x.dt/SD+0.3*x.n/SN+0.2*x.cost/SC+0.1*(x.rep>=2?x.rep:0)/sR)});
+  A.sort((a,b)=>b.idx-a.idx);const tot=A.reduce((s,x)=>s+x.idx,0)||1;let cum=0;
+  const topN=Math.max(3,Math.ceil(A.length*0.2));
+  A.forEach((x,i)=>{const before=cum;cum+=x.idx;x.cum=100*cum/tot;x.rank=i+1;x.share=100*x.idx/tot;x.cls=(100*before/tot<80&&i<topN&&x.n>=2)?'bad':x.n>=2?'watch':'ok'});
+  const bad=A.filter(x=>x.cls==='bad'),dtBad=bad.reduce((s,x)=>s+x.dt,0);
+  return{ok:true,A,bad,end,op,nCur:cur.length,nPrev:prev.length,dtShare:SD>0?100*dtBad/SD:0,totDt:SD,totN:SN,totCost:SC};
+}
+/* ---- state and actions ---- */
+let BDV='list',BDW=null,BDID=null,BDTAB='radar',BDSEL='';
+const bdCol=x=>x.trend>0.2?'#EF4B5B':x.trend<-0.2?'#2FB384':'#F2A93B';
+function bdPick(tag){BDSEL=BDSEL===tag?'':tag;view(false)}
+function bdTab(k){BDTAB=k;view(false)}
+function bdOpenNew(demo){BDW={name:xl('Utility unit','وحدة المرافق'),wos:demo?bdDemo():[],op:8760};BDID=null;BDTAB=demo?'radar':'data';BDSEL='';BDV='bench';view(true)}
+function openBad(id){const D=CACHE.find(x=>x.id===id);if(!D)return;BDW=JSON.parse(JSON.stringify(D));BDID=id;BDTAB='radar';BDSEL='';BDV='bench';nav('bad','keep')}
+function bdSave(){
+  const C=bdCalc(BDW);if(!C.ok){toast(xl('Add work orders first.','أضف أوامر عمل أولًا.'));return}
+  const now=Date.now(),a=CACHE.slice();let D=BDID?a.find(x=>x.id===BDID):null;const ver={date:now,total:C.bad.length,a:{n:C.nCur,bad:C.bad.length,share:Math.round(C.dtShare)}};
+  if(!D){D=xdoc('bad','bd'+now.toString(36),BDW.name||'Unit',{});a.push(D);BDID=D.id}
+  Object.assign(D,JSON.parse(JSON.stringify(BDW)),{id:D.id,kind:'bad',title:BDW.name||'Unit',updated:now,versions:(D.versions||[]).concat([ver])});
+  persist(a);toast(xl('Saved','تم الحفظ'));view(false);
+}
+function bdUse(){const r=bdParse(($('#bdwo')||{}).value);if(!r.length){toast(xl('No work orders found. Each line needs a date and an equipment tag.','لم تُوجد أوامر عمل. كل سطر يحتاج تاريخًا ورمز معدة.'));return}BDW.wos=r.slice(0,2000);BDTAB='radar';view(false);toast(xl(`${r.length} work orders loaded.`,`حُمّلت ${r.length} أوامر عمل.`))}
+async function bdAI(){
+  const un=[...new Set(BDW.wos.map(x=>x.fm).filter(Boolean))].slice(0,60);
+  if(!un.length){toast(xl('Add work orders first.','أضف أوامر عمل أولًا.'));return}
+  if(!AIon()){toast(xl('The AI is off or not available. See AI impact for how to turn it on.','الذكاء الاصطناعي متوقف أو غير متاح. انظر «أثر الذكاء» لمعرفة التشغيل.'));return}
+  const t0=performance.now();toast(xl('Grouping the failure texts...','نجمّع نصوص الأعطال...'));
+  try{
+    const r=await SAMPLE.json(`You are a reliability engineer. Normalize these free-text work order failure descriptions from a refinery utilities unit. For each text return the component affected (part) and a short standard failure mode. Write both in ${t('aiLang')}. Return JSON only: {"map":[{"text":"exact input text","part":"","mode":""}]}. Keep every input text exactly as given in "text".\n\nTEXTS:\n${JSON.stringify(un)}`,{cache:false,modelTier:'default'});
+    const mp={};(r.map||[]).forEach(x=>{if(x&&x.text)mp[x.text]={part:String(x.part||'').slice(0,50),mode:String(x.mode||'').slice(0,80)}});
+    let n=0;BDW.wos.forEach(x=>{const m=mp[x.fm];if(m&&m.mode){x.part=m.part||x.part;x.fm=m.mode;n++}});
+    if(!n)throw new Error('none');aiTrack('bad',xl('Failure text grouping','تجميع نصوص الأعطال'),un.length,performance.now()-t0,'cls');view(false);toast(xl(`${n} work orders normalized. Review the groups.`,`وُحّدت ${n} أوامر عمل. راجع المجموعات.`));
+  }catch(e){toast(xl('The AI could not group these texts.','تعذّر على الذكاء الاصطناعي تجميع هذه النصوص.'))}
+}
+const bdWosOf=tag=>(BDW.wos||[]).filter(x=>x.tag===tag);
+function bdToStrat(tag){
+  const wos=bdWosOf(tag).map(x=>({d:x.d,pri:x.pri,part:x.part,fm:x.fm,hrs:x.hrs,dt:x.dt}));
+  smOpenTag(tag);SMW.wos=wos;SMTAB='cm';view(true);toast(xl(`${wos.length} work orders sent to the strategy.`,`أُرسلت ${wos.length} أوامر عمل إلى الاستراتيجية.`));
+}
+function bdToRcm(tag){
+  const D=smLast('rcm',tag);if(D){openRcm(D.id);return}
+  const sec=bSecOf(tag),cls=({pump:'pump',comp:'comp',hx:'hx',valve:'cv',vess:'vessel'})[sec],rows=cls?smTplRows(cls):[rcNewRow()],C=bdCalc(BDW),x=C.A.find(a=>a.tag===tag)||{g:{},gt:{}};
+  Object.entries(x.gt||{}).forEach(([k,gi])=>{const n=x.g[k],row=rows.find(r=>gi.part&&r.part&&String(r.part).toLowerCase().includes(String(gi.part).toLowerCase().split(' ')[0]));if(row)row.lik=n>=4?5:n>=2?4:3});
+  nav('rcm','x');RCW={tag,fn:'',rows};RCID=null;RCTAB='sheet';RCOPEN=-1;RCV='bench';view(true);toast(xl('RCM draft from the equipment template. The likelihood comes from the work order history.','مسودة RCM من قالب المعدة. والاحتمال من سجل أوامر العمل.'));
+}
+function bdToRca(tag){
+  const W=bdWosOf(tag).sort((a,b)=>String(a.d).localeCompare(String(b.d))),txt=`${xl('Work order history for','سجل أوامر العمل لـ')} ${tag}\n\n`+W.map(x=>`${x.d}: ${x.pri}. ${x.part?x.part+': ':''}${x.fm}. ${xl('Repair','الإصلاح')} ${smN(x.hrs)} ${xl('h','س')}, ${xl('downtime','التوقف')} ${smN(x.dt)} ${xl('h','س')}.`).join('\n');
+  nav('inc','x');incNewView();setTimeout(()=>{const e=$('#irep');if(e){e.value=txt;try{icount(txt)}catch(_){}}},400);toast(xl('The history is in the report box. Press analyze.','السجل في خانة التقرير. اضغط تحليل.'));
+}
+/* ---- the radar ---- */
+function bdRadarSvg(C){
+  const Wd=360,cx=180,cy=180,R=166,sec=BSEC(),A=C.A,maxI=A[0]?A[0].idx:1,maxD=Math.max(1,...A.map(x=>x.dt)),bySec={};
+  A.forEach(x=>{(bySec[x.sec]=bySec[x.sec]||[]).push(x)});
+  const pos={};sec.forEach(([k],si)=>{const L=bySec[k]||[];L.forEach((x,j)=>{const a=(si*45+(j+1)/(L.length+1)*45-90)*Math.PI/180,r=34+(1-Math.pow(x.idx/maxI,0.55))*(R-52);pos[x.tag]={x:cx+r*Math.cos(a),y:cy+r*Math.sin(a),r:5+13*Math.sqrt(x.dt/maxD)}})});
+  const sel=BDSEL&&A.find(x=>x.tag===BDSEL),selSec=sel?sec.findIndex(s=>s[0]===sel.sec):-1;
+  let g=`<defs><radialGradient id="bdBg" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".6" stop-color="#E9F7F1" stop-opacity=".9"/><stop offset="1" stop-color="#D3EFE4" stop-opacity=".95"/></radialGradient><linearGradient id="bdSw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#12A878" stop-opacity="0"/><stop offset="1" stop-color="#12A878" stop-opacity=".55"/></linearGradient><filter id="bdGl" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3.2"/></filter></defs><circle cx="${cx}" cy="${cy}" r="${R+8}" fill="url(#bdBg)" stroke="#12A878" stroke-opacity=".45" stroke-width="3"/>`;
+  sec.forEach(([k,lab],si)=>{const a0=(si*45-90)*Math.PI/180,a1=((si+1)*45-90)*Math.PI/180;if(si===selSec)g+=`<path d="M${cx} ${cy}L${(cx+R*Math.cos(a0)).toFixed(1)} ${(cy+R*Math.sin(a0)).toFixed(1)}A${R} ${R} 0 0 1 ${(cx+R*Math.cos(a1)).toFixed(1)} ${(cy+R*Math.sin(a1)).toFixed(1)}Z" fill="#12A878" fill-opacity=".14"/>`;g+=`<line x1="${cx}" y1="${cy}" x2="${(cx+R*Math.cos(a0)).toFixed(1)}" y2="${(cy+R*Math.sin(a0)).toFixed(1)}" stroke="#12A878" stroke-opacity=".28" stroke-width="1.2"/>`;const am=(si*45+22.5-90)*Math.PI/180;g+=`<text x="${(cx+(R-4)*Math.cos(am)).toFixed(1)}" y="${(cy+(R-4)*Math.sin(am)+3).toFixed(1)}" text-anchor="middle" font-size="8.5" font-weight="800" fill="#0B6E4E" opacity=".85">${lab}</text>`});
+  [0.28,0.52,0.76,1].forEach(f=>{g+=`<circle cx="${cx}" cy="${cy}" r="${(R*f-(f===1?0:0)).toFixed(1)}" fill="none" stroke="#12A878" stroke-opacity="${f===1?.55:.3}" stroke-width="${f===1?2:1.2}" ${f===1?'':'stroke-dasharray="3 5"'}/>`});
+  g+=`<g class="bdsw"><path d="M${cx} ${cy}L${cx} ${cy-R}A${R} ${R} 0 0 1 ${(cx+R*Math.sin(0.9)).toFixed(1)} ${(cy-R*Math.cos(0.9)).toFixed(1)}Z" fill="url(#bdSw)"/></g>`;
+  g+=`<circle cx="${cx}" cy="${cy}" r="6" fill="#12A878"/><circle cx="${cx}" cy="${cy}" r="12" fill="none" stroke="#12A878" stroke-opacity=".5"/>`;
+  const order=A.slice().reverse();
+  order.forEach(x=>{const p=pos[x.tag];if(!p)return;const top=x.rank<=5&&x.cls==='bad',col=bdCol(x);
+    if(top)g+=`<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${(p.r+4).toFixed(1)}" fill="${col}" opacity=".45" filter="url(#bdGl)" class="bdp"/>`;
+    g+=`<g class="bdb${x.tag===BDSEL?' sel':''}" role="button" tabindex="0" aria-label="${esc(x.tag)}" onclick="bdPick('${x.tag}')" style="cursor:pointer"><circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${(p.r+(x.tag===BDSEL?3:0)).toFixed(1)}" fill="${col}" fill-opacity="${x.cls==='ok'?.55:.92}" stroke="${x.tag===BDSEL?'#0F1B3D':'#fff'}" stroke-width="${x.tag===BDSEL?3:2}"/>${x.rank<=5&&x.cls==='bad'?`<text x="${p.x.toFixed(1)}" y="${(p.y+3.4).toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="900" fill="#fff">${x.rank}</text>`:''}</g>`});
+  A.slice(0,6).forEach(x=>{const p=pos[x.tag];if(!p)return;const left=p.x>cx;g+=`<text x="${(p.x+(left?p.r+4:-p.r-4)).toFixed(1)}" y="${(p.y+3).toFixed(1)}" text-anchor="${left?'start':'end'}" font-size="9.5" font-weight="900" fill="#0F1B3D" stroke="#fff" stroke-width="3" paint-order="stroke">${esc(x.tag)}</text>`});
+  return`<svg viewBox="0 0 ${Wd} ${Wd}" style="width:100%;display:block" role="img" aria-label="${xl('Bad actor radar','رادار المعدات كثيرة الأعطال')}">${g}</svg>`;
+}
+function bdDetail(C){
+  const x=C.A.find(a=>a.tag===BDSEL);if(!x)return`<div class="card"><p class="sub" style="margin:0">${xl('Tap a bubble. The closer to the center, the worse the actor. The size is the downtime and the color is the trend.','المس فقاعة. كلما اقتربت من المركز كانت أسوأ. الحجم هو التوقف واللون هو الاتجاه.')}</p><div class="bdlg"><span><i style="background:#EF4B5B"></i>${xl('getting worse','تزداد سوءًا')}</span><span><i style="background:#F2A93B"></i>${xl('stable','مستقرة')}</span><span><i style="background:#2FB384"></i>${xl('improving','تتحسن')}</span></div></div>`;
+  const hasR=!!smLast('rcm',x.tag),hasS=!!smLast('strat',x.tag),gs=Object.entries(x.g).sort((a,b)=>b[1]-a[1]).slice(0,4),arrow=x.trend>0.2?'▲':x.trend<-0.2?'▼':'●';
+  const acts=[];if(x.rep>=3)acts.push(xl(`Repeat failure x${x.rep}: start a root cause analysis.`,`عطل متكرر ×${x.rep}: ابدأ تحليلًا للأسباب الجذرية.`));if(!hasR)acts.push(xl('No RCM study yet: draft one from the template.','لا دراسة RCM بعد: صُغ مسودة من القالب.'));if(!hasS)acts.push(xl('No maintenance strategy yet: build it from these work orders.','لا استراتيجية صيانة بعد: ابنِها من هذه الأوامر.'));if(x.trend>0.2)acts.push(xl(`Getting worse: ${x.n} failures against ${x.prev} the year before.`,`تزداد سوءًا: ${x.n} أعطال مقابل ${x.prev} في السنة السابقة.`));
+  return`<div class="card" style="border-color:${bdCol(x)}"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><b style="font-size:22px">#${x.rank} · ${esc(x.tag)}</b><span class="rcs" style="background:${x.cls==='bad'?'#E5484D':x.cls==='watch'?'#F2A93B':'#2FB384'}">${x.cls==='bad'?xl('Bad actor','معدة كثيرة الأعطال'):x.cls==='watch'?xl('Watch','مراقبة'):xl('Healthy','سليمة')}</span></div>
+<div class="stats s3" style="margin-top:8px"><div class="st"><span class="tag">${xl('Failures','الأعطال')}</span><b>${x.n}</b><small>${arrow} ${xl('last year','السنة السابقة')} ${x.prev}</small></div><div class="st"><span class="tag">${xl('Downtime','التوقف')}</span><b>${Math.round(x.dt)}</b><small>${xl('hours','ساعة')}</small></div><div class="st hl"><span class="tag">MTBF</span><b style="font-size:22px">${Math.round(x.mtbf)}</b><small>${xl('hours','ساعة')} · MTTR ${x.mttr.toFixed(1)}</small></div></div>
+<p class="dr" style="margin:8px 0 0">${xl('Bad actor index','مؤشر المعدة كثيرة الأعطال')} ${x.idx.toFixed(1)} · ${xl('share of the unit','حصتها من الوحدة')} ${x.share.toFixed(0)}% · ${xl('cost','الكلفة')} ${Math.round(x.cost).toLocaleString('en')}</p>
+${gs.length?`<p class="sub" style="margin:8px 0 0"><b>${xl('Repeated failures','الأعطال المتكررة')}:</b> ${gs.map(([k,n])=>`${esc(k.split('|')[0]==='—'?(x.gt[k]||{}).fm:k.split('|')[0]+' · '+((x.gt[k]||{}).fm||''))} ×${n}`).join(' · ')}</p>`:''}
+${acts.length?`<div class="verd vc pfl" style="margin-top:8px"><div style="flex:1"><b>${xl('What to do','ما العمل')}</b>${acts.map(a=>`<small style="display:block;margin-top:3px">• ${a}</small>`).join('')}</div></div>`:''}
+<div class="act2" style="margin-top:8px"><button class="btn g" style="margin:0" onclick="bdToStrat('${x.tag}')">${xl('Strategy','الاستراتيجية')}</button><button class="btn l" style="margin:0" onclick="bdToRcm('${x.tag}')">RCM</button></div><button class="btn l" onclick="bdToRca('${x.tag}')">${xl('Root cause analysis from these work orders','تحليل الأسباب الجذرية من هذه الأوامر')}</button></div>`;
+}
+function bdBar(C){
+  if(!C.ok)return lfLamp('caution',xl('No work orders yet','لا أوامر عمل بعد'),xl('Paste them from your maintenance system, or load the fictional unit.','الصقها من نظام الصيانة، أو حمّل الوحدة الوهمية.'));
+  return lfLamp(C.bad.length>=5?'act':C.bad.length?'caution':'ok',`${C.bad.length} ${xl('bad actors','معدات كثيرة الأعطال')} · ${Math.round(C.dtShare)}% ${xl('of the downtime','من التوقف')}`,`${C.A.length} ${xl('equipment','معدة')} · ${C.nCur} ${xl('work orders in the last 12 months','أمر عمل في آخر 12 شهرًا')} · ${Math.round(C.totDt)} ${xl('h down','س توقف')}`);
+}
+function bdPanel(C){
+  if(BDTAB==='radar'){
+    if(!C.ok)return`<div class="card">${xl('Add work orders in the Data tab.','أضف أوامر عمل في تبويب البيانات.')}</div>`;
+    return`<div class="card bdc" style="padding:10px">${bdRadarSvg(C)}<p class="dr" style="text-align:center;margin:2px 0 0">${xl('Distance from the center: how bad. Size: downtime. Color: trend. Sectors: equipment type.','البعد عن المركز: مدى السوء. الحجم: التوقف. اللون: الاتجاه. القطاعات: نوع المعدة.')}</p></div>${bdDetail(C)}`;
+  }
+  if(BDTAB==='rank'){
+    if(!C.ok)return`<div class="card">${xl('Add work orders in the Data tab.','أضف أوامر عمل في تبويب البيانات.')}</div>`;
+    return`<div class="card"><span class="tag">${xl('Pareto of the bad actor index','باريتو لمؤشر المعدات كثيرة الأعطال')}</span>${smPareto(C.A.filter(x=>x.idx>0).map(x=>({l:x.tag,v:x.idx})),'')}</div><div class="card"><span class="tag">${xl('Ranking','الترتيب')}</span>${C.A.slice(0,14).map(x=>`<button class="hi" style="margin-top:8px" onclick="BDSEL='${x.tag}';BDTAB='radar';view(false)"><div class="t">#${x.rank} ${esc(x.tag)}</div><div class="mt">${x.n} ${xl('failures','أعطال')} · ${Math.round(x.dt)} ${xl('h down','س توقف')} · MTBF ${Math.round(x.mtbf)} ${xl('h','س')}</div><span class="stc ${x.cls==='bad'?'process':x.cls==='watch'?'working':'new'}">${x.cls==='bad'?xl('Bad actor','كثيرة الأعطال'):x.cls==='watch'?xl('Watch','مراقبة'):xl('Healthy','سليمة')} · ${x.trend>0.2?'▲':x.trend<-0.2?'▼':'●'}</span><div class="evp"><i style="background:${bdCol(x)};color:#fff">${x.idx.toFixed(0)}</i></div></button>`).join('')}</div><p class="dr">${xl('Index = 40% downtime + 30% failures + 20% cost + 10% repeat failures, each as a share of the whole unit. A bad actor is in the top 20% of the equipment, within the first 80% of the index, and failed at least twice in the year (Pareto). Training weights: use your own.','المؤشر = 40% توقف + 30% أعطال + 20% كلفة + 10% أعطال متكررة، كل منها كحصة من الوحدة كلها. المعدة كثيرة الأعطال هي ضمن أعلى 20% من المعدات، وضمن أول 80% من المؤشر، وفشلت مرتين على الأقل في السنة (باريتو). أوزان تدريبية: استخدم أوزانك.')}</p>`;
+  }
+  return`<p class="dr" style="margin:0 0 8px">${xl('Paste the work orders of the whole unit, one per line: date, equipment tag, priority, failure, repair hours, downtime hours, cost. The radar ranks the equipment and shows who deserves attention first.','الصق أوامر عمل الوحدة كلها، أمرًا في كل سطر: التاريخ، رمز المعدة، الأولوية، العطل، ساعات الإصلاح، ساعات التوقف، الكلفة. يرتّب الرادار المعدات ويبيّن من يستحق الاهتمام أولًا.')}</p>
+<div class="card"><textarea class="ta" id="bdwo" style="min-height:96px;direction:ltr" placeholder="2025-06 | P-2301A | emergency | Seal leak | 16 | 22 | 4200"></textarea><div class="act2"><button class="btn g" onclick="bdUse()">${xl('Use the pasted work orders','استخدم الأوامر الملصقة')}</button><button class="btn l" onclick="BDW.wos=bdDemo();BDTAB='radar';view(false)">${xl('Load the fictional unit','حمّل الوحدة الوهمية')}</button></div></div>
+<div class="card"><span class="tag">${xl('Save time: group messy texts with the AI','وفّر وقتك: جمّع النصوص الفوضوية بالذكاء')}</span><p class="sub" style="margin:0 0 4px">${xl('Work order texts are free text. The AI maps them to a component and a standard failure mode so the repeats become visible. Review the result.','نصوص أوامر العمل حرة. يحوّلها الذكاء الاصطناعي إلى مكوّن ونمط فشل معياري فتظهر التكرارات. راجع النتيجة.')}</p><button class="btn l" onclick="bdAI()">${xl('Group the failure texts','جمّع نصوص الأعطال')}</button></div>
+<div class="card"><span class="tag">${xl('Settings','الإعدادات')}</span><small class="dr">${xl('Unit name','اسم الوحدة')}</small>${xinp('bdnm',BDW.name,'',"BDW.name=this.value")}<small class="dr">${xl('Operating hours in 12 months','ساعات التشغيل في 12 شهرًا')}</small>${xinp('bdop',BDW.op,'8760',"BDW.op=this.value",'number')}<p class="dr">${(BDW.wos||[]).length} ${xl('work orders loaded','أمر عمل محمّل')}.</p></div>`;
+}
+function vBad(){
+  if(BDV==='bench'){
+    const C=bdCalc(BDW);
+    return`<button class="link" onclick="BDV='list';view(true)" style="margin-bottom:4px">‹ ${xl('Bad Actors','المعدات كثيرة الأعطال')}</button>${bdBar(C)}${T3([['radar',xl('Radar','الرادار')],['rank',xl('Ranking','الترتيب')],['data',xl('Data','البيانات')]],BDTAB,'bdTab')}<div class="tp" key="${BDTAB}">${bdPanel(C)}</div><button class="btn g" onclick="bdSave()">${xl('Save','احفظ')}</button>`;
+  }
+  const a=CACHE.filter(x=>x.kind==='bad').sort((x,y)=>y.updated-x.updated);
+  return`<p class="sub">${xl('Which equipment fails the most, and costs the most? Paste the work orders of your unit and watch the radar rank them. Then send the worst ones straight to the strategy, RCM or root cause analysis.','أي المعدات تفشل أكثر وتكلّف أكثر؟ الصق أوامر عمل وحدتك وشاهد الرادار يرتّبها. ثم أرسل الأسوأ مباشرة إلى الاستراتيجية أو RCM أو تحليل الأسباب الجذرية.')}</p>
+<button class="btn g" onclick="bdOpenNew(true)">${xl('Open the fictional utility unit','افتح وحدة المرافق الوهمية')}</button><button class="btn l" onclick="bdOpenNew(false)">${xl('Paste my own work orders','الصق أوامر العمل الخاصة بي')}</button>
+<div class="rh"><h2>${xl('Saved units','الوحدات المحفوظة')}</h2></div>${a.length?a.slice(0,lim('bad')).map(D=>{const v=D.versions[D.versions.length-1];return`<button class="hi" onclick="openBad('${D.id}')"><div class="t">${esc(D.title)}</div><div class="mt">${(D.wos||[]).length} ${xl('work orders','أمر عمل')} · ${fdate(D.updated)}</div>${v&&v.a?`<span class="stc process">${v.a.bad} ${xl('bad actors','معدات كثيرة الأعطال')} · ${v.a.share}% ${xl('of downtime','من التوقف')}</span>`:''}<div class="evp"><i>${v?v.total:'—'}</i></div></button>`}).join('')+moreBtn('bad',a.length):`<div class="card">${xl('Nothing saved yet. Open the fictional unit to see the radar.','لا شيء محفوظ بعد. افتح الوحدة الوهمية لترى الرادار.')}</div>`}`;
+}
+Object.assign(TN,{bad:[["nav('home')",'n-home','navHub',()=>false],["nav('bad')",'n-radar','navLib',()=>V==='bad'&&BDV!=='bench'],["nav('bad','x');bdOpenNew(false)",'n-plus','navNew',()=>V==='bad'&&BDV==='bench']]});
+
+
+/* ================= Priority Board: where degradation is, and what to do first ================= */
+Object.assign(T.en,{toolPrio:"Priority Board",toolPrioD:"Where to intervene first",toolIow:"IOW data"});
+Object.assign(T.ar,{toolPrio:"لوحة الأولويات",toolPrioD:"أين نتدخل أولًا",toolIow:"بيانات IOW"});
+(function(){const g=document.querySelector('svg defs')||document.querySelector('svg');if(!g)return;const h=document.createElementNS('http://www.w3.org/2000/svg','g');
+h.innerHTML=`<g id="i-target"><circle r="14" fill="none" stroke="url(#gGoldV)" stroke-width="3"/><circle r="8" fill="none" stroke="url(#gGoldV)" stroke-width="2.6"/><circle r="3" fill="url(#gGoldV)"/><path d="M4-4L14-14M9-14h5v5" stroke="url(#gGoldV)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g>
+<g id="i-n-target"><circle r="14" fill="none" stroke="url(#gDG)" stroke-width="3"/><circle r="8" fill="none" stroke="url(#gDG)" stroke-width="2.6"/><circle r="3" fill="url(#gDG)"/><path d="M4-4L14-14M9-14h5v5" stroke="url(#gDG)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g>`;
+while(h.firstChild)g.appendChild(h.firstChild)})();
+TL.prio={icon:'target',nic:'n-target',ci:2,n:'toolPrio',d:'toolPrioD',p:['#FF9F6B','#F4511E','#B93710'],go:"nav('prio')"};
+FAM.integ.tools=['prio','life','rbi'];
+LKS.iow={ci:2,icon:'target',n:'toolIow',c:'#F4511E'};KIND2K.iow='iow';FL.en.libTool.iow='IOW';FL.ar.libTool.iow='IOW';
+/* ---- IOW: operating data against the Integrity Operating Window ---- */
+function iowCalc(D){
+  const rows=(D.data||[]).map(x=>Object.assign({},x,{y:xym(String(x.d).slice(0,7)),v:parseFloat(x.v)})).filter(x=>x.y!=null&&isFinite(x.v)&&x.tag);if(!rows.length)return{ok:false,tags:{}};
+  const end=Math.max(...rows.map(x=>x.y)),cur=rows.filter(x=>x.y>end-1+1/12-1e-9),lim={};(D.limits||[]).forEach(l=>{lim[(String(l.tag)+'|'+String(l.param)).toLowerCase()]=l});const T={};
+  cur.forEach(x=>{const l=lim[(x.tag+'|'+x.param).toLowerCase()];if(!l)return;const L=parseFloat(l.limit);if(!isFinite(L)||L===0)return;const ex=l.type==='min'?(L-x.v)/L*100:(x.v-L)/L*100;const o=T[x.tag]=T[x.tag]||{tag:x.tag,n:0,worst:0,params:{},last:null,total:0};o.total++;if(ex>0){o.n++;o.worst=Math.max(o.worst,ex);const p=o.params[x.param]=o.params[x.param]||{n:0,worst:0,limit:L,type:l.type,unit:l.unit||''};p.n++;p.worst=Math.max(p.worst,ex);o.last=Math.max(o.last||0,x.y)}});
+  Object.values(T).forEach(o=>{o.status=o.n===0?'ok':(o.worst>10||o.n>=3)?'crit':'alert'});return{ok:true,tags:T,end}
+}
+function iowSig(tag){for(const D of CACHE.filter(x=>x.kind==='iow').sort((a,b)=>b.updated-a.updated)){const c=iowCalc(D);if(c.ok&&c.tags[tag])return c.tags[tag]}return null}
+function iowDemo(){
+  let sd=11;const rnd=()=>{sd=(sd*1103515245+12345)&0x7fffffff;return sd/0x7fffffff};
+  const limits=[{tag:'BFW-RECIRC-L2301',param:'Velocity',type:'max',limit:4.5,unit:'m/s'},{tag:'COND-LINE-L2410',param:'pH',type:'min',limit:8.8,unit:''},{tag:'E-2205B',param:'Chloride',type:'max',limit:150,unit:'ppm'},{tag:'HP-STEAM-H2001',param:'Metal temperature',type:'max',limit:520,unit:'C'},{tag:'CW-RETURN-L2501',param:'Velocity',type:'max',limit:3,unit:'m/s'}];
+  const plan={'BFW-RECIRC-L2301':[4.1,0.8,[1,3,5,6,8,10,11]],'COND-LINE-L2410':[9.1,0.25,[4,7,9]],'E-2205B':[120,18,[3,9]],'HP-STEAM-H2001':[490,12,[8]],'CW-RETURN-L2501':[2.4,0.3,[]]};
+  const data=[];Object.entries(plan).forEach(([tag,[base,spread,ex]])=>{const l=limits.find(x=>x.tag===tag);for(let k=0;k<24;k++){const yr=2024+Math.floor(k/12),m=(k%12)+1;let v=base+(rnd()-0.5)*spread;if(yr===2025&&ex.includes(m)){v=l.type==='min'?l.limit*(1-(0.04+rnd()*0.06)):l.limit*(1+(0.04+rnd()*(tag==='BFW-RECIRC-L2301'?0.14:tag==='E-2205B'?0.1:0.03)))}data.push({d:yr+'-'+String(m).padStart(2,'0'),tag,param:l.param,v:+v.toFixed(2)})}});
+  return{limits,data};
+}
+function iowParseLimits(txt){const out=[];String(txt||'').split(/\r?\n/).forEach(line=>{const f=line.split(/\t|\||;|,/).map(x=>x.trim()).filter(x=>x!=='');if(f.length<4)return;const tp=/min|low|أدنى/i.test(f[2])?'min':'max',L=parseFloat(f[3]);if(!isFinite(L))return;out.push({tag:f[0].toUpperCase(),param:f[1],type:tp,limit:L,unit:f[4]||''})});return out}
+function iowParseData(txt){const out=[];String(txt||'').split(/\r?\n/).forEach(line=>{const f=line.split(/\t|\||;|,/).map(x=>x.trim()).filter(x=>x!=='');if(f.length<4)return;const dm=f[0].match(/(\d{4})[-\/.](\d{1,2})/);const v=parseFloat(f[3]);if(!dm||!isFinite(v))return;out.push({d:dm[1]+'-'+String(dm[2]).padStart(2,'0'),tag:f[1].toUpperCase(),param:f[2],v})});return out}
+/* ---- priority engine: one score from every signal we hold about an asset ---- */
+function prioCalc(){
+  const tags=new Set(),life={},rbi={},rcmD={},io={},bdD=CACHE.filter(x=>x.kind==='bad').sort((a,b)=>b.updated-a.updated)[0],bd=bdD?bdCalc(bdD):{ok:false,A:[]},bm={};
+  CACHE.filter(x=>x.kind==='life').sort((a,b)=>a.updated-b.updated).forEach(D=>{life[D.tag]=D;tags.add(D.tag)});
+  CACHE.filter(x=>x.kind==='rbi').sort((a,b)=>a.updated-b.updated).forEach(D=>{rbi[D.tag]=D;tags.add(D.tag)});
+  CACHE.filter(x=>x.kind==='rcm'&&x.tag).sort((a,b)=>a.updated-b.updated).forEach(D=>{rcmD[D.tag]=D;tags.add(D.tag)});
+  if(bd.ok)bd.A.forEach(x=>{bm[x.tag]=x;if(x.cls==='bad')tags.add(x.tag)});
+  CACHE.filter(x=>x.kind==='iow').forEach(D=>{const c=iowCalc(D);if(c.ok)Object.values(c.tags).forEach(t=>{io[t.tag]=t;if(t.status!=='ok')tags.add(t.tag)})});
+  const list=[];
+  tags.forEach(tag=>{
+    const reasons=[],comp=[],sig={life:false,rcm:false,rbi:false,bad:false,iow:false};let lc=null,rc=null;
+    if(life[tag]){lc=ilCalc(life[tag]);if(lc.ok){sig.life=true;let u=Math.max(0,Math.min(1,(10-lc.rl)/10));if(lc.overdue||lc.status==='act')u=Math.max(u,0.9);comp.push([0.55,u]);reasons.push(xl(`${lc.rl.toFixed(1)} years of life left${lc.overdue?', inspection overdue':''}`,`${lc.rl.toFixed(1)} سنة متبقية${lc.overdue?'، والفحص متأخر':''}`))}}
+    if(rcmD[tag]&&(rcmD[tag].rows||[]).length){const rr=rcmD[tag].rows.filter(r=>(r.fm||'').trim()&&r.scr!=='rare'&&r.scr!=='impl'),mx=Math.max(0,...rr.map(r=>rcRisk(r).rpn)),rd=rr.filter(r=>rcDecide(r).k==='rd').length;if(rr.length){sig.rcm=true;comp.push([0.60,Math.min(1,mx/50+(rd?0.3:0))]);reasons.push(xl(`RCM: top failure mode RPN ${mx}${rd?`, ${rd} safety item(s) need a redesign decision`:''}`,`RCM: أعلى RPN لنمط فشل ${mx}${rd?`، و${rd} بند(بنود) سلامة تحتاج قرار إعادة تصميم`:''}`))}}
+    if(rbi[tag]){rc=rbCalc(rbi[tag]);sig.rbi=true;comp.push([0.45,rc.risk/25]);reasons.push(xl(`RBI risk ${rc.risk} (${rbBand()[rc.band]})${rc.iowAdd>0?', raised by IOW excursions':''}`,`مخاطر RBI ${rc.risk} (${rbBand()[rc.band]})${rc.iowAdd>0?'، ارتفعت بسبب تجاوزات IOW':''}`))}
+    const b=bm[tag];if(b){sig.bad=true;comp.push([0.45,b.cls==='bad'?Math.min(1,0.4+b.share/25):b.cls==='watch'?0.25:0]);if(b.cls!=='ok')reasons.push(xl(`Bad actor #${b.rank}: ${b.n} failures, ${Math.round(b.dt)} h down${b.rep>=3?`, repeat x${b.rep}`:''}`,`معدة كثيرة الأعطال #${b.rank}: ${b.n} أعطال و${Math.round(b.dt)} ساعة توقف${b.rep>=3?`، تكرار ×${b.rep}`:''}`))}
+    const o=io[tag];if(o){sig.iow=true;comp.push([0.40,o.status==='crit'?1:o.status==='alert'?0.55:0]);if(o.status!=='ok')reasons.push(xl(`${o.n} IOW excursions, worst ${o.worst.toFixed(0)}% beyond the limit`,`${o.n} تجاوزات لحدود IOW، وأسوؤها ${o.worst.toFixed(0)}% فوق الحد`))}
+    if(!comp.length)return;
+    const score=Math.round(100*(1-comp.reduce((p,x)=>p*(1-x[0]*x[1]),1))),n=Object.values(sig).filter(Boolean).length;
+    list.push({tag,score,tier:score>=55?'now':score>=30?'plan':'watch',sig,n,reasons,lc,rc,b,o,mech:(life[tag]||rbi[tag]||{}).mech});
+  });
+  list.sort((a,b)=>b.score-a.score||b.n-a.n);list.forEach((x,i)=>{x.rank=i+1});return{list,bd,life,rbi,rcmD,io};
+}
+function prioAlerts(P){
+  const A=[],sv={high:0,med:1,low:2};
+  Object.values(P.life).forEach(D=>{const c=ilCalc(D);if(!c.ok)return;const tag=D.tag;
+    if(c.overdue||c.status==='act')A.push({sev:'high',tag,text:xl(`Inspection ${c.overdue?'overdue':'needed soon'}: ${c.rl.toFixed(1)} years of life, next due ${xfmt(xy2ym(c.next))}.`,`الفحص ${c.overdue?'متأخر':'مطلوب قريبًا'}: ${c.rl.toFixed(1)} سنة متبقية، والاستحقاق ${xfmt(xy2ym(c.next))}.`),act:`openLife('${D.id}')`});
+    else if(c.rl<=5)A.push({sev:'med',tag,text:xl(`Nearing the threshold: ${c.rl.toFixed(1)} years of life left.`,`تقترب من الحد: ${c.rl.toFixed(1)} سنة متبقية.`),act:`openLife('${D.id}')`});
+    if(c.flags.includes('increase'))A.push({sev:'med',tag,text:xl('A reading is higher than the one before it: a suspicious reading. Re-measure at the same point.','قراءة أعلى من السابقة: قراءة مشبوهة. أعد القياس في النقطة نفسها.'),act:`openLife('${D.id}')`});
+    if(c.st>1.5*c.lt&&c.lt>0)A.push({sev:'high',tag,text:xl(`Corrosion is accelerating: ${c.st.toFixed(2)} mm/y recently against ${c.lt.toFixed(2)} mm/y over the whole history.`,`التآكل يتسارع: ${c.st.toFixed(2)} مم/سنة مؤخرًا مقابل ${c.lt.toFixed(2)} مم/سنة طوال السجل.`),act:`openLife('${D.id}')`});
+    (D.dlog||[]).forEach(e=>{const ex=xym(e.exp);if(ex!=null&&ex<xnow())A.push({sev:'high',tag,text:xl(`A deferral expired (${xfmt(e.exp)}): ${e.reason}`,`انتهى تأجيل (${xfmt(e.exp)}): ${e.reason}`),act:`openLife('${D.id}')`});else if(ex!=null&&ex-xnow()<0.25)A.push({sev:'med',tag,text:xl(`A deferral expires soon (${xfmt(e.exp)}).`,`ينتهي تأجيل قريبًا (${xfmt(e.exp)}).`),act:`openLife('${D.id}')`})});
+  });
+  Object.values(P.io).forEach(o=>{if(o.status!=='ok')A.push({sev:o.status==='crit'?'high':'med',tag:o.tag,text:xl(`${o.n} IOW excursions in 12 months, worst ${o.worst.toFixed(0)}% beyond the limit (${Object.keys(o.params).join(', ')}).`,`${o.n} تجاوزات لحدود IOW خلال 12 شهرًا، وأسوؤها ${o.worst.toFixed(0)}% فوق الحد (${Object.keys(o.params).join('، ')}).`),act:"PRTAB='iow';view(false)"})});
+  if(P.bd.ok)P.bd.A.filter(x=>x.cls==='bad'&&x.rep>=3).forEach(x=>A.push({sev:'high',tag:x.tag,text:xl(`Repeat failure x${x.rep}: start a root cause analysis.`,`عطل متكرر ×${x.rep}: ابدأ تحليلًا للأسباب الجذرية.`),act:`nav('bad');openBad('${(CACHE.find(d=>d.kind==='bad')||{}).id}');bdPick('${x.tag}')`}));
+  return A.sort((a,b)=>sv[a.sev]-sv[b.sev]);
+}
+function prioPatterns(P){
+  const M={};Object.values(P.life).forEach(D=>{const c=ilCalc(D);if(!c.ok)return;const o=M[D.mech]=M[D.mech]||{mech:D.mech,tags:[],rate:0,minRl:99,low:0};o.tags.push(D.tag);o.rate+=c.cr;o.minRl=Math.min(o.minRl,c.rl);if(c.rl<=5)o.low++});
+  const mech=Object.values(M).map(o=>Object.assign(o,{avg:o.rate/o.tags.length})).sort((a,b)=>b.low-a.low||b.avg-a.avg);
+  const F={};if(P.bd.ok)P.bd.A.forEach(x=>{Object.entries(x.g).forEach(([k,n])=>{const gi=x.gt[k]||{};if(!gi.part)return;const key=(gi.part||'—')+'|'+smNorm(gi.fm);const o=F[key]=F[key]||{part:gi.part||'',fm:gi.fm||'',n:0,tags:new Set()};o.n+=n;o.tags.add(x.tag)})});
+  const fail=Object.values(F).filter(o=>o.tags.size>=2||o.n>=4).sort((a,b)=>b.tags.size-a.tags.size||b.n-a.n).slice(0,5);
+  const IP={};Object.values(P.io).forEach(o=>Object.entries(o.params).forEach(([p,v])=>{const q=IP[p]=IP[p]||{p,n:0,tags:new Set()};q.n+=v.n;q.tags.add(o.tag)}));
+  return{mech,fail,iow:Object.values(IP).sort((a,b)=>b.n-a.n).slice(0,4)};
+}
+function prioPick(P){const items=P.list.filter(x=>x.tier!=='watch'),cap=smN(PRCAP)||400,h=smN(PRH)||40,sel=[];let used=0;items.forEach(x=>{if(used+h<=cap){sel.push(x);used+=h}});const left=items.filter(x=>!sel.includes(x)),tot=items.reduce((s,x)=>s+x.score,0)||1;return{sel,left,used,cap,h,cover:Math.round(100*sel.reduce((s,x)=>s+x.score,0)/tot),all:items.length}}
+/* ---- state, actions and views ---- */
+let PRTAB='board',PRW=null,PRID=null,PRCAP=400,PRH=40;
+function prTab(k){PRTAB=k;view(false)}
+function prIowNew(demo){PRW=demo?Object.assign({name:xl('Operating data','بيانات التشغيل')},iowDemo()):{name:xl('Operating data','بيانات التشغيل'),limits:[],data:[]};PRID=null;PRTAB='iow';view(true)}
+function openIow(id){const D=CACHE.find(x=>x.id===id);if(!D)return;PRW=JSON.parse(JSON.stringify(D));PRID=id;PRTAB='iow';nav('prio','keep')}
+function prIowUse(){const L=iowParseLimits(($('#prl')||{}).value),Dt=iowParseData(($('#prd')||{}).value);if(!L.length&&!Dt.length){toast(xl('Nothing recognised. Check the formats.','لم يُتعرَّف على شيء. تحقق من الصيغ.'));return}if(L.length)PRW.limits=L;if(Dt.length)PRW.data=Dt.slice(0,5000);view(false);toast(xl(`${PRW.limits.length} limits, ${PRW.data.length} readings loaded.`,`حُمّلت ${PRW.limits.length} حدود و${PRW.data.length} قراءات.`))}
+function prIowSave(){
+  if(!PRW||!PRW.data.length){toast(xl('Add operating data first.','أضف بيانات التشغيل أولًا.'));return}
+  const now=Date.now(),a=CACHE.slice(),C=iowCalc(PRW);let D=PRID?a.find(x=>x.id===PRID):null;const ver={date:now,total:Object.values(C.tags).filter(t=>t.status!=='ok').length,a:{tags:Object.keys(C.tags).length}};
+  if(!D){D=xdoc('iow','io'+now.toString(36),PRW.name||'IOW',{});a.push(D);PRID=D.id}
+  Object.assign(D,JSON.parse(JSON.stringify(PRW)),{id:D.id,kind:'iow',title:PRW.name||'IOW',updated:now,versions:(D.versions||[]).concat([ver])});persist(a);toast(xl('Saved','تم الحفظ'));view(false);
+}
+async function prCsv(P,pk){
+  const q=s=>'"'+String(s==null?'':s).replace(/"/g,'""')+'"',rows=[['Rank','Tag','Tier','Priority score','Signals','Reasons','Hours']];
+  pk.sel.forEach(x=>rows.push([x.rank,x.tag,x.tier,x.score,Object.entries(x.sig).filter(e=>e[1]).map(e=>e[0]).join('+'),x.reasons.join(' | '),pk.h]));
+  await xsave('turnaround-scope.csv','\ufeff'+rows.map(r=>r.map(q).join(',')).join('\r\n'));
+}
+const prTier=()=>({now:[xl('Act now','تصرّف الآن'),'#E5484D'],plan:[xl('Plan it','خطّط له'),'#F2A93B'],watch:[xl('Monitor','راقب'),'#2FB384']});
+function prSigChips(x){const L={life:'Life',rcm:'RCM',rbi:'RBI',bad:xl('Failures','الأعطال'),iow:'IOW'};return`<span class="dr" style="margin:0">${Object.entries(x.sig).filter(e=>e[1]).map(e=>L[e[0]]).join(' · ')}</span>`}
+function prCard(x){
+  const T=prTier()[x.tier],lf=CACHE.find(d=>d.kind==='life'&&d.tag===x.tag),rb=CACHE.find(d=>d.kind==='rbi'&&d.tag===x.tag);
+  return`<div class="card" style="border-color:${T[1]};padding:9px 12px"><div style="display:flex;align-items:center;gap:10px"><span class="rcn" style="background:${T[1]};width:28px;height:28px;font-size:14px">${x.rank}</span><div style="flex:1;min-width:0"><b style="font-size:16px">${esc(x.tag)}</b> <span class="rcs" style="background:${T[1]};margin:0 0 0 4px">${T[0]}</span></div><b style="font-size:26px;line-height:1;color:${T[1]}">${x.score}</b></div><div class="kbar" style="margin-top:6px"><i style="width:${x.score}%;background:${T[1]}"></i></div>${x.reasons.slice(0,2).map(r=>`<p class="dr" style="margin:4px 0 0;font-size:12.5px">• ${esc(r)}</p>`).join('')}<div style="display:flex;align-items:center;gap:6px;margin-top:6px;flex-wrap:wrap">${prSigChips(x)}<span style="flex:1"></span>${lf?`<button class="sbt" onclick="openLife('${lf.id}')">Life</button>`:''}${rb?`<button class="sbt" onclick="openRbi('${rb.id}')">RBI</button>`:''}<button class="sbt" onclick="smOpenTag('${x.tag}')">${xl('Plan','الخطة')}</button><button class="sbt g" onclick="apSheet('${x.tag}')">${xl('Passport','الجواز')}</button></div></div>`;
+}
+function vPrio(){
+  const P=prioCalc(),now=P.list.filter(x=>x.tier==='now').length,plan=P.list.filter(x=>x.tier==='plan').length;
+  let body='';
+  if(PRTAB==='board'){
+    body=P.list.length?P.list.map(prCard).join('')+`<p class="dr">${xl('Each signal (RCM failure-mode risk, remaining-life urgency, bad actor index, IOW excursions, RBI risk) adds to the score, and agreeing signals reinforce each other: 55 or more means act now, 30 or more means plan it. One strong signal alone cannot reach act now. Training weights: use your own.','كل إشارة (مخاطر أنماط فشل RCM وإلحاح العمر المتبقي ومؤشر الأعطال وتجاوزات IOW ومخاطر RBI) تضيف إلى الدرجة، والإشارات المتوافقة تعزّز بعضها: 55 فأكثر تصرّف الآن، و30 فأكثر خطّط. وإشارة قوية وحدها لا تبلغ «تصرّف الآن». أوزان تدريبية: استخدم أوزانك.')}</p>`:`<div class="card">${xl('Nothing to rank yet. Load the fictional unit, or create Inspection Life, RBI, bad actor or IOW data.','لا شيء لترتيبه بعد. حمّل الوحدة الوهمية، أو أنشئ بيانات عمر المعدة أو RBI أو الأعطال أو IOW.')}<button class="btn g" onclick="seedDemo(true)">${xl('Load the fictional utility unit','حمّل وحدة مرافق وهمية')}</button></div>`;
+  }else if(PRTAB==='alerts'){
+    const A=prioAlerts(P),col={high:'#E5484D',med:'#F2A93B',low:'#2FB384'};
+    body=A.length?`<p class="dr" style="margin:0 0 8px">${xl('What the history is telling you that no one is watching for: suspicious readings, accelerating corrosion, assets nearing a threshold, IOW excursions, repeat failures and expired deferrals.','ما يقوله السجل ولا يراقبه أحد: قراءات مشبوهة، وتآكل متسارع، وأصول تقترب من الحد، وتجاوزات IOW، وأعطال متكررة، وتأجيلات منتهية.')}</p>`+A.map(a=>`<div class="card" style="padding:12px 14px;border-inline-start:6px solid ${col[a.sev]}"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><b>${esc(a.tag)}</b><span class="rcs" style="background:${col[a.sev]}">${a.sev==='high'?xl('High','عالٍ'):a.sev==='med'?xl('Medium','متوسط'):xl('Low','منخفض')}</span></div><p class="sub" style="margin:6px 0 0">${esc(a.text)}</p><button class="btn l" style="margin:8px 0 0;padding:8px 12px;width:auto" onclick="${a.act.replace(/"/g,'&quot;')}">${xl('Open','افتح')}</button></div>`).join(''):`<div class="card">${xl('No alerts. Load the fictional unit to see them.','لا تنبيهات. حمّل الوحدة الوهمية لتراها.')}</div>`;
+  }else if(PRTAB==='patterns'){
+    const PT=prioPatterns(P),mn=PT.mech.length?Math.max(...PT.mech.map(m=>m.avg)):1,MN={gen:xl('General corrosion','تآكل عام'),fac:xl('Erosion / flow-accelerated','تآكل بفعل الجريان'),cui:xl('Under insulation','تحت العزل'),sulf:xl('Sulfidation / high temp','كبريتي / حرارة عالية'),mic:xl('Cooling water / microbial','مياه التبريد / ميكروبي'),oth:xl('Other','أخرى')};
+    body=`<p class="dr" style="margin:0 0 8px">${xl('Patterns that only show up when you look across assets: which damage mechanisms keep recurring and how fast they corrode, and the same failure repeating on different equipment.','أنماط لا تظهر إلا حين تنظر عبر الأصول: آليات التلف المتكررة وسرعة تآكلها، والعطل نفسه يتكرر في معدات مختلفة.')}</p><div class="card"><span class="tag">${xl('Damage mechanisms','آليات التلف')}</span>${PT.mech.length?PT.mech.map(m=>`<div style="margin:10px 0 0"><div style="display:flex;justify-content:space-between;font-weight:800;font-size:14px"><span>${MN[m.mech]||m.mech} · ${m.tags.length} ${xl('assets','أصول')}</span><span>${m.avg.toFixed(2)} mm/y</span></div><div class="kbar"><i style="width:${Math.max(6,100*m.avg/mn).toFixed(0)}%;background:linear-gradient(90deg,var(--n1),var(--n2))"></i></div><small class="dr">${m.low?`${m.low} ${xl('below 5 years of life','دون 5 سنوات متبقية')} · `:''}${xl('shortest life','أقصر عمر')} ${m.minRl.toFixed(1)} ${xl('y','سنة')} · ${m.tags.map(esc).join(', ')}</small></div>`).join(''):`<p class="dr">—</p>`}</div>
+<div class="card"><span class="tag">${xl('Same failure, different equipment','العطل نفسه في معدات مختلفة')}</span>${PT.fail.length?PT.fail.map(f=>`<p class="sub" style="margin:8px 0 0"><b>${esc(f.part?f.part+' · ':'')}${esc(f.fm)}</b><br><span class="dr">${f.n} ${xl('failures on','عطل على')} ${f.tags.size} ${xl('assets','أصول')}: ${[...f.tags].map(esc).join(', ')}</span></p>`).join(''):`<p class="dr">${xl('No cross-asset failure pattern yet.','لا نمط أعطال عبر الأصول بعد.')}</p>`}</div>
+<div class="card"><span class="tag">${xl('Operating excursions','تجاوزات التشغيل')}</span>${PT.iow.length?PT.iow.map(i=>`<p class="sub" style="margin:8px 0 0"><b>${esc(i.p)}</b>: ${i.n} ${xl('excursions on','تجاوز على')} ${i.tags.size} ${xl('assets','أصول')}</p>`).join(''):`<p class="dr">${xl('No IOW data yet.','لا بيانات IOW بعد.')}</p>`}</div>`;
+  }else if(PRTAB==='ta'){
+    const pk=prioPick(P);
+    body=`<p class="dr" style="margin:0 0 8px">${xl('Prioritize the intervention for the turnaround. Set the hours you can do and the hours one scope item takes; the board picks the highest priority first.','رتّب التدخل للإيقاف. حدّد الساعات المتاحة وساعات كل بند، فتختار اللوحة الأعلى أولوية أولًا.')}</p><div class="card"><div class="two"><div><small class="dr">${xl('Hours available','الساعات المتاحة')}</small>${xinp('prcap',PRCAP,'400',"PRCAP=this.value;view(false)",'number')}</div><div><small class="dr">${xl('Hours per scope item','ساعات كل بند')}</small>${xinp('prh',PRH,'40',"PRH=this.value;view(false)",'number')}</div></div></div>
+<div class="stats s3"><div class="st"><span class="tag">${xl('In scope','في النطاق')}</span><b>${pk.sel.length}</b><small>${xl('of','من')} ${pk.all}</small></div><div class="st"><span class="tag">${xl('Hours','الساعات')}</span><b>${pk.used}</b><small>${xl('of','من')} ${pk.cap}</small></div><div class="st hl"><span class="tag">${xl('Priority covered','الأولوية المغطاة')}</span><b>${pk.cover}%</b></div></div>
+<div class="card"><span class="tag">${xl('Turnaround scope','نطاق الإيقاف')} · ${pk.sel.length}</span>${pk.sel.map(x=>`<div style="margin:10px 0 0;padding-top:8px;border-top:1px dashed var(--line)"><b>#${x.rank} ${esc(x.tag)}</b> <span class="rcs" style="background:${prTier()[x.tier][1]}">${x.score}</span><p class="dr" style="margin:3px 0 0">${x.reasons.map(esc).join(' · ')}</p></div>`).join('')||`<p class="dr">—</p>`}</div>
+${pk.left.length?`<div class="card" style="border-color:#F2A93B"><span class="tag" style="background:#E08A1E">${xl('Left out for lack of hours','مستبعد لنقص الساعات')} · ${pk.left.length}</span>${pk.left.slice(0,4).map(x=>`<p class="sub" style="margin:8px 0 0"><b>#${x.rank} ${esc(x.tag)}</b> · ${x.score} · ${x.reasons.map(esc).join(' · ')}</p>`).join('')}<p class="dr">${xl('Decide it with the risk in front of you, and log any deferral in Inspection Life.','قرّر والمخاطر أمامك، وسجّل أي تأجيل في عمر المعدة.')}</p></div>`:''}<button class="btn g" onclick="prCsv(prioCalc(),prioPick(prioCalc()))">${xl('Download the scope as CSV','نزّل النطاق كملف CSV')}</button>`;
+  }else{
+    if(!PRW)PRW={name:xl('Operating data','بيانات التشغيل'),limits:[],data:[]};
+    const C=iowCalc(PRW),col={ok:'#2FB384',alert:'#F2A93B',crit:'#E5484D'},sd=CACHE.filter(x=>x.kind==='iow');
+    body=`<p class="dr" style="margin:0 0 8px">${xl('Operating data against the Integrity Operating Window. Excursions raise the damage susceptibility in RBI automatically, so the inspection follows the operation instead of the other way round.','بيانات التشغيل مقابل نافذة التشغيل السليم (IOW). التجاوزات ترفع قابلية التلف في RBI تلقائيًا، فيتبع الفحص التشغيل لا العكس.')}</p>
+<div class="card"><span class="tag">${xl('1. The limits','1. الحدود')}</span><textarea class="ta" id="prl" style="min-height:70px;direction:ltr" placeholder="E-2205B | Chloride | max | 150 | ppm&#10;COND-LINE-L2410 | pH | min | 8.8"></textarea><span class="tag" style="margin-top:10px">${xl('2. The operating readings','2. قراءات التشغيل')}</span><textarea class="ta" id="prd" style="min-height:90px;direction:ltr" placeholder="2025-06 | E-2205B | Chloride | 171"></textarea><div class="act2"><button class="btn g" onclick="prIowUse()">${xl('Use the pasted data','استخدم البيانات الملصقة')}</button><button class="btn l" onclick="prIowNew(true)">${xl('Load the fictional data','حمّل البيانات الوهمية')}</button></div></div>
+<div class="card"><span class="tag">${xl('Excursions in the last 12 months','التجاوزات في آخر 12 شهرًا')}</span>${C.ok&&Object.keys(C.tags).length?Object.values(C.tags).sort((a,b)=>b.worst-a.worst).map(o=>`<div style="margin:10px 0 0;padding-top:8px;border-top:1px dashed var(--line)"><b>${esc(o.tag)}</b> <span class="rcs" style="background:${col[o.status]}">${o.status==='crit'?xl('Critical','حرج'):o.status==='alert'?xl('Alert','إنذار'):xl('Within the window','ضمن النافذة')}</span><p class="dr" style="margin:3px 0 0">${o.n} ${xl('of','من')} ${o.total} ${xl('readings beyond the limit, worst','قراءات خارج الحد، وأسوؤها')} ${o.worst.toFixed(0)}% · ${Object.entries(o.params).map(([p,v])=>`${esc(p)} (${v.type==='min'?'min':'max'} ${v.limit}${v.unit?' '+esc(v.unit):''})`).join(', ')}</p></div>`).join(''):`<p class="dr">${xl('No data yet.','لا بيانات بعد.')}</p>`}<p class="dr">${xl('Critical: more than 10% beyond the limit, or three or more excursions. Alert: any excursion. Rules of thumb: set your own.','حرج: أكثر من 10% فوق الحد، أو ثلاثة تجاوزات فأكثر. إنذار: أي تجاوز. قواعد شائعة: ضع قواعدك.')}</p></div>
+<div class="card"><small class="dr">${xl('Name','الاسم')}</small>${xinp('prnm',PRW.name,'',"PRW.name=this.value")}<p class="dr">${PRW.limits.length} ${xl('limits','حدود')} · ${PRW.data.length} ${xl('readings','قراءات')}</p><button class="btn g" onclick="prIowSave()">${xl('Save the IOW data','احفظ بيانات IOW')}</button></div>${sd.length?`<div class="rh"><h2>${xl('Saved','المحفوظ')}</h2></div>${sd.map(D=>`<button class="hi" onclick="openIow('${D.id}')"><div class="t">${esc(D.title)}</div><div class="mt">${D.limits.length} ${xl('limits','حدود')} · ${D.data.length} ${xl('readings','قراءات')} · ${fdate(D.updated)}</div></button>`).join('')}`:''}`;
+  }
+  return`${lfLamp(now?'act':plan?'caution':'ok',`${now} ${xl('to act on now','للتصرف الآن')} · ${plan} ${xl('to plan','للتخطيط')}`,`${P.list.length} ${xl('assets ranked from every signal we hold','أصل مرتّب من كل إشارة نملكها')}`)}${T3([['board',xl('Priority','الأولوية')],['alerts',xl('Alerts','التنبيهات')],['patterns',xl('Patterns','الأنماط')],['ta',xl('Turnaround','الإيقاف')],['iow','IOW']],PRTAB,'prTab')}<div class="tp" key="${PRTAB}">${body}</div>`;
+}
+Object.assign(TN,{prio:[["nav('home')",'n-home','navHub',()=>false],["nav('prio');PRTAB='board';view(true)",'n-target','navLib',()=>V==='prio'&&PRTAB!=='iow'],["nav('prio','x');prIowNew(false)",'n-plus','navNew',()=>V==='prio'&&PRTAB==='iow']]});
+
 /* ---------------- design layer: header icons, floating dock, scroll shadow ---------------- */
 const ICN={lib:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="5" rx="1.6"/><path d="M5 9v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9M10 13h4"/></svg>',set:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2.2"/><circle cx="9" cy="17" r="2.2"/></svg>'};
 const NAVP={home:'<path d="M4 11.5 12 5l8 6.5V19a1 1 0 0 1-1 1h-4v-5H9v5H5a1 1 0 0 1-1-1z"/>',lib:'<rect x="5" y="4" width="14" height="4" rx="1.6"/><rect x="5" y="10" width="14" height="4" rx="1.6"/><rect x="5" y="16" width="14" height="4" rx="1.6"/>',plus:'<path d="M12 5v14M5 12h14"/>'};
@@ -4782,7 +5232,7 @@ Object.keys(FAM).forEach(k=>{FAM[k].p=({integ:['#FFA24D','#F2711C','#C2410C'],re
 /* ---------------- AI impact: human effort versus AI work ---------------- */
 const AILK='air_ail',AIMK='air_aim';
 let AIL=[],LASTAI=null;try{AIL=JSON.parse(localStorage.getItem(AILK)||'[]')}catch(e){}
-const AIM0=()=>({base:5,read:1.5,fm:4,mech:12,find:3,jp:3,rev:0.5});
+const AIM0=()=>({base:5,read:1.5,fm:4,mech:12,find:3,jp:3,cls:0.4,story:20,tribal:25,rev:0.5});
 let AIM=Object.assign(AIM0(),(()=>{try{return JSON.parse(localStorage.getItem(AIMK)||'{}')}catch(e){return{}}})());
 const aiSave=()=>{try{localStorage.setItem(AILK,JSON.stringify(AIL));localStorage.setItem(AIMK,JSON.stringify(AIM))}catch(e){}};
 const aiCalc=e=>{const ai=e.ms/60000,rev=e.items*AIM.rev,manual=AIM.base+e.items*(AIM[e.kind]||3);return{ai,rev,manual,net:manual-ai-rev,aiSec:e.ms/1000}};
@@ -4806,10 +5256,10 @@ function aiTotHtml(){
   return`<div class="stats s3"><div class="st"><span class="tag">${xl('By hand','يدويًا')}</span><b style="font-size:24px">${aiMinTx(T0.man)}</b><small>${xl('estimate','تقدير')}</small></div><div class="st"><span class="tag">${xl('AI + review','الذكاء + المراجعة')}</span><b style="font-size:24px">${aiMinTx(T0.ai+T0.rev)}</b><small>${T0.n} ${xl('actions','عمليات')}</small></div><div class="st hl"><span class="tag">${xl('Saved','الموفَّر')}</span><b style="font-size:24px">${aiMinTx(Math.max(0,T0.net))}</b><small>${pct}%</small></div></div>`;
 }
 function vImpact(){
-  const tl={life:xl('Inspection Life','عمر المعدة'),rbi:xl('RBI','RBI'),rcm:xl('RCM','RCM'),strat:xl('Strategy','الاستراتيجية'),inc:xl('Failure analysis','تحليل الأعطال')};
+  const tl={story:xl('Failure story','قصة العطل'),tribal:xl('Interview','المقابلة'),iow:'IOW',bad:xl('Bad actors','كثيرة الأعطال'),life:xl('Inspection Life','عمر المعدة'),rbi:xl('RBI','RBI'),rcm:xl('RCM','RCM'),strat:xl('Strategy','الاستراتيجية'),inc:xl('Failure analysis','تحليل الأعطال')};
   const rows=AIL.slice().reverse().slice(0,12).map(e=>{const c=aiCalc(e);return`<div class="card" style="padding:10px 14px"><b>${esc(e.what)}</b> <span class="stc new" style="margin:0 6px">${tl[e.tool]||e.tool}</span><p class="dr" style="margin:4px 0 0">${e.items} ${xl('items','بنود')} · ${xl('AI','الذكاء')} ${c.aiSec<90?Math.round(c.aiSec)+' '+xl('s','ث'):aiMinTx(c.ai)} · ${xl('by hand ≈','يدويًا ≈')} ${aiMinTx(c.manual)} · ${xl('saved ≈','موفَّر ≈')} ${aiMinTx(Math.max(0,c.net))}</p></div>`}).join('');
   const st=SAMPLE?(AIPREF?xl('The AI is on.','الذكاء الاصطناعي يعمل.'):xl('The AI is off. Tap the AI pill at the top to turn it on.','الذكاء الاصطناعي متوقف. المس شارة AI في الأعلى لتشغيله.')):xl('The AI is not available in this view. Open the app from claude.ai and allow AI when asked.','الذكاء الاصطناعي غير متاح في هذه الشاشة. افتح التطبيق من claude.ai واسمح بالذكاء الاصطناعي عند السؤال.');
-  const asm=[['base',xl('Fixed minutes per task (find, read, set up)','دقائق ثابتة لكل مهمة (البحث والقراءة والتجهيز)')],['read',xl('Minutes per thickness reading','دقائق لكل قراءة سماكة')],['fm',xl('Minutes per failure mode','دقائق لكل نمط فشل')],['mech',xl('Minutes per RBI factor set','دقائق لكل مجموعة عوامل RBI')],['find',xl('Minutes per report finding','دقائق لكل بند من تقرير')],['jp',xl('Minutes per job plan step','دقائق لكل خطوة في خطة العمل')],['rev',xl('Review minutes per AI item','دقائق مراجعة لكل بند من الذكاء')]];
+  const asm=[['base',xl('Fixed minutes per task (find, read, set up)','دقائق ثابتة لكل مهمة (البحث والقراءة والتجهيز)')],['read',xl('Minutes per thickness reading','دقائق لكل قراءة سماكة')],['fm',xl('Minutes per failure mode','دقائق لكل نمط فشل')],['mech',xl('Minutes per RBI factor set','دقائق لكل مجموعة عوامل RBI')],['find',xl('Minutes per report finding','دقائق لكل بند من تقرير')],['jp',xl('Minutes per job plan step','دقائق لكل خطوة في خطة العمل')],['story',xl('Minutes to write a failure story','دقائق لكتابة قصة عطل')],['tribal',xl('Minutes to structure an interview','دقائق لترتيب مقابلة')],['cls',xl('Minutes per failure text grouped','دقائق لكل نص عطل يُجمَّع')],['rev',xl('Review minutes per AI item','دقائق مراجعة لكل بند من الذكاء')]];
   return`<p class="sub">${xl('A fair comparison: the time an engineer would spend by hand, against the AI time plus the time you spend reviewing. The by-hand times are estimates you can change.','مقارنة عادلة: الوقت الذي يقضيه المهندس يدويًا مقابل وقت الذكاء الاصطناعي مع وقت مراجعتك. أوقات اليدوي تقديرات يمكنك تغييرها.')} ${st}</p>
 <div id="aitot">${aiTotHtml()}</div>
 <div class="rh"><h2>${xl('Latest AI actions','آخر عمليات الذكاء')}</h2></div>${rows||`<div class="card">${xl('Nothing yet. Try: Inspection Life > Data > Fill the form from the report; RCM Studio > Suggest with AI; RBI > AI suggestion; Failure analysis on your own report.','لا شيء بعد. جرّب: عمر المعدة > البيانات > املأ النموذج من التقرير؛ استوديو RCM > اقترح بالذكاء الاصطناعي؛ RBI > اقتراح الذكاء الاصطناعي؛ وتحليل الأعطال على تقريرك.')}</div>`}
@@ -4831,6 +5281,406 @@ async function rbAI(){
   }catch(e){toast(xl('The AI could not suggest factors for this text.','تعذّر على الذكاء الاصطناعي اقتراح عوامل لهذا النص.'))}
 }
 
+function openTribal(id){otOpen(id)}
+
+
+/* ================= Failure Story and Ask the Old-Timer ================= */
+Object.assign(T.en,{toolStory:"Failure Story",toolStoryD:"The signals we missed before it failed",toolTribal:"Ask the Old-Timer",toolTribalD:"Capture what the experts know"});
+Object.assign(T.ar,{toolStory:"قصة العطل",toolStoryD:"الإشارات التي فاتتنا قبل الفشل",toolTribal:"اسأل صاحب الخبرة",toolTribalD:"وثّق ما يعرفه الخبراء"});
+const gl=n=>document.getElementById('i-'+n)?n:null;
+TL.story={icon:gl('clock')||'doc',nic:gl('n-clock')||gl('n-doc')||'n-doc',ci:3,n:'toolStory',d:'toolStoryD',p:['#C79BFF','#7C3AED','#4C1D95'],go:"nav('story')"};
+TL.tribal={icon:gl('talk')||'doc',nic:gl('n-talk')||'n-doc',ci:4,n:'toolTribal',d:'toolTribalD',p:['#F0C27A','#B7791F','#6B4410'],go:"nav('tribal')"};
+FAM.rel.tools=['bad','story','rcm','tribal','inc'];
+T.en.hc_rel=["Bad actors","Failure story","Old-timer"];T.ar.hc_rel=["كثيرة الأعطال","قصة العطل","صاحب الخبرة"];
+LKS.tribal={ci:4,icon:TL.tribal.icon,n:'toolTribal',c:'#B7791F'};KIND2K.tribal='tribal';FL.en.libTool.tribal='Interviews';FL.ar.libTool.tribal='مقابلات';
+/* ---------------- Failure Story ---------------- */
+let STIDX=0,STTAB='time',STAI='';
+const stM=s=>Math.round(xym(String(s).slice(0,7))*12);
+function stFailures(){
+  const D=CACHE.filter(x=>x.kind==='bad').sort((a,b)=>b.updated-a.updated)[0];if(!D)return{D:null,list:[]};
+  const list=(D.wos||[]).map((w,i)=>({i,tag:w.tag,d:w.d,pri:w.pri,part:w.part||bPartOf(w.fm),fm:w.fm,dt:smN(w.dt),hrs:smN(w.hrs)})).filter(w=>w.pri==='emergency'&&w.tag).sort((a,b)=>b.dt-a.dt||String(b.d).localeCompare(String(a.d)));
+  return{D,list};
+}
+function stBuild(f){
+  const {D}=stFailures(),fm0=stM(f.d),sig=[],key=smNorm(f.fm),part=String(f.part||'').toLowerCase(),self=D.wos[f.i];
+  (D.wos||[]).forEach(w=>{const m=stM(w.d);if(w.tag!==f.tag||w===self||m>=fm0||m<fm0-12)return;
+    const same=(part&&String(w.part||bPartOf(w.fm)).toLowerCase()===part)||smNorm(w.fm)===key;
+    sig.push(same?{m,type:'repeat',s:3,text:xl(`The same failure happened before (${w.fm}), ${smN(w.dt)} h down.`,`حدث العطل نفسه من قبل (${w.fm}) وتوقف ${smN(w.dt)} ساعة.`)}:{m,type:'wo',s:1,text:xl(`Other work on this asset: ${w.fm}.`,`عمل آخر على هذا الأصل: ${w.fm}.`)})});
+  CACHE.filter(x=>x.kind==='iow').forEach(I=>{const lim={};(I.limits||[]).forEach(l=>{lim[(String(l.tag)+'|'+String(l.param)).toLowerCase()]=l});(I.data||[]).forEach(r=>{if(r.tag!==f.tag)return;const m=stM(r.d);if(m>=fm0||m<fm0-12)return;const l=lim[(r.tag+'|'+r.param).toLowerCase()];if(!l)return;const Lm=parseFloat(l.limit),v=parseFloat(r.v);if(!isFinite(Lm)||!isFinite(v)||!Lm)return;const ex=l.type==='min'?(Lm-v)/Lm*100:(v-Lm)/Lm*100;if(ex>0)sig.push({m,type:'iow',s:ex>10?3:2,text:xl(`${r.param} was ${v}, beyond the ${l.type==='min'?'minimum':'maximum'} ${Lm} (${ex.toFixed(0)}%).`,`${r.param} بلغ ${v} متجاوزًا ${l.type==='min'?'الحد الأدنى':'الحد الأقصى'} ${Lm} (${ex.toFixed(0)}%).`)})})});
+  const lf=CACHE.filter(x=>x.kind==='life'&&x.tag===f.tag).sort((a,b)=>b.updated-a.updated)[0];
+  if(lf)(lf.readings||[]).forEach(r=>{const m=stM(r.d);if(isFinite(parseFloat(r.t))&&m<fm0&&m>=fm0-12)sig.push({m,type:'insp',s:1,text:xl(`Thickness ${r.t} mm measured.`,`قيست السماكة ${r.t} مم.`)})});
+  const rc=CACHE.filter(x=>x.kind==='rcm'&&x.tag===f.tag).sort((a,b)=>b.updated-a.updated)[0];
+  if(rc)(rc.rows||[]).forEach(r=>{if(part&&String(r.part||'').toLowerCase().includes(part.split(' ')[0])&&smN(r.pf)>0)sig.push({m:fm0-Math.max(1,Math.round(smN(r.pf)/30)),type:'rcm',s:2,known:true,text:xl(`The RCM study expects a warning about ${smN(r.pf)} days before: ${r.warn||'an early sign'}.`,`دراسة RCM تتوقع إنذارًا قبل نحو ${smN(r.pf)} يومًا: ${r.warn||'علامة مبكرة'}.`)})});
+  sig.sort((a,b)=>a.m-b.m);const missed=sig.filter(x=>x.s>=2),lead=missed.length?fm0-Math.min(...missed.map(x=>x.m)):0;
+  const fix=[];if(sig.some(x=>x.type==='iow'))fix.push(xl('An IOW alert at the first excursion.','تنبيه IOW عند أول تجاوز.'));if(sig.some(x=>x.type==='repeat'))fix.push(xl('A root cause analysis at the second occurrence of the same failure.','تحليل أسباب جذرية عند المرة الثانية للعطل نفسه.'));if(sig.some(x=>x.known))fix.push(xl('A condition check at half the P-F interval.','فحص بحسب الحالة عند نصف فترة P-F.'));if(sig.some(x=>x.type==='insp'))fix.push(xl('An earlier inspection once the readings started to move.','فحص أبكر حين بدأت القراءات تتحرك.'));
+  if(!fix.length)fix.push(xl('No precursor was recorded. This failure was a surprise: add monitoring for it.','لم يُسجَّل أي مقدّم. كان العطل مفاجئًا: أضف له مراقبة.'));
+  const mo=d=>xfmt(String(d).slice(0,7));
+  const text=xl(`On ${mo(f.d)}, ${f.tag} failed: ${f.fm}${f.part?` (${f.part})`:''}, with ${Math.round(f.dt)} hours of downtime. Looking back twelve months, ${missed.length} clear signal${missed.length===1?'':'s'} appeared before it${missed.length?`, the first ${lead} month${lead===1?'':'s'} earlier`:''}.`,`في ${mo(f.d)} تعطّل ${f.tag}: ${f.fm}${f.part?` (${f.part})`:''}، وتوقف ${Math.round(f.dt)} ساعة. وبالنظر إلى الاثني عشر شهرًا السابقة ظهرت ${missed.length} إشارات واضحة قبله${missed.length?`، أولاها قبل ${lead} أشهر`:''}.`);
+  return{f,fm0,sig,missed,lead,fix,text};
+}
+function stSvg(S){
+  const W0=340,x0=64,x1=324,lanes=[['iow','IOW'],['wo',xl('Work','أعمال')],['insp',xl('Inspect','فحص')],['rcm',xl('Study','دراسة')]],lh=34,top=14,H0=top+lanes.length*lh+34,px=m=>x0+(m-(S.fm0-12))/12*(x1-x0),col={iow:'#0AA5C9',wo:'#B77800',repeat:'#E5484D',insp:'#E2641B',rcm:'#7C3AED'};
+  let g=`<rect x="${x0}" y="${top-6}" width="${x1-x0}" height="${lanes.length*lh+4}" rx="10" fill="rgba(255,255,255,.7)" stroke="rgba(120,140,190,.3)"/>`;
+  lanes.forEach(([k,lab],i)=>{const y=top+i*lh+lh/2;g+=`<text x="4" y="${y+4}" font-size="11.5" font-weight="800" fill="#5B6B8C">${lab}</text><line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="rgba(120,140,190,.25)" stroke-dasharray="3 4"/>`});
+  S.sig.forEach(s=>{const lane=s.type==='iow'?0:(s.type==='wo'||s.type==='repeat')?1:s.type==='insp'?2:3,y=top+lane*lh+lh/2,r=3.5+s.s*1.6;g+=`<circle cx="${px(s.m).toFixed(1)}" cy="${y}" r="${r}" fill="${col[s.type]}" fill-opacity="${s.s>=2?.95:.5}" stroke="#fff" stroke-width="1.5"/>`});
+  g+=`<line x1="${x1}" y1="${top-8}" x2="${x1}" y2="${top+lanes.length*lh+2}" stroke="#E5484D" stroke-width="3"/><text x="${x1}" y="${top+lanes.length*lh+18}" font-size="11.5" font-weight="900" fill="#E5484D" text-anchor="end">${xl('failure','العطل')}</text>`;
+  [-12,-9,-6,-3].forEach(m=>{g+=`<text x="${px(S.fm0+m).toFixed(1)}" y="${top+lanes.length*lh+18}" font-size="10.5" font-weight="700" fill="#5B6B8C" text-anchor="middle">${m}</text>`});
+  return`<svg viewBox="0 0 ${W0} ${H0}" style="width:100%;display:block" role="img" aria-label="${xl('Timeline before the failure','الخط الزمني قبل العطل')}">${g}</svg>`;
+}
+function stPick(i){STIDX=+i;STAI='';view(false)}
+function stTab(k){STTAB=k;view(false)}
+async function stAI(S){
+  if(!AIon()){toast(xl('The AI is off or not available. See AI impact for how to turn it on.','الذكاء الاصطناعي متوقف أو غير متاح. انظر «أثر الذكاء» لمعرفة التشغيل.'));return}
+  const t0=performance.now();toast(xl('Writing the story...','نكتب القصة...'));
+  try{const r=await SAMPLE.json(`You are a reliability engineer writing a short failure story for a plant team. Write 4 to 6 plain sentences in ${t('aiLang')}: what failed and when, the signals that appeared before it in time order, how many months of warning there were, and what would have caught it. Use only the facts below and invent nothing. Return JSON only: {"story":""}\n\nFAILURE: ${S.f.tag} ${S.f.d} ${S.f.fm} (${S.f.part}), ${S.f.dt} h down.\nSIGNALS (month offset before failure: text):\n${S.sig.map(s=>`${s.m-S.fm0}: ${s.text}`).join('\n')}\nWOULD HAVE CAUGHT IT: ${S.fix.join(' ')}`,{cache:false,modelTier:'default'});
+    STAI=String(r.story||'').slice(0,1200);if(!STAI)throw new Error('empty');aiTrack('story',xl('Failure story','قصة عطل'),1,performance.now()-t0,'story');view(false);toast(xl('Story written. Check it against the facts.','كُتبت القصة. قارنها بالوقائع.'))}
+  catch(e){toast(xl('The AI could not write the story.','تعذّر على الذكاء الاصطناعي كتابة القصة.'))}
+}
+async function stCopy(S){const txt=(STAI||S.text)+'\n\n'+S.fix.map(x=>'• '+x).join('\n');try{await navigator.clipboard.writeText(txt);toast(xl('Copied.','نُسخت.'))}catch(e){toast(xl('Copy is not available here.','النسخ غير متاح هنا.'))}}
+function vStory(){
+  const {D,list}=stFailures();
+  if(!D||!list.length)return`<p class="sub">${xl('Pick a failure and look back at the signals that were there before it. Load the bad actor work orders first.','اختر عطلًا وانظر إلى الإشارات التي سبقته. حمّل أوامر عمل المعدات كثيرة الأعطال أولًا.')}</p><button class="btn g" onclick="seedDemo(true)">${xl('Load the fictional utility unit','حمّل وحدة مرافق وهمية')}</button>`;
+  STIDX=Math.min(STIDX,list.length-1);const S=stBuild(list[STIDX]),sel=`<div class="card" style="padding:8px 10px"><select class="lkin" style="font-size:14px;padding:8px 10px" onchange="stPick(this.value)" aria-label="${xl('Failure','العطل')}">${list.map((f,i)=>`<option value="${i}"${i===STIDX?' selected':''}>${f.tag} · ${f.d} · ${(f.fm||'').slice(0,26)} · ${Math.round(f.dt)}h</option>`).join('')}</select></div>`;
+  let body='';
+  if(STTAB==='time')body=`<div class="card" style="padding:8px">${stSvg(S)}<div class="bdlg"><span><i style="background:#0AA5C9"></i>IOW</span><span><i style="background:#E5484D"></i>${xl('same failure','العطل نفسه')}</span><span><i style="background:#B77800"></i>${xl('other work','أعمال أخرى')}</span><span><i style="background:#E2641B"></i>${xl('inspection','فحص')}</span><span><i style="background:#7C3AED"></i>${xl('study','دراسة')}</span></div></div><div class="card"><p class="sub" style="margin:0"><b>${S.text}</b></p></div>`;
+  else if(STTAB==='sig')body=S.sig.length?`<div class="card"><span class="tag">${xl('Signals before the failure','إشارات قبل العطل')} · ${S.sig.length}</span>${S.sig.slice().reverse().map(s=>`<div class="tkr"><div class="tkl"><span class="stc">${s.m-S.fm0} ${xl('mo','شهر')}</span><span class="stc ${s.s>=3?'process':''}">${s.s>=3?xl('strong','قوية'):s.s===2?xl('clear','واضحة'):xl('weak','ضعيفة')}</span></div><p class="tkt">${esc(s.text)}</p></div>`).join('')}</div>`:`<div class="card">${xl('No signal was recorded in the 12 months before this failure.','لم تُسجَّل أي إشارة في الأشهر الاثني عشر قبل هذا العطل.')}</div>`;
+  else body=`<div class="card"><span class="tag">${xl('The story','القصة')}</span><p class="sub" style="margin:0">${esc(STAI||S.text)}</p></div><div class="card"><span class="tag">${xl('What would have caught it','ما الذي كان سيكشفه')}</span>${S.fix.map(x=>`<p class="sub" style="margin:6px 0 0">• ${esc(x)}</p>`).join('')}</div><div class="act2"><button class="btn g" onclick="stAI(stBuild(stFailures().list[STIDX]))">${xl('Write it with AI','اكتبها بالذكاء')}</button><button class="btn l" onclick="stCopy(stBuild(stFailures().list[STIDX]))">${xl('Copy','انسخ')}</button></div><p class="dr">${xl('Built only from the records we hold. Where a signal is missing, the history is incomplete.','مبنية من السجلات التي نملكها فقط. وحيث تغيب إشارة فالسجل ناقص.')}</p>`;
+  return`${sel}${lfLamp(S.missed.length?'act':'caution',`${S.missed.length} ${xl('missed signals','إشارات فائتة')}`,S.missed.length?`${xl('The first one came','أولاها كانت قبل')} ${S.lead} ${xl('months before it failed','أشهر من الفشل')}`:xl('No clear warning was recorded.','لم يُسجَّل إنذار واضح.'))}${T3([['time',xl('Timeline','الخط الزمني')],['sig',xl('Signals','الإشارات')],['story',xl('Story','القصة')]],STTAB,'stTab')}<div class="tp" key="${STTAB}">${body}</div>`;
+}
+Object.assign(TN,{story:[["nav('home')",'n-home','navHub',()=>false],["nav('story')",'n-clock','navLib',()=>V==='story'],["nav('story')",'n-plus','navNew',()=>false]]});
+/* ---------------- Ask the Old-Timer ---------------- */
+let TOV='list',TOW=null,TOID=null,TOSTEP=0,TOTAB='card';
+const OTQ=()=>[['fm',xl('What fails first on this equipment?','ما الذي يتعطل أولًا في هذه المعدة؟'),xl('Say it the way you would on the radio.','قلها كما تقولها بالجهاز.')],['cause',xl('Why does it fail? Which part, and what is behind it?','لماذا يتعطل؟ أي جزء، وما السبب وراءه؟'),xl('Dry running, dirt, heat, a bad habit...','تشغيل جاف، أوساخ، حرارة، عادة سيئة...')],['freq',xl('How often does it happen?','كم مرة يحدث؟'),xl('Twice a year, every few months, once in five years...','مرتين في السنة، كل بضعة أشهر، مرة كل خمس سنوات...')],['warn',xl('What do you notice before it fails?','ماذا تلاحظ قبل أن يتعطل؟'),xl('A sound, a smell, heat, a leak, vibration...','صوت، رائحة، حرارة، تسرّب، اهتزاز...')],['lead',xl('How long before the failure do you notice it?','قبل العطل بكم تلاحظه؟'),xl('Hours, days, weeks...','ساعات، أيام، أسابيع...')],['act',xl('What do you do when you notice it?','ماذا تفعل حين تلاحظه؟'),xl('Your trick, the check, who you call.','حيلتك، الفحص، ومن تتصل به.')],['cons',xl('What happens if it fails? Safety, production, cost?','ماذا يحدث إن تعطل؟ السلامة، الإنتاج، الكلفة؟'),xl('Be honest about the worst case you saw.','كن صريحًا في أسوأ حالة رأيتها.')],['ctx',xl('What changed recently that made it better or worse?','ما الذي تغيّر مؤخرًا فحسّنه أو ساءه؟'),xl('A new part, a new supplier, a different operation...','قطعة جديدة، مورّد جديد، تشغيل مختلف...')],['tip',xl('What would you tell a new engineer about this equipment?','ماذا تقول لمهندس جديد عن هذه المعدة؟'),xl('The thing no manual says.','الشيء الذي لا يقوله أي دليل.')]];
+function otNum(w){const m={one:1,two:2,three:3,four:4,five:5,six:6,ten:10,'واحد':1,'اثنين':2,'يومين':2,'ثلاثة':3,'اربعة':4,'خمسة':5,'ستة':6,'عشرة':10,'عشر':10,'أسبوعين':2};w=String(w).toLowerCase();for(const k in m)if(w.includes(k))return m[k];return null}
+function otFreqLik(t){
+  const s=String(t||'').toLowerCase();if(!s.trim())return 3;
+  if(/daily|every day|weekly|every week|monthly|every month|يوميًا|كل يوم|أسبوع|كل شهر|شهريًا/.test(s))return 5;
+  if(/several times|every few months|quarterly|three times|four times|twice a year|every (3|three|4|four|6|six) months|مرتين|عدة مرات|كل (3|ثلاثة|4|أربعة|6|ستة) أشهر/.test(s))return 4;
+  if(/once a year|annually|every year|yearly|كل سنة|مرة في السنة|سنويًا/.test(s))return 4;
+  if(/every (2|two|3|three) years|كل سنتين|كل ثلاث سنوات/.test(s))return 3;
+  if(/rare|once in|every (5|five|10|ten)|نادر|كل (5|خمس|10|عشر)/.test(s))return /10|ten|عشر/.test(s)?1:2;
+  return 3;
+}
+function otDays(t){
+  const s=String(t||'').toLowerCase(),m=s.match(/(\d+(?:\.\d+)?)\s*(hour|hr|ساعة|ساعات|day|يوم|أيام|week|أسبوع|أسابيع|month|شهر|أشهر)/)||s.match(/(one|two|three|four|five|six|ten|واحد|اثنين|يومين|أسبوعين|ثلاثة|اربعة|خمسة|ستة|عشرة)\s*(hour|hr|ساعة|ساعات|day|يوم|أيام|week|أسبوع|أسابيع|month|شهر|أشهر)/);
+  if(!m){const a=s.match(/\b(?:a|an|one)\s+(hour|day|week|month)\b/)||s.match(/(?:^|\s)(?:شهر|أسبوع|يوم)(?:\s|$)/);if(a&&a[1])return({hour:1,day:1,week:7,month:30})[a[1]];return''}const n=isNaN(m[1])?otNum(m[1]):parseFloat(m[1]),u=m[2];if(!n)return'';const d=/hour|hr|ساعة|ساعات/.test(u)?n/24:/week|أسبوع|أسابيع/.test(u)?n*7:/month|شهر|أشهر/.test(u)?n*30:n;return Math.max(1,Math.round(d));
+}
+function otRow(a){
+  const fm=String(a.fm||'').trim(),cause=String(a.cause||'').trim(),cons=String(a.cons||'');
+  return{part:bPartOf(cause+' '+fm)||cause.split(/[,.،]/)[0].slice(0,40),fm:fm.slice(0,160),cause:cause.slice(0,160),eff:cons.slice(0,200),lik:otFreqLik(a.freq),pat:'rand',scr:'keep',det:'',ev:true,cons:/safety|injur|fire|burn|explos|toxic|سلامة|حريق|إصابة|حروق|انفجار/i.test(cons)?'saf':/shutdown|production|trip|outage|توقف|إنتاج|فصل/i.test(cons)?'ops':'non',warn:String(a.warn||'').slice(0,160),pf:otDays(a.lead),age:false,life:'',mtbf:''};
+}
+function otStart(){const tag=(($('#ottag')||{}).value||'').trim().toUpperCase();if(!tag){toast(xl('Enter the equipment tag.','أدخل رمز المعدة.'));return}TOW={tag,who:(($('#otwho')||{}).value||'').trim(),ans:{}};TOID=null;TOSTEP=0;TOV='ask';view(true)}
+function otOpen(id){const D=CACHE.find(x=>x.id===id);if(!D)return;TOW=JSON.parse(JSON.stringify(D));TOID=id;TOV='sum';TOTAB='card';nav('tribal','keep')}
+function otNext(d){const q=OTQ()[TOSTEP],e=$('#ota');if(e)TOW.ans[q[0]]=e.value;TOSTEP+=d;if(TOSTEP<0)TOSTEP=0;if(TOSTEP>=OTQ().length){TOV='sum';TOTAB='card'}view(false)}
+function otSave(){
+  const now=Date.now(),a=CACHE.slice();let D=TOID?a.find(x=>x.id===TOID):null;const n=Object.values(TOW.ans).filter(x=>String(x).trim()).length,ver={date:now,total:n,a:{n}};
+  if(!D){D=xdoc('tribal','ot'+now.toString(36),TOW.tag,{});a.push(D);TOID=D.id}
+  Object.assign(D,JSON.parse(JSON.stringify(TOW)),{id:D.id,kind:'tribal',title:TOW.tag,updated:now,versions:(D.versions||[]).concat([ver])});persist(a);toast(xl('Saved','تم الحفظ'));view(false);
+}
+function otToRcm(row){
+  const tag=TOW.tag,D=smLast('rcm',tag);RCW=D?JSON.parse(JSON.stringify(D)):{tag,fn:'',rows:[]};RCID=D?D.id:null;RCW.rows.forEach(r=>{if(r.lik==null)r.lik=3});
+  RCW.rows.push(row);rcSave();nav('rcm','x');RCTAB='sheet';RCOPEN=RCW.rows.length-1;RCV='bench';view(true);toast(xl('Added to the RCM study. Review it with the expert.','أُضيف إلى دراسة RCM. راجعه مع الخبير.'));
+}
+async function otAI(){
+  if(!AIon()){toast(xl('The AI is off or not available. See AI impact for how to turn it on.','الذكاء الاصطناعي متوقف أو غير متاح. انظر «أثر الذكاء» لمعرفة التشغيل.'));return}
+  const t0=performance.now();toast(xl('Structuring the interview...','نرتّب المقابلة...'));
+  try{const r=await SAMPLE.json(`You are a reliability engineer structuring an interview with an experienced operator or technician about equipment ${TOW.tag}. Turn the answers into one RCM failure mode. Keep their words and invent nothing. Write in ${t('aiLang')}. Return JSON only: {"part":"","fm":"","cause":"","eff":"","lik":3,"cons":"saf|ops|non","warn":"","pf":0}. lik: 1 rare, 2 unlikely, 3 possible, 4 about once a year, 5 several times a year. pf is the days between the first sign and the failure, 0 if unknown.\n\nANSWERS:\n${JSON.stringify(TOW.ans)}`,{cache:false,modelTier:'default'});
+    TOW.row={part:String(r.part||'').slice(0,50),fm:String(r.fm||'').slice(0,160),cause:String(r.cause||'').slice(0,160),eff:String(r.eff||'').slice(0,200),lik:Math.max(1,Math.min(5,Math.round(+r.lik)||3)),pat:'rand',scr:'keep',det:'',ev:true,cons:['saf','ops','non'].includes(r.cons)?r.cons:'ops',warn:String(r.warn||'').slice(0,160),pf:r.pf>0?r.pf:'',age:false,life:'',mtbf:''};
+    aiTrack('tribal',xl('Interview structured','ترتيب مقابلة'),1,performance.now()-t0,'tribal');view(false);toast(xl('Done. Check it with the expert.','تم. راجعه مع الخبير.'))}
+  catch(e){toast(xl('The AI could not structure the interview.','تعذّر على الذكاء الاصطناعي ترتيب المقابلة.'))}
+}
+function vTribal(){
+  if(TOV==='ask'){
+    const Q=OTQ(),q=Q[TOSTEP],n=Q.length;
+    return`<div class="card" style="margin-top:2px"><div class="kbar" style="margin:0 0 8px"><i style="width:${(100*(TOSTEP+1)/n).toFixed(0)}%;background:linear-gradient(90deg,var(--n1),var(--n2))"></i></div><span class="tag">${TOW.tag} · ${TOSTEP+1}/${n}</span><p style="font-size:18px;font-weight:900;margin:10px 0 4px;line-height:1.3;color:var(--ink)">${q[1]}</p><p class="dr" style="margin:0 0 8px">${q[2]}</p><textarea class="ta" id="ota" style="min-height:120px;direction:${L==='ar'?'rtl':'ltr'}" placeholder="${xl('Type or dictate the answer','اكتب الإجابة أو أمِلِها')}">${esc(TOW.ans[q[0]]||'')}</textarea></div><div class="act2"><button class="btn l" onclick="otNext(-1)">${xl('Back','رجوع')}</button><button class="btn g" onclick="otNext(1)">${TOSTEP===n-1?xl('Finish','أنهِ'):xl('Next','التالي')}</button></div><button class="link" onclick="TOV='list';view(true)">${xl('Leave the interview','اترك المقابلة')}</button>`;
+  }
+  if(TOV==='sum'){
+    const row=TOW.row||otRow(TOW.ans),Q=OTQ(),B=['','1 '+xl('rare','نادر'),'2 '+xl('unlikely','غير محتمل'),'3 '+xl('possible','ممكن'),'4 '+xl('likely','محتمل'),'5 '+xl('frequent','متكرر')];
+    const body=TOTAB==='card'?`<div class="card"><span class="tag">${esc(TOW.tag)}${TOW.who?' · '+esc(TOW.who):''}</span>${Q.map(([k,qq])=>TOW.ans[k]&&String(TOW.ans[k]).trim()?`<div class="tkr"><p class="dr" style="margin:0">${qq}</p><p class="tkt" style="-webkit-line-clamp:3">${esc(TOW.ans[k])}</p></div>`:'').join('')||`<p class="dr">${xl('No answers yet.','لا إجابات بعد.')}</p>`}</div>`:`<div class="card"><span class="tag">${xl('As an RCM failure mode','كنمط فشل RCM')}</span><p class="sub" style="margin:6px 0 0"><b>${esc(row.part||'—')}</b>: ${esc(row.fm||'—')}</p><p class="dr" style="margin:4px 0 0">${xl('Cause','السبب')}: ${esc(row.cause||'—')}</p><p class="dr" style="margin:2px 0 0">${xl('Effect','الأثر')}: ${esc(row.eff||'—')}</p><p class="dr" style="margin:2px 0 0">${xl('Likelihood','الاحتمال')}: ${B[row.lik]} · ${xl('consequence','العاقبة')}: ${row.cons==='saf'?xl('safety','سلامة'):row.cons==='ops'?xl('operational','تشغيلي'):xl('minor','طفيف')}</p><p class="dr" style="margin:2px 0 0">${xl('Early warning','الإنذار')}: ${esc(row.warn||'—')}${row.pf?` · ${row.pf} ${xl('days','يومًا')}`:''}</p></div><div class="act2"><button class="btn g" onclick="otToRcm(TOW.row||otRow(TOW.ans))">${xl('Send to RCM','أرسل إلى RCM')}</button><button class="btn l" onclick="otAI()">${xl('Structure with AI','رتّب بالذكاء')}</button></div><p class="dr">${xl('A first draft from their own words. Review it with them: they know the equipment.','مسودة أولى من كلماتهم هم. راجعها معهم: فهم يعرفون المعدة.')}</p>`;
+    return`<button class="link" onclick="TOV='list';view(true)">‹ ${xl('Ask the Old-Timer','اسأل صاحب الخبرة')}</button>${T3([['card',xl('Interview','المقابلة')],['row',xl('RCM draft','مسودة RCM')]],TOTAB,'otTab')}<div class="tp" key="${TOTAB}">${body}</div><button class="btn g" onclick="otSave()">${xl('Save the interview','احفظ المقابلة')}</button>`;
+  }
+  const a=CACHE.filter(x=>x.kind==='tribal').sort((x,y)=>y.updated-x.updated),tags=smTags();
+  return`<p class="sub">${xl('The best failure data is in people’s heads. Nine short questions, one at a time, turn what an experienced person knows into a first RCM failure mode.','أفضل بيانات الأعطال في رؤوس الناس. تسعة أسئلة قصيرة، سؤال بعد سؤال، تحوّل ما يعرفه صاحب الخبرة إلى نمط فشل RCM أولي.')}</p><div class="card"><span class="tag">${xl('Start an interview','ابدأ مقابلة')}</span>${tags.length?`<div class="chips3" style="margin:6px 0">${tags.slice(0,6).map(x=>chip3(false,`$('#ottag').value='${x.replace(/'/g,'')}'`,x)).join('')}</div>`:''}<div class="pn" style="margin:6px 0"><input class="lkin" id="ottag" placeholder="${xl('Equipment tag','رمز المعدة')}" style="font-size:15px;padding:8px 10px;direction:ltr"></div><div class="pn" style="margin:0 0 4px"><input class="lkin" id="otwho" placeholder="${xl('Who are you asking? (role, years)','من تسأل؟ (الدور والخبرة)')}" style="font-size:15px;padding:8px 10px"></div><button class="btn g" onclick="otStart()">${xl('Begin','ابدأ')}</button></div><div class="rh"><h2>${xl('Saved interviews','المقابلات المحفوظة')}</h2></div>${a.length?a.slice(0,lim('tribal')).map(D=>`<button class="hi" onclick="otOpen('${D.id}')"><div class="t">${esc(D.title)}${D.who?' · '+esc(D.who):''}</div><div class="mt">${Object.values(D.ans||{}).filter(x=>String(x).trim()).length} ${xl('answers','إجابات')} · ${fdate(D.updated)}</div></button>`).join(''):`<div class="card">${xl('No interviews yet.','لا مقابلات بعد.')}</div>`}`;
+}
+function otTab(k){TOTAB=k;view(false)}
+Object.assign(TN,{tribal:[["nav('home')",'n-home','navHub',()=>false],["nav('tribal');TOV='list';view(true)",'n-talk','navLib',()=>V==='tribal'&&TOV==='list'],["nav('tribal','x');TOV='list';view(true)",'n-plus','navNew',()=>false]]});
+
+
+/* ================= Asset Passport: one A4 page per asset, every signal in one place ================= */
+Object.assign(T.en,{apBtn:"Passport"});Object.assign(T.ar,{apBtn:"الجواز"});
+async function apSheet(tag){
+  try{await document.fonts.load("800 30px Cairo");await document.fonts.ready}catch(e){}
+  const P=prioCalc(),x=P.list.find(a=>a.tag===tag)||{score:0,tier:'watch',reasons:[],sig:{},rank:'–'},lf=P.life[tag],rb=P.rbi[tag],io=P.io[tag],bad=P.bd.ok?P.bd.A.find(a=>a.tag===tag):null,sm=smLast('strat',tag),rcm=smLast('rcm',tag);
+  const lc=lf?ilCalc(lf):null,rc=rb?rbCalc(rb):null,rtl=L==='ar',Wd=1240,Hd=1754,cv=document.createElement('canvas');cv.width=Wd;cv.height=Hd;
+  const c=cv.getContext('2d'),FF="Cairo,'IBM Plex Sans Arabic',system-ui,sans-serif";c.direction=rtl?'rtl':'ltr';
+  const mx=v=>rtl?Wd-v:v,tx=(s,px,py,o={})=>{c.font=`${o.w||700} ${o.s||24}px ${FF}`;c.fillStyle=o.c||'#0F1B3D';c.textAlign=o.a==='c'?'center':o.a==='e'?(rtl?'left':'right'):(rtl?'right':'left');c.fillText(s,mx(px),py)};
+  const rr=(px,py,w,h,r)=>{const X=rtl?Wd-px-w:px;c.beginPath();c.moveTo(X+r,py);c.arcTo(X+w,py,X+w,py+h,r);c.arcTo(X+w,py+h,X,py+h,r);c.arcTo(X,py+h,X,py,r);c.arcTo(X,py,X+w,py,r);c.closePath()};
+  const wrap=(s,maxW,maxL,fs=22,fw=600)=>{c.font=`${fw} ${fs}px ${FF}`;const ws=String(s).split(/\s+/),out=[];let cur='';for(const w of ws){const t2=cur?cur+' '+w:w;if(c.measureText(t2).width>maxW&&cur){out.push(cur);cur=w}else cur=t2}if(cur)out.push(cur);if(out.length>maxL){out.length=maxL;let l=out[maxL-1];while(c.measureText(l+'…').width>maxW&&l.length>1)l=l.slice(0,-1);out[maxL-1]=l+'…'}return out};
+  const tL=(s,px,py,o={})=>{c.direction='ltr';c.font=`${o.w||700} ${o.s||24}px ${FF}`;c.fillStyle=o.c||'#0F1B3D';c.textAlign=o.a==='c'?'center':o.a==='e'?'right':'left';c.fillText(s,px,py);c.direction=rtl?'rtl':'ltr'};
+  const TC={now:'#E5484D',plan:'#F2A93B',watch:'#2FB384'},tcol=TC[x.tier],tname=prTier()[x.tier][0];
+  c.fillStyle='#fff';c.fillRect(0,0,Wd,Hd);
+  /* header */
+  rr(40,40,Wd-80,150,28);c.fillStyle='#14307F';c.fill();
+  tx(xl('Asset passport','جواز الأصل'),76,96,{w:800,s:26,c:'#B9C8FF'});tx(tag,76,160,{w:900,s:56,c:'#fff'});
+  rr(Wd-300,64,220,102,22);c.fillStyle=tcol;c.fill();tx(String(x.score),Wd-190,128,{w:900,s:58,c:'#fff',a:'c'});tx(tname,Wd-190,156,{w:800,s:20,c:'#fff',a:'c'});
+  let y=240;
+  const sec=(t,col)=>{tx(t,60,y,{w:900,s:27,c:col||'#14307F'});c.fillStyle=col||'#14307F';c.globalAlpha=.25;c.fillRect(rtl?Wd-60-(Wd-120):60,y+10,Wd-120,3);c.globalAlpha=1;y+=44};
+  const kv=(k,v,px,w)=>{tx(k,px,y,{s:20,w:700,c:'#5B6B8C'});tx(String(v),px,y+40,{s:34,w:900})};
+  /* why it ranks here */
+  sec(xl('Why it ranks here','لماذا هذا الترتيب'));
+  (x.reasons.length?x.reasons:[xl('No signal against this asset yet.','لا إشارة ضد هذا الأصل بعد.')]).slice(0,4).forEach(r=>{wrap(r,Wd-170,1,24,700).forEach(l=>{tx('• '+l,76,y,{s:24,w:700});y+=34})});y+=14;
+  /* life + thickness trend */
+  sec(xl('Degradation and remaining life','التدهور والعمر المتبقي'),'#E2641B');
+  if(lc&&lc.ok){
+    const top=y;kv(xl('Remaining life','العمر المتبقي'),lc.rl.toFixed(1)+' '+xl('years','سنة'),76);kv(xl('Corrosion rate','معدل التآكل'),lc.cr.toFixed(2)+' mm/y',330);kv(xl('Latest reading','آخر قراءة'),lc.tNow.toFixed(2)+' mm',590);kv(xl('Minimum','الحد الأدنى'),lc.tmin+' mm',810);
+    y+=74;tx(`${xl('Next inspection','الفحص القادم')}: ${xfmt(xy2ym(lc.next))}${lc.overdue?' · '+xl('OVERDUE','متأخر'):''}   ·   ${xl('mechanism','الآلية')}: ${lf.mech}   ·   ${xl('confidence','الثقة')}: ${lc.conf}`,76,y,{s:21,w:700,c:lc.overdue?'#E5484D':'#3C4C7A'});y+=30;
+    /* trend chart: always left to right */
+    const cx0=100,cw=Wd-200,ch=250,cy0=y+14,ys=lc.rd.map(r=>r.y),xs0=Math.min(...ys),xs1=Math.max(...ys,lc.next),tv=lc.rd.map(r=>r.t),tmax=Math.max(...tv,lc.nom||0)+.4,tmn=Math.min(lc.tmin,...tv)-.4;
+    const px=v=>cx0+(v-xs0)/(xs1-xs0||1)*cw,py=v=>cy0+ch-(v-tmn)/(tmax-tmn||1)*ch;
+    c.strokeStyle='#D9E1F5';c.lineWidth=2;c.strokeRect(cx0,cy0,cw,ch);
+    c.setLineDash([8,6]);c.strokeStyle='#E5484D';c.beginPath();c.moveTo(cx0,py(lc.tmin));c.lineTo(cx0+cw,py(lc.tmin));c.stroke();c.setLineDash([]);tL(xl('minimum thickness','السماكة الدنيا'),cx0+10,py(lc.tmin)-10,{s:18,w:800,c:'#E5484D'});
+    c.strokeStyle='#E2641B';c.lineWidth=5;c.beginPath();lc.rd.forEach((r,i)=>{const X=px(r.y),Y=py(r.t);i?c.lineTo(X,Y):c.moveTo(X,Y)});c.stroke();
+    c.setLineDash([7,7]);c.strokeStyle='#9AA6C2';c.lineWidth=3;c.beginPath();c.moveTo(px(lc.last),py(lc.tNow));c.lineTo(px(xs1),py(lc.tNow-lc.cr*(xs1-lc.last)));c.stroke();c.setLineDash([]);
+    lc.rd.forEach(r=>{c.fillStyle='#fff';c.strokeStyle='#E2641B';c.lineWidth=5;c.beginPath();c.arc(px(r.y),py(r.t),8,0,7);c.fill();c.stroke();tL(r.t.toFixed(2),px(r.y),py(r.t)-18,{s:19,w:900,c:'#7A3E08',a:'c'})});
+    tL(String(Math.floor(xs0)),cx0,cy0+ch+28,{s:17,w:700,c:'#5B6B8C'});tL(String(Math.ceil(xs1)),cx0+cw,cy0+ch+28,{s:17,w:700,c:'#5B6B8C',a:'e'});y=cy0+ch+64;
+  }else{tx(xl('No Inspection Life record for this asset.','لا سجل عمر معدة لهذا الأصل.'),76,y,{s:22,w:600,c:'#5B6B8C'});y+=44}
+  /* risk and operating window, side by side */
+  const y0=y,half=(Wd-140)/2;
+  tx(xl('Risk (RBI)','المخاطر (RBI)'),60,y,{w:900,s:25,c:'#D63A4A'});
+  if(rc){const col=rc.band==='high'||rc.band==='mh'?'#E5484D':rc.band==='med'?'#F2A93B':'#2FB384';y+=42;tx(`${rc.risk}`,76,y+16,{s:56,w:900,c:col});tx(`${rbBand()[rc.band]} · ${rc.band==='high'||rc.band==='mh'?xl('unacceptable','غير مقبولة'):xl('acceptable','مقبولة')}`,170,y-6,{s:22,w:800,c:col});tx(`${xl('chance','الاحتمال')} ${rc.pof}/5 · ${xl('consequence','العاقبة')} ${rc.cof}/5`,170,y+24,{s:20,w:600,c:'#5B6B8C'});y+=46;tx(`${xl('Interval','الفترة')} ${rc.interval} ${xl('years','سنة')}${rc.iowAdd>0?' · '+xl('raised by operating excursions','ارتفعت بتجاوزات التشغيل'):''}`,76,y,{s:20,w:600,c:'#3C4C7A'})}
+  else{y+=40;tx(xl('No RBI record.','لا سجل RBI.'),76,y,{s:21,w:600,c:'#5B6B8C'})}
+  let y1=y;y=y0;const rx=60+half+20;
+  tx(xl('Operating window (IOW)','نافذة التشغيل (IOW)'),rx,y,{w:900,s:25,c:'#0AA5C9'});y+=38;
+  if(io){const col=io.status==='crit'?'#E5484D':io.status==='alert'?'#F2A93B':'#2FB384';tx(`${io.n}/${io.total}`,rx,y+22,{s:46,w:900,c:col});tx(xl('readings beyond the limit','قراءات خارج الحد'),rx+150,y+4,{s:20,w:700,c:'#3C4C7A'});tx(`${xl('worst','الأسوأ')} ${io.worst.toFixed(0)}% · ${Object.keys(io.params).join(', ')}`,rx+150,y+32,{s:19,w:600,c:'#5B6B8C'})}
+  else tx(xl('No IOW data.','لا بيانات IOW.'),rx,y+8,{s:21,w:600,c:'#5B6B8C'});
+  y=Math.max(y1,y+60)+34;
+  /* failures */
+  sec(xl('Failure history, last 12 months','سجل الأعطال، آخر 12 شهرًا'),'#6B4EE6');
+  if(bad){kv(xl('Failures','الأعطال'),bad.n,76);kv(xl('Downtime','التوقف'),Math.round(bad.dt)+' h',270);kv('MTBF',Math.round(bad.mtbf)+' h',480);kv(xl('Bad actor rank','ترتيب كثرة الأعطال'),'#'+bad.rank,700);y+=74;
+    const g=Object.entries(bad.g).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([k,n])=>`${(bad.gt[k]||{}).part?(bad.gt[k].part+': '):''}${(bad.gt[k]||{}).fm||k} ×${n}`);tx(g.join('   ·   ')||'—',76,y,{s:21,w:600,c:'#3C4C7A'});y+=40}
+  else{tx(xl('No work order history for this asset.','لا سجل أوامر عمل لهذا الأصل.'),76,y,{s:22,w:600,c:'#5B6B8C'});y+=44}
+  /* strategy */
+  sec(xl('Maintenance strategy','استراتيجية الصيانة'),'#0A8FB0');
+  if(sm){const r=smReview(smFix(JSON.parse(JSON.stringify(sm)))),cr=smCrit(sm),k=smKpi(sm,r);tx(`${xl('Class','الفئة')} ${cr.cls}   ·   ${Math.round(r.before)} → ${Math.round(r.after)} ${xl('h/year','ساعة/سنة')}   ·   ${xl('program health','صحة البرنامج')} ${k.score!=null?k.score+'/100':'—'}`,76,y,{s:23,w:800});y+=36;
+    r.plan.tasks.filter(t=>t.kind!=='rtf'&&t.m>0).slice(0,4).forEach(t=>{wrap(`${t.cad||''}: ${t.text}`,Wd-170,1,21,600).forEach(l=>{tx('• '+l,76,y,{s:21,w:600});y+=30})})}
+  else if(rcm){tx(xl('An RCM study exists. Build the strategy to turn it into tasks.','توجد دراسة RCM. ابنِ الاستراتيجية لتتحول إلى مهام.'),76,y,{s:22,w:600,c:'#5B6B8C'});y+=40}
+  else{tx(xl('No strategy yet.','لا استراتيجية بعد.'),76,y,{s:22,w:600,c:'#5B6B8C'});y+=40}
+  if(rcm){const rr=(rcm.rows||[]).filter(r=>(r.fm||'').trim()),mx=Math.max(0,...rr.map(r=>rcRisk(r).rpn)),rd=rr.filter(r=>rcDecide(r).k==='rd').length;tx(`RCM: ${rr.length} ${xl('failure modes','أنماط فشل')} · ${xl('top RPN','أعلى RPN')} ${mx}${rd?' · '+rd+' '+xl('to redesign','لإعادة التصميم'):''}`,76,y,{s:22,w:800,c:'#4C1D95'});y+=38}
+  /* actions */
+  sec(xl('What to do next','ما العمل بعد ذلك'),'#E5484D');
+  const acts=prioAlerts(P).filter(a=>a.tag===tag).map(a=>a.text);
+  if(!sm)acts.push(xl('Build the maintenance strategy for this asset.','ابنِ استراتيجية الصيانة لهذا الأصل.'));
+  if(!rcm&&bad)acts.push(xl('Draft an RCM study from the equipment template.','صُغ مسودة RCM من قالب المعدة.'));
+  (acts.length?acts:[xl('No action is raised. Keep monitoring.','لا إجراء مطلوب. استمر في المراقبة.')]).slice(0,4).forEach(a=>{wrap(a,Wd-170,2,22,600).forEach((l,i)=>{tx((i?'   ':'• ')+l,76,y,{s:22,w:600});y+=31});y+=4});
+  /* sign-off */
+  const sy=Math.max(y+30,Hd-290);rr(60,sy,Wd-120,130,22);c.fillStyle='#F3F6FF';c.fill();
+  [[xl('Prepared by','أعدّه'),0],[xl('Reviewed by','راجعه'),1],[xl('Date','التاريخ'),2]].forEach(([l,i])=>{const bx=60+30+i*((Wd-180)/3);tx(l,bx,sy+40,{s:20,w:800,c:'#5B6B8C'});c.strokeStyle='#9AA6C2';c.lineWidth=2;c.beginPath();const X0=rtl?Wd-bx-((Wd-180)/3-40):bx;c.moveTo(X0,sy+98);c.lineTo(X0+(Wd-180)/3-40,sy+98);c.stroke()});
+  /* footer */
+  tx(`${xl('Signals used','الإشارات المستخدمة')}: ${Object.entries(x.sig).filter(e=>e[1]).map(e=>({life:'Life',rcm:'RCM',rbi:'RBI',bad:xl('Failures','الأعطال'),iow:'IOW'})[e[0]]).join(' · ')||'—'}`,60,Hd-92,{s:20,w:700,c:'#3C4C7A'});
+  tx(`${t('brand')} · ${new Date().toISOString().slice(0,10)} · ${xl('training values, an engineer decides','قيم تدريبية، والمهندس يقرر')}`,Wd/2,Hd-48,{s:19,w:700,c:'#5B6B8C',a:'c'});
+  const blob=await new Promise(res=>cv.toBlob(res,'image/png'));showImg(blob,`${tag}\n${t('brand')}`,'asset-passport-'+tag.replace(/[^A-Za-z0-9_-]/g,'_')+'.png');
+}
+
+
+/* ================= SHELL v2: one screen that never scrolls, premium header and dock ================= */
+Object.assign(T.en,{dkHub:"Hub",dkLib:"Library",dkNew:"New",dkAI:"AI",dkSet:"Settings",qsT:"Start something",qsDemo:"Load the fictional utility unit",aiT:"Artificial intelligence",aiOn:"On",aiOff:"Off",aiNo:"Not available here",stGen:"General",stAI:"AI",stData:"Data",stAbout:"About"});
+Object.assign(T.ar,{dkHub:"الرئيسية",dkLib:"المكتبة",dkNew:"جديد",dkAI:"الذكاء",dkSet:"الإعدادات",qsT:"ابدأ شيئًا جديدًا",qsDemo:"حمّل وحدة مرافق وهمية",aiT:"الذكاء الاصطناعي",aiOn:"يعمل",aiOff:"متوقف",aiNo:"غير متاح هنا",stGen:"عام",stAI:"الذكاء",stData:"البيانات",stAbout:"حول"});
+/* the settings icon: two lines, each with a ring */
+ICN.set='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.2 8.2h7.1M17.7 8.2h3.1M3.2 15.8h3.1M13.7 15.8h7.1"/><circle cx="14" cy="8.2" r="3.4"/><circle cx="10" cy="15.8" r="3.4"/><circle cx="14" cy="8.2" r=".9" fill="currentColor" stroke="none"/><circle cx="10" cy="15.8" r=".9" fill="currentColor" stroke="none"/></svg>';
+const DKI={home:'<path d="M3.4 11.3 12 4l8.6 7.3"/><path d="M5.6 10.2v8.9a1 1 0 0 0 1 1H10v-5.6h4v5.6h3.4a1 1 0 0 0 1-1v-8.9"/>',lib:'<rect x="3.4" y="4" width="17.2" height="5" rx="1.7"/><path d="M5.4 9v9.2a1.8 1.8 0 0 0 1.8 1.8h9.6a1.8 1.8 0 0 0 1.8-1.8V9M9.6 13.2h4.8"/>',plus:'<path d="M12 5.2v13.6M5.2 12h13.6"/>',ai:'<path d="M11.2 3.6l1.8 4.9 4.9 1.8-4.9 1.8-1.8 4.9-1.8-4.9-4.9-1.8 4.9-1.8z"/><path d="M18.6 3.4v3.6M16.8 5.2h3.6M18 15.6v3M16.5 17.1h3"/>',set:ICN.set.replace(/^<svg[^>]*>|<\/svg>$/g,'')};
+const dkSvg=k=>`<svg viewBox="0 0 24 24" aria-hidden="true">${DKI[k]}</svg>`;
+let DKLAST=-1;
+function dkActive(){return V==='home'?0:V==='lib'?1:V==='impact'?3:V==='set'?4:(DKSHEET==='ai'?3:-1)}
+let DKSHEET='';
+function renderNav(){
+  const box=$('#nav');box.style.display='';const tl=toolOf(V),act=dkActive(),rtl=L==='ar';
+  const items=[['home',t('dkHub'),"nav('home')",0],['lib',t('dkLib'),"openLib()",1],['plus',t('dkNew'),'orb',2],['ai',t('dkAI'),"dkAI()",3],['set',t('dkSet'),"openSettings()",4]];
+  const lensIdx=act>=0?act:DKLAST>=0?DKLAST:0,show=act>=0;if(act>=0)DKLAST=act;
+  box.innerHTML=`<div class="dock2" data-i="${lensIdx}"><i class="lens" style="transform:translateX(${(rtl?-1:1)*lensIdx*100}%);opacity:${show?1:0}"></i>${items.map(([k,lab,js,i])=>k==='plus'?`<button class="nv2 orb" onclick="dkOrb()" aria-label="${lab}"><span class="ob"><svg viewBox="0 0 24 24" aria-hidden="true">${DKI.plus}</svg></span><span class="nl">${lab}</span></button>`:`<button class="nv2${i===act?' on':''}" onclick="${js}" aria-label="${lab}"><span class="ni">${dkSvg(k)}${k==='ai'?`<i class="dtp ${AIon()?'on':''}"></i>`:''}</span><span class="nl">${lab}</span></button>`).join('')}</div>`;
+}
+/* the centre orb: "New" inside a tool, the quick-start sheet everywhere else */
+function dkOrb(){
+  const tl=toolOf(V);
+  if(tl&&TN[tl]&&V!=='impact'&&V!=='lib'&&V!=='set'){const b=document.createElement('b');b.setAttribute('onclick',TN[tl][2][0]);document.body.appendChild(b);b.click();b.remove();return}
+  dkSheet('qs');
+}
+/* bottom sheets */
+function dkClose(){const s=document.querySelector('.bsh');if(s){s.classList.remove('in');setTimeout(()=>s.remove(),220)}DKSHEET='';renderNav()}
+function dkSheet(kind){
+  dkClose2();DKSHEET=kind==='ai'?'ai':'';
+  const m=document.createElement('div');m.className='bsh';
+  let body='';
+  if(kind==='qs'){
+    const Q=[['rcm',"nav('rcm','x');rcOpenNew()"],['life',"nav('life','x');ilOpenNew();ILTAB='data';view(true)"],['prio',"nav('prio','x');prIowNew(false)"],['bad',"nav('bad','x');bdOpenNew(false)"],['story',"nav('story')"],['tribal',"nav('tribal','x');TOV='list';view(true)"],['strat',"nav('strat','x');smOpenNew()"],['rbi',"nav('rbi','x');rbOpenNew()"],['inc',"nav('inc');incNewView()"]];
+    body=`<h3>${t('qsT')}</h3><button class="qd" onclick="dkClose();seedDemo(true)"><span>${t('qsDemo')}</span></button><div class="qg">${Q.map(([k,js])=>{const d=TL[k];return`<button class="qt" style="--c:${d.p[1]}" onclick="dkClose();${js}"><span>${t(d.n)}</span></button>`}).join('')}</div>`;
+  }else{
+    const st=!SAMPLE?'no':AIPREF?'on':'off',tot=AIL.reduce((a,e)=>a+aiCalc(e).net,0);
+    body=`<h3>${t('aiT')}</h3><div class="aih2"><div><b>${st==='no'?t('aiNo'):st==='on'?t('aiOn'):t('aiOff')}</b><small>${st==='no'?xl('Open the app from claude.ai, or add a key in Settings.','افتح التطبيق من claude.ai، أو أضف مفتاحًا في الإعدادات.'):st==='on'?xl('It reads, drafts and suggests. You decide.','يقرأ ويصيغ ويقترح. وأنت تقرر.'):xl('Demo mode with ready examples.','وضع تجريبي بأمثلة جاهزة.')}</small></div>${SAMPLE?`<button class="sw${AIPREF?' on':''}" onclick="toggleAI();dkSheet('ai')" aria-label="AI"><i></i></button>`:''}</div><div class="stats s3" style="margin:10px 0"><div class="st"><span class="tag">${xl('Actions','عمليات')}</span><b>${AIL.length}</b></div><div class="st hl"><span class="tag">${xl('Saved','الموفَّر')}</span><b style="font-size:20px">${aiMinTx(Math.max(0,tot))}</b></div></div><button class="btn g" onclick="dkClose();openImpact()">${xl('Open AI impact','افتح أثر الذكاء')}</button>${window.GH?`<button class="btn l" onclick="dkClose();SETTAB='ai';openSettings()">${xl('API key','مفتاح API')}</button>`:''}`;
+  }
+  m.innerHTML=`<div class="bso" onclick="dkClose()"></div><div class="bsp"><i class="bsh-h"></i>${body}</div>`;document.body.appendChild(m);requestAnimationFrame(()=>m.classList.add('in'));renderNav();
+}
+function dkClose2(){const s=document.querySelector('.bsh');if(s)s.remove()}
+function dkAI(){dkSheet('ai')}
+/* ---- header: the full tool name, always on one line ---- */
+function renderTop(){
+  const tl=toolOf(V),el=$('.top');let h;
+  if(V==='set'||V==='lib'||V==='impact'||tl){
+    const d=tl?TL[tl]:null,name=V==='lib'?fl('libT'):V==='impact'?xl('AI impact','أثر الذكاء الاصطناعي'):V==='set'?T[L].nav[5]:t(d.n),back=V==='set'||V==='lib'||V==='impact'?'closeSettings()':"nav('home')";
+    const ic='';
+    h=`<button class="tback" onclick="${back}" aria-label="${t('setBack')}">${L==='ar'?'›':'‹'}</button><div class="tt">${ic}<span class="tn" id="tn">${name}</span></div>`;
+  }else h=`<div class="logo"><svg style="flex:none" width="38" height="38" viewBox="-26 -26 52 52" aria-hidden="true"><circle r="23" fill="url(#gNavy)" stroke="url(#gGold)" stroke-width="4"/><circle r="23" fill="url(#gGloss)"/><use href="#i-hour" class="ico"/></svg><span class="nm" id="brand"></span></div>`;
+  el.innerHTML=h;if(!tl&&V!=='set'&&V!=='lib'&&V!=='impact')brand();fitTitle();
+}
+function fitTitle(){
+  const e=$('#tn');if(!e)return;let fs=18;e.style.fontSize=fs+'px';const box=e.parentElement;
+  const room=()=>box.clientWidth;
+  while(e.scrollWidth>room()&&fs>11){fs-=.5;e.style.fontSize=fs+'px'}
+}
+function modeChip(){renderNav()}
+/* ---- the pager: pages instead of scrolling ---- */
+const PGS={idx:{},fresh:false,n:0,i:0,titles:[]};
+const pgHH=b=>{const r=b.getBoundingClientRect(),c=getComputedStyle(b);return r.height+(parseFloat(c.marginTop)||0)+(parseFloat(c.marginBottom)||0)};
+function pgKey(){const a=$('#app'),t3=a&&a.querySelector('.t3.on');return V+'|'+(t3?t3.textContent.trim():'')+'|'+((a&&a.querySelector('.tabs3'))?1:0)}
+function pagerFit(){
+  const app=$('#app');if(!app)return;document.querySelectorAll('.pgbar,.pgmenu').forEach(e=>e.remove());
+  const root=app.firstElementChild;if(!root||window.__nopager||V==='home'||V==='new')return;
+  root.classList.add('pgroot');const kids=[...root.children];
+  const iT=kids.findIndex(e=>e.classList.contains('tabs3'));let chrome,blocks,footer=[],tp=null;
+  if(iT>=0){chrome=kids.slice(0,iT+1);tp=kids[iT+1]&&kids[iT+1].classList.contains('tp')?kids[iT+1]:null;if(tp){blocks=[...tp.children];const rest=kids.slice(iT+2);footer=rest.filter(e=>e.tagName==='BUTTON'&&e.classList.contains('btn'));rest.filter(e=>!footer.includes(e)).forEach(e=>blocks.push(e))}else blocks=kids.slice(iT+1)}
+  else{let i=0;while(i<kids.length&&kids[i].classList.contains('link'))i++;chrome=kids.slice(0,i);blocks=kids.slice(i)}
+  const pgv=document.createElement('div');pgv.className='pgv';const meas=document.createElement('div');meas.className='pgm';pgv.appendChild(meas);
+  if(footer.length)root.insertBefore(pgv,footer[0]);else root.appendChild(pgv);
+  blocks.forEach(b=>meas.appendChild(b));if(tp)tp.remove();
+  const H0=pgv.clientHeight;if(H0<60){return}
+  const all=[...meas.children],total=all.reduce((s,b)=>s+pgHH(b),0);
+  let pages;
+  const ATOM='.rbm,svg,canvas,.vring,.hg,.lcs,.stats,.chips3,.tabs3,.seg,.act2,.mixbar,.crg,.kbar,.bdlg,.mixlg,.pmg,.two';
+  const pgPieces=(el,H)=>{
+    if(!el.isConnected)meas.appendChild(el);
+    const h=pgHH(el);if(h<=H+1)return[el];
+    if(h<=H*1.1){el.style.zoom=(H/h).toFixed(3);return[el]}
+    const ks=[...el.children];
+    if(ks.length>1&&!el.matches(ATOM)){
+      const tag=ks[0].classList.contains('tag')?ks[0]:null,out=[el];
+      ks.forEach(k=>el.removeChild(k));let cur=el;if(tag)cur.appendChild(tag);
+      const min=()=>(tag?1:0),addNew=()=>{const c2=el.cloneNode(false);c2.removeAttribute('id');if(tag)c2.appendChild(tag.cloneNode(true));meas.appendChild(c2);out.push(c2);return c2};
+      const place=k=>{
+        cur.appendChild(k);if(pgHH(cur)<=H+1)return;
+        cur.removeChild(k);if(cur.children.length>min())cur=addNew();
+        cur.appendChild(k);if(pgHH(cur)<=H+1)return;
+        cur.removeChild(k);const pad=pgHH(cur),ps=pgPieces(k,Math.max(90,H-pad));
+        ps.forEach((p,i)=>{if(i>0&&cur.children.length>min())cur=addNew();cur.appendChild(p);if(pgHH(cur)>H+1&&cur.children.length>min()+1){cur.removeChild(p);cur=addNew();cur.appendChild(p)}});
+      };
+      ks.forEach(k=>{if(k!==tag)place(k)});
+      if(out.length>1&&tag)out.forEach((o,i)=>{const tg=o.firstElementChild;if(tg&&tg.classList.contains('tag'))tg.textContent=tag.textContent.replace(/\s*\d+\/\d+$/,'')+' '+(i+1)+'/'+out.length});
+      out.forEach(o=>{const hh=pgHH(o);if(hh>H+1)o.style.zoom=Math.max(.6,H/hh).toFixed(3)});
+      return out;
+    }
+    const D=el.matches('svg[viewBox],.rbm')?el:el.querySelector('svg[viewBox],.rbm');
+    if(D){const r=D.getBoundingClientRect(),extra=h-H,nw=Math.round(r.width*(r.height-extra-3)/r.height);if(r.height-extra>80&&nw>=(D.classList.contains('rbm')?150:130)){D.style.width=nw+'px';if(D.tagName.toLowerCase()==='svg')D.style.display='block';D.style.margin='0 auto'}}
+    const h2=pgHH(el)||h;if(h2>H+1)el.style.zoom=Math.max(.6,H/h2).toFixed(3);
+    return[el];
+  };
+  const build=H=>{
+    const items=[];[...meas.children].forEach(b=>{pgPieces(b,H).forEach(x=>items.push(x))});
+    const out=[[]];let used=0;items.forEach(b=>{const h=pgHH(b);if(used+h>H&&out[out.length-1].length){out.push([]);used=0}out[out.length-1].push(b);used+=h});return out;
+  };
+  if(total<=H0-10)pages=[all];else{const H1=H0-58;pages=build(H1)}
+  const key=pgKey();if(PGS.fresh){PGS.idx[key]=0;PGS.fresh=false}
+  pgv.innerHTML='';
+  pages.forEach((pg,i)=>{const d=document.createElement('div');d.className='pg';const tg=pg[0]&&pg[0].querySelector&&(pg[0].matches('.tag')?pg[0]:pg[0].querySelector('.tag')),t3n=(root.querySelector('.t3.on')||{}).textContent;d.dataset.t=tg?tg.textContent.replace(/\s*\d+\/\d+$/,'').trim():(t3n?t3n.trim():'');pg.forEach(b=>d.appendChild(b));pgv.appendChild(d)});
+  {const top=pgv.getBoundingClientRect().bottom;pgv.querySelectorAll('.pg').forEach(pe=>{pe.style.display='block';pe.style.animation='none';const ks=[...pe.children],last=ks[ks.length-1];if(last){const over=last.getBoundingClientRect().bottom-top;if(over>1&&over<70){const hh=pgv.clientHeight;pe.style.zoom=Math.max(.86,hh/(hh+over)).toFixed(3)}}pe.style.display='';pe.style.animation=''})}
+  PGS.n=pages.length;PGS.i=Math.min(PGS.idx[key]||0,PGS.n-1);PGS.key=key;
+  if(PGS.n>1){const bar=document.createElement('div');bar.className='pgbar';root.insertBefore(bar,footer[0]||null);pgDraw()}
+  pgShow();
+}
+function pgDraw(){
+  const bar=document.querySelector('.pgbar');if(!bar)return;const rtl=L==='ar',pgs=[...document.querySelectorAll('.pg')];
+  const ttl=(pgs[PGS.i]&&pgs[PGS.i].dataset.t)||`${xl('Page','صفحة')} ${PGS.i+1}`;
+  bar.innerHTML=`<button class="pgb" onclick="pgGo(-1)" aria-label="prev" ${PGS.i===0?'disabled':''}>${rtl?'›':'‹'}</button><button class="pgt" onclick="pgMenu()"><span>${esc(ttl)}</span><b>${PGS.i+1}/${PGS.n}</b></button><button class="pgb" onclick="pgGo(1)" aria-label="next" ${PGS.i===PGS.n-1?'disabled':''}>${rtl?'‹':'›'}</button><div class="pgd">${pgs.map((p,i)=>`<i class="${i===PGS.i?'on':''}"></i>`).join('')}</div>`;
+}
+function pgShow(){document.querySelectorAll('.pg').forEach((p,i)=>p.classList.toggle('on',i===PGS.i));if(PGS.key)PGS.idx[PGS.key]=PGS.i;pgDraw()}
+function pgGo(d){PGS.i=Math.max(0,Math.min(PGS.n-1,PGS.i+d));pgShow();document.querySelectorAll('.pgmenu').forEach(e=>e.remove())}
+function pgTo(i){PGS.i=i;pgShow();document.querySelectorAll('.pgmenu').forEach(e=>e.remove())}
+function pgMenu(){
+  const old=document.querySelector('.pgmenu');if(old){old.remove();return}
+  const bar=document.querySelector('.pgbar');if(!bar)return;const m=document.createElement('div');m.className='pgmenu';
+  m.innerHTML=[...document.querySelectorAll('.pg')].map((p,i)=>`<button class="${i===PGS.i?'on':''}" onclick="pgTo(${i})"><b>${i+1}</b><span>${esc(p.dataset.t||xl('Page','صفحة')+' '+(i+1))}</span></button>`).join('');
+  bar.appendChild(m);
+}
+/* view(): same screens, now paged */
+const VM=()=>({story:vStory,tribal:vTribal,home:vHome,dash:vDash,impact:vImpact,prio:vPrio,bad:vBad,strat:vStrat,life:vLife,rbi:vRbi,rcm:vRcm,inc:vInc,proc:vProc,permit:vPermit,hand:vHand,tbt:vTbt,gas:vGas,lib:vLib,set:vSet});
+function view(scroll){
+  renderNav();$('#stepsBox').innerHTML='';
+  const fn=VM()[V];if(scroll)PGS.fresh=true;
+  $('#app').innerHTML=`<div class="reveal">${fn()}</div>`;
+  pagerFit();after(-1);
+}
+/* ---- settings: compact, tabbed, small icons ---- */
+let SETTAB='gen';
+function setTab(k){SETTAB=k;view(false)}
+const sRow=(ico,title,sub,ctl)=>`<div class="srow"><div class="sx"><b>${title}</b>${sub?`<small>${sub}</small>`:''}</div>${ctl||''}</div>`;
+const sSeg=(opts,cur,fn)=>`<div class="sseg">${opts.map(([v,l])=>`<button class="${cur===v?'on':''}" onclick="${fn}('${v}')">${l}</button>`).join('')}</div>`;
+function vSet(){
+  const st=!SAMPLE?'no':AIPREF?'on':'off';
+  let body='';
+  if(SETTAB==='gen')body=`<div class="card sc">${sRow('<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M3.4 12h17.2M12 3.4c2.6 2.4 3.8 5.3 3.8 8.6s-1.2 6.2-3.8 8.6c-2.6-2.4-3.8-5.3-3.8-8.6S9.4 5.8 12 3.4z"/></svg>',t('setLang'),'',sSeg([['en','English'],['ar','العربية']],L,'setLang'))}${sRow('<svg viewBox="0 0 24 24"><path d="M12 3.5l1.7 4.4 4.4 1.7-4.4 1.7L12 15.7l-1.7-4.4L5.9 9.6l4.4-1.7z"/><path d="M18 14.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg>',t('fxT'),t('fxNote').split('.')[0]+'.',sSeg([['f',t('fxFull')],['l',t('fxLite')]],FXL?'l':'f','setFxK'))}</div>${typeof ghInstCard==='function'?ghInstCard().replace('class="card"','class="card sc"'):''}${typeof lockCard==='function'&&window.GH?lockCard().replace('class="card"','class="card sc"'):''}`;
+  else if(SETTAB==='ai')body=`<div class="card sc">${sRow(dkSvg('ai'),t('aiT'),st==='no'?t('aiCardNA'):st==='on'?t('aiCardOn'):t('aiCardOff'),SAMPLE?`<button class="sw${AIPREF?' on':''}" onclick="toggleAI()" aria-label="AI"><i></i></button>`:'')}</div>${typeof ghKeyCard==='function'?ghKeyCard().replace('class="card"','class="card sc"'):''}<div class="card sc">${sRow('<svg viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>',xl('AI impact','أثر الذكاء'),xl('Time saved against doing it by hand','الوقت الموفَّر مقارنة باليدوي'),`<button class="sbt" onclick="openImpact()">${xl('Open','افتح')}</button>`)}</div>`;
+  else if(SETTAB==='data')body=`<div class="card sc">${sRow('<svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V6M4.5 12v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6"/></svg>',t('stoT'),CLOUD?t('cloudOn'):t('cloudOff'),'')}${sRow(dkSvg('lib'),fl('libT'),'',`<button class="sbt" onclick="openLib()">${xl('Open','افتح')}</button>`)}${sRow('<svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg>',t('bkBtn'),t('bkD').split('.')[0]+'.',`<button class="sbt g" onclick="exportBackup()">${xl('Download','نزّل')}</button>`)}</div>`;
+  else body=`<div class="card sc"><p class="sub" style="margin:0 0 6px">${t('aboutD')}</p></div>${verCard().replace('class="card"','class="card sc"')}<div class="foot cr"><div><b>${t('copy1')}</b><br>${t('copy2')}</div></div>`;
+  return`${T3([['gen',t('stGen')],['ai',t('stAI')],['data',t('stData')],['about',t('stAbout')]],SETTAB,'setTab')}<div class="tp" key="${SETTAB}">${body}</div>`;
+}
+function setFxK(v){setFx(v==='l')}
+/* AI toggle: keep the dock and the sheets in step */
+function toggleAI(){
+  if(!SAMPLE){toast(t('aiNA'));return}
+  AIPREF=!AIPREF;try{localStorage.setItem('ib_ai',AIPREF?'on':'off')}catch(e){}
+  renderNav();toast(t(AIPREF?'aiNowOn':'aiNowOff'));if(V==='set')view(false)
+}
+window.addEventListener('resize',()=>{clearTimeout(window.__rz);window.__rz=setTimeout(()=>{const a=document.activeElement;if(a&&/INPUT|TEXTAREA|SELECT/.test(a.tagName))return;if(V!=='home'){fitTitle();view(false)}},260)});
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{if(V&&V!=='home')fitTitle()});
+
+/* ---- library: overview and browse ---- */
+let LIBTAB='ov';
+function libTab(k){LIBTAB=k;view(false)}
+function vLib(){
+  const {n}=libFilter(),items=libItems().length,mb=(libBytes()/1048576),ds={ok:fl('libDevOk'),ls:fl('libDevLs'),fail:fl('libDevFail'),none:fl('libDevWait')}[SAVEST.dev||'none'];
+  const cs={ok:fl('libCloudOk'),part:fl('libCloudPart'),fail:fl('libCloudFail'),off:fl('libCloudOff')}[CLOUD?(SAVEST.cloud||'ok'):'off'];
+  const lb=lastBk(),days=lb?Math.floor((Date.now()-lb)/864e5):null,ltxt=lb?(days<1?fl('libToday'):fl('libDays')(days)):fl('libNever');
+  const dsc=SAVEST.dev==='ok'||SAVEST.dev==='ls'?'ok':SAVEST.dev==='fail'?'bad':'warn',csc=!CLOUD?'warn':SAVEST.cloud==='fail'?'bad':SAVEST.cloud==='part'?'warn':'ok',bc=!lb&&items?'warn':bkDue()?'warn':'ok';
+  let body;
+  if(LIBTAB==='ov'){
+    setTimeout(()=>{try{navigator.storage&&navigator.storage.estimate&&navigator.storage.estimate().then(e=>{const f=$('#libq');if(f&&e&&e.quota)f.textContent=fl('libQuota')+': '+Math.max(0,Math.round((e.quota-(e.usage||0))/1048576)).toLocaleString('en-US')+' MB'})}catch(e){}},50);
+    body=`<div class="vault card"><div class="vring">${donut(n,items)}<div class="vtx"><b>${items}</b><small>${fl('libItems')(items).replace(/^\d+\s*/,'')}</small></div></div><div class="vsr"><div class="vrow ${dsc}"><i></i>${ds}</div><div class="vrow ${csc}"><i></i>${cs}</div><div class="vrow ${bc}"><i></i>${fl('libLast')}: ${ltxt}</div><div class="vrow ok"><i></i>${fl('libSize')}: ${mb<0.1?'<0.1':mb.toFixed(1)} MB</div><small class="dr" id="libq"></small></div></div>${bkDue()?`<div class="ribbon" style="background:linear-gradient(180deg,#FFD36A,#F0A91E);color:#3A2600"><span>${fl('libDue')}</span></div>`:''}<div class="act2"><button class="btn g" onclick="exportBackup()">${fl('libBackup')}</button><label class="btn l" style="cursor:pointer;display:block;text-align:center">${fl('libRestore')}<input type="file" accept=".json,application/json" hidden onchange="importBackup(this.files);this.value=''"></label></div><p class="dr">${fl('libRestoreNote')} ${fl('libStored')}</p><button class="hi" onclick="openImpact()"><div class="t">${xl('AI impact: human effort vs AI work','أثر الذكاء: الجهد البشري مقابل عمل الذكاء')}</div><div class="mt">${AIL.length} ${xl('AI actions','عمليات ذكاء')} · ${xl('saved ≈','الموفَّر ≈')} ${aiMinTx(Math.max(0,AIL.reduce((a,e)=>a+aiCalc(e).net,0)))}</div></button>`;
+  }else body=`<div class="lcs"><button class="lc${LF==='all'?' on':''}" onclick="libF('all')"><b>${n.all||0}</b><small>${fl('libAll')}</small></button>${Object.keys(LKS).map(k=>`<button class="lc${LF===k?' on':''}" onclick="libF('${k}')" style="--c:${LKS[k].c}"><b>${n[k]||0}</b><small>${fl('libTool')[k]}</small></button>`).join('')}</div><div class="pn" style="margin:0 0 8px"><input class="lkin" id="lq" style="font-size:16px;text-align:start" placeholder="${fl('libSearch')}" value="${esc(LQ)}" oninput="libQ(this.value)"></div><div id="lres">${libRes()}</div>`;
+  return`${T3([['ov',xl('Overview','نظرة عامة')],['br',xl('Browse','تصفّح')]],LIBTAB,'libTab')}<div class="tp" key="${LIBTAB}">${body}</div>`;
+}
+
+/* ================= THE BRIEF IS THE FOUNDATION: the home screen is built from the two pages of the track ================= */
+Object.assign(T.en,{brandT:"Degradation · Remaining life · Intervention priority"});
+Object.assign(T.ar,{brandT:"التدهور · العمر المتبقي · أولوية التدخل"});
+const BRIEF=()=>({
+  q:xl('How can AI find degradation and failure risk earlier, use the inspection history better, and prioritize the intervention before failure reaches safety, production or the turnaround?','كيف يكشف الذكاء الاصطناعي التدهور وأخطار الفشل مبكرًا، ويستفيد من سجل الفحص بصورة أفضل، ويرتّب التدخل قبل أن يمس الفشل السلامة أو الإنتاج أو الإيقاف؟'),
+  track:[xl('Historical integrity data','بيانات السلامة التاريخية'),xl('Damage mechanisms','آليات التلف'),xl('Remaining life','العمر المتبقي')],
+  gaps:[
+   ['01',xl('Inspection results stay locked in reports','نتائج الفحص حبيسة التقارير'),xl('AI reads reports and photos into trended, alerted readings.','الذكاء يقرأ التقارير والصور إلى قراءات تُتابَع وتُنبَّه.'),"nav('life','x');ilOpenNew();ILTAB='data';view(true)",xl('Inspection Life','عمر المعدة')],
+   ['02',xl('Inspection planning and RBI are reactive','التخطيط للفحص وRBI تفاعليان'),xl('Operating excursions steer the risk ranking before the next inspection.','تجاوزات التشغيل توجّه ترتيب المخاطر قبل الفحص القادم.'),"nav('prio','x');PRTAB='iow';view(true)",'IOW'],
+   ['03',xl('Years of integrity history sit unused','سنوات من سجل السلامة بلا استخدام'),xl('Damage patterns, bad actors and assets nearing a threshold, in one view.','أنماط التلف والمعدات كثيرة الأعطال والأصول المقتربة من الحد، في شاشة واحدة.'),"nav('prio','x');PRTAB='patterns';view(true)",xl('Patterns','الأنماط')]
+  ],
+  cta:[xl('Prioritize the intervention','رتّب التدخل'),xl('Safety · production · turnaround','السلامة · الإنتاج · الإيقاف'),"nav('prio','x');PRTAB='board';view(true)"],
+  rcm:[xl('RCM Studio','استوديو RCM'),xl('Failure mode to the right task','من نمط الفشل إلى المهمة المناسبة'),"nav('rcm')"],
+  more:[[xl('Strategy','الاستراتيجية'),"nav('strat')"],['RBI',"nav('rbi')"],[xl('Bad actors','كثيرة الأعطال'),"nav('bad')"],[xl('Failure story','قصة العطل'),"nav('story')"],[xl('Old-timer','صاحب الخبرة'),"nav('tribal')"],[xl('RCA','الأسباب الجذرية'),"nav('inc')"]]
+});
+function vHome(){
+  const B=BRIEF(),P=prioCalc(),now=P.list.filter(x=>x.tier==='now').length,rcN=CACHE.filter(x=>x.kind==='rcm').length;
+  return`<div class="stage bfs"><div class="bf"><small>${xl('The challenge','التحدي')}</small><b>${B.q}</b><div class="bft">${B.track.map(x=>`<i>${x}</i>`).join('')}</div></div>
+<div class="gaps">${B.gaps.map(([n,g,a,js,tool])=>`<button class="gp" onclick="${js}"><span class="gn">${n}</span><span class="gx"><b>${g}</b><small>${a}</small></span><span class="gt">${tool}</span></button>`).join('')}</div>
+<div class="ctas"><button class="cta" onclick="${B.cta[2]}"><span class="ctx"><b>${B.cta[0]}</b><small>${B.cta[1]}</small></span>${P.list.length?`<span class="ctn"><b>${now}</b><small>${xl('now','الآن')}</small></span>`:''}</button><button class="cta rcmc" onclick="${B.rcm[2]}"><span class="ctx"><b>${B.rcm[0]}</b><small>${B.rcm[1]}</small></span>${rcN?`<span class="ctn"><b>${rcN}</b><small>${xl('studies','دراسات')}</small></span>`:''}</button></div>
+<div class="more"><span>${xl('More tools','أدوات أخرى')}</span>${B.more.map(([l,js])=>`<button onclick="${js}">${l}</button>`).join('')}</div></div>`;
+}
+/* about: the challenge and where each part is answered */
+(function(){const old=vSet;vSet=function(){const h=old();if(typeof SETTAB!=='undefined'&&SETTAB==='about'){const B=BRIEF(),card=`<div class="card sc"><span class="tag">${xl('The challenge','التحدي')}</span><p class="sub" style="margin:6px 0">${B.q}</p>${B.gaps.map(([n,g,a,js,tool])=>`<div class="srow"><div class="sx"><b>${n} · ${g}</b><small>${a} (${tool})</small></div></div>`).join('')}</div>`;return h.replace('<div class="tp" key="about">','<div class="tp" key="about">'+card)}return h}})();
+
 async function bootApp(){
   applyFx();renderTop();renderNav();
   $('#app').innerHTML=`<div class="load"><div class="lwh">${iicWheel({anim:'glow',spin:'fast'})}</div><h2>${t('ldStore')}</h2></div>`;
@@ -4846,10 +5696,11 @@ function brand(){const e=$('#brand');if(e)e.innerHTML=`<small>${t('brandA')}</sm
 document.documentElement.lang=L;document.documentElement.dir=L==='ar'?'rtl':'ltr';
 /* ---------- GitHub build: API key card, App Lock, offline support, update notice ---------- */
 const ghGet=k=>{try{return localStorage.getItem(k)||''}catch(e){return''}};
-function ghCards(){
+function ghCards(){return ghKeyCard()+ghInstCard()+lockCard()}
+function ghKeyCard(){
   const ar=L==='ar',k=!!ghGet('ib_key');
   const tx=ar?{t:'مفتاح الذكاء الاصطناعي',on:'المفتاح محفوظ على هذا الجهاز. الذكاء الاصطناعي يعمل.',off:'أضف مفتاح Anthropic API لتشغيل الذكاء الاصطناعي. الوضع التجريبي يعمل بدونه.',save:'حفظ',test:'اختبار',rm:'احذف المفتاح',note:'يبقى المفتاح في هذا المتصفح فقط ولا يُرسل إلا إلى api.anthropic.com. حدّد سقف إنفاق للمفتاح في لوحة Anthropic، ولا تضعه أبدًا في المستودع.',m:'اسم النموذج (اختياري)'}:{t:'API key',on:'A key is saved on this device. The AI is on.',off:'Add your Anthropic API key to turn the AI on. Demo mode works without it.',save:'Save',test:'Test',rm:'Remove key',note:'The key stays in this browser only and is sent only to api.anthropic.com. Set a spending limit for the key in the Anthropic console, and never put it in the repository.',m:'Model name (optional)'};
-  return`<div class="card"><span class="tag">${tx.t}</span><p class="sub" style="margin:0 0 6px">${k?tx.on:tx.off}</p><div class="pn"><input class="lkin" id="gk" type="password" autocomplete="off" style="font-size:16px;text-align:start;direction:ltr" placeholder="sk-ant-..."></div><div class="pn" style="margin-top:8px"><input class="lkin" id="gm" style="font-size:15px;text-align:start;direction:ltr" placeholder="claude-sonnet-4-6" value="${esc(ghGet('ib_model'))}" aria-label="${tx.m}"></div><div class="act2"><button class="btn g" onclick="ghSaveKey()">${tx.save}</button><button class="btn l" onclick="ghTest()">${tx.test}</button></div>${k?`<button class="btn l" onclick="ghClearKey()">${tx.rm}</button>`:''}<p class="dr">${tx.note}</p></div>`+ghInstCard()+lockCard();
+  return`<div class="card"><span class="tag">${tx.t}</span><p class="sub" style="margin:0 0 6px">${k?tx.on:tx.off}</p><div class="pn"><input class="lkin" id="gk" type="password" autocomplete="off" style="font-size:16px;text-align:start;direction:ltr" placeholder="sk-ant-..."></div><div class="pn" style="margin-top:8px"><input class="lkin" id="gm" style="font-size:15px;text-align:start;direction:ltr" placeholder="claude-sonnet-4-6" value="${esc(ghGet('ib_model'))}" aria-label="${tx.m}"></div><div class="act2"><button class="btn g" onclick="ghSaveKey()">${tx.save}</button><button class="btn l" onclick="ghTest()">${tx.test}</button></div>${k?`<button class="btn l" onclick="ghClearKey()">${tx.rm}</button>`:''}<p class="dr">${tx.note}</p></div>`;
 }
 async function ghSaveKey(){
   const k=($('#gk')||{}).value||'',m=(($('#gm')||{}).value||'').trim();
