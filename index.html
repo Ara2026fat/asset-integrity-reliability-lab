@@ -427,6 +427,10 @@ body[data-tool=strat]::before{background:radial-gradient(420px 320px at 10% 6%,r
 
 .mixbar{display:flex;height:16px;border-radius:99px;overflow:hidden;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.9),0 6px 12px -8px rgba(30,60,160,.5);margin-top:4px}.mixbar i{display:block;min-width:4px}
 .mixlg{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:8px;font-size:12px;font-weight:800;color:var(--mut)}.mixlg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-inline-end:5px}
+
+.aib{padding:12px 14px;margin:0 0 12px;border-radius:20px;background:linear-gradient(160deg,rgba(99,102,241,.16),rgba(255,255,255,.8));border:1px solid rgba(255,255,255,.95);box-shadow:0 16px 28px -20px rgba(99,102,241,.8),inset 0 1px 0 #fff}
+.aih{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.aih b{font-size:14.5px;color:var(--n3)}
+.aibar{margin-top:8px;font-size:12px;font-weight:800;color:var(--mut)}.aibar span{display:block;margin-bottom:3px}.aibar i{display:block;height:9px;border-radius:99px}.aibar i.h{background:linear-gradient(90deg,#B7C0D6,#8FA0C4)}.aibar i.a{background:linear-gradient(90deg,#10B981,#34D399);min-width:6px}
 /* ===================== Design layer: Aero Glass Pro ===================== */
 :root{--ink:#0F1B3D;--mut:#5B6B8C;--line:rgba(110,130,180,.30);--cream:#F3F6FF;--panel:#EDF1FC;--gold:#F0A91E;--goldd:#B7791F;
  --n1:#6E9BFF;--n1b:#5B8CFF;--n2:#3B6FEF;--n3:#1F3FB0;--em:#3B6FEF;--em2:#2A57D8;--em3:#1F3FB0;--nav:#3B6FEF;--ag:rgba(59,111,239,.45)}
@@ -635,7 +639,7 @@ toolIdea:"Idea Lab",toolIdeaD:"Turn suggestions into strong ideas",toolInc:"Inci
  rqiFull:"RCA Quality Index (RQI)",rqiD:{facts:"Fact base",causes:"Causal depth",barriers:"Barrier analysis",systems:"People & systems",actions:"Action strength",evidence:"Evidence"},rqiS:{facts:"Facts",causes:"Causes",barriers:"Barriers",systems:"Systems",actions:"Actions",evidence:"Evidence"},
  secSummary:"What happened",secTimeline:"Timeline",secCauses:"Cause chain",cImm:"Immediate",cCon:"Contributing",cRoot:"Root causes",secBarriers:"Barriers",bFailed:"Failed",bMissing:"Missing",bWorked:"Worked",secPermit:"Permit & handover gaps",secLessons:"Lessons learned",secActions:"Corrective actions",lvlI:{eliminate:"Eliminate",engineer:"Engineer",administrative:"Administrative",ppe:"PPE"},pri:{high:"High",medium:"Medium",low:"Low"},
  evReason:(a,b)=>`${a} of ${b} findings are backed by verbatim quotes from the report.`,disc:"AI draft for review. A qualified investigator must verify every finding.",coachBtn:"RCA Coach: dig deeper",coachH:"RCA Coach",coachIntro:d=>`Let's dig into the weakest area: ${d}. Answer as the investigator.`,coachAns:"Your answer...",saveInfo:"Save infographic",backInc:"Back to incidents",invTag:"Investigator input",
-aiOnT:"Built-in AI is on (tap for demo mode)",aiOffT:"Demo mode (tap to turn AI on)",aiNA:"Built-in AI is not available in this view.",aiNowOn:"Built-in AI is on.",aiNowOff:"Demo mode.",aiBusy:"AI is busy. Try again in a moment.",saveFail:"Could not save to the cloud. Saved on this device.",ldStore:"Opening your ideas...",
+aiOnT:"Built-in AI is on (tap for demo mode)",aiOffT:"Demo mode (tap to turn AI on)",aiNA:"The AI is off. Add your API key in Settings to turn it on.",aiNowOn:"Built-in AI is on.",aiNowOff:"Demo mode.",aiBusy:"AI is busy. Try again in a moment.",saveFail:"Could not save to the cloud. Saved on this device.",ldStore:"Opening your ideas...",
  cloudOn:"Saved to your Claude account and synced across your devices.",cloudOff:"Cloud storage is unavailable here. Ideas are saved on this device only.",stoT:"Storage & Backup",bkD:"The app never deletes your ideas. You can also export a copy.",bkBtn:"Export backup",bkSaved:"Backup saved.",dlNA:"Saving files is not available here.",imgSaved:"Image saved.",
  aiCardOn:"AI is on. It uses your own API key.",aiCardOff:"Demo mode. Turn the AI on for real analysis.",aiCardNA:"AI is off. Add your API key below to turn it on.",aiToggleOn:"Turn AI on",aiToggleOff:"Switch to demo mode",
  stNew:"New",stWork:"Working on",stProc:"Under process",subWait:"Waiting for review or decision",subBuild:"Building",stSet:"Status",stEmpty:"No ideas here yet.",dashT:"Dashboard",backL:"Back to dashboard",
@@ -1284,7 +1288,7 @@ function renderTop(){
   const libb=`<button class="chip" id="libb" onclick="openLib()" aria-label="${fl('libT')}" title="${fl('libT')}">${ICN.lib}<i class="dot ${libDot()}"></i></button>`;
   const right=`<div class="tcap">${libb}${gear}<button class="chip" id="mode" onclick="toggleAI()"></button></div>`;
   let left;
-  if(V==='set'||V==='lib')left=`<button class="tback" onclick="closeSettings()" aria-label="${t('setBack')}">${L==='ar'?'›':'‹'}</button><div class="tt"><div><b>${V==='lib'?fl('libT'):T[L].nav[5]}</b></div></div>`;
+  if(V==='set'||V==='lib'||V==='impact')left=`<button class="tback" onclick="closeSettings()" aria-label="${t('setBack')}">${L==='ar'?'›':'‹'}</button><div class="tt"><div><b>${V==='lib'?fl('libT'):V==='impact'?xl('AI impact','أثر الذكاء الاصطناعي'):T[L].nav[5]}</b></div></div>`;
   else if(tl){const d=TL[tl];left=`<button class="tback" onclick="nav('home')" aria-label="${t('navHub')}">${L==='ar'?'›':'‹'}</button><div class="tt">${badge(d.ci,36,d.icon)}<div><b>${t(d.n)}</b><small>${t(d.d)}</small></div></div>`}
   else left=`<div class="logo"><svg style="flex:none" width="34" height="34" viewBox="-26 -26 52 52" aria-hidden="true"><circle r="23" fill="url(#gNavy)" stroke="url(#gGold)" stroke-width="4"/><circle r="23" fill="url(#gGloss)"/><use href="#i-hour" class="ico"/></svg><span class="nm" id="brand"></span></div>`;
   el.innerHTML=left+right;modeChip();brand();
@@ -1307,7 +1311,7 @@ function nav(v,arg){
 }
 function view(scroll){
   renderNav();$('#stepsBox').innerHTML='';
-  const fn={home:vHome,dash:vDash,strat:vStrat,life:vLife,rbi:vRbi,rcm:vRcm,inc:vInc,proc:vProc,permit:vPermit,hand:vHand,tbt:vTbt,gas:vGas,lib:vLib,set:vSet}[V];
+  const fn={home:vHome,dash:vDash,impact:vImpact,strat:vStrat,life:vLife,rbi:vRbi,rcm:vRcm,inc:vInc,proc:vProc,permit:vPermit,hand:vHand,tbt:vTbt,gas:vGas,lib:vLib,set:vSet}[V];
   $('#app').innerHTML=`<div class="reveal">${fn()}</div>`;
   if(scroll)window.scrollTo({top:0});
   after(-1);
@@ -1324,7 +1328,7 @@ const TL={
 const FAM={improve:{tab:'famImprove',icon:'bulb',nic:'n-bulb',tools:['idea'],p:['#2F55C8','#14307F','#0B1B52']},
  learn:{tab:'famLearn',icon:'doc',nic:'n-doc',tools:['inc','proc'],p:['#4A5370','#232B42','#11151F']},
  field:{tab:'famField',icon:'permit',nic:'n-permit',tools:['permit','hand','tbt','gas'],p:['#C26A0B','#7A3E08','#3F1E04']}};
-const toolOf=v=>({strat:'strat',life:'life',rbi:'rbi',rcm:'rcm',new:'idea',dash:'idea',inc:'inc',proc:'proc',permit:'permit',hand:'hand',tbt:'tbt',gas:'gas'})[v]||null;
+const toolOf=v=>({impact:null,strat:'strat',life:'life',rbi:'rbi',rcm:'rcm',new:'idea',dash:'idea',inc:'inc',proc:'proc',permit:'permit',hand:'hand',tbt:'tbt',gas:'gas'})[v]||null;
 let HK='improve';
 function hubSel(k){HK=k;view(false)}
 function gHome(){GV='home';view(true)}
@@ -1395,6 +1399,7 @@ function vSet(){
 <div class="card"><span class="tag">${t('setLang')}</span><div class="seg"><button class="btn ${L==='en'?'g':'l'}" onclick="setLang('en')">English</button><button class="btn ${L==='ar'?'g':'l'}" onclick="setLang('ar')">العربية</button></div></div>
 <div class="card"><span class="tag">${t('setAI')}</span><p class="sub" style="margin:0 0 4px">${aiTxt}</p>${SAMPLE?`<button class="btn l" onclick="toggleAI()">${AIPREF?t('aiToggleOff'):t('aiToggleOn')}</button>`:''}</div>
 <div class="card"><span class="tag">${t('fxT')}</span><div class="seg"><button class="btn ${FXL?'l':'g'}" onclick="setFx(false)">${t('fxFull')}</button><button class="btn ${FXL?'g':'l'}" onclick="setFx(true)">${t('fxLite')}</button></div><p class="dr">${t('fxNote')}</p></div>
+<div class="card"><span class="tag">${xl('AI impact','أثر الذكاء')}</span><p class="sub" style="margin:0 0 4px">${xl('See how much time the AI saves compared with doing the same work by hand.','اطّلع على الوقت الذي يوفّره الذكاء الاصطناعي مقارنة بعمل المهمة يدويًا.')}</p><button class="btn g" onclick="openImpact()">${xl('Open AI impact','افتح أثر الذكاء')}</button></div>
 <div class="card"><span class="tag">${t('stoT')}</span><p class="sub" style="margin:0 0 4px">${CLOUD?t('cloudOn'):t('cloudOff')}</p><p class="dr">${t('bkD')}</p><button class="btn g" onclick="openLib()">${fl('libOpen')}</button><button class="btn l" onclick="exportBackup()">${t('bkBtn')}</button></div>
 <div class="card"><span class="tag">${t('aboutT')}</span><p>${t('aboutD')}</p></div>
 ${ghCards()}
@@ -1509,7 +1514,7 @@ function shareIdea(id){
 }
 
 /* ---------- version ---------- */
-/*BUILD*/const BUILD={version:"AIR 0.4 GitHub",id:"20261004-0828",date:"2026-10-04T08:28:26Z"};/*END BUILD*/
+/*BUILD*/const BUILD={version:"AIR 0.5 GitHub",id:"20261004-0844",date:"2026-10-04T08:44:40Z"};/*END BUILD*/
 const fmtBuild=()=>new Date(BUILD.date).toLocaleString(L==='ar'?'ar-u-ca-gregory-nu-latn':'en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
 function verCard(){
   return`<div class="card"><span class="tag">${t('verT')}</span><p style="margin:0 0 6px;font-size:17px;font-weight:800;color:var(--ink)">${t('verL')} ${BUILD.version}</p><p class="dr" style="margin-top:0">${t('relL')}: ${fmtBuild()}</p></div>`;
@@ -1946,7 +1951,7 @@ async function incStart(sample){
   ICTL=new AbortController();IPROG=null;INCLOAD=t('incLd1');view(false);
   let res=null,demo=false;
   if(AIon()){
-    try{res=await aiAnalyze(rep,ICTL.signal)}
+    try{{const t0=performance.now();res=await aiAnalyze(rep,ICTL.signal);if(res&&typeof res==='object')aiTrack('inc',xl('Failure report analysis','تحليل تقرير عطل'),aiCount(res),performance.now()-t0,'find')}}
     catch(e){if(e&&e.code==='cancelled'){INCLOAD='';IPROG=null;INCV=sample?'list':'new';view(false);return}if(e&&e.code==='not_granted'){SAMPLE=null;modeChip()}toast(e&&e.code==='rate_limited'?t('aiBusy'):t('incFail'))}
   }
   if(!res&&sample){res=JSON.parse(JSON.stringify(DEMO[sample]));demo=true}
@@ -2024,7 +2029,7 @@ function cheeseSvg(bs){
 }
 function vInc(){
   if(INCLOAD)return`<div class="load"><div class="lwh">${iicWheel({anim:'glow',spin:'fast'})}</div><h2 id="ild">${INCLOAD}</h2>${IPROG?`<div class="bar" style="max-width:260px;margin:10px auto"><i id="ibar" style="width:${Math.round(100*IPROG.done/IPROG.total)}%;background:linear-gradient(90deg,#5A6482,#232B42)"></i></div>`:''}${ICTL?`<button class="link" onclick="incCancel()">${t('pCancel')}</button>`:''}</div>`;
-  return({list:vIncList,new:vIncNew,view:vIncView,coach:vIncCoach}[INCV]||vIncList)();
+  return (INCV==='view'?aiBanner('inc'):'')+({list:vIncList,new:vIncNew,view:vIncView,coach:vIncCoach}[INCV]||vIncList)();
 }
 function vIncList(){
   const a=incs();
@@ -3954,6 +3959,7 @@ function vLib(){
 ${bkDue()?`<div class="ribbon" style="background:linear-gradient(180deg,#FFD36A,#F0A91E);color:#3A2600"><span>${fl('libDue')}</span></div>`:''}
 <div class="act2"><button class="btn g" onclick="exportBackup()">${fl('libBackup')}</button><label class="btn l" style="cursor:pointer;display:block;text-align:center">${fl('libRestore')}<input type="file" accept=".json,application/json" hidden onchange="importBackup(this.files);this.value=''"></label></div>
 <p class="dr">${fl('libRestoreNote')} ${fl('libStored')}</p>
+<button class="hi" onclick="openImpact()"><div class="t">${xl('AI impact: human effort vs AI work','أثر الذكاء: الجهد البشري مقابل عمل الذكاء')}</div><div class="mt">${AIL.length} ${xl('AI actions','عمليات ذكاء')} · ${xl('saved ≈','الموفَّر ≈')} ${aiMinTx(Math.max(0,AIL.reduce((a,e)=>a+aiCalc(e).net,0)))}</div></button>
 <div class="lcs"><button class="lc${LF==='all'?' on':''}" onclick="libF('all')"><b>${n.all||0}</b><small>${fl('libAll')}</small></button>${Object.keys(LKS).map(k=>`<button class="lc${LF===k?' on':''}" onclick="libF('${k}')" style="--c:${LKS[k].c}"><b>${n[k]||0}</b><small>${fl('libTool')[k]}</small></button>`).join('')}</div>
 <div class="pn" style="margin:10px 0"><input class="lkin" id="lq" style="font-size:16px;text-align:start" placeholder="${fl('libSearch')}" value="${esc(LQ)}" oninput="libQ(this.value)"></div>
 <div id="lres">${libRes()}</div>`;
@@ -4144,13 +4150,13 @@ function ilRecord(){
 }
 function ilPanel(){
   const W=ILW,c=ilCalc(W,{rate:ILWI.rate});
-  if(ILTAB==='data')return`<div class="card"><span class="tag">${xl('Asset and component','المعدة والمكوّن')}</span>${xinp('ilt',W.tag,xl('Tag, e.g. BFW-RECIRC-L2301','الرمز مثل BFW-RECIRC-L2301'),"ilSet('tag',this.value)")}${xinp('ilc',W.comp,xl('Component and location','المكوّن وموقعه'),"ilSet('comp',this.value)")}<span class="tag" style="margin-top:10px">${xl('Damage mechanism','آلية التلف')}</span>${xchips(ilMechL(),W.mech,'ilMech')}</div>
+  if(ILTAB==='data')return aiBanner('life')+`<div class="card"><span class="tag">${xl('Asset and component','المعدة والمكوّن')}</span>${xinp('ilt',W.tag,xl('Tag, e.g. BFW-RECIRC-L2301','الرمز مثل BFW-RECIRC-L2301'),"ilSet('tag',this.value)")}${xinp('ilc',W.comp,xl('Component and location','المكوّن وموقعه'),"ilSet('comp',this.value)")}<span class="tag" style="margin-top:10px">${xl('Damage mechanism','آلية التلف')}</span>${xchips(ilMechL(),W.mech,'ilMech')}</div>
 <div class="card"><span class="tag">${xl('Thickness limits (mm)','حدود السماكة (مم)')}</span><div class="two"><div><small class="dr">${xl('Nominal','الاسمية')}</small>${xinp('iln',W.nominal,'10.97',"ilSet('nominal',this.value)",'number')}</div><div><small class="dr">${xl('Minimum required','الحد الأدنى المطلوب')}</small>${xinp('ilm',W.tmin,'6.7',"ilSet('tmin',this.value)",'number')}</div></div><p class="dr">${xl('Use your own design basis for the minimum. Training defaults below can be changed.','استخدم أساس التصميم عندك للحد الأدنى. القيم التدريبية أدناه قابلة للتغيير.')}</p><div class="two"><div><small class="dr">${xl('Max interval (years)','أقصى فترة (سنوات)')}</small>${xinp('ilcp',W.cap,'10',"ilSet('cap',this.value)",'number')}</div><div><small class="dr">${xl('Min corrosion rate (mm/y)','أدنى معدل تآكل (مم/سنة)')}</small>${xinp('ilfl',W.floor,'0.05',"ilSet('floor',this.value)",'number')}</div></div></div>
 <div class="card"><span class="tag">${xl('Thickness readings (same point each time)','قراءات السماكة (النقطة نفسها)')}</span>${W.readings.map((r,i)=>`<div class="ilr"><input class="lkin" type="month" value="${esc(r.d)}" onchange="ilRd(${i},'d',this.value)" style="font-size:15px" aria-label="${xl('Date','التاريخ')}"><input class="lkin" type="number" step="any" inputmode="decimal" value="${esc(r.t)}" placeholder="mm" oninput="ilRd(${i},'t',this.value)" style="font-size:16px;direction:ltr" aria-label="mm"><button class="x" onclick="ilDelRd(${i})" aria-label="x">✕</button></div>`).join('')}<button class="btn l" onclick="ilAddRd()" ${W.readings.length>=10?'disabled':''}>${xl('+ Add reading','+ أضف قراءة')}</button></div>
 <div class="card"><span class="tag">${xl('Save time: paste from Excel','وفّر وقتك: الصق من Excel')}</span><textarea class="ta" id="ilpaste" style="min-height:90px;direction:ltr" placeholder="2019-05  10.62&#10;2022-05  9.55&#10;2025-05  8.30"></textarea><button class="btn l" onclick="ilPaste()">${xl('Use the pasted readings','استخدم القراءات الملصقة')}</button></div>
 <div class="card"><span class="tag">${xl('Save time: read a report with the AI','وفّر وقتك: اقرأ تقريرًا بالذكاء الاصطناعي')}</span><textarea class="ta" id="ilrep" style="min-height:90px" placeholder="${xl('Paste the inspection report text','الصق نص تقرير الفحص')}"></textarea><button class="btn l" onclick="ilReadAI()">${xl('Fill the form from the report','املأ النموذج من التقرير')}</button><p class="dr">${xl('Each reading is checked against the report text. Always verify the values.','تُفحص كل قراءة مقابل نص التقرير. تحقق دائمًا من القيم.')}</p></div>`;
   if(!c.ok)return`<div class="card">${xl('Enter at least two readings with dates, and the minimum thickness, in the Data tab.','أدخل قراءتين بتواريخهما والحد الأدنى للسماكة في تبويب البيانات.')}</div>`;
-  if(ILTAB==='clock')return`<div class="card" style="text-align:center">${ilHourglass(c.rl)}<div style="font-size:44px;font-weight:900;color:var(--n2);line-height:1.1;margin-top:6px">${c.rl>=20?'20+':c.rl.toFixed(1)}</div><small class="dr" style="text-align:center">${xl('years to minimum thickness at the governing rate','سنة حتى الحد الأدنى بالمعدل الحاكم')}</small></div>
+  if(ILTAB==='clock')return aiBanner('life')+`<div class="card" style="text-align:center">${ilHourglass(c.rl)}<div style="font-size:44px;font-weight:900;color:var(--n2);line-height:1.1;margin-top:6px">${c.rl>=20?'20+':c.rl.toFixed(1)}</div><small class="dr" style="text-align:center">${xl('years to minimum thickness at the governing rate','سنة حتى الحد الأدنى بالمعدل الحاكم')}</small></div>
 <div class="stats s3"><div class="st"><span class="tag">${xl('Rate mm/y','المعدل مم/سنة')}</span><b>${c.cr.toFixed(2)}</b><small>${xl('short','قصير')} ${c.st.toFixed(2)} · ${xl('long','طويل')} ${c.lt.toFixed(2)}</small></div><div class="st"><span class="tag">${xl('Now mm','الآن مم')}</span><b>${c.tNow.toFixed(2)}</b><small>+${(c.tNow-c.tmin).toFixed(2)} ${xl('above min','فوق الأدنى')}</small></div><div class="st hl"><span class="tag">${xl('Next','القادم')}</span><b style="font-size:20px">${xfmt(xy2ym(c.next))}</b><small>${xl('every','كل')} ${c.interval.toFixed(1)} ${xl('y','سنة')}</small></div></div>
 <div class="card">${ilChart(c)}<p class="dr">${xl('Solid: readings. Dashed orange: projection at the governing rate. Blue line: next inspection (half of the remaining life, capped).','متصل: القراءات. برتقالي متقطع: التوقّع بالمعدل الحاكم. الخط الأزرق: الفحص القادم (نصف العمر المتبقي بحد أعلى).')}</p></div>
 ${c.flags.length?`<div class="card"><span class="tag">${xl('Data checks','فحوص البيانات')}</span>${c.flags.map(f=>`<p class="dr" style="margin:4px 0">• ${ilFlagTx()[f]}</p>`).join('')}</div>`:''}
@@ -4179,7 +4185,7 @@ ${T3([['clock',xl('Clock','الساعة')],['data',xl('Data','البيانات')
 let RBV='list',RBW=null,RBID=null,RBTAB='inputs';
 const RBCOL={low:'#4CC38A',med:'#F2C94C',mh:'#F2994A',high:'#EB5757'};
 const rbBand=()=>({low:xl('Low','منخفض'),med:xl('Medium','متوسط'),mh:xl('Medium-high','متوسط-مرتفع'),high:xl('High','مرتفع')});
-const rbNew=()=>({tag:'',desc:'',svc:'',mech:'gen',last:'',sus:3,margin:3,eff:3,hist:2,haz:2,inv:2,loc:2,cond:2,prod:3});
+const rbNew=()=>({tag:'',desc:'',svc:'',mech:'gen',last:'',sus:3,margin:3,eff:3,hist:2,haz:2,inv:2,loc:2,cond:2,prod:3,aiWhy:'',aiWatch:'',aiSvc:''});
 const RBMETH=()=>({gen:xl('UT thickness at the condition-monitoring locations','قياس سماكة بالموجات فوق الصوتية عند نقاط المراقبة'),fac:xl('UT grid on elbows and downstream of control valves, plus profile radiography','شبكة UT على الأكواع وبعد صمامات التحكم مع تصوير إشعاعي جانبي'),cui:xl('Remove insulation at suspect areas, then profile radiography or pulsed eddy current','إزالة العزل في المواضع المشتبه بها ثم تصوير إشعاعي جانبي أو تيارات دوامية نبضية'),sulf:xl('UT scanning on high-temperature circuits and a material identification check','مسح UT على دوائر الحرارة العالية مع التحقق من هوية المادة'),mic:xl('Internal visual inspection and UT at low points and weld zones','فحص بصري داخلي وUT عند النقاط المنخفضة ولحامات الوصل'),oth:xl('As defined by the inspection engineer','بحسب ما يحدده مهندس الفحص')});
 const rbFac=()=>[['sus',xl('Damage susceptibility','قابلية التلف'),xl('1 none · 3 possible · 5 active or known','1 لا يوجد · 3 محتمل · 5 نشط أو معروف'),'pof'],['margin',xl('Remaining-life margin','هامش العمر المتبقي'),xl('1 over 15 y · 2 10-15 · 3 5-10 · 4 2-5 · 5 under 2 y','1 أكثر من 15 · 2 من 10 إلى 15 · 3 من 5 إلى 10 · 4 من 2 إلى 5 · 5 أقل من 2 سنة'),'pof'],['eff',xl('Inspection knowledge gap','فجوة معرفة الحالة بالفحص'),xl('1 highly effective · 3 fairly · 5 none or ineffective','1 فعّال جدًا · 3 إلى حد ما · 5 لا يوجد أو غير فعّال'),'pof'],['hist',xl('Failure and upset history','سجل الأعطال والاضطرابات'),xl('1 clean · 3 some leaks or upsets · 5 repeated failures','1 نظيف · 3 بعض التسرب · 5 أعطال متكررة'),'pof'],
  ['haz',xl('Fluid hazard','خطورة المائع'),xl('1 water · 2 hot water or steam · 3 combustible · 4 flammable · 5 toxic or very flammable','1 ماء · 2 ماء ساخن أو بخار · 3 قابل للاحتراق · 4 قابل للاشتعال · 5 سام أو شديد الاشتعال'),'cof'],['inv',xl('Release size','حجم التسرب'),xl('1 small · 3 medium · 5 very large inventory','1 صغير · 3 متوسط · 5 مخزون كبير جدًا'),'cof'],['loc',xl('People and exposure','الأشخاص والتعرّض'),xl('1 remote · 3 near operators · 5 occupied building or road','1 معزول · 3 قرب المشغّلين · 5 مبنى مأهول أو طريق'),'cof'],['cond',xl('Operating severity','شدة التشغيل'),xl('1 mild · 3 moderate · 5 high temperature or pressure','1 معتدل · 3 متوسط · 5 حرارة أو ضغط عاليان'),'cof'],['prod',xl('Production loss','فقد الإنتاج'),xl('1 none · 3 slowdown · 5 unit shutdown','1 لا شيء · 3 تباطؤ · 5 إيقاف وحدة'),'cof']];
@@ -4220,7 +4226,7 @@ function rbBar(c){const b=rbBand();const st=c.band==='high'?'act':c.band==='mh'|
 function rbPanel(){
   const W=RBW,c=rbCalc(W),F=rbFac();
   const grp=(g,tt)=>`<div class="card"><span class="tag">${tt}</span>${F.filter(f=>f[3]===g).map(f=>{const auto=f[0]==='margin'&&c.fromLife;return`<div style="margin:10px 0 2px"><b style="font-size:15px">${f[1]}</b>${auto?` <span class="stc new" style="margin:0 6px">${xl('from Inspection Life','من عمر المعدة')}: ${c.rl.toFixed(1)} ${xl('y','سنة')} → ${c.margin}</span>`:''}</div>${auto?'':`<div class="chips3">${[1,2,3,4,5].map(n=>chip3((+W[f[0]]||0)===n,`rbSet('${f[0]}',${n})`,String(n))).join('')}</div>`}<p class="dr" style="margin:4px 0 0">${f[2]}</p>`}).join('')}</div>`;
-  if(RBTAB==='inputs')return`<div class="card"><span class="tag">${xl('Equipment','المعدة')}</span>${xinp('rbt',W.tag,xl('Tag (same as in Inspection Life to link)','الرمز (نفسه في عمر المعدة للربط)'),"rbTxt('tag',this.value)")}<div style="height:8px"></div>${xinp('rbd',W.desc,xl('Description','الوصف'),"rbTxt('desc',this.value)")}<div style="height:8px"></div>${xinp('rbs',W.svc,xl('Service','الخدمة'),"rbTxt('svc',this.value)")}<span class="tag" style="margin-top:10px">${xl('Damage mechanism','آلية التلف')}</span>${xchips(ilMechL(),W.mech,"rbMech")}<span class="tag" style="margin-top:10px">${xl('Last inspection','آخر فحص')}</span><div class="pn"><input class="lkin" type="month" value="${esc(W.last)}" onchange="rbTxt('last',this.value)" style="font-size:16px"></div></div>${grp('pof',xl('Chance of failure','احتمال الفشل'))}${grp('cof',xl('Consequence of failure','أثر الفشل'))}`;
+  if(RBTAB==='inputs')return aiBanner('rbi')+`<div class="card"><span class="tag">${xl('AI suggestion','اقتراح الذكاء الاصطناعي')}</span><textarea class="ta" id="rbai" style="min-height:80px" placeholder="${xl('Describe the service: fluid, temperature, pressure, material, known issues','صف الخدمة: المائع والحرارة والضغط والمادة والمشاكل المعروفة')}">${esc(W.aiSvc||'')}</textarea><button class="btn g" onclick="rbAI()">${xl('Suggest mechanism and factors','اقترح آلية التلف والعوامل')}</button>${W.aiWhy?`<p class="sub" style="margin:8px 0 0"><b>${xl('AI rationale','مبررات الذكاء')}:</b> ${esc(W.aiWhy)}</p><p class="dr"><b>${xl('Verify on site','تحقق في الموقع')}:</b> ${esc(W.aiWatch||'')}</p>`:''}</div><div class="card"><span class="tag">${xl('Equipment','المعدة')}</span>${xinp('rbt',W.tag,xl('Tag (same as in Inspection Life to link)','الرمز (نفسه في عمر المعدة للربط)'),"rbTxt('tag',this.value)")}<div style="height:8px"></div>${xinp('rbd',W.desc,xl('Description','الوصف'),"rbTxt('desc',this.value)")}<div style="height:8px"></div>${xinp('rbs',W.svc,xl('Service','الخدمة'),"rbTxt('svc',this.value)")}<span class="tag" style="margin-top:10px">${xl('Damage mechanism','آلية التلف')}</span>${xchips(ilMechL(),W.mech,"rbMech")}<span class="tag" style="margin-top:10px">${xl('Last inspection','آخر فحص')}</span><div class="pn"><input class="lkin" type="month" value="${esc(W.last)}" onchange="rbTxt('last',this.value)" style="font-size:16px"></div></div>${grp('pof',xl('Chance of failure','احتمال الفشل'))}${grp('cof',xl('Consequence of failure','أثر الفشل'))}`;
   const b=rbBand(),others=rbItems(),me=others.find(x=>x.id===RBID),all=me?others:others.concat([Object.assign({id:'__cur',n:others.length+1},c)]);
   if(RBTAB==='risk')return`<div class="card">${rbMatrix(all,me?RBID:'__cur')}</div><div class="stats s3"><div class="st"><span class="tag">${xl('Chance','الاحتمال')}</span><b>${c.pof}</b><small>${c.pofx.toFixed(1)}</small></div><div class="st"><span class="tag">${xl('Consequence','الأثر')}</span><b>${c.cof}</b><small>${c.cofx.toFixed(1)}</small></div><div class="st hl"><span class="tag">${xl('Risk','المخاطر')}</span><b>${c.risk}</b><small>${b[c.band]}</small></div></div>
 <div class="card"><span class="tag">${xl('What lowers the risk most','ما يخفض المخاطر أكثر')}</span><p class="sub" style="margin:0">${c.best.drop>0?(c.best.k==='eff'?xl(`Close the inspection knowledge gap (better coverage or a better method): risk ${c.risk} → ${c.best.to}.`,`سدّ فجوة معرفة الحالة (تغطية أفضل أو طريقة أفضل): المخاطر ${c.risk} ← ${c.best.to}.`):xl(`Reduce the damage susceptibility (chemistry, injection, coating, operating limits): risk ${c.risk} → ${c.best.to}.`,`خفّض قابلية التلف (الكيمياء أو الحقن أو الطلاء أو حدود التشغيل): المخاطر ${c.risk} ← ${c.best.to}.`)):xl('No single change lowers the chance of failure by a full level. Look at the consequence side or a repair.','لا يوجد تغيير واحد يخفض احتمال الفشل مستوى كاملًا. انظر إلى جانب الأثر أو الإصلاح.')}</p></div>
@@ -4290,12 +4296,12 @@ function rcSave(){
 }
 async function rcAI(){
   if(!AIon()){toast(xl('Suggesting failure modes needs the AI. Turn it on in Settings.','اقتراح أنماط الفشل يحتاج الذكاء الاصطناعي. فعّله من الإعدادات.'));return}
-  toast(xl('Asking the AI...','نسأل الذكاء الاصطناعي...'));
+  toast(xl('Asking the AI...','نسأل الذكاء الاصطناعي...'));const t0=performance.now();
   try{
     const r=await SAMPLE.json(`You are a reliability engineer in a refinery or petrochemical plant. For this equipment, list 6 realistic failure modes for an RCM study. Equipment: ${RCW.tag||'unknown'}. Function: ${RCW.fn||'not stated'}. Write all text in ${t('aiLang')}. Return JSON only: {"rows":[{"fm":"","eff":"","ev":true,"cons":"saf|ops|non","warn":"early warning sign or empty","pf":0,"age":false,"life":0,"mtbf":0}]}. ev=false means the failure is hidden in normal operation (a protective device). pf is the days between the first warning and failure (0 if none). life is the typical wear-out age in months (0 if not age-related). mtbf is years, only for hidden failures. These are suggestions for an engineer to review.`,{cache:false,modelTier:'default'});
     const rows=(r&&r.rows||[]).slice(0,8).map(x=>({fm:String(x.fm||'').slice(0,160),eff:String(x.eff||'').slice(0,200),ev:x.ev!==false,cons:['saf','ops','non'].includes(x.cons)?x.cons:'ops',warn:String(x.warn||'').slice(0,160),pf:x.pf>0?x.pf:'',age:!!x.age,life:x.life>0?x.life:'',mtbf:x.mtbf>0?x.mtbf:''}));
     if(!rows.length)throw new Error('empty');
-    if(RCW.rows.length===1&&!RCW.rows[0].fm.trim())RCW.rows=[];RCW.rows=RCW.rows.concat(rows).slice(0,20);RCOPEN=-1;view(false);toast(xl('Suggestions added. Review every row.','أُضيفت اقتراحات. راجع كل صف.'));
+    if(RCW.rows.length===1&&!RCW.rows[0].fm.trim())RCW.rows=[];RCW.rows=RCW.rows.concat(rows).slice(0,20);aiTrack('rcm',xl('RCM failure modes','أنماط فشل RCM'),rows.length,performance.now()-t0,'fm');RCOPEN=-1;view(false);toast(xl('Suggestions added. Review every row.','أُضيفت اقتراحات. راجع كل صف.'));
   }catch(e){toast(xl('The AI could not suggest failure modes.','تعذّر على الذكاء الاصطناعي اقتراح أنماط الفشل.'))}
 }
 async function rcCsv(){
@@ -4319,7 +4325,7 @@ function vRcm(){
   if(RCV==='bench'){
     const W=RCW,S=rcSt(),ds=W.rows.map(rcDecide),sc=rcScore(W),red=ds.filter(d=>d.flag).length;
     let body='';
-    if(RCTAB==='sheet')body=`<div class="card"><span class="tag">${xl('Equipment and function','المعدة والوظيفة')}</span>${xinp('rctg',W.tag,xl('Tag, e.g. P-2301A','الرمز مثل P-2301A'),"RCW.tag=this.value")}<div style="height:8px"></div><textarea class="ta" id="rcfn" style="min-height:70px" placeholder="${xl('What must it do, and how well?','ما الذي يجب أن تفعله وبأي مستوى؟')}" oninput="RCW.fn=this.value">${esc(W.fn)}</textarea></div>${W.rows.map(rcRow).join('')}<div class="act2"><button class="btn l" onclick="rcAdd()">${xl('+ Add failure mode','+ أضف نمط فشل')}</button><button class="btn l" onclick="rcAI()">${xl('Suggest with AI','اقترح بالذكاء الاصطناعي')}</button></div>`;
+    if(RCTAB==='sheet')body=aiBanner('rcm')+`<div class="card"><span class="tag">${xl('Equipment and function','المعدة والوظيفة')}</span>${xinp('rctg',W.tag,xl('Tag, e.g. P-2301A','الرمز مثل P-2301A'),"RCW.tag=this.value")}<div style="height:8px"></div><textarea class="ta" id="rcfn" style="min-height:70px" placeholder="${xl('What must it do, and how well?','ما الذي يجب أن تفعله وبأي مستوى؟')}" oninput="RCW.fn=this.value">${esc(W.fn)}</textarea></div>${W.rows.map(rcRow).join('')}<div class="act2"><button class="btn l" onclick="rcAdd()">${xl('+ Add failure mode','+ أضف نمط فشل')}</button><button class="btn l" onclick="rcAI()">${xl('Suggest with AI','اقترح بالذكاء الاصطناعي')}</button></div>`;
     else if(RCTAB==='tasks'){const g={};ds.forEach((d,i)=>{(g[d.k]=g[d.k]||[]).push({d,r:W.rows[i],i})});
       body=['rd','cb','ff','sr','rtf','none'].filter(k=>g[k]).map(k=>`<div class="card"><span class="tag" style="background:${S[k][1]}">${S[k][0]} · ${g[k].length}</span>${g[k].map(x=>`<div style="margin:10px 0 0;padding-top:8px;border-top:1px dashed var(--line)"><b>${esc(x.r.fm)}</b>${x.d.iv&&x.d.iv!=='—'?` <span class="stc working" style="margin:0 6px">${xl('every','كل')} ${x.d.iv}</span>`:''}<p class="sub" style="margin:4px 0 0">${esc(x.d.task||'')}</p><p class="dr" style="margin:2px 0 0">${esc(x.d.why||'')}</p></div>`).join('')}</div>`).join('')||`<div class="card">${xl('Add failure modes in the worksheet.','أضف أنماط الفشل في ورقة العمل.')}</div>`}
     else body=`<div class="card"><p class="sub" style="margin:0 0 8px">${xl('Download the worksheet and the task list as a CSV file. Open it in Excel and load it into your maintenance system after an engineer reviews it.','نزّل ورقة العمل وقائمة المهام كملف CSV. افتحه في Excel وحمّله في نظام الصيانة بعد مراجعة مهندس.')}</p><button class="btn g" onclick="rcCsv()">${xl('Download CSV','نزّل CSV')}</button><button class="btn l" onclick="if(!RCW.tag.trim()){toast(xl('Enter the tag first.','أدخل الرمز أولًا.'))}else{rcSave();smOpenTag(RCW.tag)}">${xl('Send the tasks to Maintenance Strategy','أرسل المهام إلى استراتيجية الصيانة')}</button></div><p class="dr">${xl('Simplified RCM decision logic: hidden failures get a failure-finding test; evident failures with an early warning get a condition check at half the P-F interval; age-related wear gets a scheduled task at 80% of life; a safety consequence with no effective task must be redesigned; anything else may run to failure. Training logic: the engineer decides.','منطق قرار RCM مبسّط: الفشل الخفي له اختبار كشف فشل؛ الفشل الظاهر ذو الإنذار المبكر له فحص عند نصف فترة P-F؛ البلى المرتبط بالعمر له مهمة مجدولة عند 80% من العمر؛ والأثر على السلامة دون مهمة فعّالة يجب إعادة تصميمه؛ وما عدا ذلك قد يعمل حتى الفشل. منطق تدريبي: والقرار للمهندس.')}</p>`;
@@ -4501,7 +4507,7 @@ async function ilReadAI(){
   const rep=(($('#ilrep')||{}).value||'').trim();
   if(rep.length<40){toast(xl('Paste the inspection report text first.','الصق نص تقرير الفحص أولًا.'));return}
   if(!AIon()){toast(xl('Reading a report needs the AI. Turn it on in Settings.','قراءة التقرير تحتاج الذكاء الاصطناعي. فعّله من الإعدادات.'));return}
-  toast(xl('Reading the report...','نقرأ التقرير...'));
+  toast(xl('Reading the report...','نقرأ التقرير...'));const t0=performance.now();
   try{
     const r=await SAMPLE.json(`Extract thickness measurement data from this inspection report. Return JSON only: {"tag":"","comp":"","nominal":null,"tmin":null,"readings":[{"d":"YYYY-MM","t":0,"quote":""}]}. Use only values that are written in the report, null when not stated. Every quote must be copied word for word from the report.\n\nREPORT:\n"""\n${rep.slice(0,30000)}\n"""`,{cache:false,modelTier:'default'});
     const rd=(r&&r.readings||[]).filter(x=>/^\d{4}-\d{2}$/.test(x.d||'')&&isFinite(parseFloat(x.t))).slice(0,10);
@@ -4509,7 +4515,7 @@ async function ilReadAI(){
     const ok=rd.filter(x=>x.quote&&qOK(x.quote,rep)).length;
     ILW.readings=rd.map(x=>({d:x.d,t:parseFloat(x.t)}));if(r.tag&&!ILW.tag)ILW.tag=String(r.tag).slice(0,60);if(r.comp&&!ILW.comp)ILW.comp=String(r.comp).slice(0,100);
     if(isFinite(parseFloat(r.nominal))&&!ILW.nominal)ILW.nominal=parseFloat(r.nominal);if(isFinite(parseFloat(r.tmin))&&!ILW.tmin)ILW.tmin=parseFloat(r.tmin);
-    ILTAB='clock';view(false);toast(xl(`${rd.length} readings filled, ${ok} verified in the report. Check them.`,`مُلئت ${rd.length} قراءات، تحقّق من ${ok} منها في التقرير. راجعها.`));
+    aiTrack('life',xl('Inspection report reading','قراءة تقرير فحص'),rd.length,performance.now()-t0,'read');ILTAB='clock';view(false);toast(xl(`${rd.length} readings filled, ${ok} verified in the report. Check them.`,`مُلئت ${rd.length} قراءات، تحقّق من ${ok} منها في التقرير. راجعها.`));
   }catch(e){toast(xl('The AI could not read thickness data from this text.','تعذّر على الذكاء الاصطناعي قراءة بيانات السماكة من هذا النص.'))}
 }
 
@@ -4526,6 +4532,58 @@ function renderNav(){
 }
 window.addEventListener('scroll',()=>document.body.classList.toggle('scrolled',window.scrollY>6),{passive:true});
 Object.keys(FAM).forEach(k=>{FAM[k].p=({integ:['#FFA24D','#F2711C','#C2410C'],rel:['#9A9BFF','#6366F1','#4338CA'],strat:['#4FD6E8','#0AA5C9','#0B6E8A']})[k]});
+
+/* ---------------- AI impact: human effort versus AI work ---------------- */
+const AILK='air_ail',AIMK='air_aim';
+let AIL=[],LASTAI=null;try{AIL=JSON.parse(localStorage.getItem(AILK)||'[]')}catch(e){}
+const AIM0=()=>({base:5,read:1.5,fm:4,mech:12,find:3,rev:0.5});
+let AIM=Object.assign(AIM0(),(()=>{try{return JSON.parse(localStorage.getItem(AIMK)||'{}')}catch(e){return{}}})());
+const aiSave=()=>{try{localStorage.setItem(AILK,JSON.stringify(AIL));localStorage.setItem(AIMK,JSON.stringify(AIM))}catch(e){}};
+const aiCalc=e=>{const ai=e.ms/60000,rev=e.items*AIM.rev,manual=AIM.base+e.items*(AIM[e.kind]||3);return{ai,rev,manual,net:manual-ai-rev,aiSec:e.ms/1000}};
+function aiTrack(tool,what,items,ms,kind){const e={t:Date.now(),tool,what,items:Math.max(1,items),ms:Math.max(500,ms),kind};AIL.push(e);if(AIL.length>200)AIL.shift();LASTAI=e;aiSave();return e}
+const aiCount=r=>{try{const c=r.causes||{};return(r.timeline||[]).length+(c.immediate||[]).length+(c.contributing||[]).length+(c.root||[]).length+(r.barriers||[]).length+(r.permit_handover||[]).length+(r.actions||[]).length}catch(e){return 1}};
+const aiMinTx=m=>m<1?`${Math.max(1,Math.round(m*60))} ${xl('s','ث')}`:m<90?`${Math.round(m)} ${xl('min','د')}`:`${Math.floor(m/60)} ${xl('h','س')} ${Math.round(m%60)} ${xl('min','د')}`;
+function aiBanner(tool){
+  const e=LASTAI;if(!e||e.tool!==tool||Date.now()-e.t>20*60000)return'';
+  const c=aiCalc(e),aiW=Math.max(2,Math.min(100,100*(c.ai+c.rev)/Math.max(c.manual,0.01)));
+  return`<div class="aib"><div class="aih"><b>${xl('AI draft ready: review every item','مسودة الذكاء الاصطناعي جاهزة: راجع كل بند')}</b><button class="link" style="margin:0" onclick="openImpact()">${xl('Details','التفاصيل')}</button></div>
+<div class="aibar"><span>${xl('By hand (estimate)','يدويًا (تقدير)')} ≈ ${aiMinTx(c.manual)}</span><i class="h" style="width:100%"></i></div>
+<div class="aibar"><span>${xl('AI','الذكاء الاصطناعي')} ${aiMinTx(c.ai)} + ${xl('your review','مراجعتك')} ≈ ${aiMinTx(c.rev)}</span><i class="a" style="width:${aiW.toFixed(1)}%"></i></div>
+<p class="dr" style="margin:6px 0 0">${xl('Estimated time saved','الوقت الموفَّر تقديريًا')}: <b>${aiMinTx(Math.max(0,c.net))}</b> · ${e.items} ${xl('items','بنود')}. ${xl('The AI proposes. You decide.','الذكاء الاصطناعي يقترح. وأنت تقرر.')}</p></div>`;
+}
+function openImpact(){if(V!=='impact')SETPREV=V;nav('impact')}
+function aiAsm(k,v){const n=parseFloat(v);if(isFinite(n)&&n>=0){AIM[k]=n;aiSave();const e=$('#aitot');if(e)e.innerHTML=aiTotHtml()}}
+function aiReset(){AIL=[];LASTAI=null;aiSave();view(false)}
+function aiTotHtml(){
+  const T0=AIL.reduce((a,e)=>{const c=aiCalc(e);a.n++;a.items+=e.items;a.ai+=c.ai;a.rev+=c.rev;a.man+=c.manual;a.net+=c.net;return a},{n:0,items:0,ai:0,rev:0,man:0,net:0});
+  const pct=T0.man>0?Math.max(0,Math.round(100*T0.net/T0.man)):0;
+  return`<div class="stats s3"><div class="st"><span class="tag">${xl('By hand','يدويًا')}</span><b style="font-size:24px">${aiMinTx(T0.man)}</b><small>${xl('estimate','تقدير')}</small></div><div class="st"><span class="tag">${xl('AI + review','الذكاء + المراجعة')}</span><b style="font-size:24px">${aiMinTx(T0.ai+T0.rev)}</b><small>${T0.n} ${xl('actions','عمليات')}</small></div><div class="st hl"><span class="tag">${xl('Saved','الموفَّر')}</span><b style="font-size:24px">${aiMinTx(Math.max(0,T0.net))}</b><small>${pct}%</small></div></div>`;
+}
+function vImpact(){
+  const tl={life:xl('Inspection Life','عمر المعدة'),rbi:xl('RBI','RBI'),rcm:xl('RCM','RCM'),inc:xl('Failure analysis','تحليل الأعطال')};
+  const rows=AIL.slice().reverse().slice(0,12).map(e=>{const c=aiCalc(e);return`<div class="card" style="padding:10px 14px"><b>${esc(e.what)}</b> <span class="stc new" style="margin:0 6px">${tl[e.tool]||e.tool}</span><p class="dr" style="margin:4px 0 0">${e.items} ${xl('items','بنود')} · ${xl('AI','الذكاء')} ${c.aiSec<90?Math.round(c.aiSec)+' '+xl('s','ث'):aiMinTx(c.ai)} · ${xl('by hand ≈','يدويًا ≈')} ${aiMinTx(c.manual)} · ${xl('saved ≈','موفَّر ≈')} ${aiMinTx(Math.max(0,c.net))}</p></div>`}).join('');
+  const st=SAMPLE?(AIPREF?xl('The AI is on.','الذكاء الاصطناعي يعمل.'):xl('The AI is off. Tap the AI pill at the top to turn it on.','الذكاء الاصطناعي متوقف. المس شارة AI في الأعلى لتشغيله.')):xl('The AI is not available in this view. Open the app from claude.ai and allow AI when asked.','الذكاء الاصطناعي غير متاح في هذه الشاشة. افتح التطبيق من claude.ai واسمح بالذكاء الاصطناعي عند السؤال.');
+  const asm=[['base',xl('Fixed minutes per task (find, read, set up)','دقائق ثابتة لكل مهمة (البحث والقراءة والتجهيز)')],['read',xl('Minutes per thickness reading','دقائق لكل قراءة سماكة')],['fm',xl('Minutes per failure mode','دقائق لكل نمط فشل')],['mech',xl('Minutes per RBI factor set','دقائق لكل مجموعة عوامل RBI')],['find',xl('Minutes per report finding','دقائق لكل بند من تقرير')],['rev',xl('Review minutes per AI item','دقائق مراجعة لكل بند من الذكاء')]];
+  return`<p class="sub">${xl('A fair comparison: the time an engineer would spend by hand, against the AI time plus the time you spend reviewing. The by-hand times are estimates you can change.','مقارنة عادلة: الوقت الذي يقضيه المهندس يدويًا مقابل وقت الذكاء الاصطناعي مع وقت مراجعتك. أوقات اليدوي تقديرات يمكنك تغييرها.')} ${st}</p>
+<div id="aitot">${aiTotHtml()}</div>
+<div class="rh"><h2>${xl('Latest AI actions','آخر عمليات الذكاء')}</h2></div>${rows||`<div class="card">${xl('Nothing yet. Try: Inspection Life > Data > Fill the form from the report; RCM Studio > Suggest with AI; RBI > AI suggestion; Failure analysis on your own report.','لا شيء بعد. جرّب: عمر المعدة > البيانات > املأ النموذج من التقرير؛ استوديو RCM > اقترح بالذكاء الاصطناعي؛ RBI > اقتراح الذكاء الاصطناعي؛ وتحليل الأعطال على تقريرك.')}</div>`}
+<div class="card"><span class="tag">${xl('By-hand assumptions (minutes)','افتراضات اليدوي (بالدقائق)')}</span>${asm.map(([k,l])=>`<div style="margin:8px 0 0"><small class="dr">${l}</small>${xinp('aim'+k,AIM[k],'',`aiAsm('${k}',this.value)`,'number')}</div>`).join('')}<p class="dr">${xl('Estimates, not measurements. The AI time is measured. Adjust the minutes to match how your team works.','تقديرات لا قياسات. أما وقت الذكاء الاصطناعي فمقيس. عدّل الدقائق لتطابق عمل فريقك.')}</p><button class="btn l" onclick="aiReset()">${xl('Clear the AI log','امسح سجل الذكاء الاصطناعي')}</button></div>`;
+}
+/* ---------------- RBI: AI suggestion of mechanism and factors ---------------- */
+async function rbAI(){
+  const txt=(($('#rbai')||{}).value||'').trim();
+  if(txt.length<20){toast(xl('Describe the service: fluid, temperature, pressure, material.','صف الخدمة: المائع والحرارة والضغط والمادة.'));return}
+  if(!AIon()){toast(xl('The AI is off or not available. See AI impact for how to turn it on.','الذكاء الاصطناعي متوقف أو غير متاح. انظر «أثر الذكاء» لمعرفة التشغيل.'));return}
+  const t0=performance.now();toast(xl('Asking the AI...','نسأل الذكاء الاصطناعي...'));
+  try{
+    const r=await SAMPLE.json(`You are an inspection and corrosion engineer in a refinery or petrochemical plant. From the service description, propose the most likely damage mechanism and screening factors for a risk-based inspection. Write "why" and "watch" in ${t('aiLang')}. Return JSON only: {"mech":"gen|fac|cui|sulf|mic|oth","sus":1,"hist":1,"haz":1,"inv":1,"loc":1,"cond":1,"prod":1,"why":"2 or 3 sentences","watch":"what the engineer must verify on site"}. Scales (integers 1 to 5): sus damage susceptibility 1 none, 3 possible, 5 active or known; hist failure history 1 clean, 5 repeated failures; haz fluid hazard 1 water, 2 hot water or steam, 3 combustible, 4 flammable, 5 toxic or very flammable; inv release size 1 small, 5 very large; loc exposure 1 remote, 5 occupied building or road; cond operating severity 1 mild, 5 high temperature or pressure; prod production loss 1 none, 5 unit shutdown. mech: gen general corrosion, fac erosion or flow-accelerated, cui under insulation, sulf sulfidation or high temperature, mic cooling water or microbial, oth other. This is a screening suggestion that an engineer will review.\n\nSERVICE:\n"""\n${txt.slice(0,3000)}\n"""`,{cache:false,modelTier:'default'});
+    const n=v=>Math.max(1,Math.min(5,Math.round(+v)||3));
+    if(['gen','fac','cui','sulf','mic','oth'].includes(r.mech))RBW.mech=r.mech;
+    ['sus','hist','haz','inv','loc','cond','prod'].forEach(k=>{RBW[k]=n(r[k])});
+    RBW.aiWhy=String(r.why||'').slice(0,500);RBW.aiWatch=String(r.watch||'').slice(0,400);RBW.aiSvc=txt.slice(0,600);
+    aiTrack('rbi',xl('RBI screening factors','عوامل فرز RBI'),1,performance.now()-t0,'mech');RBTAB='inputs';view(false);toast(xl('Suggestion applied. Review every factor.','طُبّق الاقتراح. راجع كل عامل.'));
+  }catch(e){toast(xl('The AI could not suggest factors for this text.','تعذّر على الذكاء الاصطناعي اقتراح عوامل لهذا النص.'))}
+}
 
 async function bootApp(){
   applyFx();renderTop();renderNav();
