@@ -1,5 +1,5 @@
 /* Asset Integrity & Reliability Improvement Lab, offline support. VERSION is stamped automatically on every release. */
-/*VER*/const VERSION = 'air-20261005-0507';/*END VER*/
+/*VER*/const VERSION = 'air-20261005-1555';/*END VER*/
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
