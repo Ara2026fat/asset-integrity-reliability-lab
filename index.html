@@ -1,9 +1,17 @@
 <!DOCTYPE html>
+<!--
+  Asset Integrity & Reliability Improvement Lab
+  (c) 2026 Arafat Al-Rajhi. All Rights Reserved.
+  Unauthorized copying or redistribution is not permitted.
+-->
+
 <html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://api.anthropic.com; manifest-src 'self'; worker-src 'self'; media-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
+<meta name="author" content="Arafat Al-Rajhi">
+<meta name="copyright" content="(c) 2026 Arafat Al-Rajhi. All Rights Reserved.">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#14307F">
 <meta name="color-scheme" content="light">
@@ -905,6 +913,63 @@ body.gding .modal{z-index:60}
 .mpl{flex:1;min-width:0;font-weight:800;font-size:14px}.mpg{flex:none;font-size:11px;font-weight:800;color:var(--mut)}
 .mpring{flex:none;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#12A878 calc(var(--p)*1%),rgba(120,140,190,.22) 0)}.mpring b{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#fff;font-size:14px}
 body[data-tool=map]{--n1:#9CB4FF;--n1b:#9CB4FF;--n2:#3B5BDB;--n3:#1B2F8F;--em:#3B5BDB;--em2:#2F4BC0;--em3:#1B2F8F;--ag:rgba(59,91,219,.42)}
+
+.cpx{flex:none;margin:0;text-align:center;font-size:10px;font-weight:700;letter-spacing:.02em;color:var(--mut);opacity:.85;line-height:1.2}.cpx.cps{margin-top:10px;font-size:10.5px}
+@media (max-height:760px){.homew .cpx{display:none}}
+@media (min-width:900px){.homew .lnstage .cpx{display:none}}
+
+/* ===================== LAUNCHER: glass 3D icons ===================== */
+@keyframes glt{0%,80%{left:-60%}89%,100%{left:140%}}
+.bsh.dkb .bsp{background:linear-gradient(180deg,rgba(34,56,132,.98),rgba(8,19,60,.99));border:1px solid rgba(255,255,255,.2);box-shadow:0 -10px 40px -10px rgba(4,12,50,.9),inset 0 1.5px 0 rgba(255,255,255,.4);max-height:calc(100dvh - 16px);overflow:hidden}
+.bsh.dkb .bsh-h{background:rgba(255,255,255,.35)}.bsh.dkb h3{color:#FFD36A}.bsh.dkb .cpx{color:rgba(255,255,255,.6)}
+.bsh.dkb .qd{background:linear-gradient(180deg,#FFE9A8,#FFC24A);color:#4A2C00;box-shadow:0 10px 18px -10px rgba(255,194,74,.8),inset 0 1px 0 rgba(255,255,255,.8);margin-bottom:12px}
+.tg3{display:grid;grid-template-columns:repeat(3,1fr);gap:13px 8px;margin-top:4px;justify-items:center}
+.tl3{display:flex;flex-direction:column;align-items:center;gap:7px;border:0;background:none;padding:0;font:inherit;cursor:pointer;color:#fff;-webkit-tap-highlight-color:transparent}
+.t3d{position:relative;display:block;width:min(23vw,80px);aspect-ratio:1;border-radius:26px;overflow:hidden;background:linear-gradient(155deg,var(--c1),var(--c2) 52%,var(--c3));border:1px solid rgba(255,255,255,.5);box-shadow:0 16px 22px -10px var(--c3),inset 0 2px 0 rgba(255,255,255,.55),inset 0 -9px 14px rgba(0,0,0,.28);transition:transform .15s}
+.t3d::before{content:"";position:absolute;left:7%;right:7%;top:4%;height:46%;border-radius:22px 22px 60% 60%/22px 22px 42% 42%;background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,.06));pointer-events:none}
+.t3d::after{content:"";position:absolute;top:-20%;bottom:-20%;width:34%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-18deg);animation:glt 10s ease-in-out infinite;animation-delay:var(--d,0s);pointer-events:none}
+.t3d svg{position:absolute;left:23%;top:23%;width:54%;height:54%;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 3px 3px rgba(0,0,0,.45))}
+.t3d.dg svg{stroke:#4A2C00;filter:drop-shadow(0 1px 0 rgba(255,255,255,.6))}
+.tl3:active .t3d{transform:scale(.92)}
+.tl3 b{font-size:11.5px;font-weight:800;line-height:1.15;text-align:center;max-width:92px;color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.4)}
+@media (max-height:700px){.t3d{width:min(21vw,70px);border-radius:22px}.tg3{gap:9px 6px}.tl3 b{font-size:10.5px}}
+/* the All tools button */
+.alltools{position:relative;overflow:hidden;justify-content:center;gap:12px;padding:10px 16px;border-radius:20px;background:linear-gradient(180deg,#2A4396,#0E1C58)!important}
+.alltools .atl{font-weight:900;font-size:16px;letter-spacing:.01em;background:linear-gradient(180deg,#fff,#FFD36A);-webkit-background-clip:text;background-clip:text;color:transparent;flex:none}
+.alltools .gl{border-radius:20px}
+.alltools .gl::after{animation-duration:12s}
+.at3{display:grid;grid-template-columns:1fr 1fr;gap:3px;width:22px;height:22px;flex:none}.at3 i{display:block;border-radius:6px;box-shadow:inset 0 1.5px 0 rgba(255,255,255,.6),inset 0 -2px 3px rgba(0,0,0,.3),0 2px 3px rgba(0,0,0,.35);animation:none}.at3 i:nth-child(1){background:linear-gradient(155deg,#FFE9A8,#E8A92E)}.at3 i:nth-child(2){background:linear-gradient(155deg,#9EDBFF,#2F8FE8)}.at3 i:nth-child(3){background:linear-gradient(155deg,#7DEBC0,#10B981)}.at3 i:nth-child(4){background:linear-gradient(155deg,#FFA799,#E5484D)}
+/* the two buttons above it */
+.cta{align-items:center}.cta::before{content:"";position:absolute;left:0;right:0;top:0;height:46%;background:linear-gradient(180deg,rgba(255,255,255,.4),rgba(255,255,255,.04));border-radius:20px 20px 50% 50%/20px 20px 14px 14px;pointer-events:none}
+.cti{position:relative;flex:none;width:38px;height:38px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(155deg,rgba(255,255,255,.55),rgba(255,255,255,.12));border:1px solid rgba(255,255,255,.6);box-shadow:inset 0 2px 0 rgba(255,255,255,.7),inset 0 -4px 6px rgba(0,0,0,.18),0 6px 10px -4px rgba(0,0,0,.35);z-index:1}
+.cti svg{width:22px;height:22px;fill:none;stroke:#4A2C00;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 0 rgba(255,255,255,.7))}
+.cta.rcmc .cti svg{stroke:#fff;filter:drop-shadow(0 2px 2px rgba(0,0,0,.4))}.cti svg.rot{animation:gspin 16s linear infinite}
+@keyframes gspin{to{transform:rotate(360deg)}}
+.ctx,.ctn{position:relative;z-index:1}
+/* the plus button: 90% less motion */
+@keyframes hbs{0%,100%{transform:scale(1)}14%{transform:scale(1.015)}28%{transform:scale(1)}42%{transform:scale(1.009)}56%{transform:scale(1)}}
+@keyframes pings{0%{transform:scale(.995);opacity:.5}70%,100%{transform:scale(1.04);opacity:0}}
+.nv2.orb .ob{animation:hbs 2.4s ease-in-out infinite!important}
+.nv2.orb .ob::before{animation:pings 2.8s ease-out infinite!important;opacity:.55;inset:-6px}
+@media (prefers-reduced-motion:reduce){.cti svg.rot,.t3d::after{animation:none!important}}
+.lite .cti svg.rot,.lite .t3d::after{animation:none!important}
+
+/* ===================== ONE PALETTE: navy for structure, gold for action, cyan for information ===================== */
+.ctbd{position:absolute;top:-7px;inset-inline-end:-7px;min-width:19px;height:19px;padding:0 4px;border-radius:99px;background:#E5484D;color:#fff;font-style:normal;font-size:11px;font-weight:900;display:grid;place-items:center;box-shadow:0 0 0 2px #fff,0 4px 8px rgba(0,0,0,.35);animation:hb 1.7s ease-in-out infinite}.ctbd.nv{background:#14307F;animation:none}
+.cti{overflow:visible}.ctx b{font-size:15px;line-height:1.2}
+/* every tool shares one accent, so only the header name tells them apart */
+body[data-tool],body.hub{--n1:#6C8CFF!important;--n1b:#6C8CFF!important;--n2:#2F4BC0!important;--n3:#14307F!important;--em:#2F4BC0!important;--em2:#2640A8!important;--em3:#14307F!important;--ag:rgba(47,75,192,.4)!important}
+body[data-tool]::before{background:radial-gradient(520px 380px at 8% 2%,rgba(255,194,74,.22),transparent 70%),radial-gradient(560px 420px at 100% 26%,rgba(47,181,232,.2),transparent 70%),radial-gradient(520px 420px at 0% 100%,rgba(108,140,255,.18),transparent 70%)!important}
+/* the verdict lamps: dark glass with a status edge, instead of loud colour blocks */
+.verd,.verd.vh,.verd.vc,.verd.vo,#app .verd.pfl{background:linear-gradient(180deg,#22397F,#101E58)!important;color:#fff!important;border:1px solid rgba(255,255,255,.16)!important;border-inline-start:6px solid var(--st)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 12px 20px -14px rgba(4,12,50,.8)!important}
+.verd{--st:#2FB384}.verd.vh,#app .verd.pfl.vh{--st:#E5484D}.verd.vc,#app .verd.pfl.vc{--st:#F2A93B}.verd.vo,#app .verd.pfl.vo{--st:#2FB384}
+.verd b,.verd .lt{color:#fff!important}.verd small{color:rgba(255,255,255,.78)!important}
+.verd:not(.pfl) small{color:rgba(255,255,255,.8)!important}
+.link,.link b{color:var(--n3)!important;border-color:var(--n3)!important}
+/* home: the three gaps and the second button */
+.gp .gn,.gp:nth-child(2) .gn,.gp:nth-child(3) .gn{background:linear-gradient(155deg,#3552B8,#0F1F66)!important;color:#FFD36A!important;box-shadow:inset 0 2px 0 rgba(255,255,255,.4),inset 0 -4px 6px rgba(0,0,0,.35),0 8px 12px -6px rgba(15,31,102,.7)}
+.cta.rcmc{background:linear-gradient(180deg,#38C3F2,#0A82BD)!important;color:#fff!important;box-shadow:0 14px 22px -14px rgba(10,130,189,.9),inset 0 1.5px 0 rgba(255,255,255,.5)!important}
+.cta.rcmc .ctx small{color:rgba(255,255,255,.9)}
 </style>
 </head>
 <body>
@@ -947,6 +1012,7 @@ body[data-tool=map]{--n1:#9CB4FF;--n1b:#9CB4FF;--n2:#3B5BDB;--n3:#1B2F8F;--em:#3
 </script>
 
 <script>
+/* (c) 2026 Arafat Al-Rajhi. All Rights Reserved. */
 
 /* ---------- i18n ---------- */
 let L='en';try{L=localStorage.getItem('ib_lang')==='ar'?'ar':'en'}catch(e){}
@@ -1858,7 +1924,7 @@ function shareIdea(id){
 }
 
 /* ---------- version ---------- */
-/*BUILD*/const BUILD={version:"AIR 2.5 GitHub",id:"20261004-2151",date:"2026-10-04T21:51:18Z"};/*END BUILD*/
+/*BUILD*/const BUILD={version:"AIR 2.7 GitHub",id:"20261005-0507",date:"2026-10-05T05:07:39Z"};/*END BUILD*/
 const fmtBuild=()=>new Date(BUILD.date).toLocaleString(L==='ar'?'ar-u-ca-gregory-nu-latn':'en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
 function verCard(){
   return`<div class="card"><span class="tag">${t('verT')}</span><p style="margin:0 0 6px;font-size:17px;font-weight:800;color:var(--ink)">${t('verL')} ${BUILD.version}</p><p class="dr" style="margin-top:0">${t('relL')}: ${fmtBuild()}</p></div>`;
@@ -5042,7 +5108,7 @@ async function smSheet(){
   if(!W.spares.length){y+=34;tx('—',76,y,{s:22})}
   y=Hd-190;rr(40,y,Wd-80,110,24);c.fillStyle='#F3F6FF';c.fill();tx(`${xl('Owner','المسؤول')}: ${W.owner||'—'}`,70,y+46,{s:26,w:800});tx(`${xl('Next review','المراجعة القادمة')}: ${W.review?xfmt(W.review):'—'}`,70,y+88,{s:26,w:800});
   tx(`${xl('Hours per year','الساعات سنويًا')}: ${Math.round(r.before)} → ${Math.round(r.after)}`,Wd-70,y+66,{s:30,w:900,c:'#3B6FEF',a:'e'});
-  tx(t('brand')+' · '+xl('training values, an engineer decides','قيم تدريبية، والمهندس يقرر'),Wd/2,Hd-34,{s:20,w:700,c:'#5B6B8C',a:'c'});
+  tx(t('brand')+' · '+xl('training values, an engineer decides','قيم تدريبية، والمهندس يقرر'),Wd/2,Hd-62,{s:20,w:700,c:'#5B6B8C',a:'c'});tx(t('copy1'),Wd/2,Hd-30,{s:19,w:800,c:'#14307F',a:'c'});
   const blob=await new Promise(res=>cv.toBlob(res,'image/png'));showImg(blob,`${W.tag}\n${t('brand')}`,'strategy-sheet-'+(W.tag||'asset').replace(/[^A-Za-z0-9_-]/g,'_')+'.png');
 }
 function vStrat(){
@@ -5655,7 +5721,7 @@ let HMODE='learn';try{HMODE=localStorage.getItem('air_mode2')==='go'?'go':'learn
 function hmode(k){HMODE=k;try{localStorage.setItem('air_mode2',k)}catch(e){}view(false)}
 function vHomeLearn(){
   const tot=lnTotal(),mx=lnMax(),nxt=LSN().find(l=>lnStars(l.id)<2)||LSN()[0];
-  return`<div class="stage lnstage" style="--t1:#FFA24D;--t2:#E2641B;--t3:#9A3A0A"><div class="hero" key="learn"><div class="hscene">${hubScene('integ')}</div><div class="htxt"><b>${xl('Learn the logic, then apply it','تعلّم المنطق ثم طبّقه')}</b><span>${xl('Eight short lessons: a live example and a quick check','ثمانية دروس قصيرة: مثال حي وتحقّق سريع')}</span></div><div class="hchips"><i>${xl('Remaining life','العمر المتبقي')}</i><i>${xl('Risk','المخاطر')}</i><i>RCM</i></div></div><button class="cta" onclick="LNV='list';nav('learn','x');view(true)"><span class="ctx"><b>${xl('Start the learning path','ابدأ المسار التعليمي')}</b><small>${tot}/${mx} ${xl('checks passed','اختبارات ناجحة')}</small></span><span class="ctn"><b>★</b><small>${tot}</small></span></button><button class="cta lnc2" onclick="lnOpen('${nxt.id}')"><span class="ctx"><b>${xl('Next lesson','الدرس التالي')}</b><small>${nxt.n}</small></span></button></div>`;
+  return`<div class="stage lnstage" style="--t1:#3F63E6;--t2:#1F3FB0;--t3:#0A1A55"><div class="hero" key="learn"><div class="hscene">${hubScene('integ')}</div><div class="htxt"><b>${xl('Learn the logic, then apply it','تعلّم المنطق ثم طبّقه')}</b><span>${xl('Eight short lessons: a live example and a quick check','ثمانية دروس قصيرة: مثال حي وتحقّق سريع')}</span></div><div class="hchips"><i>${xl('Remaining life','العمر المتبقي')}</i><i>${xl('Risk','المخاطر')}</i><i>RCM</i></div></div><button class="cta" onclick="LNV='list';nav('learn','x');view(true)"><span class="ctx"><b>${xl('Start the learning path','ابدأ المسار التعليمي')}</b><small>${tot}/${mx} ${xl('checks passed','اختبارات ناجحة')}</small></span><span class="ctn"><b>★</b><small>${tot}</small></span></button><button class="cta lnc2" onclick="lnOpen('${nxt.id}')"><span class="ctx"><b>${xl('Next lesson','الدرس التالي')}</b><small>${nxt.n}</small></span></button><p class="cpx">${t('copy1')}</p></div>`;
 }
 Object.assign(TN,{learn:[["nav('home')",'n-home','navHub',()=>false],["nav('learn','x');LNV='list';view(true)",'n-bulb','navLib',()=>V==='learn'],["nav('learn','x');LNV='list';view(true)",'n-plus','navNew',()=>false]]});
 
@@ -5976,7 +6042,7 @@ async function apSheet(tag){
   [[xl('Prepared by','أعدّه'),0],[xl('Reviewed by','راجعه'),1],[xl('Date','التاريخ'),2]].forEach(([l,i])=>{const bx=60+30+i*((Wd-180)/3);tx(l,bx,sy+40,{s:20,w:800,c:'#5B6B8C'});c.strokeStyle='#9AA6C2';c.lineWidth=2;c.beginPath();const X0=rtl?Wd-bx-((Wd-180)/3-40):bx;c.moveTo(X0,sy+98);c.lineTo(X0+(Wd-180)/3-40,sy+98);c.stroke()});
   /* footer */
   tx(`${xl('Signals used','الإشارات المستخدمة')}: ${Object.entries(x.sig).filter(e=>e[1]).map(e=>({life:'Life',rcm:'RCM',rbi:'RBI',bad:xl('Failures','الأعطال'),iow:'IOW'})[e[0]]).join(' · ')||'—'}`,60,Hd-92,{s:20,w:700,c:'#3C4C7A'});
-  tx(`${t('brand')} · ${new Date().toISOString().slice(0,10)} · ${xl('training values, an engineer decides','قيم تدريبية، والمهندس يقرر')}`,Wd/2,Hd-48,{s:19,w:700,c:'#5B6B8C',a:'c'});
+  tx(`${t('brand')} · ${new Date().toISOString().slice(0,10)} · ${xl('training values, an engineer decides','قيم تدريبية، والمهندس يقرر')}`,Wd/2,Hd-58,{s:19,w:700,c:'#5B6B8C',a:'c'});tx(t('copy1'),Wd/2,Hd-26,{s:18,w:800,c:'#14307F',a:'c'});
   const blob=await new Promise(res=>cv.toBlob(res,'image/png'));showImg(blob,`${tag}\n${t('brand')}`,'asset-passport-'+tag.replace(/[^A-Za-z0-9_-]/g,'_')+'.png');
 }
 
@@ -6016,7 +6082,7 @@ function dkSheet(kind){
     const st=!SAMPLE?'no':AIPREF?'on':'off',tot=AIL.reduce((a,e)=>a+aiCalc(e).net,0);
     body=`<h3>${t('aiT')}</h3><div class="aih2"><div><b>${st==='no'?t('aiNo'):st==='on'?t('aiOn'):t('aiOff')}</b><small>${st==='no'?xl('Open the app from claude.ai, or add a key in Settings.','افتح التطبيق من claude.ai، أو أضف مفتاحًا في الإعدادات.'):st==='on'?xl('It reads, drafts and suggests. You decide.','يقرأ ويصيغ ويقترح. وأنت تقرر.'):xl('Demo mode with ready examples.','وضع تجريبي بأمثلة جاهزة.')}</small></div>${SAMPLE?`<button class="sw${AIPREF?' on':''}" onclick="toggleAI();dkSheet('ai')" aria-label="AI"><i></i></button>`:''}</div><div class="stats s3" style="margin:10px 0"><div class="st"><span class="tag">${xl('Actions','عمليات')}</span><b>${AIL.length}</b></div><div class="st hl"><span class="tag">${xl('Saved','الموفَّر')}</span><b style="font-size:20px">${aiMinTx(Math.max(0,tot))}</b></div></div><button class="btn g" onclick="dkClose();openImpact()">${xl('Open AI impact','افتح أثر الذكاء')}</button>${window.GH?`<button class="btn l" onclick="dkClose();ghOpenAI()">${xl('Open the AI version (claude.ai)','افتح نسخة الذكاء (claude.ai)')}</button><button class="btn l" onclick="dkClose();SETTAB='ai';openSettings()">${xl('API key','مفتاح API')}</button>`:''}`;
   }
-  m.innerHTML=`<div class="bso" onclick="dkClose()"></div><div class="bsp"><i class="bsh-h"></i>${body}</div>`;document.body.appendChild(m);requestAnimationFrame(()=>m.classList.add('in'));renderNav();
+  m.innerHTML=`<div class="bso" onclick="dkClose()"></div><div class="bsp"><i class="bsh-h"></i>${body}<p class="cpx cps">${t('copy1')}</p></div>`;document.body.appendChild(m);requestAnimationFrame(()=>m.classList.add('in'));renderNav();
 }
 const ALLT=()=>[['map',''],['cases','Case Library'],['weib','Weibull Lab'],['bad',''],['story',''],['tribal',''],['strat',''],['rbi',''],['inc',''],['learn','']];
 function dkTools(){return`<h3>${xl('All tools','كل الأدوات')}</h3><button class="qd" onclick="gdStart()">▶ ${xl('Guided demo: the whole story in twelve taps','العرض الموجّه: القصة كلها في اثنتي عشرة لمسة')}</button><div class="qg">${ALLT().map(([k])=>{const d=TL[k];return d?`<button class="qt" style="--c:${d.p[1]}" onclick="dkClose();${d.go}"><span><b style="display:block">${t(d.n)}</b><small class="dr" style="display:block;margin-top:2px">${t(d.d)}</small></span></button>`:''}).join('')}</div>`}
@@ -6182,8 +6248,8 @@ function vHome(){
   if(HMODE==='learn')return`<div class="homew">${sw}${vHomeLearn()}</div>`;
   return`<div class="homew">${sw}<div class="stage bfs"><div class="bf"><small>${xl('The challenge','التحدي')}</small><b onclick="dkSheet('brief')">${B.qs}</b><u onclick="dkSheet('brief')">${xl('Read the full brief','اقرأ نص المسار كاملًا')} ›</u><u class="tourlnk" onclick="gdStart()">▶ ${xl('Guided demo','العرض الموجّه')}</u><div class="bft">${B.track.map(x=>`<i>${x}</i>`).join('')}</div></div>
 <div class="gaps">${B.gaps.map(([n,g,a,js,tool])=>`<button class="gp" onclick="${js}"><span class="gn">${n}</span><span class="gx"><b>${g}</b><small>${a}</small></span><span class="gt">${tool}</span></button>`).join('')}</div>
-<div class="ctas"><button class="cta" onclick="${B.cta[2]}"><span class="ctx"><b>${B.cta[0]}</b><small>${B.cta[1]}</small></span>${P.list.length?`<span class="ctn"><b>${now}</b><small>${xl('now','الآن')}</small></span>`:''}</button><button class="cta rcmc" onclick="${B.rcm[2]}"><span class="ctx"><b>${B.rcm[0]}</b><small>${B.rcm[1]}</small></span>${rcN?`<span class="ctn"><b>${rcN}</b><small>${xl('studies','دراسات')}</small></span>`:''}</button></div>
-<button class="alltools" onclick="dkSheet('tools')"><span>${xl('All tools','كل الأدوات')}</span><i>${xl('Cases · Weibull · Bad actors · Failure story · Strategy · RBI','حالات · وايبل · الأعطال · قصة العطل · الاستراتيجية · RBI')}</i><b>›</b></button></div></div>`;
+<div class="ctas"><button class="cta" onclick="${B.cta[2]}"><span class="cti"><svg viewBox="0 0 24 24">${TI.target}</svg>${P.list.length?`<i class="ctbd">${now}</i>`:''}</span><span class="ctx"><b>${B.cta[0]}</b><small>${B.cta[1]}</small></span></button><button class="cta rcmc" onclick="${B.rcm[2]}"><span class="cti"><svg class="rot" viewBox="0 0 24 24">${TI.gear}</svg>${rcN?`<i class="ctbd nv">${rcN}</i>`:''}</span><span class="ctx"><b>${B.rcm[0]}</b><small>${B.rcm[1]}</small></span></button></div>
+<button class="alltools" onclick="dkSheet('tools')"><span class="at3"><i></i><i></i><i></i><i></i></span><span class="atl">${xl('All tools','كل الأدوات')}</span><i class="gl"></i></button><p class="cpx">${t('copy1')}</p></div></div>`;
 }
 /* about: the challenge and where each part is answered */
 (function(){const old=vSet;vSet=function(){const h=old();if(typeof SETTAB!=='undefined'&&SETTAB==='about'){const B=BRIEF(),card=`<div class="card sc"><span class="tag">${xl('The challenge','التحدي')}</span><p class="sub" style="margin:6px 0">${B.q}</p>${B.gaps.map(([n,g,a,js,tool])=>`<div class="srow"><div class="sx"><b>${n} · ${g}</b><small>${a} (${tool})</small></div></div>`).join('')}</div>`;return h.replace('<div class="tp" key="about">','<div class="tp" key="about">'+card)}return h}})();
@@ -6238,6 +6304,23 @@ function renderNav(){
   box.innerHTML=`<div class="dock2" data-i="${lensIdx}"><i class="gl"></i><i class="lens" style="transform:translateX(${(rtl?-1:1)*lensIdx*100}%);opacity:${show?1:0}"></i>${items.map(([k,lab,js,i])=>k==='plus'?`<button class="nv2 orb" onclick="dkOrb()" aria-label="${lab}"><span class="ob"><svg viewBox="0 0 24 24" aria-hidden="true">${DKI.plus}</svg></span><span class="nl">${lab}</span></button>`:`<button class="nv2${i===act?' on':''}" onclick="${js}" aria-label="${lab}"><span class="ni">${dkSvg(k)}${k==='ai'?`<i class="dtp ${AIon()?'on':''}"></i>`:''}</span><span class="nl">${lab}</span></button>`).join('')}</div>`;
 }
 (function(){const old=renderTop;renderTop=function(){old();const el=$('.top');if(el&&!el.querySelector('.gl'))el.insertAdjacentHTML('beforeend','<i class="gl"></i>')}})();
+
+/* ================= LAUNCHER: glass 3D tool icons, a clean All-tools button, creative CTAs ================= */
+const TI={map:'<circle cx="12" cy="12" r="2.6"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M6.7 7.3l3.6 3.4M17.3 7.3l-3.6 3.4M6.7 16.7l3.6-3.4M17.3 16.7l-3.6-3.4"/>',cases:'<rect x="4" y="8" width="13" height="12" rx="2"/><path d="M7 5h11a2 2 0 0 1 2 2v9M8 13h5M8 16h3"/>',weib:'<path d="M4 4v16h16"/><path d="M6.5 17c3-1 4-5 6-7s3.5-3 5-3"/><circle cx="9" cy="15" r="1"/><circle cx="13" cy="10.5" r="1"/><circle cx="17" cy="8" r="1"/>',bad:'<circle cx="12" cy="12" r="8.6"/><circle cx="12" cy="12" r="4.6"/><path d="M12 12l6-6"/><circle cx="16" cy="15.5" r="1.3"/>',story:'<path d="M3.5 12h17"/><circle cx="7" cy="12" r="2.1"/><circle cx="12" cy="12" r="2.1"/><circle cx="17" cy="12" r="2.1"/><path d="M7 8.2V6M12 15.8V18M17 8.2V6"/>',tribal:'<path d="M5 5.5h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-6l-4 3.2v-3.2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z"/><path d="M8 10h8M8 13h5"/>',strat:'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9zM8.6 13.4l2.2 2.2 4.4-4.6"/>',rbi:'<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9.3h16M4 14.7h16M9.3 4v16M14.7 4v16"/>',inc:'<path d="M12 3.8l9.2 16H2.8z"/><path d="M12 10v4.6M12 17.4v.3"/>',learn:'<path d="M9 18.2h6M10.2 21h3.6"/><path d="M12 3a6 6 0 0 0-3.7 10.7c.7.6 1.2 1.3 1.2 2.3h5c0-1 .5-1.7 1.2-2.3A6 6 0 0 0 12 3z"/>',lib:'<rect x="3.4" y="4" width="17.2" height="5" rx="1.7"/><path d="M5.4 9v9.2a1.8 1.8 0 0 0 1.8 1.8h9.6a1.8 1.8 0 0 0 1.8-1.8V9M9.6 13.2h4.8"/>',ai:'<path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/>',demo:'<circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z"/>',target:'<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1.2"/><path d="M13 11l6-6M16 5h3v3"/>',gear:'<circle cx="12" cy="12" r="3.2"/><circle cx="12" cy="12" r="6.6"/><path d="M12 2.8v3M12 18.2v3M2.8 12h3M18.2 12h3M5.5 5.5l2 2M16.5 16.5l2 2M18.5 5.5l-2 2M7.5 16.5l-2 2"/>',hour:'<path d="M7 3h10M7 21h10"/><path d="M8 3c0 5 4 6 4 9s-4 4-4 9M16 3c0 5-4 6-4 9s4 4 4 9"/>'};
+Object.assign(TI,{rcm:TI.gear,life:TI.hour,prio:TI.target});
+const TC3={map:['#9DB8FF','#3B5BDB','#1B2F8F'],cases:['#FFC29C','#F2711C','#8A3A07'],weib:['#9EDBFF','#2F8FE8','#14478F'],bad:['#7DEBC0','#10B981','#065F46'],story:['#CDB2FF','#7C3AED','#3B1B8F'],tribal:['#F8D894','#D69E2E','#7A5410'],strat:['#86E8E8','#0E9AA7','#0B4F5C'],rbi:['#FFA799','#E5484D','#8B1D22'],inc:['#FFB4DC','#DB2D86','#7A1450'],learn:['#FFF0B8','#FFC24A','#B77800'],lib:['#8FA8FF','#2A47B8','#0F1F66'],ai:['#A6F2FF','#2FB5E8','#0B6F99'],rcm:['#C4B0FF','#6D4EE0','#2F1D8A'],life:['#FFC594','#E2641B','#7A2E08'],prio:['#FFE08A','#F0A91E','#8A5A06'],demo:['#FFF0B8','#FFC24A','#B77800']};
+function tile3d(k,label,js,i){const c=TC3[k]||TC3.map,dark=k==='learn'||k==='demo';return`<button class="tl3" style="--c1:${c[0]};--c2:${c[1]};--c3:${c[2]};--d:${((i||0)*0.83%9).toFixed(2)}s" onclick="dkClose();${js}"><span class="t3d${dark?' dg':''}"><svg viewBox="0 0 24 24" aria-hidden="true">${TI[k]||''}</svg></span><b>${label}</b></button>`}
+function dkTools(){
+  const A=[['map',xl('Platform Map','خريطة المنصّة'),"nav('map')"],['cases',xl('Case Library','مكتبة الحالات'),"nav('cases')"],['weib',xl('Weibull Lab','مختبر وايبل'),"nav('weib')"],['bad',xl('Bad Actors','كثيرة الأعطال'),"nav('bad')"],['story',xl('Failure Story','قصة العطل'),"nav('story')"],['tribal',xl('Old-Timer','صاحب الخبرة'),"nav('tribal')"],['strat',xl('Strategy','الاستراتيجية'),"nav('strat')"],['rbi','RBI',"nav('rbi')"],['inc',xl('RCA','الأسباب الجذرية'),"nav('inc')"],['learn',xl('Learn','تعلّم'),"nav('learn')"],['lib',xl('Library','المكتبة'),"openLib()"],['ai',xl('AI impact','أثر الذكاء'),"openImpact()"]];
+  return`<h3>${xl('All tools','كل الأدوات')}</h3><button class="qd" onclick="dkClose();gdStart()">▶ ${xl('Guided demo','العرض الموجّه')}</button><div class="tg3">${A.map(([k,l,js],i)=>tile3d(k,l,js,i)).join('')}</div>`;
+}
+(function(){const old=dkSheet;dkSheet=function(kind){old(kind);const m=document.querySelector('.bsh');if(m&&(kind==='tools'||kind==='qs'))m.classList.add('dkb')}})();
+/* the quick-start sheet uses the same glass tiles */
+(function(){const old=dkSheet;dkSheet=function(kind){
+  if(kind!=='qs')return old(kind);
+  old(kind);const p=document.querySelector('.bsp');if(!p)return;
+  const Q=[['rcm','RCM',"nav('rcm','x');rcOpenNew()"],['life',xl('Read a report','اقرأ تقريرًا'),"nav('life','x');ilOpenNew();ILTAB='data';view(true)"],['prio','IOW',"nav('prio','x');prIowNew(false)"],['bad',xl('Work orders','أوامر العمل'),"nav('bad','x');bdOpenNew(false)"],['weib','Weibull',"nav('weib')"],['story',xl('Failure story','قصة عطل'),"nav('story')"],['tribal',xl('Interview','مقابلة'),"nav('tribal','x');TOV='list';view(true)"],['strat',xl('Strategy','استراتيجية'),"nav('strat','x');smOpenNew()"],['learn',xl('Learn','تعلّم'),"nav('learn','x');LNV='list';view(true)"]];
+  p.innerHTML=`<i class="bsh-h"></i><h3>${t('qsT')}</h3><button class="qd" onclick="dkClose();seedDemo(true)">${t('qsDemo')}</button><div class="tg3">${Q.map(([k,l,js],i)=>tile3d(k,l,js,i)).join('')}</div><p class="cpx cps">${t('copy1')}</p>`}})();
 
 async function bootApp(){
   applyFx();renderTop();renderNav();
@@ -6315,7 +6398,7 @@ function showLock(mode){
     if(LMODE==='setpin1')body+=`<button class="link" id="lk2">${t(FROMSET?'cancel':'skipPin')}</button>`;
   }
   LMSG='';
-  d.innerHTML=`<div class="box">${mark}<h1>${t('brand')}</h1><p class="sub" style="margin:4px 0 18px">${hint}</p>${body}</div>`;
+  d.innerHTML=`<div class="box">${mark}<h1>${t('brand')}</h1><p class="sub" style="margin:4px 0 18px">${hint}</p>${body}<p style="margin:18px 0 0;font-size:11px;font-weight:700;opacity:.7;text-align:center">${t('copy1')}</p></div>`;
   document.body.appendChild(d);
   if(!ok)return;
   const p=$('#lkp');p.focus();
