@@ -1068,6 +1068,16 @@ body[data-tool] #app>.pgroot,#app>.pgroot{overflow:visible}
 @keyframes onext2{0%,100%{transform:scale(1) rotate(0);box-shadow:inset 0 3px 0 rgba(255,255,255,.55),0 0 0 0 rgba(253,230,138,.9),0 12px 20px -8px rgba(0,0,0,.65);filter:brightness(1)}
  12%{transform:scale(1.1) rotate(-4deg)}24%{transform:scale(1.1) rotate(4deg)}36%{transform:scale(1.08) rotate(-2deg)}48%{transform:scale(1.06) rotate(0);box-shadow:inset 0 3px 0 rgba(255,255,255,.55),0 0 0 calc(18px*var(--ou,1)) rgba(253,230,138,0),0 12px 20px -8px rgba(0,0,0,.65);filter:brightness(1.25)}}
 @media (prefers-reduced-motion:reduce){.opl.next .op{animation:none;box-shadow:inset 0 3px 0 rgba(255,255,255,.55),0 0 0 6px rgba(253,230,138,.7),0 12px 20px -8px rgba(0,0,0,.65)}}
+
+/* calm path (requested): no gold line between planets, a very faint dotted ring, only the next planet moves, softly */
+.oh-trail{border:1px dotted rgba(255,255,255,.13)!important}
+.oh-trail::after{display:none!important}
+.opl.seen .op{border-color:rgba(255,255,255,.5)!important;box-shadow:inset 0 3px 0 rgba(255,255,255,.45),0 10px 18px -8px rgba(0,0,0,.55)!important}
+.opl.next .op{animation:onext3 3.2s ease-in-out infinite!important;border-color:rgba(253,230,138,.9)!important;transform:none!important}
+@keyframes onext3{0%,100%{transform:scale(1) rotate(0);box-shadow:inset 0 3px 0 rgba(255,255,255,.5),0 0 0 0 rgba(253,230,138,.5),0 10px 18px -8px rgba(0,0,0,.6)}
+ 18%{transform:scale(1.05) rotate(-2.5deg)}36%{transform:scale(1.05) rotate(2.5deg)}54%{transform:scale(1.03) rotate(0);box-shadow:inset 0 3px 0 rgba(255,255,255,.5),0 0 0 calc(11px*var(--ou,1)) rgba(253,230,138,0),0 10px 18px -8px rgba(0,0,0,.6)}}
+@media (prefers-reduced-motion:reduce){.opl.next .op{animation:none!important;box-shadow:inset 0 3px 0 rgba(255,255,255,.5),0 0 0 4px rgba(253,230,138,.55),0 10px 18px -8px rgba(0,0,0,.6)!important}}
+.och-inst{margin:calc(12px*var(--ou,1)) auto calc(14px*var(--ou,1));background:transparent;border:1.5px solid rgba(255,255,255,.45);color:#fff;border-radius:20px;padding:8px 18px;font:700 calc(13px*var(--ou,1)) 'Plus Jakarta Sans',sans-serif}
 </style>
 </head>
 <body>
@@ -1999,7 +2009,7 @@ async function openReport(d){
   const cv=await drawCard(d),blob=await new Promise(r=>cv.toBlob(r,'image/png')),url=URL.createObjectURL(blob);
   const txt=reportSummary(d)+'\n\n'+t('brand')+' · IQI™ · IIC™';
   const m=document.createElement('div');m.className='modal';
-  m.innerHTML=`<div class="card" style="max-width:460px;max-height:94vh;overflow:auto"><img src="${url}" alt="" style="width:100%;display:block;border-radius:14px;border:1.5px solid var(--line)"><button class="btn g" id="rsh">${t('waBtn')}</button><button class="btn l" id="rdl">${t('dl')}</button><button class="link" id="rcl" style="width:100%;text-align:center">${t('close')}</button></div>`;
+  m.innerHTML=`<div class="card" style="max-width:460px;max-height:94vh;overflow:auto">\x3cimg src="${url}" alt="" style="width:100%;display:block;border-radius:14px;border:1.5px solid var(--line)"><button class="btn g" id="rsh">${t('waBtn')}</button><button class="btn l" id="rdl">${t('dl')}</button><button class="link" id="rcl" style="width:100%;text-align:center">${t('close')}</button></div>`;
   document.body.appendChild(m);
   const close=()=>{m.remove();URL.revokeObjectURL(url)};
   const save=async()=>{const dl=await cap('downloads');if(!dl){toast(t('dlNA'));return false}try{await dl.save({filename:'IQI-report.png',data:blob});toast(t('imgSaved'));return true}catch(e){if(!e||e.code!=='declined')toast(t('dlNA'));return false}};
@@ -2022,7 +2032,7 @@ function shareIdea(id){
 }
 
 /* ---------- version ---------- */
-/*BUILD*/const BUILD={version:"AIR 3.0 GitHub",id:"20261006-1028",date:"2026-10-06T10:28:33Z"};/*END BUILD*/
+/*BUILD*/const BUILD={version:"AIR 3.0 GitHub",id:"20261006-1101",date:"2026-10-06T11:01:43Z"};/*END BUILD*/
 const fmtBuild=()=>new Date(BUILD.date).toLocaleString(L==='ar'?'ar-u-ca-gregory-nu-latn':'en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
 function verCard(){
   return`<div class="card"><span class="tag">${t('verT')}</span><p style="margin:0 0 6px;font-size:17px;font-weight:800;color:var(--ink)">${t('verL')} ${BUILD.version}</p><p class="dr" style="margin-top:0">${t('relL')}: ${fmtBuild()}</p></div>`;
@@ -2589,7 +2599,7 @@ async function incShare(){
 function incSummary(I){const vs=I.versions,cur=vs[vs.length-1],f=vs[0];return`${I.title}\n${cur.a.summary||''}\nRQI: ${vs.length>1?f.total+' → ':''}${cur.total}/100\n\n${t('brand')} · RQI™`}
 function showImg(blob,txt,fname){
   const url=URL.createObjectURL(blob),m=document.createElement('div');m.className='modal';
-  m.innerHTML=`<div class="card" style="max-width:460px;max-height:94vh;overflow:auto"><img src="${url}" alt="" style="width:100%;display:block;border-radius:14px;border:1.5px solid var(--line)"><button class="btn g" id="rsh">${t('waBtn')}</button><button class="btn l" id="rdl">${t('dl')}</button><button class="link" id="rcl" style="width:100%;text-align:center">${t('close')}</button></div>`;
+  m.innerHTML=`<div class="card" style="max-width:460px;max-height:94vh;overflow:auto">\x3cimg src="${url}" alt="" style="width:100%;display:block;border-radius:14px;border:1.5px solid var(--line)"><button class="btn g" id="rsh">${t('waBtn')}</button><button class="btn l" id="rdl">${t('dl')}</button><button class="link" id="rcl" style="width:100%;text-align:center">${t('close')}</button></div>`;
   document.body.appendChild(m);
   const close=()=>{m.remove();URL.revokeObjectURL(url)};
   const save=async()=>{const dl=await cap('downloads');if(!dl){toast(t('dlNA'));return false}try{await dl.save({filename:fname,data:blob});toast(t('imgSaved'));return true}catch(e){if(!e||e.code!=='declined')toast(t('dlNA'));return false}};
@@ -6160,7 +6170,7 @@ const ochips=a=>`<div class="och">${a.map(t=>`<span>${t}</span>`).join('')}</div
 function orbSlides(id){
   const P=orbInp();
   if(id==='mission')return[
-    `<div class="omh"><img src="${ORBLOGO}" alt="AI ORBIT logo"><div><b>AI ORBIT</b><small>SASREF's 1<sup>st</sup> Hackathon<br>Digital Transformation · 4 – 8 October 2026</small></div></div>
+    `<div class="omh">\x3cimg src="${ORBLOGO}" alt="AI ORBIT logo"><div><b>AI ORBIT</b><small>SASREF's 1<sup>st</sup> Hackathon<br>Digital Transformation · 4 – 8 October 2026</small></div></div>
     ${oc('TRACK · Asset Integrity &amp; Reliability',ochips(['Historical integrity data','Damage mechanisms','Remaining life']))}
     ${oc('THE QUESTION','<p>How can AI identify degradation and failure risks earlier, use historical inspection data more effectively and prioritize intervention before failure affects safety, production or turnaround?</p>')}
     ${oc('OUR ANSWER','<p><b>An AI agent that works across SASREF\'s data hubs, with the engineer in the loop.</b></p><p class="ofoc">☒ Focus area: Intelligent Asset Management</p>')}`];
@@ -6196,16 +6206,16 @@ function orbFit(){const u=Math.max(.82,Math.min(1.12,Math.min(innerWidth/390,inn
 function orbShow(id){orbRoot();['orbChoose','orbHub','orbPage'].forEach(k=>document.getElementById(k).classList.toggle('on',k===id));document.getElementById('orbRoot').classList.add('on');document.body.classList.add('orbopen')}
 function orbClose(){const r=document.getElementById('orbRoot');if(r)r.classList.remove('on');document.body.classList.remove('orbopen')}
 function orbChooser(){orbRoot();ORBFROM=false;orbPill();const c=document.getElementById('orbChoose');
-  c.innerHTML=`<div class="och-top"><img src="${ORBLOGO}" alt="AI ORBIT"><b class="och-sub">AI ORBIT · SASREF's 1<sup>st</sup> Hackathon</b><p>${xl('Where do you want to start?','من أين تريد أن تبدأ؟')}</p></div>
+  c.innerHTML=`<div class="och-top">\x3cimg src="${ORBLOGO}" alt="AI ORBIT"><b class="och-sub">AI ORBIT · SASREF's 1<sup>st</sup> Hackathon</b><p>${xl('Where do you want to start?','من أين تريد أن تبدأ؟')}</p></div>
   <button class="och-btn a" onclick="orbEnter()"><span class="oi"><svg viewBox="0 0 64 64" width="70" height="70"><defs><linearGradient id="oig" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C4B5FD"/><stop offset="1" stop-color="#EC4899"/></linearGradient></defs><ellipse cx="32" cy="34" rx="27" ry="13" transform="rotate(-24 32 34)" fill="none" stroke="url(#oig)" stroke-width="7"/><circle cx="46" cy="18" r="7" fill="#FDE68A"/></svg></span><span class="ot2"><b>AI ORBIT</b><small>${xl('The hackathon: everything we submit, in one orbit','الهاكاثون: كل ما نقدّمه في مدار واحد')}</small></span></button>
-  <button class="och-btn b" onclick="orbLab()"><span class="oi"><svg viewBox="0 0 64 64" width="70" height="70"><rect x="10" y="10" width="19" height="19" rx="6" fill="#FDE68A"/><rect x="35" y="10" width="19" height="19" rx="6" fill="#93C5FD"/><rect x="10" y="35" width="19" height="19" rx="6" fill="#F9A8D4"/><rect x="35" y="35" width="19" height="19" rx="6" fill="#86EFAC"/></svg></span><span class="ot2"><b>AIR Lab</b><small>${xl('The full lab: all the tools','المختبر الكامل: كل الأدوات')}</small></span></button>`;orbShow('orbChoose')}
+  <button class="och-btn b" onclick="orbLab()"><span class="oi"><svg viewBox="0 0 64 64" width="70" height="70"><rect x="10" y="10" width="19" height="19" rx="6" fill="#FDE68A"/><rect x="35" y="10" width="19" height="19" rx="6" fill="#93C5FD"/><rect x="10" y="35" width="19" height="19" rx="6" fill="#F9A8D4"/><rect x="35" y="35" width="19" height="19" rx="6" fill="#86EFAC"/></svg></span><span class="ot2"><b>AIR Lab</b><small>${xl('The full lab: all the tools','المختبر الكامل: كل الأدوات')}</small></span></button>${(window.ghInstHelp&&!(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)&&navigator.standalone!==true)?`<button class="och-inst" onclick="ghInstHelp()">${xl('Install on this device','ثبّت على هذا الجهاز')}</button>`:''}`;orbShow('orbChoose')}
 function orbLab(){orbClose()}
 function orbEnter(){orbHub();}
 function orbHub(){const h=document.getElementById('orbHub'),n=ORBP.length,seen=Object.keys(ORBS.seen).length,nx=ORBP.find(p=>!ORBS.seen[p.id]),lab=seen===0?xl('Start','ابدأ'):seen>=n?xl('Replay','أعد'):xl('Continue','تابع');
-  h.innerHTML=`<div class="oh-top"><button class="oh-sw" onclick="orbChooser()" aria-label="Opening screen">⟲</button><div class="oh-t"><img src="${ORBLOGO}" alt=""><b>AI ORBIT<small>SASREF's 1<sup>st</sup> Hackathon</small></b></div><span class="oh-c">${seen}/${n}</span></div>
+  h.innerHTML=`<div class="oh-top"><button class="oh-sw" onclick="orbChooser()" aria-label="Opening screen">⟲</button><div class="oh-t">\x3cimg src="${ORBLOGO}" alt=""><b>AI ORBIT<small>SASREF's 1<sup>st</sup> Hackathon</small></b></div><span class="oh-c">${seen}/${n}</span></div>
   <p class="oh-sub">${xl('Eight short steps, from the question to the proof','ثماني خطوات قصيرة، من السؤال إلى الإثبات')}</p>
   <div class="oh-st"><div class="oh-ring" id="orbRing" style="--p:${(100*seen/n).toFixed(1)}"><div class="oh-trail"></div><div class="oh-spin">${ORBP.map((p,i)=>{const a=360/n*i,isN=nx&&nx.id===p.id;return`<button class="opl${ORBS.seen[p.id]?' seen':''}${isN?' next':''}" style="--a:${a}deg;--c:${p.c}" onclick="orbGo('${p.id}',this)" aria-label="${orbN(p)}${isN?' · '+xl('next','التالي'):''}"><span class="opw"><span class="op"><span class="oq">${orbIc(p.i,24)}</span></span><span class="ol">${orbN(p)}</span></span></button>`}).join('')}</div></div>
-  <button class="oh-core" onclick="orbNext()" aria-label="${lab}"><svg class="oh-prog" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="5"/><circle cx="50" cy="50" r="46" fill="none" stroke="#FDE68A" stroke-width="5" stroke-linecap="round" stroke-dasharray="${(289*seen/n).toFixed(1)} 289" transform="rotate(-90 50 50)"/></svg><span class="ohc"><b>AI<br>agent</b><i>${lab} ›</i></span></button></div>
+  <button class="oh-core" onclick="orbNext()" aria-label="${lab}"><svg class="oh-prog" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="5"/></svg><span class="ohc"><b>AI<br>agent</b><i>${lab}</i></span></button></div>
   <p class="oh-hint">${xl('Open the glowing planet. When you finish, the next one lights up.','افتح الكوكب المتوهج. وعند إنهائه يتوهج الذي بعده.')}</p>`;orbShow('orbHub');orbFit()}
 function orbNext(){const nx=ORBP.find(p=>!ORBS.seen[p.id]);orbGo((nx||ORBP[0]).id,null,true)}
 function orbGo(id,el,noWarp){
@@ -6231,7 +6241,7 @@ function orbRenderPage(fresh){
   <div class="op-bot" id="orbBot"></div>`;orbBar();
   const car=document.getElementById('orbCar');requestAnimationFrame(()=>{orbFill();car.scrollLeft=keep});setTimeout(orbFill,220);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>orbFill());car.addEventListener('scroll',()=>{const k=Math.round(car.scrollLeft/car.clientWidth);if(k!==ORBN){ORBN=k;orbBar()}},{passive:true});
 }
-function orbLaunch(tool){ORBFROM=true;orbClose();nav(tool);orbPill()}
+function orbLaunch(tool){try{if(typeof seedDemo==='function')seedDemo(false)}catch(e){}ORBFROM=true;orbClose();nav(tool);orbPill()}
 function orbPill(){let b=document.getElementById('orbBack');if(!ORBFROM){if(b)b.remove();return}if(!b){b=document.createElement('button');b.id='orbBack';b.setAttribute('aria-label','Back to AI ORBIT');b.innerHTML='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2.400" stroke-linecap="round"><ellipse cx="12" cy="12" rx="10" ry="5" transform="rotate(-24 12 12)"/><circle cx="18" cy="6.500" r="2" fill="#fff"/></svg>';b.onclick=()=>{ORBFROM=false;orbPill();orbHub()};document.body.appendChild(b)}}
 /* the opening screen shows at every launch, except under automated tests (add ?orbit=1 to force it) */
 (function(){const go=()=>{if(!navigator.webdriver||/[?&]orbit=1/.test(location.search))orbChooser()};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(go,0));else setTimeout(go,0)})();
@@ -6845,10 +6855,18 @@ window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();DEFP=e;if(V
 window.addEventListener('appinstalled',()=>{DEFP=null;const b=$('#instb');if(b)b.remove();toast(L==='ar'?'تم تثبيت التطبيق':'App installed');if(V==='set')view(false)});
 function ghInstBanner(){
   if(!DEFP||isStandalone()||$('#instb'))return;
-  try{if(Date.now()-Number(localStorage.getItem('ib_instno')||0)<7*864e5)return}catch(e){}
+  try{if(Date.now()-Number(localStorage.getItem('ib_instno')||0)<864e5)return}catch(e){}
   ghBanner('instb',`<span>${L==='ar'?'ثبّت التطبيق على جهازك':'Install the app on your device'}</span><span style="display:flex;gap:6px;align-items:center"><button class="btn g" style="margin:0;padding:6px 14px;width:auto;font-size:14px" onclick="ghInstall()">${L==='ar'?'تثبيت':'Install'}</button><button class="link" style="color:#fff;margin:0" onclick="ghInstNo()" aria-label="close">✕</button></span>`);
 }
 async function ghInstall(){if(!DEFP)return;DEFP.prompt();try{await DEFP.userChoice}catch(e){}DEFP=null;const b=$('#instb');if(b)b.remove();if(V==='set')view(false)}
+function ghInstHelp(){
+ const ar=L==='ar';
+ if(isStandalone()){toast(ar?'مثبَّت على هذا الجهاز':'Already installed');return}
+ if(DEFP){ghInstall();return}
+ const b=$('#insth');if(b)b.remove();
+ const t=isIOS()?(ar?'في Safari: اضغط زر المشاركة ثم «إضافة إلى الشاشة الرئيسية».':'In Safari: tap the Share button, then "Add to Home Screen".'):(ar?'في Chrome: اضغط ⋮ ثم «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».':'In Chrome: tap the menu (three dots), then "Install app" or "Add to Home screen".');
+ ghBanner('insth',`<span>${t}</span><button class="link" style="color:#fff;margin:0" onclick="const x=document.getElementById('insth');if(x)x.remove()" aria-label="close">✕</button>`)
+}
 function ghInstNo(){try{localStorage.setItem('ib_instno',String(Date.now()))}catch(e){}const b=$('#instb');if(b)b.remove()}
 function ghInstCard(){
   const ar=L==='ar';
