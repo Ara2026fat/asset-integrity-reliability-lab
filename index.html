@@ -1080,6 +1080,7 @@ body[data-tool] #app>.pgroot,#app>.pgroot{overflow:visible}
 .och-inst{margin:calc(12px*var(--ou,1)) auto calc(14px*var(--ou,1));width:min(560px,88%);display:flex;align-items:center;gap:12px;padding:8px 10px 8px 8px;color:#fff;text-align:left;cursor:pointer;font:inherit;border-radius:26px;border:1.5px solid transparent;
 background:linear-gradient(120deg,rgba(255,255,255,.16),rgba(255,255,255,.06)) padding-box,linear-gradient(120deg,rgba(255,226,140,.95),rgba(255,255,255,.25) 45%,rgba(255,196,80,.85)) border-box;
 -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 8px 22px rgba(20,8,60,.35),inset 0 1px 0 rgba(255,255,255,.35);position:relative;overflow:hidden}
+.och-inst[hidden]{display:none}
 .och-inst::after{content:'';position:absolute;top:0;bottom:0;width:40%;left:-50%;background:linear-gradient(100deg,transparent,rgba(255,236,170,.2),transparent);transform:skewX(-18deg);animation:ochSh 4.2s ease-in-out 1.2s infinite}
 @keyframes ochSh{0%{left:-50%}55%,100%{left:130%}}
 .och-ii{flex:0 0 auto;width:calc(44px*var(--ou,1));height:calc(44px*var(--ou,1));border-radius:12px;background:url(icon-96.png) center/cover no-repeat;box-shadow:0 0 0 1.5px rgba(255,226,140,.7),0 4px 12px rgba(0,0,0,.35)}
@@ -6252,7 +6253,7 @@ function orbClose(){const r=document.getElementById('orbRoot');if(r)r.classList.
 function orbChooser(){orbRoot();ORBFROM=false;orbPill();const c=document.getElementById('orbChoose');
   c.innerHTML=`<div class="och-top">\x3cimg src="${ORBLOGO}" alt="AI ORBIT"><b class="och-sub">AI ORBIT SASREF's 1<sup>st</sup> Hackathon</b><p>${xl('Where do you want to start?','من أين تريد أن تبدأ؟')}</p></div>
   <button class="och-btn a" onclick="orbEnter()"><span class="oi"><svg viewBox="0 0 64 64" width="70" height="70"><defs><linearGradient id="oig" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C4B5FD"/><stop offset="1" stop-color="#EC4899"/></linearGradient></defs><ellipse cx="32" cy="34" rx="27" ry="13" transform="rotate(-24 32 34)" fill="none" stroke="url(#oig)" stroke-width="7"/><circle cx="46" cy="18" r="7" fill="#FDE68A"/></svg></span><span class="ot2"><b>AI ORBIT</b><small>${xl('The hackathon: everything we submit, in one orbit','الهاكاثون: كل ما نقدّمه في مدار واحد')}</small></span></button>
-  <button class="och-btn b" onclick="orbLab()"><span class="oi"><svg viewBox="0 0 64 64" width="70" height="70"><rect x="10" y="10" width="19" height="19" rx="6" fill="#FDE68A"/><rect x="35" y="10" width="19" height="19" rx="6" fill="#93C5FD"/><rect x="10" y="35" width="19" height="19" rx="6" fill="#F9A8D4"/><rect x="35" y="35" width="19" height="19" rx="6" fill="#86EFAC"/></svg></span><span class="ot2"><b>AIR Lab</b><em class="ocap">${xl('Asset Integrity and Reliability','سلامة الأصول والموثوقية')}</em><small>${xl('The full lab: all the tools','المختبر الكامل: كل الأدوات')}</small></span></button>${(window.ghInstHelp&&!(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)&&navigator.standalone!==true)?`<button class="och-inst" onclick="ghInstHelp()"><i class="och-ii"></i><span class="och-it"><b>${xl('Install the app','ثبّت التطبيق')}</b><small>${xl('Keep AI ORBIT one tap away','أبقِ AI ORBIT على بعد لمسة')}</small></span><u>${xl('Install','تثبيت')}</u></button>`:''}`;orbShow('orbChoose')}
+  <button class="och-btn b" onclick="orbLab()"><span class="oi"><svg viewBox="0 0 64 64" width="70" height="70"><rect x="10" y="10" width="19" height="19" rx="6" fill="#FDE68A"/><rect x="35" y="10" width="19" height="19" rx="6" fill="#93C5FD"/><rect x="10" y="35" width="19" height="19" rx="6" fill="#F9A8D4"/><rect x="35" y="35" width="19" height="19" rx="6" fill="#86EFAC"/></svg></span><span class="ot2"><b>AIR Lab</b><em class="ocap">${xl('Asset Integrity and Reliability','سلامة الأصول والموثوقية')}</em><small>${xl('The full lab: all the tools','المختبر الكامل: كل الأدوات')}</small></span></button>${(window.ghInstHelp&&!(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)&&navigator.standalone!==true)?`<button class="och-inst"${(window.ghCanInst&&ghCanInst())?'':' hidden'} onclick="ghInstHelp()"><i class="och-ii"></i><span class="och-it"><b>${xl('Install the app','ثبّت التطبيق')}</b><small>${xl('Keep AI ORBIT one tap away','أبقِ AI ORBIT على بعد لمسة')}</small></span><u>${xl('Install','تثبيت')}</u></button>`:''}`;orbShow('orbChoose')}
 function orbLab(){orbClose()}
 function orbOpenHub(){orbRoot();ORBFROM=false;orbPill();orbHub()}
 function orbEnter(){orbHub();}
@@ -6928,14 +6929,16 @@ async function ghCheckUpdate(){
 let DEFP=null;
 const isStandalone=()=>(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;
 const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();DEFP=e;if(V==='set')view(false);ghInstBanner()});
-window.addEventListener('appinstalled',()=>{DEFP=null;const b=$('#instb');if(b)b.remove();toast(L==='ar'?'تم تثبيت التطبيق':'App installed');if(V==='set')view(false)});
+function ghCanInst(){if(isStandalone())return false;if(DEFP||isIOS())return true;return !/Chrome\/|CriOS|EdgA|SamsungBrowser/i.test(navigator.userAgent)}
+function ghInstSync(){try{document.querySelectorAll('.och-inst').forEach(x=>{x.hidden=!ghCanInst()})}catch(e){}}
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();DEFP=e;if(V==='set')view(false);ghInstBanner();ghInstSync()});
+window.addEventListener('appinstalled',()=>{DEFP=null;ghInstSync();const b=$('#instb');if(b)b.remove();toast(L==='ar'?'تم تثبيت التطبيق':'App installed');if(V==='set')view(false)});
 function ghInstBanner(){
   if(!DEFP||isStandalone()||$('#instb'))return;
   try{if(Date.now()-Number(localStorage.getItem('ib_instno')||0)<864e5)return}catch(e){}
   ghBanner('instb',`<span>${L==='ar'?'ثبّت التطبيق على جهازك':'Install the app on your device'}</span><span style="display:flex;gap:6px;align-items:center"><button class="btn g" style="margin:0;padding:6px 14px;width:auto;font-size:14px" onclick="ghInstall()">${L==='ar'?'تثبيت':'Install'}</button><button class="link" style="color:#fff;margin:0" onclick="ghInstNo()" aria-label="close">✕</button></span>`);
 }
-async function ghInstall(){if(!DEFP)return;DEFP.prompt();try{await DEFP.userChoice}catch(e){}DEFP=null;const b=$('#instb');if(b)b.remove();if(V==='set')view(false)}
+async function ghInstall(){if(!DEFP)return;DEFP.prompt();try{await DEFP.userChoice}catch(e){}DEFP=null;ghInstSync();const b=$('#instb');if(b)b.remove();if(V==='set')view(false)}
 function ghInstHelp(){
  const ar=L==='ar';
  if(isStandalone()){toast(ar?'مثبَّت على هذا الجهاز':'Already installed');return}
