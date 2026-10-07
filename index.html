@@ -144,7 +144,7 @@ ul.l{padding-inline-start:20px;font-size:15px}ul.l li{margin:3px 0}
 [dir=rtl] .chain .ar{transform:scaleX(-1)}
 .idea{white-space:pre-wrap;font-size:16.5px;line-height:1.95;background:#FFF8DC;border-radius:14px;padding:14px 16px;border:1.5px dashed var(--line)}
 .toast{position:fixed;inset:auto 16px calc(92px + env(safe-area-inset-bottom)) 16px;max-width:520px;margin:auto;background:var(--em);color:#fff;border:2px solid var(--gold);padding:12px 16px;border-radius:14px;font-size:14px;font-weight:600;z-index:9;animation:pop .3s}
-.modal{position:fixed;inset:0;background:rgba(11,27,82,.55);display:grid;place-items:center;padding:16px;z-index:8}
+.modal{position:fixed;inset:0;background:rgba(11,27,82,.55);display:grid;place-items:center;padding:16px;z-index:300}
 .modal .card{max-width:440px;width:100%;margin:0}
 .modal input{width:100%;direction:ltr;border:2px solid var(--line);border-radius:12px;padding:12px;font:inherit;margin:8px 0;background:#fff}
 .reveal{animation:up .5s both}
@@ -908,7 +908,8 @@ button,.nv2,.t3,.gp,.cta,.hi,.lnq,.qt{-webkit-tap-highlight-color:transparent;to
 .gdb b{display:block;font-size:15px;margin:3px 0 2px;color:#fff}.gdb p{margin:0 0 8px;font-size:12.5px;line-height:1.4;color:rgba(255,255,255,.86)}
 .gdbb{display:flex;gap:8px}.gdbb button{flex:1;border:0;font:inherit;font-weight:900;font-size:13.5px;padding:9px;border-radius:14px;cursor:pointer}.gdk{background:rgba(255,255,255,.14);color:#fff}.gdk:disabled{opacity:.35}.gdn{background:linear-gradient(180deg,#FFE9A8,#FFC24A);color:#4A2C00;box-shadow:0 8px 16px -8px rgba(255,194,74,.8)}
 body.gding main#app,body.gding.hub main#app{padding-bottom:calc(var(--dock-h) + env(safe-area-inset-bottom,0px) + 170px)}
-body.gding .modal{z-index:60}
+body.gding .modal{z-index:300}
+.rx{position:sticky;top:0;z-index:3;display:grid;place-items:center;width:40px;height:40px;margin:0 0 -34px auto;margin-inline-start:auto;float:none;border-radius:50%;border:2px solid #fff;background:#14307F;color:#fff;font:900 18px/1 system-ui;box-shadow:0 4px 12px rgba(0,0,0,.35);cursor:pointer}
 @media (max-height:700px){.gdb p{font-size:11.5px;margin-bottom:6px}body.gding main#app{padding-bottom:calc(var(--dock-h) + env(safe-area-inset-bottom,0px) + 150px)}}
 @media (prefers-reduced-motion:reduce){.gdb{animation:none}}
 
@@ -1016,8 +1017,11 @@ body[data-tool] #app>.pgroot,#app>.pgroot{overflow:visible}
 .opl .op{position:absolute;left:calc(-28px*var(--ou,1));top:calc(-28px*var(--ou,1));width:calc(56px*var(--ou,1));height:calc(56px*var(--ou,1));border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 32% 26%,rgba(255,255,255,.75),var(--c) 55%,rgba(0,0,0,.35));border:3px solid rgba(255,255,255,.7);box-shadow:inset 0 3px 0 rgba(255,255,255,.55),0 12px 20px -8px rgba(0,0,0,.65)}
 .opl .oq{display:grid;place-items:center}.opl .ol{position:absolute;left:calc(-48px*var(--ou,1));top:calc(31px*var(--ou,1));width:calc(96px*var(--ou,1));text-align:center;white-space:nowrap;font-size:calc(12.5px*var(--ou,1));font-weight:800;line-height:1.2;text-shadow:0 2px 4px rgba(0,0,0,.5)}.opl .ol small{display:block;font-size:calc(11px*var(--ou,1));opacity:.8;font-weight:700}
 .opl.seen .op{border-color:#FDE68A;box-shadow:inset 0 3px 0 rgba(255,255,255,.55),0 0 0 4px rgba(253,230,138,.35),0 12px 20px -8px rgba(0,0,0,.65)}
-.oh-core{position:absolute;left:50%;top:50%;width:calc(118px*var(--ou,1));height:calc(118px*var(--ou,1));transform:translate(-50%,-50%);border-radius:50%;display:grid;place-items:center;pointer-events:none;background:radial-gradient(circle at 32% 26%,#C7D2FE,#4F46E5 55%,#1E1B6B);box-shadow:inset 0 4px 0 rgba(255,255,255,.5),0 0 40px rgba(167,139,250,.7);animation:opulse 4s ease-in-out infinite}.oh-core b{font-family:Cambria,Georgia,serif;font-size:calc(21px*var(--ou,1));line-height:1.05;color:#fff;text-align:center}.oh-prog{position:absolute;inset:-9px;width:calc(100% + 18px);height:calc(100% + 18px)}
-.oh-hint{text-align:center;color:rgba(255,255,255,.8);font-weight:700;font-size:calc(13px*var(--ou,1));padding:0 0 calc(18px*var(--ou,1))}
+.oh-core{position:absolute;left:50%;top:50%;width:calc(118px*var(--ou,1));height:calc(118px*var(--ou,1));transform:translate(-50%,-50%);border-radius:50%;display:grid;place-items:center;pointer-events:none;background:radial-gradient(circle at 32% 26%,#C7D2FE,#4F46E5 55%,#1E1B6B);box-shadow:inset 0 4px 0 rgba(255,255,255,.5),0 0 40px rgba(167,139,250,.7);animation:opulse 4s ease-in-out infinite}.oh-core b{font:800 calc(24px*var(--ou,1))/1.02 'Plus Jakarta Sans',system-ui,sans-serif;letter-spacing:.01em;text-align:center;background:linear-gradient(180deg,#fff 10%,#FFF1B8 55%,#F7C948);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 1px 0 rgba(30,27,107,.9)) drop-shadow(0 3px 5px rgba(10,6,60,.55))}.oh-prog{position:absolute;inset:-9px;width:calc(100% + 18px);height:calc(100% + 18px)}
+.oh-hint{position:relative;text-align:center;margin:0 auto calc(20px*var(--ou,1));padding:calc(12px*var(--ou,1)) 6px 0;max-width:min(84%,360px);font:800 calc(15px*var(--ou,1))/1.45 'Plus Jakarta Sans','Cairo',system-ui,sans-serif;letter-spacing:.015em;text-wrap:balance;
+background:linear-gradient(180deg,#FFFFFF 5%,#FFEFB0 52%,#F5C242);-webkit-background-clip:text;background-clip:text;color:transparent;
+filter:drop-shadow(0 1px 0 rgba(70,16,100,.85)) drop-shadow(0 2px 7px rgba(30,6,70,.45))}
+.oh-hint::before{content:'';position:absolute;top:0;left:50%;width:calc(46px*var(--ou,1));height:2px;margin-left:calc(-23px*var(--ou,1));border-radius:2px;background:linear-gradient(90deg,transparent,#FFE08A,transparent);box-shadow:0 0 8px rgba(255,214,107,.7)}
 @keyframes ospin{to{transform:rotate(360deg)}}@keyframes opulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.04)}}
 @keyframes ospinr{from{transform:rotate(calc(var(--a)*-1))}to{transform:rotate(calc(var(--a)*-1 - 360deg))}}
 #orbWarp{position:fixed;width:20px;height:20px;border-radius:50%;margin:-10px 0 0 -10px;opacity:0;pointer-events:none;z-index:9100}#orbWarp.go{animation:owarp .62s ease-out}@keyframes owarp{0%{transform:scale(1);opacity:.9}80%{opacity:.9}100%{transform:scale(160);opacity:0}}
@@ -1058,7 +1062,7 @@ body[data-tool] #app>.pgroot,#app>.pgroot{overflow:visible}
 @keyframes onext{0%,100%{box-shadow:inset 0 3px 0 rgba(255,255,255,.55),0 0 0 0 rgba(253,230,138,.85),0 12px 20px -8px rgba(0,0,0,.65)}50%{box-shadow:inset 0 3px 0 rgba(255,255,255,.55),0 0 0 calc(16px*var(--ou,1)) rgba(253,230,138,0),0 12px 20px -8px rgba(0,0,0,.65)}}
 .oh-trail{position:absolute;left:0;top:0;width:calc(var(--r)*2);height:calc(var(--r)*2);transform:translate(-50%,-50%);border-radius:50%;border:2px dashed rgba(255,255,255,.3);pointer-events:none}
 .oh-trail::after{content:"";position:absolute;inset:-2px;border-radius:50%;background:conic-gradient(from 0deg,rgba(253,230,138,.95) calc(var(--p)*1%),transparent 0);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3px));mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3px))}
-.oh-core{pointer-events:auto!important;cursor:pointer;border:0;font:inherit;color:#fff;animation:none!important}
+.oh-core{pointer-events:none!important;cursor:default;border:0;font:inherit;color:#fff;animation:none!important}
 .oh-core .oh-prog{position:absolute;inset:0;width:100%;height:100%}.ohc{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px}.oh-core i{font:800 calc(11.5px*var(--ou,1)) 'Plus Jakarta Sans',sans-serif;font-style:normal;color:#FDE68A;letter-spacing:.02em}
 .op-bot .op-go{background:linear-gradient(135deg,#7C3AED,#DB2777)!important;color:#fff!important;max-width:46%;box-shadow:0 8px 16px -8px rgba(124,58,237,.7)}
 .oh-t b sup,.oh-t b small sup{font-size:.62em;line-height:0;vertical-align:super}
@@ -1123,6 +1127,101 @@ background:linear-gradient(120deg,rgba(255,255,255,.16),rgba(255,255,255,.06)) p
 
 /* the back arrow on the lab home, same round style as the tour button */
 .hmback{font-size:24px;font-weight:900;line-height:1;padding:0 0 3px;color:#FFD66B}
+
+/* ===== AI ORBIT: living planets + touchable core ===== */
+.opl .op{overflow:hidden;transition:transform .18s ease,filter .18s ease}
+.opl .op::after{content:'';position:absolute;top:-30%;bottom:-30%;width:42%;left:-70%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:opsh 6.5s ease-in-out infinite;pointer-events:none}
+.opl:nth-child(2n) .op::after{animation-delay:1.4s}.opl:nth-child(3n) .op::after{animation-delay:2.9s}.opl:nth-child(5n) .op::after{animation-delay:4.1s}
+@keyframes opsh{0%,62%{left:-70%}100%{left:150%}}
+.opl .oq svg{transform-origin:50% 50%;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35));will-change:transform}
+.opl[data-i=flag] .oq svg{transform-origin:25% 90%;animation:oqsway 3.4s ease-in-out infinite}
+.opl[data-i=warn] .oq svg{animation:oqpulse 2.2s ease-in-out infinite}
+.opl[data-i=bulb] .oq svg{animation:oqglow 2.6s ease-in-out infinite}
+.opl[data-i=coin] .oq svg{animation:oqcoin 4.6s ease-in-out infinite}
+.opl[data-i=star] .oq svg{animation:oqstar 3.6s ease-in-out infinite}
+.opl[data-i=map] .oq svg{animation:oqcomp 4.2s ease-in-out infinite}
+.opl[data-i=play] .oq svg{animation:oqpulse 2s ease-in-out infinite}
+.opl[data-i=check] .oq svg{animation:oqpulse 2.4s ease-in-out infinite}
+@keyframes oqsway{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+@keyframes oqpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+@keyframes oqglow{0%,100%{transform:scale(1);filter:drop-shadow(0 0 0 rgba(253,230,138,0))}50%{transform:scale(1.1);filter:drop-shadow(0 0 7px rgba(255,236,160,.95))}}
+@keyframes oqcoin{0%,55%,100%{transform:scaleX(1)}70%{transform:scaleX(.08)}85%{transform:scaleX(1)}}
+@keyframes oqstar{0%,100%{transform:rotate(0) scale(1)}50%{transform:rotate(72deg) scale(1.15)}}
+@keyframes oqcomp{0%,100%{transform:rotate(-18deg)}30%{transform:rotate(22deg)}60%{transform:rotate(-8deg)}}
+.opl:active .op{transform:scale(.9)!important;filter:brightness(1.25)}
+.opl:active .oq svg{animation-duration:.6s}
+/* core */
+.oh-core{pointer-events:auto!important;cursor:pointer;-webkit-tap-highlight-color:transparent;animation:ocbreath 4.2s ease-in-out infinite!important;overflow:visible}
+.oh-core::before{content:'';position:absolute;inset:-7px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 62%,rgba(255,226,140,.0) 70%,rgba(255,236,170,.95) 97%,transparent 100%);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px));mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px));animation:orbspin 5.5s linear infinite;pointer-events:none}
+.oh-core::after{content:'';position:absolute;inset:0;border-radius:50%;overflow:hidden;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.38) 50%,transparent 65%);background-size:260% 100%;background-position:160% 0;animation:ocsh 5s ease-in-out infinite;pointer-events:none}
+@keyframes ocsh{0%,55%{background-position:160% 0}100%{background-position:-60% 0}}
+@keyframes ocbreath{0%,100%{transform:translate(-50%,-50%) scale(1);box-shadow:inset 0 4px 0 rgba(255,255,255,.5),0 0 34px rgba(167,139,250,.6)}50%{transform:translate(-50%,-50%) scale(1.04);box-shadow:inset 0 4px 0 rgba(255,255,255,.55),0 0 54px rgba(196,170,255,.95)}}
+.oh-core b{background-size:100% 220%;animation:ocshim 4.5s ease-in-out infinite}
+@keyframes ocshim{0%,100%{background-position:0 0}50%{background-position:0 100%}}
+.oh-core.hit{animation:ochit .8s cubic-bezier(.2,.9,.3,1.2)!important}
+@keyframes ochit{0%{transform:translate(-50%,-50%) scale(1);box-shadow:0 0 0 0 rgba(255,236,170,.95),0 0 40px rgba(167,139,250,.8)}25%{transform:translate(-50%,-50%) scale(.9)}55%{transform:translate(-50%,-50%) scale(1.1);box-shadow:0 0 0 22px rgba(255,236,170,0),0 0 70px rgba(255,236,170,.95)}100%{transform:translate(-50%,-50%) scale(1);box-shadow:0 0 0 38px rgba(255,236,170,0),0 0 40px rgba(167,139,250,.7)}}
+.oh-core.hit::before{animation-duration:.9s}
+@media (prefers-reduced-motion:reduce){.opl .op::after,.opl .oq svg,.oh-core,.oh-core::before,.oh-core::after,.oh-core b{animation:none!important}}
+
+/* sequential planets: the next one opens only after the one before it is finished */
+.opl.nope .op{animation:onope .45s ease}
+@keyframes onope{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+
+/* ===== 3D planets, relief core, living entrance ===== */
+.orb-view{isolation:isolate}
+.orb-stars{position:absolute;inset:0;z-index:-1;pointer-events:none;display:block}
+.orb-stars::before,.orb-stars::after{content:'';position:absolute;inset:0}
+.orb-stars::before{background:
+ radial-gradient(2.7px 2.7px at 8% 12%,#fff,transparent),radial-gradient(2.0px 2.0px at 22% 30%,#fff,transparent),radial-gradient(3.1px 3.1px at 38% 8%,#FDE68A,transparent),radial-gradient(2.0px 2.0px at 55% 22%,#fff,transparent),
+ radial-gradient(2.7px 2.7px at 72% 10%,#fff,transparent),radial-gradient(2.0px 2.0px at 90% 26%,#FDE68A,transparent),radial-gradient(2.4px 2.4px at 14% 62%,#fff,transparent),radial-gradient(3.1px 3.1px at 84% 58%,#fff,transparent);animation:ostw 4.6s ease-in-out infinite}
+.orb-stars::after{background:
+ radial-gradient(2.4px 2.4px at 30% 78%,#fff,transparent),radial-gradient(3.1px 3.1px at 62% 88%,#FDE68A,transparent),radial-gradient(2.0px 2.0px at 93% 82%,#fff,transparent),radial-gradient(2.4px 2.4px at 5% 90%,#fff,transparent),
+ radial-gradient(2.7px 2.7px at 47% 46%,#fff,transparent),radial-gradient(2.0px 2.0px at 68% 40%,#fff,transparent),radial-gradient(2.7px 2.7px at 18% 44%,#FDE68A,transparent),radial-gradient(2.0px 2.0px at 80% 72%,#fff,transparent);animation:ostw 6.2s ease-in-out 1.7s infinite}
+@keyframes ostw{0%,100%{opacity:.25}50%{opacity:1}}
+/* planets: sphere with light from the top-left, shade bottom-right, rim glow */
+.opl .op{background:radial-gradient(circle at 31% 24%,rgba(255,255,255,.85) 0,rgba(255,255,255,.35) 14%,rgba(255,255,255,0) 38%),radial-gradient(circle at 74% 84%,rgba(0,0,0,.5) 0,rgba(0,0,0,0) 62%),var(--c);
+ box-shadow:inset -6px -8px 12px rgba(0,0,0,.38),inset 4px 5px 8px rgba(255,255,255,.5),inset 0 0 0 1.5px rgba(255,255,255,.22),0 14px 16px -8px rgba(0,0,0,.65),0 0 16px -3px var(--c)}
+.opl.seen .op{box-shadow:inset -6px -8px 12px rgba(0,0,0,.38),inset 4px 5px 8px rgba(255,255,255,.45),0 0 0 3px rgba(253,230,138,.28),0 12px 16px -8px rgba(0,0,0,.6)!important}
+@keyframes onext3{0%,100%{transform:scale(1);box-shadow:inset -6px -8px 12px rgba(0,0,0,.38),inset 4px 5px 8px rgba(255,255,255,.5),0 0 0 0 rgba(253,230,138,.5),0 14px 16px -8px rgba(0,0,0,.65)}50%{transform:scale(1.07);box-shadow:inset -6px -8px 12px rgba(0,0,0,.34),inset 4px 5px 8px rgba(255,255,255,.62),0 0 0 8px rgba(253,230,138,.28),0 0 26px 4px rgba(253,230,138,.55),0 16px 18px -8px rgba(0,0,0,.6)}}
+.opl .oq{animation:oqfl 4.2s ease-in-out infinite}
+.opl:nth-child(2n) .oq{animation-delay:-1.3s}.opl:nth-child(3n) .oq{animation-delay:-2.6s}
+@keyframes oqfl{0%,100%{translate:0 0}50%{translate:0 -2px}}
+.opl .oq svg{filter:drop-shadow(0 2px 1px rgba(0,0,0,.4)) drop-shadow(0 -1px 0 rgba(255,255,255,.35))}
+.oh-core{background:radial-gradient(circle at 31% 24%,rgba(255,255,255,.8) 0,rgba(255,255,255,.2) 16%,rgba(255,255,255,0) 40%),radial-gradient(circle at 74% 86%,rgba(0,0,0,.55) 0,rgba(0,0,0,0) 62%),#4F46E5;box-shadow:inset -10px -14px 22px rgba(10,6,70,.55),inset 7px 9px 14px rgba(255,255,255,.4),0 0 40px rgba(167,139,250,.7)}
+/* entrance: floating cards, spinning orbit, popping tiles, logo glow */
+.och-top img{animation:ochlogo 5.5s ease-in-out infinite;filter:drop-shadow(0 6px 14px rgba(160,120,255,.6))}
+@keyframes ochlogo{0%,100%{translate:0 0;transform:rotate(-2deg)}50%{translate:0 -6px;transform:rotate(2deg)}}
+.och-btn{position:relative;overflow:hidden;animation:ochfl 6.5s ease-in-out infinite;box-shadow:inset 0 3px 0 rgba(255,255,255,.4),inset 0 -8px 16px rgba(0,0,0,.18),0 20px 30px -14px rgba(10,0,50,.65)}
+.och-btn.b{animation-delay:-3.2s}
+@keyframes ochfl{0%,100%{translate:0 0}50%{translate:0 -5px}}
+.och-btn::after{content:'';position:absolute;top:-20%;bottom:-20%;width:34%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-20deg);animation:ochcs 7s ease-in-out infinite;pointer-events:none}
+.och-btn.b::after{animation-delay:3.4s}
+@keyframes ochcs{0%,60%{left:-60%}100%{left:140%}}
+.och-btn.a .oi svg{animation:ochorb 14s linear infinite;filter:drop-shadow(0 3px 6px rgba(80,10,100,.55))}
+@keyframes ochorb{to{transform:rotate(360deg)}}
+.och-btn.b .oi rect{transform-box:fill-box;transform-origin:center;animation:ochtile 3.6s ease-in-out infinite;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
+.och-btn.b .oi rect:nth-of-type(2){animation-delay:.25s}.och-btn.b .oi rect:nth-of-type(3){animation-delay:.5s}.och-btn.b .oi rect:nth-of-type(4){animation-delay:.75s}
+@keyframes ochtile{0%,60%,100%{transform:scale(1)}30%{transform:scale(1.18)}}
+.och-btn .oi{box-shadow:inset 0 3px 0 rgba(255,255,255,.45),inset 0 -6px 10px rgba(0,0,0,.18),0 8px 14px -6px rgba(0,0,0,.4)}
+.och-btn:active{transform:scale(.97)}
+@media (prefers-reduced-motion:reduce){.orb-stars::before,.orb-stars::after,.opl .oq,.och-top img,.och-btn,.och-btn::after,.och-btn .oi svg,.och-btn .oi rect{animation:none!important}}
+
+#orbLang{position:absolute;top:calc(2px + env(safe-area-inset-top,0px));z-index:6;left:10px;right:auto;width:17px;height:17px;border-radius:50%;padding:0;display:grid;place-items:center;cursor:pointer;color:#fff;font:800 11px/1 'Plus Jakarta Sans','Cairo',system-ui,sans-serif;letter-spacing:0;background:rgba(255,255,255,.16);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1.2px solid rgba(255,226,140,.75);box-shadow:0 2px 6px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.4);-webkit-tap-highlight-color:transparent}
+#orbLang:active{transform:scale(.88)}
+#orbLang{font-size:9px;border-width:1px}
+#orbRoot[data-l=ar] #orbLang{left:auto;right:12px}
+#orbRoot[data-v=orbPage] #orbLang{left:auto;right:56px}
+
+/* language jewel: gold 3D sphere, glossy and softly glowing */
+#orbLang{width:19px;height:19px;top:calc(0px + env(safe-area-inset-top,0px));overflow:hidden;color:#3B1F00;font:900 7.6px/1 'Plus Jakarta Sans',system-ui,sans-serif;letter-spacing:.2px;border:0;
+ background:radial-gradient(circle at 32% 24%,rgba(255,255,255,.95) 0,rgba(255,255,255,.4) 16%,rgba(255,255,255,0) 40%),radial-gradient(circle at 74% 86%,rgba(90,40,0,.6) 0,rgba(90,40,0,0) 60%),linear-gradient(160deg,#FFE9A3,#F2B632 55%,#B8780A);
+ box-shadow:inset -2px -3px 4px rgba(90,40,0,.45),inset 1.5px 2px 3px rgba(255,255,255,.75),0 0 0 1px rgba(255,236,170,.85),0 2px 5px rgba(0,0,0,.45),0 0 9px 1px rgba(255,205,90,.65);
+ text-shadow:0 1px 0 rgba(255,255,255,.55);animation:olgl 3.6s ease-in-out infinite}
+#orbLang::after{content:'';position:absolute;top:-30%;bottom:-30%;width:45%;left:-70%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.8),transparent);transform:skewX(-20deg);animation:olsh 4.2s ease-in-out infinite;pointer-events:none}
+@keyframes olgl{0%,100%{box-shadow:inset -2px -3px 4px rgba(90,40,0,.45),inset 1.5px 2px 3px rgba(255,255,255,.75),0 0 0 1px rgba(255,236,170,.85),0 2px 5px rgba(0,0,0,.45),0 0 7px 0 rgba(255,205,90,.5)}50%{box-shadow:inset -2px -3px 4px rgba(90,40,0,.45),inset 1.5px 2px 3px rgba(255,255,255,.75),0 0 0 1px rgba(255,236,170,.95),0 2px 5px rgba(0,0,0,.45),0 0 14px 3px rgba(255,214,110,.95)}}
+@keyframes olsh{0%,55%{left:-70%}100%{left:150%}}
+#orbLang:active{transform:scale(.86)}
+@media (prefers-reduced-motion:reduce){#orbLang,#orbLang::after{animation:none!important}}
 </style>
 </head>
 <body>
@@ -1168,7 +1267,7 @@ background:linear-gradient(120deg,rgba(255,255,255,.16),rgba(255,255,255,.06)) p
 /* (c) 2026 Arafat Al-Rajhi. All Rights Reserved. */
 
 /* ---------- i18n ---------- */
-let L='en';try{L=localStorage.getItem('ib_lang')==='ar'?'ar':'en'}catch(e){}
+let L='en';try{L=sessionStorage.getItem('ib_lang')==='ar'?'ar':'en'}catch(e){}
 const T={
 en:{
 cancel:"Cancel",lockWait:n=>`Try again in ${n}s`,
@@ -1567,7 +1666,7 @@ function toggleAI(){
   modeChip();toast(t(AIPREF?'aiNowOn':'aiNowOff'));if(V==='set')view(false);
 }
 function setLang(l){
-  captureDrafts();L=l;try{localStorage.setItem('ib_lang',l)}catch(e){}
+  captureDrafts();L=l;try{sessionStorage.setItem('ib_lang',l);localStorage.removeItem('ib_lang')}catch(e){}
   document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';
   renderTop();renderNav();refresh();
 }
@@ -2054,11 +2153,11 @@ async function openReport(d){
   const cv=await drawCard(d),blob=await new Promise(r=>cv.toBlob(r,'image/png')),url=URL.createObjectURL(blob);
   const txt=reportSummary(d)+'\n\n'+t('brand')+' · IQI™ · IIC™';
   const m=document.createElement('div');m.className='modal';
-  m.innerHTML=`<div class="card" style="max-width:460px;max-height:94vh;overflow:auto">\x3cimg src="${url}" alt="" style="width:100%;display:block;border-radius:14px;border:1.5px solid var(--line)"><button class="btn g" id="rsh">${t('waBtn')}</button><button class="btn l" id="rdl">${t('dl')}</button><button class="link" id="rcl" style="width:100%;text-align:center">${t('close')}</button></div>`;
+  m.innerHTML=`<div class="card" style="max-width:460px;max-height:90vh;overflow:auto"><button class="rx" id="rx" aria-label="close">✕</button>\x3cimg src="${url}" alt="" style="width:100%;display:block;border-radius:14px;border:1.5px solid var(--line)"><button class="btn g" id="rsh">${t('waBtn')}</button><button class="btn l" id="rdl">${t('dl')}</button><button class="link" id="rcl" style="width:100%;text-align:center">${t('close')}</button></div>`;
   document.body.appendChild(m);
   const close=()=>{m.remove();URL.revokeObjectURL(url)};
   const save=async()=>{const dl=await cap('downloads');if(!dl){toast(t('dlNA'));return false}try{await dl.save({filename:'IQI-report.png',data:blob});toast(t('imgSaved'));return true}catch(e){if(!e||e.code!=='declined')toast(t('dlNA'));return false}};
-  m.onclick=e=>{if(e.target===m)close()};$('#rcl').onclick=close;$('#rdl').onclick=save;
+  m.onclick=e=>{if(e.target===m)close()};$('#rcl').onclick=close;$('#rx').onclick=close;$('#rdl').onclick=save;
   $('#rsh').onclick=async()=>{
     const f=new File([blob],'IQI-report.png',{type:'image/png'});
     if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],text:txt});return}catch(e){if(e&&e.name==='AbortError')return}}
@@ -2644,11 +2743,11 @@ async function incShare(){
 function incSummary(I){const vs=I.versions,cur=vs[vs.length-1],f=vs[0];return`${I.title}\n${cur.a.summary||''}\nRQI: ${vs.length>1?f.total+' → ':''}${cur.total}/100\n\n${t('brand')} · RQI™`}
 function showImg(blob,txt,fname){
   const url=URL.createObjectURL(blob),m=document.createElement('div');m.className='modal';
-  m.innerHTML=`<div class="card" style="max-width:460px;max-height:94vh;overflow:auto">\x3cimg src="${url}" alt="" style="width:100%;display:block;border-radius:14px;border:1.5px solid var(--line)"><button class="btn g" id="rsh">${t('waBtn')}</button><button class="btn l" id="rdl">${t('dl')}</button><button class="link" id="rcl" style="width:100%;text-align:center">${t('close')}</button></div>`;
+  m.innerHTML=`<div class="card" style="max-width:460px;max-height:90vh;overflow:auto"><button class="rx" id="rx" aria-label="close">✕</button>\x3cimg src="${url}" alt="" style="width:100%;display:block;border-radius:14px;border:1.5px solid var(--line)"><button class="btn g" id="rsh">${t('waBtn')}</button><button class="btn l" id="rdl">${t('dl')}</button><button class="link" id="rcl" style="width:100%;text-align:center">${t('close')}</button></div>`;
   document.body.appendChild(m);
   const close=()=>{m.remove();URL.revokeObjectURL(url)};
   const save=async()=>{const dl=await cap('downloads');if(!dl){toast(t('dlNA'));return false}try{await dl.save({filename:fname,data:blob});toast(t('imgSaved'));return true}catch(e){if(!e||e.code!=='declined')toast(t('dlNA'));return false}};
-  m.onclick=e=>{if(e.target===m)close()};$('#rcl').onclick=close;$('#rdl').onclick=save;
+  m.onclick=e=>{if(e.target===m)close()};$('#rcl').onclick=close;$('#rx').onclick=close;$('#rdl').onclick=save;
   $('#rsh').onclick=async()=>{const f=new File([blob],fname,{type:'image/png'});if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],text:txt});return}catch(e){if(e&&e.name==='AbortError')return}}if(await save())toast(t('waHint'))};
 }
 async function drawIncCard(I){
@@ -6250,25 +6349,28 @@ function orbPreset(n){ORBS.inp=Object.assign(ORBS.inp||{},ORBPRE[n]);orbSave();o
 function orbReset(){ORBS.inp=null;orbSave();orbRenderPage(false)}
 function orbCk(k){const items={deck:1,word:1};const cur=ORBS.ck[k]!==undefined?ORBS.ck[k]:!!items[k];ORBS.ck[k]=!cur;orbSave();orbRenderPage(false)}
 /* ---------- screens ---------- */
-function orbRoot(){let r=document.getElementById('orbRoot');if(!r){r=document.createElement('div');r.id='orbRoot';r.innerHTML='<div class="orb-view" id="orbChoose"></div><div class="orb-view" id="orbHub"></div><div class="orb-view" id="orbPage"></div><div id="orbWarp"></div>';document.body.appendChild(r);orbFit();addEventListener('resize',()=>{orbFit();orbFill()})}return r}
+function orbRoot(){let r=document.getElementById('orbRoot');if(!r){r=document.createElement('div');r.id='orbRoot';r.innerHTML='<div class="orb-view" id="orbChoose"></div><div class="orb-view" id="orbHub"></div><div class="orb-view" id="orbPage"></div><div id="orbWarp"></div><button id="orbLang" onclick="orbLang()" aria-label="Language"></button>';document.body.appendChild(r);orbLangLbl();orbFit();addEventListener('resize',()=>{orbFit();orbFill()})}return r}
+function orbLangLbl(){const b=document.getElementById('orbLang'),r=document.getElementById('orbRoot');if(b)b.textContent=L==='ar'?'EN':'AR';if(r)r.dataset.l=L}
+function orbLang(){setLang(L==='ar'?'en':'ar');orbLangLbl();const on=id=>{const e=document.getElementById(id);return !!(e&&e.classList.contains('on'))};if(on('orbChoose'))orbChooser();else if(on('orbHub'))orbHub();else if(on('orbPage'))orbRenderPage(false)}
 function orbFit(){const u=Math.max(.82,Math.min(1.12,Math.min(innerWidth/390,innerHeight/760)));document.documentElement.style.setProperty('--ou',u.toFixed(3));const rn=document.getElementById('orbRing');if(rn)rn.style.setProperty('--r',Math.round(Math.min(innerWidth/2-54,innerHeight*.27,240))+'px')}
-function orbShow(id){orbRoot();['orbChoose','orbHub','orbPage'].forEach(k=>document.getElementById(k).classList.toggle('on',k===id));document.getElementById('orbRoot').classList.add('on');document.body.classList.add('orbopen')}
+function orbShow(id){orbRoot();['orbChoose','orbHub','orbPage'].forEach(k=>document.getElementById(k).classList.toggle('on',k===id));document.getElementById('orbRoot').classList.add('on');document.getElementById('orbRoot').dataset.v=id;document.body.classList.add('orbopen')}
 function orbClose(){const r=document.getElementById('orbRoot');if(r)r.classList.remove('on');document.body.classList.remove('orbopen')}
 function orbChooser(){orbRoot();ORBFROM=false;orbPill();const c=document.getElementById('orbChoose');
-  c.innerHTML=`<div class="och-top">\x3cimg src="${ORBLOGO}" alt="AI ORBIT"><b class="och-sub">AI ORBIT SASREF's 1<sup>st</sup> Hackathon</b><p>${xl('Where do you want to start?','من أين تريد أن تبدأ؟')}</p></div>
+  c.innerHTML=`<i class="orb-stars"></i><div class="och-top">\x3cimg src="${ORBLOGO}" alt="AI ORBIT"><b class="och-sub">AI ORBIT SASREF's 1<sup>st</sup> Hackathon</b><p>${xl('Where do you want to start?','من أين تريد أن تبدأ؟')}</p></div>
   <button class="och-btn a" onclick="orbEnter()"><span class="oi"><svg viewBox="0 0 64 64" width="70" height="70"><defs><linearGradient id="oig" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C4B5FD"/><stop offset="1" stop-color="#EC4899"/></linearGradient></defs><ellipse cx="32" cy="34" rx="27" ry="13" transform="rotate(-24 32 34)" fill="none" stroke="url(#oig)" stroke-width="7"/><circle cx="46" cy="18" r="7" fill="#FDE68A"/></svg></span><span class="ot2"><b>AI ORBIT</b><small>${xl('The hackathon: everything we submit, in one orbit','الهاكاثون: كل ما نقدّمه في مدار واحد')}</small></span></button>
   <button class="och-btn b" onclick="orbLab()"><span class="oi"><svg viewBox="0 0 64 64" width="70" height="70"><rect x="10" y="10" width="19" height="19" rx="6" fill="#FDE68A"/><rect x="35" y="10" width="19" height="19" rx="6" fill="#93C5FD"/><rect x="10" y="35" width="19" height="19" rx="6" fill="#F9A8D4"/><rect x="35" y="35" width="19" height="19" rx="6" fill="#86EFAC"/></svg></span><span class="ot2"><b>AIR Lab</b><em class="ocap">${xl('Asset Integrity and Reliability','سلامة الأصول والموثوقية')}</em><small>${xl('The full lab: all the tools','المختبر الكامل: كل الأدوات')}</small></span></button>${(window.ghInstHelp&&!(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)&&navigator.standalone!==true)?`<button class="och-inst"${(window.ghCanInst&&ghCanInst())?'':' hidden'} onclick="ghInstHelp()"><i class="och-ii"></i><span class="och-it"><b>${xl('Install the app','ثبّت التطبيق')}</b><small>${xl('Keep AI ORBIT one tap away','أبقِ AI ORBIT على بعد لمسة')}</small></span><u>${xl('Install','تثبيت')}</u></button>`:''}`;orbShow('orbChoose')}
 function orbLab(){orbClose()}
 function orbOpenHub(){orbRoot();ORBFROM=false;orbPill();orbHub()}
 function orbEnter(){orbHub();}
 function orbHub(){const h=document.getElementById('orbHub'),n=ORBP.length,seen=Object.keys(ORBS.seen).length,nx=ORBP.find(p=>!ORBS.seen[p.id]),lab=seen===0?xl('Start','ابدأ'):seen>=n?xl('Replay','أعد'):xl('Continue','تابع');
-  h.innerHTML=`<div class="oh-top"><button class="oh-sw" onclick="orbChooser()" aria-label="Opening screen">⟲</button><div class="oh-t">\x3cimg src="${ORBLOGO}" alt=""><b>AI ORBIT<small>SASREF's 1<sup>st</sup> Hackathon</small></b></div><span class="oh-c">${seen}/${n}</span></div>
+  h.innerHTML=`<i class="orb-stars"></i><div class="oh-top"><button class="oh-sw" onclick="orbChooser()" aria-label="Opening screen">⟲</button><div class="oh-t">\x3cimg src="${ORBLOGO}" alt=""><b>AI ORBIT<small>SASREF's 1<sup>st</sup> Hackathon</small></b></div><span class="oh-c">${seen}/${n}</span></div>
   <p class="oh-sub">${xl((({5:'Five',6:'Six',7:'Seven',8:'Eight'})[n]||n)+' short steps, from the question to the proof',(({5:'خمس',6:'ست',7:'سبع',8:'ثماني'})[n]||n)+' خطوات قصيرة، من السؤال إلى الإثبات')}</p>
-  <div class="oh-st"><div class="oh-ring" id="orbRing" style="--p:${(100*seen/n).toFixed(1)}"><div class="oh-trail"></div><div class="oh-spin">${ORBP.map((p,i)=>{const a=360/n*i,isN=nx&&nx.id===p.id;return`<button class="opl${ORBS.seen[p.id]?' seen':''}${isN?' next':''}" style="--a:${a}deg;--c:${p.c}" onclick="orbGo('${p.id}',this)" aria-label="${orbN(p)}${isN?' · '+xl('next','التالي'):''}"><span class="opw"><span class="op"><span class="oq">${orbIc(p.i,24)}</span></span><span class="ol">${orbN(p)}</span></span></button>`}).join('')}</div></div>
-  <button class="oh-core" onclick="orbNext()" aria-label="${lab}"><svg class="oh-prog" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="5"/></svg><span class="ohc"><b>AI<br>agent</b><i>${lab}</i></span></button></div>
-  <p class="oh-hint">${xl('Open the glowing planet. When you finish, the next one lights up.','افتح الكوكب المتوهج. وعند إنهائه يتوهج الذي بعده.')}</p>`;orbShow('orbHub');orbFit()}
+  <div class="oh-st"><div class="oh-ring" id="orbRing" style="--p:${(100*seen/n).toFixed(1)}"><div class="oh-trail"></div><div class="oh-spin">${ORBP.map((p,i)=>{const a=360/n*i,isN=nx&&nx.id===p.id;const lk=!ORBS.seen[p.id]&&!isN;return`<button class="opl${ORBS.seen[p.id]?' seen':''}${isN?' next':''}${lk?' oslot':''}" data-i="${p.i}" style="--a:${a}deg;--c:${p.c}" onclick="orbGo('${p.id}',this)" aria-label="${orbN(p)}${isN?' · '+xl('next','التالي'):lk?' · '+xl('locked','مقفل'):''}"><span class="opw"><span class="op"><span class="oq">${orbIc(p.i,24)}</span></span><span class="ol">${orbN(p)}</span></span></button>`}).join('')}</div></div>
+  <div class="oh-core" role="button" tabindex="0" aria-label="AI agent" onclick="orbTap(this)"><svg class="oh-prog" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="5"/></svg><span class="ohc"><b>AI<br>agent</b></span></div></div>`;orbShow('orbHub');orbFit()}
+function orbTap(el){el.classList.remove('hit');void el.offsetWidth;el.classList.add('hit');try{navigator.vibrate&&navigator.vibrate(12)}catch(e){}clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('hit'),900)}
 function orbNext(){const nx=ORBP.find(p=>!ORBS.seen[p.id]);orbGo((nx||ORBP[0]).id,null,true)}
 function orbGo(id,el,noWarp){
+  {const nx=ORBP.find(p=>!ORBS.seen[p.id]);if(nx&&!ORBS.seen[id]&&nx.id!==id){const w=document.querySelector('.opl.oslot[onclick*="\''+id+'\'"]');if(w){w.classList.remove('nope');void w.offsetWidth;w.classList.add('nope')}try{navigator.vibrate&&navigator.vibrate(18)}catch(e){}toast(xl('Finish “'+orbN(nx)+'” first','أكمل «'+orbN(nx)+'» أولاً'));return}}
   const open=()=>{ORBCUR=id;ORBN=0;orbRenderPage(true);orbShow('orbPage');orbDone()};
   if(noWarp||!el||matchMedia('(prefers-reduced-motion:reduce)').matches){open();return}
   const r=el.querySelector('.op').getBoundingClientRect(),w=document.getElementById('orbWarp'),p=ORBP.find(x=>x.id===id);
@@ -6758,6 +6860,7 @@ function dkTools(){
  const orbOn=()=>{const r=document.getElementById('orbRoot');return !!(r&&r.classList.contains('on'))},on=id=>{const e=document.getElementById(id);return !!(e&&e.classList.contains('on'))};
  function goto(p){busy=true;try{window.nav(p,KEEP.includes(p)?'keep':undefined)}finally{busy=false}}
  window.appBack=function(){
+  {const md=document.querySelector('.modal');if(md){md.click();if(md.isConnected)md.remove();return true}}                  /* an open report / dialog */
   if(document.querySelector('.bsh')){dkClose();return true}                                   /* a bottom sheet */
   if(orbOn()){if(on('orbPage')){orbHub();return true}if(on('orbHub')){orbChooser();return true}return false}   /* AI ORBIT */
   if(typeof ORBFROM!=='undefined'&&ORBFROM){ORBFROM=false;orbPill();orbHub();return true}      /* a tool opened from AI ORBIT */
