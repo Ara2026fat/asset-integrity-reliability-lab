@@ -260,7 +260,7 @@ body[data-tool=proc]::before{background:radial-gradient(420px 320px at 10% 6%,rg
 .nv.on{background:linear-gradient(180deg,rgba(255,255,255,.26),rgba(255,255,255,.08));box-shadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 -3px 0 #B3820E,0 6px 12px -4px rgba(0,0,0,.4);transform:translateY(-2px)}
 .btn{position:relative;overflow:hidden}
 .btn::after{content:"";position:absolute;inset:0 0 50% 0;background:linear-gradient(180deg,rgba(255,255,255,.34),rgba(255,255,255,0));border-radius:inherit;pointer-events:none}
-.btn::before{content:"";position:absolute;top:-60%;bottom:-60%;width:40px;left:-80px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);transform:rotate(18deg);animation:shine 5s ease-in-out infinite;pointer-events:none}
+.btn::before{content:"";position:absolute;top:-60%;bottom:-60%;width:40px;left:-80px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);transform:rotate(18deg);animation:shine 7.5s ease-in-out infinite;pointer-events:none}
 @keyframes shine{0%,60%{left:-80px}100%{left:130%}}
 /* ---------- tabs ---------- */
 .tabs3{display:grid;gap:4px;padding:5px;border-radius:18px;margin:6px 0 10px;background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,.4));border:1px solid rgba(255,255,255,.95);box-shadow:inset 0 1px 0 #fff,0 12px 20px -14px rgba(11,27,82,.5);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
@@ -280,7 +280,7 @@ body.hub main{flex:1;min-height:0}body.hub #app>.reveal{height:100%;animation:no
 .ht.on{color:#fff;background:linear-gradient(180deg,var(--t1),var(--t3));box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 5px 0 rgba(0,0,0,.28),0 12px 20px -6px var(--t1);transform:translateY(-3px)}
 .hero{flex:1;min-height:0;position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:6px;border-radius:28px;padding:12px 14px 14px;color:#fff;overflow:hidden;border:3px solid transparent;background:radial-gradient(120% 70% at 50% 0%,rgba(255,255,255,.28),transparent 60%) padding-box,linear-gradient(180deg,var(--t1),var(--t3)) padding-box,linear-gradient(135deg,#FFF1A8,#C9921A 45%,#8A5A05 60%,#F5D36A) border-box;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 24px 40px -18px var(--t1);animation:heroIn .5s both}
 .hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-opacity='.10' stroke-width='1'%3E%3Crect x='20' y='20' width='24' height='24'/%3E%3Crect x='20' y='20' width='24' height='24' transform='rotate(45 32 32)'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none;opacity:.8}
-.hero::after{content:"";position:absolute;top:-40%;bottom:-40%;width:70px;left:-120px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:rotate(16deg);animation:shine 6s ease-in-out infinite;pointer-events:none}
+.hero::after{content:"";position:absolute;top:-40%;bottom:-40%;width:70px;left:-120px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:rotate(16deg);animation:shine 9s ease-in-out infinite;pointer-events:none}
 .hero>*{position:relative;z-index:1}
 @keyframes heroIn{from{opacity:0;transform:translateY(10px) scale(.98)}}
 .hscene{flex:1;min-height:0;display:grid;place-items:center}
@@ -508,7 +508,7 @@ body .nav>.dock::before{content:none}
 @keyframes navpop{0%{transform:scale(.9)}100%{transform:scale(1)}}
 .nv-c{margin-top:-34px;color:var(--n3)}
 .nv-c .ni{position:relative;overflow:hidden;width:60px;height:60px;border-radius:50%;background:linear-gradient(145deg,#FFE48F,#FFB62E 55%,#F59E0B);color:#4A2C00;box-shadow:0 16px 26px -8px rgba(245,158,11,.8),0 0 0 6px rgba(255,255,255,.92),inset 0 2px 0 rgba(255,255,255,.75);animation:orb 3.4s ease-in-out infinite}
-.nv-c .ni::after{content:"";position:absolute;top:-40%;bottom:-40%;width:18px;left:-30px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);transform:rotate(18deg);animation:shine 5s ease-in-out infinite}
+.nv-c .ni::after{content:"";position:absolute;top:-40%;bottom:-40%;width:18px;left:-30px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);transform:rotate(18deg);animation:shine 7.5s ease-in-out infinite}
 .nv-c .ni svg{width:28px;height:28px;stroke-width:2.8}
 @keyframes orb{50%{box-shadow:0 20px 32px -8px rgba(245,158,11,.95),0 0 0 6px rgba(255,255,255,.92),inset 0 2px 0 rgba(255,255,255,.75)}}
 .nv-c.on .ni{background:linear-gradient(145deg,var(--n1),var(--n2));color:#fff;box-shadow:0 16px 26px -8px var(--ag),0 0 0 6px rgba(255,255,255,.92),inset 0 2px 0 rgba(255,255,255,.5)}
@@ -811,7 +811,7 @@ body .top,body.hub .top{position:relative;overflow:hidden;padding:9px 12px;min-h
 @keyframes ping{0%{transform:scale(.88);opacity:.9}70%,100%{transform:scale(1.4);opacity:0}}
 @keyframes kgrow{from{transform:scaleX(0)}}
 .gl{position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none;z-index:2}
-.gl::after{content:"";position:absolute;top:-25%;bottom:-25%;width:32%;left:-55%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-18deg);animation:glint 12.6s ease-in-out infinite}
+.gl::after{content:"";position:absolute;top:-25%;bottom:-25%;width:32%;left:-55%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-18deg);animation:glint 18.9s ease-in-out infinite}
 .dock2 .gl::after{animation-delay:4.3s}
 .hb{animation:hb 1.7s ease-in-out infinite}
 /* dock */
@@ -839,7 +839,7 @@ main#app,body.hub main#app{padding-bottom:calc(var(--dock-h) + env(safe-area-ins
 .modesw{direction:ltr!important;background:linear-gradient(180deg,#243C86,#0F1D57)!important;border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 12px 22px -14px rgba(4,12,50,.8)!important;position:relative;overflow:hidden}
 .modesw button{color:rgba(255,255,255,.72)!important;position:relative;z-index:1}.modesw button.on{background:linear-gradient(180deg,#FFE9A8,#FFC24A)!important;color:#4A2C00!important;box-shadow:0 6px 14px -6px rgba(255,194,74,.75),inset 0 1px 0 rgba(255,255,255,.75)!important}
 /* meaningful motion */
-.cta{position:relative;overflow:hidden}.cta::after{content:"";position:absolute;top:0;bottom:0;width:30%;left:-55%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);animation:glint 11.7s ease-in-out infinite;pointer-events:none}.cta.rcmc::after{animation-delay:3.2s}
+.cta{position:relative;overflow:hidden}.cta::after{content:"";position:absolute;top:0;bottom:0;width:30%;left:-55%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);animation:glint 17.55s ease-in-out infinite;pointer-events:none}.cta.rcmc::after{animation-delay:3.2s}
 .ctn b{display:inline-block;animation:hb 1.7s ease-in-out infinite}
 .rcn.hb{animation:hb 1.5s ease-in-out infinite}
 .bdp{animation:bdpl 1.9s ease-in-out infinite!important}.bdb.sel{animation:bdsel 1.2s ease-in-out infinite!important}
@@ -1130,8 +1130,8 @@ background:linear-gradient(120deg,rgba(255,255,255,.16),rgba(255,255,255,.06)) p
 
 /* ===== AI ORBIT: living planets + touchable core ===== */
 .opl .op{overflow:hidden;transition:transform .18s ease,filter .18s ease}
-.opl .op::after{content:'';position:absolute;top:-30%;bottom:-30%;width:42%;left:-70%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:opsh 6.5s ease-in-out infinite;pointer-events:none}
-.opl:nth-child(2n) .op::after{animation-delay:1.4s}.opl:nth-child(3n) .op::after{animation-delay:2.9s}.opl:nth-child(5n) .op::after{animation-delay:4.1s}
+.opl .op::after{content:'';position:absolute;top:-30%;bottom:-30%;width:42%;left:-70%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:opsh 9.75s ease-in-out infinite;pointer-events:none}
+.opl:nth-child(2n) .op::after{animation-delay:2.1s}.opl:nth-child(3n) .op::after{animation-delay:4.35s}.opl:nth-child(5n) .op::after{animation-delay:6.15s}
 @keyframes opsh{0%,62%{left:-70%}100%{left:150%}}
 .opl .oq svg{transform-origin:50% 50%;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35));will-change:transform}
 .opl[data-i=flag] .oq svg{transform-origin:25% 90%;animation:oqsway 3.4s ease-in-out infinite}
@@ -1153,7 +1153,7 @@ background:linear-gradient(120deg,rgba(255,255,255,.16),rgba(255,255,255,.06)) p
 /* core */
 .oh-core{pointer-events:auto!important;cursor:pointer;-webkit-tap-highlight-color:transparent;animation:ocbreath 4.2s ease-in-out infinite!important;overflow:visible}
 .oh-core::before{content:'';position:absolute;inset:-7px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 62%,rgba(255,226,140,.0) 70%,rgba(255,236,170,.95) 97%,transparent 100%);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px));mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px));animation:orbspin 5.5s linear infinite;pointer-events:none}
-.oh-core::after{content:'';position:absolute;inset:0;border-radius:50%;overflow:hidden;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.38) 50%,transparent 65%);background-size:260% 100%;background-position:160% 0;animation:ocsh 5s ease-in-out infinite;pointer-events:none}
+.oh-core::after{content:'';position:absolute;inset:0;border-radius:50%;overflow:hidden;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.38) 50%,transparent 65%);background-size:260% 100%;background-position:160% 0;animation:ocsh 7.5s ease-in-out infinite;pointer-events:none}
 @keyframes ocsh{0%,55%{background-position:160% 0}100%{background-position:-60% 0}}
 @keyframes ocbreath{0%,100%{transform:translate(-50%,-50%) scale(1);box-shadow:inset 0 4px 0 rgba(255,255,255,.5),0 0 34px rgba(167,139,250,.6)}50%{transform:translate(-50%,-50%) scale(1.04);box-shadow:inset 0 4px 0 rgba(255,255,255,.55),0 0 54px rgba(196,170,255,.95)}}
 .oh-core b{background-size:100% 220%;animation:ocshim 4.5s ease-in-out infinite}
@@ -1194,8 +1194,8 @@ background:linear-gradient(120deg,rgba(255,255,255,.16),rgba(255,255,255,.06)) p
 .och-btn{position:relative;overflow:hidden;animation:ochfl 6.5s ease-in-out infinite;box-shadow:inset 0 3px 0 rgba(255,255,255,.4),inset 0 -8px 16px rgba(0,0,0,.18),0 20px 30px -14px rgba(10,0,50,.65)}
 .och-btn.b{animation-delay:-3.2s}
 @keyframes ochfl{0%,100%{translate:0 0}50%{translate:0 -5px}}
-.och-btn::after{content:'';position:absolute;top:-20%;bottom:-20%;width:34%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-20deg);animation:ochcs 7s ease-in-out infinite;pointer-events:none}
-.och-btn.b::after{animation-delay:3.4s}
+.och-btn::after{content:'';position:absolute;top:-20%;bottom:-20%;width:34%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-20deg);animation:ochcs 10.5s ease-in-out infinite;pointer-events:none}
+.och-btn.b::after{animation-delay:5.1s}
 @keyframes ochcs{0%,60%{left:-60%}100%{left:140%}}
 .och-btn.a .oi svg{animation:ochorb 14s linear infinite;filter:drop-shadow(0 3px 6px rgba(80,10,100,.55))}
 @keyframes ochorb{to{transform:rotate(360deg)}}
@@ -1217,11 +1217,29 @@ background:linear-gradient(120deg,rgba(255,255,255,.16),rgba(255,255,255,.06)) p
  background:radial-gradient(circle at 32% 24%,rgba(255,255,255,.95) 0,rgba(255,255,255,.4) 16%,rgba(255,255,255,0) 40%),radial-gradient(circle at 74% 86%,rgba(90,40,0,.6) 0,rgba(90,40,0,0) 60%),linear-gradient(160deg,#FFE9A3,#F2B632 55%,#B8780A);
  box-shadow:inset -2px -3px 4px rgba(90,40,0,.45),inset 1.5px 2px 3px rgba(255,255,255,.75),0 0 0 1px rgba(255,236,170,.85),0 2px 5px rgba(0,0,0,.45),0 0 9px 1px rgba(255,205,90,.65);
  text-shadow:0 1px 0 rgba(255,255,255,.55);animation:olgl 3.6s ease-in-out infinite}
-#orbLang::after{content:'';position:absolute;top:-30%;bottom:-30%;width:45%;left:-70%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.8),transparent);transform:skewX(-20deg);animation:olsh 4.2s ease-in-out infinite;pointer-events:none}
+#orbLang::after{content:'';position:absolute;top:-30%;bottom:-30%;width:45%;left:-70%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.8),transparent);transform:skewX(-20deg);animation:olsh 6.3s ease-in-out infinite;pointer-events:none}
 @keyframes olgl{0%,100%{box-shadow:inset -2px -3px 4px rgba(90,40,0,.45),inset 1.5px 2px 3px rgba(255,255,255,.75),0 0 0 1px rgba(255,236,170,.85),0 2px 5px rgba(0,0,0,.45),0 0 7px 0 rgba(255,205,90,.5)}50%{box-shadow:inset -2px -3px 4px rgba(90,40,0,.45),inset 1.5px 2px 3px rgba(255,255,255,.75),0 0 0 1px rgba(255,236,170,.95),0 2px 5px rgba(0,0,0,.45),0 0 14px 3px rgba(255,214,110,.95)}}
 @keyframes olsh{0%,55%{left:-70%}100%{left:150%}}
 #orbLang:active{transform:scale(.86)}
 @media (prefers-reduced-motion:reduce){#orbLang,#orbLang::after{animation:none!important}}
+
+.omst{position:relative;overflow:hidden;border-radius:22px;padding:8px 6px;background:radial-gradient(120% 90% at 50% 0%,#2A41A0 0%,#101C58 55%,#070D30 100%);border:1.5px solid rgba(255,214,110,.6);box-shadow:inset 0 2px 0 rgba(255,255,255,.2),inset 0 -14px 24px rgba(0,0,0,.35),0 16px 26px -16px rgba(10,15,70,.9),0 0 20px rgba(255,200,80,.2)}
+.omst::before{content:"";position:absolute;inset:0;background:radial-gradient(1.2px 1.2px at 12% 18%,#fff,transparent),radial-gradient(1px 1px at 78% 12%,#fff,transparent),radial-gradient(1.4px 1.4px at 90% 70%,#FFE9A0,transparent),radial-gradient(1px 1px at 22% 82%,#fff,transparent),radial-gradient(1.2px 1.2px at 55% 92%,#FFE9A0,transparent),radial-gradient(1px 1px at 6% 52%,#fff,transparent);opacity:.8;animation:ostw 4s ease-in-out infinite alternate;pointer-events:none}
+.omst::after{content:"";position:absolute;top:-30%;bottom:-30%;width:35%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.16),transparent);transform:skewX(-20deg);animation:omsh 22s ease-in-out infinite;pointer-events:none}
+@keyframes omsh{0%,60%{left:-60%}100%{left:140%}}
+.omst svg{position:relative;display:block;z-index:1}
+.o2ring{animation:o2spin 22s linear infinite}
+@keyframes o2spin{to{stroke-dashoffset:-240}}
+.o2core{transform-box:fill-box;transform-origin:50% 50%;animation:o2br 3.6s ease-in-out infinite;filter:drop-shadow(0 0 8px rgba(120,160,255,.8))}
+@keyframes o2br{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
+.o2n{transform-box:fill-box;transform-origin:50% 50%;animation:o2fl 4.6s ease-in-out infinite;animation-delay:var(--d);filter:drop-shadow(0 4px 5px rgba(0,0,30,.55))}
+@keyframes o2fl{0%,100%{translate:0 0}50%{translate:0 -2.5px}}
+.omchips{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.omchips span{position:relative;overflow:hidden;display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:14px;font-size:calc(11px*var(--ou,1));font-weight:800;line-height:1.2;color:#fff;background:linear-gradient(180deg,#2D4AA8,#0F1D57);border:1.2px solid rgba(255,214,110,.5);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.28),0 8px 12px -8px rgba(15,29,87,.8)}
+.omchips span i{flex:0 0 auto;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFF3B0,#FFC24A 55%,#B8730A);box-shadow:0 0 7px rgba(255,194,74,.9)}
+.omchips span::after{content:"";position:absolute;top:-30%;bottom:-30%;width:35%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.3),transparent);transform:skewX(-20deg);animation:omsh 22s ease-in-out infinite;animation-delay:var(--d);pointer-events:none}
+.orb-btn2.gld{background:linear-gradient(180deg,#FFE08A,#FFC24A 55%,#E39A12);color:#3B2200;border:1.5px solid #FFF3B0;box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 8px 14px -8px rgba(160,100,0,.8),0 0 14px rgba(255,194,74,.45);font-weight:900}
+@media (prefers-reduced-motion:reduce){.omst::before,.omst::after,.o2ring,.o2core,.o2n,.omchips span::after{animation:none!important}}
 </style>
 </head>
 <body>
@@ -2176,7 +2194,7 @@ function shareIdea(id){
 }
 
 /* ---------- version ---------- */
-/*BUILD*/const BUILD={version:"AIR 3.0 GitHub",id:"20261006-2330",date:"2026-10-06T19:49:09Z"};/*END BUILD*/
+/*BUILD*/const BUILD={version:"AIR 3.0 GitHub",id:"20261007-1400",date:"2026-10-06T19:49:09Z"};/*END BUILD*/
 const fmtBuild=()=>new Date(BUILD.date).toLocaleString(L==='ar'?'ar-u-ca-gregory-nu-latn':'en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
 function verCard(){
   return`<div class="card"><span class="tag">${t('verT')}</span><p style="margin:0 0 6px;font-size:17px;font-weight:800;color:var(--ink)">${t('verL')} ${BUILD.version}</p><p class="dr" style="margin-top:0">${t('relL')}: ${fmtBuild()}</p></div>`;
@@ -6336,8 +6354,13 @@ function orbSlides(id){
   if(id==='criteria')return[
     `<h3 class="ot">The four criteria, with our evidence</h3>${[['Feasible and implementable','A working prototype, tested on a fictional unit.','Pilot on one real unit (about 4 weeks).','Prototype ready','#0D9488'],['Business impact and value','The method and a live calculator are ready.','SASREF baselines and a back-test.','Needs real data','#EA580C'],['AI integration and innovation','AI reads reports, photos and text; the maths stays explainable.','A live demo on a real report.','Working','#0D9488'],['Scalability','Asset tag and date as keys, ISO 14224 names.','Extend unit by unit after the pilot.','Built in','#7C3AED']].map(([a,e,n,t,c])=>`<div class="omt"><div class="omr"><b>${a}</b><span style="background:${c}">${t}</span></div><small><b>Evidence:</b> ${e}</small><small><b>Next:</b> ${n}</small></div>`).join('')}`];
   if(id==='map')return[
-    `<h3 class="ot">The agent on one map</h3>${mapSvg(PLAT())}<p class="os">${(()=>{const A=PLAT().filter(x=>x.g!=='src'),b=A.filter(x=>x.s==='b').length,p=A.filter(x=>x.s==='p').length,n=A.filter(x=>x.s==='n').length;return`${b} built · ${p} partly · ${n} next · ${A.length} items, ${Math.round(100*(b+p/2)/A.length)}% exists today`})()}</p><button class="orb-btn2" onclick="orbLaunch('map')">Open the full map</button>`,
-    `<h3 class="ot">Continuous improvement</h3><svg viewBox="0 0 320 250" width="100%" role="img" aria-label="Four-step loop: data collection, analysis, AI-driven outcomes, check refine and act">${[['1','Data collection',160,26,'#7C3AED'],['2','Analysis',254,125,'#DB2777'],['3','AI outcomes',160,224,'#0D9488'],['4','Check & act',66,125,'#EA580C']].map(([n,t,x,y,c])=>`<rect x="${x-62}" y="${y-22}" width="124" height="44" rx="14" fill="#fff" stroke="${c}" stroke-width="3"/><circle cx="${x-44}" cy="${y}" r="11" fill="${c}"/><text x="${x-44}" y="${y+4.5}" font-size="12" font-weight="800" fill="#fff" text-anchor="middle">${n}</text><text x="${x-28}" y="${y+3.8}" font-size="10" font-weight="800" fill="#1F1147" text-anchor="start">${t}</text>`).join('')}<path d="M214 36 C242 46 252 72 254 98" fill="none" stroke="#F97316" stroke-width="4" marker-end="url(#oa)"/><path d="M254 152 C252 178 240 202 214 214" fill="none" stroke="#F97316" stroke-width="4" marker-end="url(#oa)"/><path d="M106 214 C80 202 68 178 66 152" fill="none" stroke="#F97316" stroke-width="4" marker-end="url(#oa)"/><path d="M66 98 C68 72 78 46 106 36" fill="none" stroke="#F97316" stroke-width="4" marker-end="url(#oa)"/><defs><marker id="oa" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10z" fill="#F97316"/></marker></defs><circle cx="160" cy="125" r="42" fill="#7C3AED"/><text x="160" y="121" font-size="11" font-weight="800" fill="#fff" text-anchor="middle">Every lap:</text><text x="160" y="135" font-size="10" font-weight="700" fill="#E9DDFB" text-anchor="middle">better data</text></svg>${ochips(['Months of warning before failure','Corrective share of hours','Forecast against actual life','Map coverage'])}`];
+    `<h3 class="ot">The agent on one map</h3><div class="omst om1">${mapSvg(PLAT())}</div><p class="os">${(()=>{const A=PLAT().filter(x=>x.g!=='src'),b=A.filter(x=>x.s==='b').length,p=A.filter(x=>x.s==='p').length,n=A.filter(x=>x.s==='n').length;return`${b} built · ${p} partly · ${n} next · ${A.length} items, ${Math.round(100*(b+p/2)/A.length)}% exists today`})()}</p><button class="orb-btn2 gld" onclick="orbLaunch('map')">Open the full map</button>`,
+    `<h3 class="ot">Continuous improvement</h3><div class="omst om2"><svg viewBox="0 0 320 300" width="100%" role="img" aria-label="Four-step loop: data collection, analysis, AI-driven outcomes, check refine and act"><defs><linearGradient id="o2p" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3556C8"/><stop offset="1" stop-color="#0F1D57"/></linearGradient><radialGradient id="o2c" cx=".35" cy=".28" r=".85"><stop offset="0" stop-color="#B7CBFF"/><stop offset=".5" stop-color="#3B6FEF"/><stop offset="1" stop-color="#1B2F8F"/></radialGradient><radialGradient id="o2g" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#FFF3B0"/><stop offset=".55" stop-color="#FFC24A"/><stop offset="1" stop-color="#B8730A"/></radialGradient><filter id="o2b" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter></defs>
+<ellipse cx="160" cy="150" rx="102" ry="116" fill="none" stroke="rgba(255,194,74,.18)" stroke-width="7" filter="url(#o2b)"/><ellipse class="o2ring" cx="160" cy="150" rx="102" ry="116" fill="none" stroke="#FFC24A" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="3 9" opacity=".9"/>
+<g transform="translate(232.1 68.0) rotate(48.7)"><path d="M-7 -6 L7 0 L-7 6 Z" fill="url(#o2g)" stroke="#7A4A00" stroke-width=".8"/></g><g transform="translate(232.1 232.0) rotate(131.3)"><path d="M-7 -6 L7 0 L-7 6 Z" fill="url(#o2g)" stroke="#7A4A00" stroke-width=".8"/></g><g transform="translate(87.9 232.0) rotate(-131.3)"><path d="M-7 -6 L7 0 L-7 6 Z" fill="url(#o2g)" stroke="#7A4A00" stroke-width=".8"/></g><g transform="translate(87.9 68.0) rotate(-48.7)"><path d="M-7 -6 L7 0 L-7 6 Z" fill="url(#o2g)" stroke="#7A4A00" stroke-width=".8"/></g>
+<g class="o2core"><circle cx="160" cy="150" r="52" fill="rgba(80,120,255,.18)"/><circle cx="160" cy="150" r="46" fill="none" stroke="rgba(255,214,110,.7)" stroke-width="1.6"/><circle cx="160" cy="150" r="40" fill="url(#o2c)"/><ellipse cx="160" cy="134" rx="26" ry="12" fill="rgba(255,255,255,.38)"/><text x="160" y="148" font-size="11.5" font-weight="900" fill="#fff" text-anchor="middle">Every lap</text><text x="160" y="163" font-size="10" font-weight="800" fill="#FFD36A" text-anchor="middle">better data</text></g>
+<circle r="5" fill="#FFF3B0"><animateMotion dur="9s" repeatCount="indefinite" path="M160 34 A102 116 0 1 1 159.9 34"/></circle><circle r="11" fill="rgba(255,214,110,.35)" filter="url(#o2b)"><animateMotion dur="9s" repeatCount="indefinite" path="M160 34 A102 116 0 1 1 159.9 34"/></circle><g class="o2n" style="--d:0.7s"><rect x="104" y="11" width="112" height="46" rx="16" fill="url(#o2p)" stroke="rgba(255,255,255,.3)" stroke-width="1.2"/><rect x="108" y="14" width="104" height="18" rx="10" fill="rgba(255,255,255,.12)"/><circle cx="124" cy="34" r="12" fill="url(#o2g)" stroke="#FFF3B0" stroke-width="1"/><text x="124" y="38.6" font-size="13" font-weight="900" fill="#4A2A00" text-anchor="middle">1</text><text x="140" y="37.8" font-size="9.4" font-weight="800" fill="#fff">Data collection</text></g><g class="o2n" style="--d:1.4s"><rect x="206" y="127" width="112" height="46" rx="16" fill="url(#o2p)" stroke="rgba(255,255,255,.3)" stroke-width="1.2"/><rect x="210" y="130" width="104" height="18" rx="10" fill="rgba(255,255,255,.12)"/><circle cx="226" cy="150" r="12" fill="url(#o2g)" stroke="#FFF3B0" stroke-width="1"/><text x="226" y="154.6" font-size="13" font-weight="900" fill="#4A2A00" text-anchor="middle">2</text><text x="242" y="153.8" font-size="9.4" font-weight="800" fill="#fff">Analysis</text></g><g class="o2n" style="--d:2.0999999999999996s"><rect x="104" y="243" width="112" height="46" rx="16" fill="url(#o2p)" stroke="rgba(255,255,255,.3)" stroke-width="1.2"/><rect x="108" y="246" width="104" height="18" rx="10" fill="rgba(255,255,255,.12)"/><circle cx="124" cy="266" r="12" fill="url(#o2g)" stroke="#FFF3B0" stroke-width="1"/><text x="124" y="270.6" font-size="13" font-weight="900" fill="#4A2A00" text-anchor="middle">3</text><text x="140" y="269.8" font-size="9.4" font-weight="800" fill="#fff">AI outcomes</text></g><g class="o2n" style="--d:2.8s"><rect x="2" y="127" width="112" height="46" rx="16" fill="url(#o2p)" stroke="rgba(255,255,255,.3)" stroke-width="1.2"/><rect x="6" y="130" width="104" height="18" rx="10" fill="rgba(255,255,255,.12)"/><circle cx="22" cy="150" r="12" fill="url(#o2g)" stroke="#FFF3B0" stroke-width="1"/><text x="22" y="154.6" font-size="13" font-weight="900" fill="#4A2A00" text-anchor="middle">4</text><text x="38" y="153.8" font-size="9.4" font-weight="800" fill="#fff">Check &amp; act</text></g>
+</svg></div><div class="omchips">${['Months of warning before failure','Corrective share of hours','Forecast against actual life','Map coverage'].map((t,i)=>`<span style="--d:${i*1.1}s"><i></i>${t}</span>`).join('')}</div>`];
   if(id==='demo')return[`<h3 class="ot">See it work</h3><p class="os">Real tools on the fictional training unit. Tap one; a tab at the left edge brings you back to the orbit.</p><div class="odm">${[['prio','Priority board','What to do first'],['life','Remaining life','With a confidence range'],['bad','Bad actors','Who fails most, and is it worse'],['weib','Weibull Lab','When to replace']].map(([k,a,b])=>`<button onclick="orbLaunch('${k}')"><b>${a}</b><span>${b}</span></button>`).join('')}</div>`];
   if(id==='ready'){const items=[['deck','Presentation (10 slides) built','d'],['word','Word answers filled (sections 1 to 4)','d'],['team','Team details in the Word form',''],['nums','Real SASREF numbers for the calculator',''],['demo','Live AI demo on a real report or photo',''],['back','Back-test on 3 to 5 known failures',''],['fb','Feedback from a SASREF engineer',''],['gh','Latest version uploaded to GitHub','']];const done=items.filter(([k,,d])=>ORBS.ck[k]!==undefined?ORBS.ck[k]:d==='d').length;
     return[`<h3 class="ot">Readiness <em class="oex">${done}/${items.length}</em> <em class="oex" style="background:#FCE7F3;color:#9D174D">Team only</em></h3><div class="omb big"><i style="width:${100*done/items.length}%"></i></div>${items.map(([k,l,d])=>{const on=ORBS.ck[k]!==undefined?ORBS.ck[k]:d==='d';return`<button class="ock${on?' on':''}" onclick="orbCk('${k}')"><i>${on?'✓':''}</i><span>${l}</span></button>`}).join('')}`,
@@ -7021,13 +7044,14 @@ function ghBannerPos(){const c=$('#ghbn');if(!c)return;const n=$('#nav');c.style
 setInterval(ghBannerPos,700);
 function ghBanner(id,html){
   let c=$('#ghbn');
-  if(!c){c=document.createElement('div');c.id='ghbn';c.style.cssText='position:fixed;left:12px;right:12px;bottom:96px;z-index:60;display:flex;flex-direction:column;gap:8px';document.body.appendChild(c);ghBannerPos()}
+  if(!c){c=document.createElement('div');c.id='ghbn';c.style.cssText='position:fixed;left:12px;right:12px;bottom:96px;z-index:9600;display:flex;flex-direction:column;gap:8px';document.body.appendChild(c);ghBannerPos()}
   const d=document.createElement('div');d.id=id;d.setAttribute('role','status');
-  d.style.cssText='display:flex;gap:8px;align-items:center;justify-content:space-between;padding:7px 12px;border-radius:16px;font-size:14px;line-height:1.25;background:linear-gradient(180deg,#2F55C8,#14307F);color:#fff;font-weight:800;box-shadow:0 10px 20px rgba(11,27,82,.4)';
+  d.style.cssText='display:flex;gap:8px;align-items:center;justify-content:space-between;padding:9px 12px;border-radius:16px;border:1.5px solid rgba(255,214,110,.7);font-size:14px;line-height:1.25;background:linear-gradient(180deg,#2F55C8,#14307F);color:#fff;font-weight:800;box-shadow:0 10px 20px rgba(11,27,82,.4)';
   d.innerHTML=html;c.appendChild(d);
 }
 async function ghCheckUpdate(){
   try{
+    try{navigator.serviceWorker&&navigator.serviceWorker.getRegistration().then(r=>r&&r.update()).catch(()=>{})}catch(e){}
     const r=await fetch('version.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)return;const j=await r.json();
     if(j&&j.id&&j.id!==BUILD.id&&!$('#updb'))ghBanner('updb',`<span>${L==='ar'?'يتوفر تحديث جديد':'A new version is available'}</span><button class="btn g" style="margin:0;padding:6px 14px;width:auto;font-size:14px" onclick="ghApplyUpdate()">${L==='ar'?'حدّث الآن':'Update now'}</button>`);
   }catch(e){}
@@ -7067,6 +7091,9 @@ function ghInstCard(){
 }
 async function ghApplyUpdate(){try{const ks=await caches.keys();await Promise.all(ks.map(k=>caches.delete(k)));const rs=await navigator.serviceWorker.getRegistrations();await Promise.all(rs.map(r=>r.unregister()))}catch(e){}location.reload()}
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&typeof ghCheckUpdate==='function')ghCheckUpdate()});
+window.addEventListener('online',()=>ghCheckUpdate());window.addEventListener('focus',()=>ghCheckUpdate());window.addEventListener('pageshow',()=>ghCheckUpdate());
+setInterval(()=>{if(!document.hidden)ghCheckUpdate()},120000);
+(function(){try{const p=localStorage.getItem('ib_build');localStorage.setItem('ib_build',BUILD.id);if(p&&p!==BUILD.id)setTimeout(()=>{ghBanner('updd',`<span>${L==='ar'?'تم التحديث إلى أحدث نسخة ✓':'Updated to the latest version ✓'}</span>`);setTimeout(()=>{const x=document.getElementById('updd');if(x)x.remove()},6000)},1500)}catch(e){}})();
 
 (function(){try{if(localStorage.getItem('ib_goai')==='1'&&navigator.onLine&&!/[?&]stay=1/.test(location.search)&&!sessionStorage.getItem('ib_goai_done')){sessionStorage.setItem('ib_goai_done','1');location.replace(GH_AI_URL)}}catch(e){}})();
 
