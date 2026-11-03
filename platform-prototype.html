@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0f1b3d">
+<title>Reliability Platform Prototype</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: marketing-style site over a working shell. Navy header and hero, cream paper pages, red used for actions only. Hash-routed pages, bottom tab bar on phones. */
+:root{
+  --navy:#0f1b3d;--navy2:#18295c;--navy3:#2a428a;--red:#d71920;--red-d:#a50f15;--cream:#f6ecc9;--paper:#fbf6e4;--gold:#d6a62c;
+  --ink:#101a33;--mut:#586585;--line:#ddd3b2;--card:#fffdf6;--ok:#1d8a57;--warn:#b97400;--bad:#a50f15;
+  --font-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --font-body:"IBM Plex Sans","Segoe UI",Arial,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.55;padding-bottom:calc(66px + env(safe-area-inset-bottom,0px))}
+a{color:inherit}
+h1,h2,h3{font-family:var(--font-display);margin:0;text-wrap:balance;letter-spacing:-.005em}
+p{margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+button{font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+/* header */
+.top{background:var(--navy);color:#fff;padding-top:env(safe-area-inset-top,0px)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:12px;padding-bottom:12px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;min-width:0}
+.brand svg{flex:none;width:34px;height:34px}
+.brand b{font-family:var(--font-display);font-size:19px;line-height:1.05;font-weight:700;display:block}
+.brand small{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#9fb0d8;display:block}
+.pill{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);border-radius:99px;padding:3px 10px;white-space:nowrap}
+.dnav{display:flex;gap:4px}
+.dnav a,.tabbar a{text-decoration:none;font-weight:600;font-size:14px;color:#c9d4ef;padding:8px 14px;border-radius:9px}
+.dnav a.on{background:var(--red);color:#fff}
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--navy);display:none;border-top:2px solid var(--red);padding:6px max(6px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(6px,env(safe-area-inset-left,0px))}
+.tabbar a{flex:1;text-align:center;font-size:12px;padding:9px 2px;color:#c9d4ef}
+.tabbar a.on{background:var(--red);color:#fff}
+@media (max-width:760px){.dnav{display:none}.tabbar{display:flex}.top .pill{display:none}}
+/* pages */
+.page{display:none}.page.on{display:block;animation:rise .35s ease-out}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hero{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:44px 44px}
+.hero .wrap{position:relative;z-index:1;padding-top:clamp(28px,6vw,64px);padding-bottom:clamp(30px,6vw,64px)}
+.hero h1{font-weight:700;font-size:clamp(38px,7.4vw,76px);line-height:.96;max-width:15ch}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p.sub{font-size:clamp(15px,2vw,19px);color:#c4d0ee;max-width:58ch;margin-top:14px}
+.imp{position:absolute;right:-60px;top:50%;width:min(520px,80vw);transform:translateY(-50%);opacity:.16;z-index:0;pointer-events:none}
+.imp svg{width:100%;height:auto;display:block;animation:spin 120s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.finder{margin-top:26px;background:#fff;border-radius:16px;padding:14px;color:var(--ink);max-width:760px;box-shadow:0 18px 40px -16px rgba(0,0,0,.5)}
+.finder label{display:block;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-bottom:6px}
+.frow{display:flex;gap:8px}
+.frow input{flex:1;min-width:0;font:inherit;font-size:16px;border:2px solid var(--navy);border-radius:11px;padding:11px 13px;background:#fff;color:var(--ink)}
+.btn{font-weight:600;border:0;border-radius:11px;padding:11px 18px;background:var(--red);color:#fff;white-space:nowrap}
+.btn:hover{background:var(--red-d)}
+.btn.ghost{background:transparent;color:var(--navy);border:2px solid var(--navy)}
+.btn.sm{padding:7px 12px;font-size:13px;border-radius:9px}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.chip{border:1px solid var(--line);background:var(--paper);color:var(--navy);border-radius:99px;padding:5px 12px;font-size:13px;font-weight:500}
+.chip:hover{border-color:var(--navy)}
+.results{margin-top:12px;display:grid;gap:8px}
+.res{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--card)}
+.res b{display:block;font-size:15px}.res span.d{font-size:13px;color:var(--mut)}
+.type{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:6px;color:#fff;background:var(--navy);white-space:nowrap}
+.type.tool{background:var(--red)}.type.case{background:var(--gold);color:#2b1f00}.type.help{background:var(--mut)}
+.sect{padding:clamp(28px,5vw,54px) 0}
+.eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);display:flex;gap:10px;align-items:center}
+.eyebrow::before{content:"";width:26px;height:3px;background:var(--gold)}
+h2.h{font-weight:700;font-size:clamp(28px,4.4vw,44px);line-height:1.02;margin:8px 0 10px;max-width:20ch}
+.lede{color:#3a4766;max-width:68ch}
+.grid{display:grid;gap:14px;margin-top:18px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(min(235px,100%),1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.card h3{font-size:22px;line-height:1.05}
+.card p{color:#3a4766;font-size:14.5px}
+.lane .ico{width:42px;height:42px;border-radius:11px;background:var(--navy);display:grid;place-items:center}
+.status{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:6px;white-space:nowrap;align-self:flex-start}
+.s-proto{background:var(--ok);color:#fff}.s-plan{background:#e7dcb4;color:#4a3d10}.s-need{background:var(--gold);color:#2b1f00}
+.band{background:var(--navy);color:#fff}
+.band .eyebrow{color:var(--gold)}
+.band .lede{color:#c4d0ee}
+.note{font-family:var(--font-mono);font-size:12px;color:var(--mut)}
+.banner{background:#fff7dd;border:1.5px solid var(--gold);border-radius:12px;padding:11px 14px;font-size:13.5px;color:#4a3a05}
+/* learn */
+details.mod{border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
+details.mod+details.mod{margin-top:8px}
+details.mod summary{list-style:none;display:flex;gap:12px;align-items:center;justify-content:space-between;padding:13px 15px;font-weight:600;cursor:pointer}
+details.mod summary::-webkit-details-marker{display:none}
+details.mod summary::after{content:"+";font-family:var(--font-mono);color:var(--red);font-size:20px}
+details.mod[open] summary::after{content:"\2212"}
+details.mod .in{padding:0 15px 14px;display:flex;flex-direction:column;gap:8px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{background:var(--cream);border-radius:6px;padding:3px 9px;font-size:12.5px;color:#3a3009}
+.pg{font-family:var(--font-mono);font-size:11px;color:var(--mut)}
+/* tools */
+.seg{display:inline-flex;border:2px solid var(--navy);border-radius:11px;overflow:hidden;margin:16px 0 6px}
+.seg button{border:0;background:transparent;color:var(--navy);font-weight:600;padding:9px 16px}
+.seg button.on{background:var(--navy);color:#fff}
+.tool{display:none}.tool.on{display:block}
+.ctl{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));margin:14px 0}
+.ctl label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600}
+.ctl label span{display:flex;justify-content:space-between;font-family:var(--font-mono);font-weight:500;color:var(--navy)}
+input[type=range]{width:100%;accent-color:var(--red)}
+.num{font:inherit;font-size:16px;border:2px solid var(--navy);border-radius:10px;padding:9px 11px;width:100%;background:#fff;color:var(--ink)}
+.chartbox{background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;overflow-x:auto}
+.chartbox svg{width:100%;min-width:520px;height:auto;display:block}
+.read{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr));margin-top:12px}
+.read div{background:var(--navy);color:#fff;border-radius:12px;padding:10px 12px}
+.read small{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9fb0d8}
+.read b{font-family:var(--font-display);font-size:28px;line-height:1.1;font-weight:700}
+.read b i{font-style:normal;font-size:14px;color:#9fb0d8;margin-left:3px}
+.msg{margin-top:12px;border-radius:12px;padding:11px 14px;font-size:14px;background:#e6f4ec;border:1.5px solid var(--ok);color:#0e4a2e}
+.msg.warn{background:#fff3da;border-color:var(--warn);color:#5a3a00}
+.msg.bad{background:#fde7e7;border-color:var(--bad);color:#6c0a0e}
+/* case */
+.stmt{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:11px 13px;background:var(--card)}
+.stmt+.stmt{margin-top:8px}
+.stmt select{font:inherit;border:2px solid var(--navy);border-radius:9px;padding:7px 8px;background:#fff;color:var(--ink)}
+.fb{grid-column:1/-1;font-size:13.5px;border-radius:9px;padding:8px 11px;background:var(--cream)}
+.fb.ok{background:#e6f4ec;color:#0e4a2e}.fb.no{background:#fde7e7;color:#6c0a0e}
+.tl{display:flex;flex-direction:column;gap:0;border-left:3px solid var(--navy);margin-left:6px}
+.tl div{padding:4px 0 12px 16px;position:relative}
+.tl div::before{content:"";position:absolute;left:-9px;top:9px;width:13px;height:13px;border-radius:50%;background:var(--red);border:2px solid var(--paper)}
+.tl b{display:block;font-size:14.5px}.tl span{font-size:13.5px;color:var(--mut)}
+/* structure */
+.layer{border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--card)}
+.layer+.layer{margin-top:10px}
+.layer>.lt{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-bottom:8px}
+.blocks{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr))}
+.blk{border-radius:10px;padding:10px 12px;background:var(--navy);color:#fff;display:flex;flex-direction:column;gap:6px}
+.blk b{font-family:var(--font-display);font-size:19px;line-height:1.05;font-weight:700}
+.blk small{color:#b8c6e6;font-size:12.5px}
+.layer.core .blk{background:var(--navy2)}
+.layer.found .blk{background:#3a3418}
+footer{background:var(--navy);color:#9fb0d8;text-align:center;font-family:var(--font-mono);font-size:11.5px;padding:16px 12px}
+@media (prefers-reduced-motion:reduce){.page.on{animation:none}.imp svg{animation:none}html{scroll-behavior:auto}}
+@media (max-width:520px){.frow{flex-direction:column}.res{grid-template-columns:1fr}.stmt{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home" aria-label="Home">
+      <svg viewBox="-50 -50 100 100" aria-hidden="true"><circle r="46" fill="none" stroke="#d6a62c" stroke-width="3"/><g stroke="#d6a62c" stroke-width="6" stroke-linecap="round" fill="none" id="mark"></g><circle r="7" fill="#d71920"/></svg>
+      <span><b>Industrial Asset Reliability &amp; Integrity Platform</b><small>From knowledge to decision</small></span>
+    </a>
+    <nav class="dnav" id="dnav" aria-label="Main"></nav>
+    <span class="pill">Prototype v0</span>
+  </div>
+</header>
+
+<main>
+<!-- HOME -->
+<section class="page" id="p-home">
+  <div class="hero">
+    <div class="imp" id="imp" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--gold)">Rotating equipment &middot; Reliability &middot; Integrity</div>
+      <h1>Start from the <em>problem</em>, not the manual.</h1>
+      <p class="sub">Courses, diagnostic practice and engineering tools built on real field experience. Describe what you are facing and the platform points you to the right place.</p>
+      <div class="finder">
+        <label for="q">Describe your problem</label>
+        <div class="frow"><input id="q" type="text" placeholder="e.g. pump losing flow, seal leaking, repeated failures" autocomplete="off"><button class="btn" id="go">Find help</button></div>
+        <div class="chips" id="chips"></div>
+        <div class="results" id="results" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap sect">
+    <div class="eyebrow">Four ways in</div>
+    <h2 class="h">One platform, four lanes</h2>
+    <div class="grid g4">
+      <div class="card lane"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d6a62c" stroke-width="2"><path d="M3 7l9-4 9 4-9 4-9-4zM7 10v5c0 1.5 2.2 3 5 3s5-1.500 5-3v-5"/></svg></div><h3>Learn</h3><p>Expert-led courses on rotating machinery and root cause analysis.</p><span class="status s-proto">Course catalog</span><button class="btn ghost sm" data-go="learn">Open</button></div>
+      <div class="card lane"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d6a62c" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Practice</h3><p>Investigate real cases step by step and grade your own evidence.</p><span class="status s-proto">1 sample case</span><button class="btn ghost sm" data-go="cases">Open</button></div>
+      <div class="card lane"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d6a62c" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><h3>Analyze</h3><p>Engineering tools that show their formulas, units and assumptions.</p><span class="status s-proto">2 tools</span><button class="btn ghost sm" data-go="tools">Open</button></div>
+      <div class="card lane"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d6a62c" stroke-width="2"><path d="M4 5h16v10H9l-5 4V5z"/></svg></div><h3>Get expert help</h3><p>Bring a problem to the expert for a tailored solution.</p><span class="status s-plan">Planned</span><button class="btn ghost sm" data-go="structure">See plan</button></div>
+    </div>
+  </div>
+  <div class="band">
+    <div class="wrap sect">
+      <div class="eyebrow">What makes it different</div>
+      <h2 class="h" style="color:#fff">Built around a closed loop</h2>
+      <p class="lede">Each real case becomes training. Each analysis becomes a documented decision. Each outcome returns to the library as new knowledge.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LEARN -->
+<section class="page" id="p-learn">
+  <div class="wrap sect">
+    <div class="eyebrow">Learn</div>
+    <h2 class="h">Courses from the expert</h2>
+    <p class="lede">Two courses by Eng. Mohamed Hafez are the first material on the platform. Modules below follow the structure of the source decks.</p>
+    <div class="grid g2">
+      <div class="card">
+        <span class="status s-proto">Source deck read</span>
+        <h3>Rotating Machinery Equipment</h3>
+        <p>How pumps, compressors and turbines work, with the focus on the heavy-duty gas turbine. 215 pages in the source deck.</p>
+        <div>
+          <details class="mod" open><summary>Pumps</summary><div class="in"><div class="tags"><span>Centrifugal components</span><span>Impellers, volute, diffuser</span><span>Seals and packing</span><span>Bearings</span><span>Performance curve and operating point</span><span>Rotary and reciprocating pumps</span></div><span class="pg">Source pages 3 to 62</span><button class="btn sm" data-go="tools" data-sub="pump">Try the pump curve explorer</button></div></details>
+          <details class="mod"><summary>Compressors</summary><div class="in"><div class="tags"><span>Selection by flow and pressure</span><span>Centrifugal: axial and radial split</span><span>Axial</span><span>Screw</span><span>Reciprocating</span></div><span class="pg">Source pages 63 to 79</span></div></details>
+          <details class="mod"><summary>Steam turbines</summary><div class="in"><div class="tags"><span>Stages and blading</span><span>Impulse and reaction</span><span>Back-pressure and condensing</span></div><span class="pg">Source pages 80 to 101</span></div></details>
+          <details class="mod"><summary>Gas turbines</summary><div class="in"><div class="tags"><span>Principle of operation</span><span>Compressor section</span><span>Combustion and hot gas path</span><span>Cooling</span><span>Maintenance planning and borescope</span><span>Wheel space temperature</span><span>Gas fuel and DLN modes</span><span>Hydraulics and inlet guide vanes</span></div><span class="pg">Source pages 102 to 215</span><button class="btn sm" data-go="cases">Open the wheel space case</button></div></details>
+        </div>
+      </div>
+      <div class="card">
+        <span class="status s-need">Licensing to confirm</span>
+        <h3>Root Cause Analysis</h3>
+        <p>A two-day course built on the TapRooT&reg; method. 70 slides in the source deck.</p>
+        <div>
+          <details class="mod" open><summary>Day 1: Method</summary><div class="in"><div class="tags"><span>Why it works</span><span>What happened: SnapCharT</span><span>Causal factors in four steps</span><span>Root cause tree</span><span>Human performance questions</span><span>Generic causes</span><span>Corrective actions</span><span>Proactive use</span></div></div></details>
+          <details class="mod"><summary>Day 2: Effective investigation</summary><div class="in"><div class="tags"><span>Method flow</span><span>SnapCharT in software</span><span>Find causal factors</span><span>Analyze root causes</span><span>Develop fixes</span><span>Strongest to weakest actions</span><span>Barriers to investigation</span></div></div></details>
+        </div>
+        <p class="note">The method belongs to its licensor. The interactive version stays on hold until the licensing position is clear.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="page" id="p-tools">
+  <div class="wrap sect">
+    <div class="eyebrow">Analyze</div>
+    <h2 class="h">Tools that show their work</h2>
+    <p class="lede">Every number comes with its formula and assumptions. Values in these demos are illustrative.</p>
+    <div class="seg" role="tablist"><button class="on" data-tool="pump">Pump curve explorer</button><button data-tool="mtbf">MTBF and MTTR</button></div>
+
+    <div class="tool on" id="t-pump">
+      <div class="ctl">
+        <label>Speed <span><i id="vN">3000 rpm</i></span><input id="N" type="range" min="1800" max="3600" step="50" value="3000"></label>
+        <label>Impeller diameter <span><i id="vD">10.0 in</i></span><input id="D" type="range" min="8" max="10" step="0.1" value="10"></label>
+        <label>Static head <span><i id="vH">10 ft</i></span><input id="H" type="range" min="0" max="35" step="1" value="10"></label>
+        <label>Discharge valve closed <span><i id="vT">0 %</i></span><input id="T" type="range" min="0" max="100" step="1" value="0"></label>
+      </div>
+      <div class="chartbox"><svg id="pc" viewBox="0 0 640 340" role="img" aria-label="Pump and system curves with operating point"></svg></div>
+      <div class="read" id="pr"></div>
+      <div class="msg" id="pm"></div>
+      <p class="note" style="margin-top:10px">Model: illustrative pump, 3000 rpm and 10 in at full size. Speed and diameter use the affinity laws (flow scales with speed and diameter, head with their squares); trimming is an approximation. System curve: static head plus a flow-squared friction term, steeper as the valve closes. Power = flow &times; head &times; SG / (3960 &times; efficiency) in US units. The operating-region band is a typical guideline, not a limit: use the vendor's allowable range.</p>
+    </div>
+
+    <div class="tool" id="t-mtbf">
+      <div class="ctl">
+        <label>Operating hours in the period<input class="num" id="mh" type="number" min="0" value="8000"></label>
+        <label>Number of failures<input class="num" id="mf" type="number" min="0" value="4"></label>
+        <label>Total repair downtime (hours)<input class="num" id="mr" type="number" min="0" value="36"></label>
+      </div>
+      <div class="read" id="mr-out"></div>
+      <div class="msg" id="mm"></div>
+      <p class="note" style="margin-top:10px">MTBF = operating hours / failures. MTTR = repair hours / failures. Inherent availability = MTBF / (MTBF + MTTR). Definitions vary between organizations (what counts as a failure, whether standby time is included), so state the definition next to every result.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section class="page" id="p-cases">
+  <div class="wrap sect">
+    <div class="eyebrow">Practice</div>
+    <h2 class="h">Case: high wheel space temperature after an outage</h2>
+    <div class="banner">Sample case drafted from a course case study. Site and company names are removed. It needs the expert's review and a source-permission check before any public release.</div>
+    <div class="grid g2">
+      <div class="card">
+        <h3>What happened</h3>
+        <div class="tl">
+          <div><b>Planned maintenance inspection completed</b><span>A heavy-duty gas turbine is started afterwards.</span></div>
+          <div><b>Two wheel space channels read above alarm</b><span>Channels 2AO-2 and 3FO-2 are above their alarm levels.</span></div>
+          <div><b>Investigation</b><span>The as-found thermocouple insertion is checked against the insertion length stamped on the casing.</span></div>
+          <div><b>Finding and fix</b><span>The insertion was wrong. A step inside the thermocouple guide tube cap prevented correct insertion. After the cap was machined the thermocouples seated at the correct length.</span></div>
+        </div>
+        <p class="note">Background from the course: wheel spaces are cooled by air flowing outward; excessive temperature is alarmed but does not trip the turbine; a bad thermocouple can raise a differential temperature alarm.</p>
+      </div>
+      <div class="card">
+        <h3>Your turn: grade the evidence</h3>
+        <p>Facts and hypotheses must stay apart. Grade each statement using only what the case reports.</p>
+        <div id="ex"></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px"><button class="btn" id="chk">Check my grades</button><button class="btn ghost" id="rst">Reset</button></div>
+        <div class="msg" id="score" hidden></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRUCTURE -->
+<section class="page" id="p-structure">
+  <div class="wrap sect">
+    <div class="eyebrow">Structure</div>
+    <h2 class="h">What this prototype is, and what comes next</h2>
+    <p class="lede">The shell shows the intended structure. Green items work in this prototype, gold items wait on a decision, and the rest are planned.</p>
+    <div class="layer"><div class="lt">Experiences</div><div class="blocks">
+      <div class="blk"><b>Problem finder</b><small>Routes a described problem to content, tools or help</small><span class="status s-proto">Prototype</span></div>
+      <div class="blk"><b>Courses</b><small>Two expert courses catalogued</small><span class="status s-proto">Prototype</span></div>
+      <div class="blk"><b>Case practice</b><small>Evidence grading on one sample case</small><span class="status s-proto">Prototype</span></div>
+      <div class="blk"><b>Engineering tools</b><small>Pump curve explorer, MTBF and MTTR</small><span class="status s-proto">Prototype</span></div>
+      <div class="blk"><b>Expert help</b><small>Request a tailored solution</small><span class="status s-plan">Planned</span></div>
+    </div></div>
+    <div class="layer core"><div class="lt">Knowledge core</div><div class="blocks">
+      <div class="blk"><b>Case model</b><small>Asset, event, evidence, hypotheses, analysis, decision, outcome</small><span class="status s-plan">Planned</span></div>
+      <div class="blk"><b>Failure library</b><small>Searchable, approved, anonymized cases</small><span class="status s-plan">Planned</span></div>
+      <div class="blk"><b>Equipment taxonomy</b><small>Equipment, components, failure modes, symptoms</small><span class="status s-plan">Planned</span></div>
+    </div></div>
+    <div class="layer found"><div class="lt">Foundation</div><div class="blocks">
+      <div class="blk"><b>Expert review</b><small>Nothing is published unreviewed</small><span class="status s-plan">Planned</span></div>
+      <div class="blk"><b>Anonymization</b><small>Remove site and company data</small><span class="status s-plan">Planned</span></div>
+      <div class="blk"><b>Accounts and access</b><small>For individuals and companies</small><span class="status s-plan">Planned</span></div>
+    </div></div>
+    <div class="grid g3" style="margin-top:18px">
+      <div class="card"><h3>Pending decisions</h3><p>Licensing position for the root cause method. Permission for third-party material inside the course decks. Which audience launches first.</p><span class="status s-need">Needs input</span></div>
+      <div class="card"><h3>Placeholder content</h3><p>Pump and reliability numbers are illustrative. The case is a draft. Nothing here is approved engineering guidance.</p></div>
+      <div class="card"><h3>Next material</h3><p>More courses will extend the catalog and show which modules repeat across them.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>&copy; 2026 Mohamed Hafez &mdash; All Rights Reserved &middot; Prototype v0, structure preview</footer>
+<nav class="tabbar" id="tabbar" aria-label="Main"></nav>
+
+<script>
+(function(){
+  var PAGES=[['home','Home'],['learn','Learn'],['tools','Tools'],['cases','Cases'],['structure','Structure']];
+  function $(i){return document.getElementById(i)}
+  /* logo mark and impeller */
+  (function(){var b='',i;for(i=0;i<6;i++)b+='<path transform="rotate('+(i*60)+')" d="M0,-10 C14,-22 28,-28 40,-22"/>';$('mark').innerHTML=b;
+    var c='';for(i=0;i<8;i++)c+='<path transform="rotate('+(i*45)+')" d="M0,-34 C46,-74 96,-92 160,-72" stroke="#d6a62c" stroke-width="11" stroke-linecap="round" fill="none"/>';
+    $('imp').innerHTML='<svg viewBox="-200 -200 400 400"><circle r="188" fill="none" stroke="#fff" stroke-width="2"/>'+c+'<circle r="30" fill="none" stroke="#d6a62c" stroke-width="5"/></svg>';})();
+  /* routing */
+  var dn=$('dnav'),tb=$('tabbar');
+  dn.innerHTML=tb.innerHTML=PAGES.map(function(p){return '<a href="#'+p[0]+'" data-p="'+p[0]+'">'+p[1]+'</a>'}).join('');
+  function route(){var h=(location.hash||'#home').slice(1);if(!PAGES.some(function(p){return p[0]===h}))h='home';
+    [].forEach.call(document.querySelectorAll('.page'),function(s){s.classList.toggle('on',s.id==='p-'+h)});
+    [].forEach.call(document.querySelectorAll('[data-p]'),function(a){a.classList.toggle('on',a.getAttribute('data-p')===h)});
+    window.scrollTo(0,0);}
+  window.addEventListener('hashchange',route);
+  function go(p,sub){location.hash='#'+p;if(sub)setTool(sub)}
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-go]');if(b){go(b.getAttribute('data-go'),b.getAttribute('data-sub'))}});
+  /* problem finder */
+  var KB=[
+   {k:['pump','flow','head','curve','impeller','cavitation','pressure'],r:[['tool','Pump curve explorer','See how speed, impeller size and valve position move the operating point.','tools','pump'],['course','Course: Pumps','Components, seals, bearings and performance curves.','learn']]},
+   {k:['seal','leak','packing','gland'],r:[['course','Course: Pumps, seals and packing','How mechanical seals and packing work.','learn']]},
+   {k:['bearing','vibration','lubric','noise'],r:[['course','Course: Bearings','Rolling-contact and journal bearings, types and selection.','learn']]},
+   {k:['wheel','thermocouple','alarm','turbine','temperature','gas turbine','hot gas'],r:[['case','Case: high wheel space temperature','Investigate a real alarm after an outage and grade the evidence.','cases'],['course','Course: Gas turbines','Cooling, hot gas path and wheel space temperature.','learn']]},
+   {k:['compressor','surge','screw'],r:[['course','Course: Compressors','Selection, centrifugal, axial, screw and reciprocating.','learn']]},
+   {k:['repeat','recurr','again','often','mtbf','mttr','availability','reliab','failure','failures'],r:[['tool','MTBF and MTTR calculator','Turn failure counts and downtime into reliability numbers.','tools','mtbf'],['course','Course: Root Cause Analysis','A structured method to find why it keeps failing.','learn']]},
+   {k:['root cause','rca','investigat','why','incident','snapchart'],r:[['course','Course: Root Cause Analysis','Two-day method from timeline to corrective actions.','learn'],['case','Practice an investigation','Grade facts and hypotheses on a sample case.','cases']]},
+   {k:['learn','course','training','study','turbine','steam'],r:[['course','Browse the courses','Rotating machinery and root cause analysis.','learn']]}
+  ];
+  var EX=['Pump losing flow','Seal leaking','High bearing temperature','Same pump keeps failing','Wheel space temperature high','Learn about turbines'];
+  $('chips').innerHTML=EX.map(function(t){return '<button class="chip" data-q="'+t+'">'+t+'</button>'}).join('');
+  function find(){var q=$('q').value.toLowerCase().trim(),out=[],seen={},box=$('results');
+    if(!q){box.innerHTML='';return}
+    KB.forEach(function(g){if(g.k.some(function(k){return q.indexOf(k)>-1})){g.r.forEach(function(r){if(!seen[r[1]]){seen[r[1]]=1;out.push(r)}})}});
+    if(!out.length)out.push(['help','Ask the expert','No direct match yet. Expert help is planned for problems like this one.','structure']);
+    box.innerHTML=out.map(function(r){return '<div class="res"><span class="type '+(r[0]==='tool'?'tool':r[0]==='case'?'case':r[0]==='help'?'help':'')+'">'+(r[0]==='course'?'Course':r[0]==='tool'?'Tool':r[0]==='case'?'Case':'Help')+'</span><div><b>'+r[1]+'</b><span class="d">'+r[2]+'</span></div><button class="btn sm" data-go="'+r[3]+'"'+(r[4]?' data-sub="'+r[4]+'"':'')+'>Open</button></div>'}).join('');}
+  $('go').onclick=find;$('q').addEventListener('keydown',function(e){if(e.key==='Enter')find()});
+  $('chips').onclick=function(e){var b=e.target.closest('[data-q]');if(b){$('q').value=b.getAttribute('data-q');find()}};
+  /* tools switch */
+  function setTool(t){[].forEach.call(document.querySelectorAll('.seg button'),function(b){b.classList.toggle('on',b.getAttribute('data-tool')===t)});
+    $('t-pump').classList.toggle('on',t==='pump');$('t-mtbf').classList.toggle('on',t==='mtbf')}
+  document.querySelector('.seg').onclick=function(e){var b=e.target.closest('[data-tool]');if(b)setTool(b.getAttribute('data-tool'))};
+  /* pump curve */
+  function pump(){
+    var N=+$('N').value,D=+$('D').value,Hs=+$('H').value,T=+$('T').value;
+    $('vN').textContent=N+' rpm';$('vD').textContent=D.toFixed(1)+' in';$('vH').textContent=Hs+' ft';$('vT').textContent=T+' %';
+    var s=(N/3000)*(D/10),H0=52*s*s,Qm=450*s,Qb=260*s,k=0.00012*(1+6*T/100);
+    var X=function(q){return 56+q/600*560},Y=function(h){return 300-Math.min(h,80)/80*280};
+    var svg='',i,q,h,d;
+    svg+='<rect x="'+X(.7*Qb)+'" y="20" width="'+(X(1.2*Qb)-X(.7*Qb))+'" height="280" fill="#1d8a57" opacity=".13"/>';
+    for(i=0;i<=600;i+=100)svg+='<line x1="'+X(i)+'" y1="20" x2="'+X(i)+'" y2="300" stroke="#e2d9b8"/><text x="'+X(i)+'" y="318" font-size="11" text-anchor="middle" fill="#586585" font-family="IBM Plex Mono,monospace">'+i+'</text>';
+    for(i=0;i<=80;i+=20)svg+='<line x1="56" y1="'+Y(i)+'" x2="616" y2="'+Y(i)+'" stroke="#e2d9b8"/><text x="48" y="'+(Y(i)+4)+'" font-size="11" text-anchor="end" fill="#586585" font-family="IBM Plex Mono,monospace">'+i+'</text>';
+    svg+='<text x="336" y="336" font-size="11" text-anchor="middle" fill="#586585" font-family="IBM Plex Mono,monospace">Flow (gpm)</text><text x="14" y="160" font-size="11" fill="#586585" font-family="IBM Plex Mono,monospace" transform="rotate(-90 14 160)" text-anchor="middle">Head (ft)</text>';
+    d='';for(q=0;q<=Qm;q+=4){h=H0*(1-(q/Qm)*(q/Qm));d+=(d?'L':'M')+X(q).toFixed(1)+','+Y(h).toFixed(1)}
+    svg+='<path d="'+d+'" fill="none" stroke="#0f1b3d" stroke-width="3.5"/>';
+    d='';for(q=0;q<=600;q+=4){h=Hs+k*q*q;if(h>80)break;d+=(d?'L':'M')+X(q).toFixed(1)+','+Y(h).toFixed(1)}
+    svg+='<path d="'+d+'" fill="none" stroke="#d71920" stroke-width="3" stroke-dasharray="7 5"/>';
+    svg+='<line x1="'+X(Qb)+'" y1="20" x2="'+X(Qb)+'" y2="300" stroke="#1d8a57" stroke-width="2" stroke-dasharray="3 4"/><text x="'+(X(Qb)+5)+'" y="34" font-size="11" fill="#1d8a57" font-family="IBM Plex Mono,monospace">BEP</text>';
+    svg+='<text x="68" y="38" font-size="12" fill="#0f1b3d" font-weight="600" font-family="IBM Plex Sans,sans-serif">Pump curve</text><text x="68" y="54" font-size="12" fill="#d71920" font-weight="600" font-family="IBM Plex Sans,sans-serif">System curve</text>';
+    var R=$('pr'),M=$('pm');
+    if(H0<=Hs+0.01){svg+='<rect x="56" y="20" width="560" height="280" fill="none" stroke="#a50f15" stroke-width="2"/>';
+      R.innerHTML='<div><small>Flow</small><b>0<i>gpm</i></b></div><div><small>Pump shutoff head</small><b>'+H0.toFixed(1)+'<i>ft</i></b></div><div><small>Static head</small><b>'+Hs+'<i>ft</i></b></div>';
+      M.className='msg bad';M.textContent='No flow. At this speed and diameter the pump cannot produce enough head to overcome the static head of the system.';$('pc').innerHTML=svg;return}
+    q=Math.sqrt((H0-Hs)/(H0/(Qm*Qm)+k));h=Hs+k*q*q;
+    var eta=Math.max(.05,.72*(1-Math.pow(q/Qb-1,2))),bhp=q*h/(3960*eta),kw=bhp*0.7457,pct=q/Qb*100;
+    svg+='<circle cx="'+X(q)+'" cy="'+Y(h)+'" r="8" fill="#d6a62c" stroke="#0f1b3d" stroke-width="3"/><text x="'+(X(q)+12)+'" y="'+(Y(h)-10)+'" font-size="12" fill="#0f1b3d" font-weight="600" font-family="IBM Plex Sans,sans-serif">Operating point</text>';
+    $('pc').innerHTML=svg;
+    R.innerHTML='<div><small>Flow</small><b>'+q.toFixed(0)+'<i>gpm</i></b></div><div><small>Head</small><b>'+h.toFixed(1)+'<i>ft</i></b></div><div><small>Efficiency</small><b>'+(eta*100).toFixed(0)+'<i>%</i></b></div><div><small>Power</small><b>'+kw.toFixed(1)+'<i>kW</i></b></div><div><small>Flow vs BEP</small><b>'+pct.toFixed(0)+'<i>%</i></b></div>';
+    if(pct<70){M.className='msg warn';M.textContent='Below the typical preferred region. Low flow is commonly linked to recirculation, heating and higher vibration. Check the vendor minimum continuous flow.'}
+    else if(pct>120){M.className='msg warn';M.textContent='Above the typical preferred region. High flow is commonly linked to low suction margin and motor overload. Check NPSH available and the vendor limits.'}
+    else{M.className='msg';M.textContent='Inside the typical preferred operating region around the best efficiency point. Try closing the valve or lowering the speed and watch the point move.'}
+  }
+  ['N','D','H','T'].forEach(function(id){$(id).addEventListener('input',pump)});pump();
+  /* MTBF */
+  function mt(){var h=+$('mh').value,f=+$('mf').value,r=+$('mr').value,O=$('mr-out'),M=$('mm');
+    if(!(f>0)||!(h>0)||r<0){O.innerHTML='';M.className='msg warn';M.textContent='Enter operating hours and at least one failure.';return}
+    var mtbf=h/f,mttr=r/f,av=mtbf/(mtbf+mttr)*100;
+    O.innerHTML='<div><small>MTBF</small><b>'+mtbf.toFixed(0)+'<i>h</i></b></div><div><small>MTTR</small><b>'+mttr.toFixed(1)+'<i>h</i></b></div><div><small>Inherent availability</small><b>'+av.toFixed(2)+'<i>%</i></b></div>';
+    M.className='msg';M.textContent=f+' failures in '+h+' operating hours gives one failure every '+mtbf.toFixed(0)+' hours on average, and each repair takes about '+mttr.toFixed(1)+' hours.'}
+  ['mh','mf','mr'].forEach(function(id){$(id).addEventListener('input',mt)});mt();
+  /* case exercise */
+  var S=[
+   ['Both wheel space channels read above their alarm levels after the restart.','C','Confirmed: this is the observed reading reported by the case.'],
+   ['The thermocouples were not inserted to the correct length.','C','Confirmed: the as-found insertion was checked against the casing stamping and found wrong.'],
+   ['A step inside the guide tube cap kept the thermocouples from reaching the correct insertion, and machining the cap fixed it.','C','Confirmed by the case record: after machining, the thermocouples seated at the correct length.'],
+   ['Real hot gas path damage or a cooling air failure caused the high readings.','H','Hypothesis: the case reports no such damage or failure. It would need cooling air and inspection data before it could be graded higher.']
+  ];
+  var G={C:'Confirmed',P:'Probable',H:'Hypothesis'};
+  function ex(){$('ex').innerHTML=S.map(function(s,i){return '<div class="stmt"><p>'+s[0]+'</p><select id="g'+i+'" aria-label="Grade for statement '+(i+1)+'"><option value="">Grade</option><option value="C">Confirmed</option><option value="P">Probable</option><option value="H">Hypothesis</option></select><div class="fb" id="f'+i+'" hidden></div></div>'}).join('');$('score').hidden=true}
+  ex();
+  $('chk').onclick=function(){var n=0;S.forEach(function(s,i){var v=$('g'+i).value,f=$('f'+i);f.hidden=false;
+      if(!v){f.className='fb';f.textContent='Choose a grade first.';return}
+      if(v===s[1]){n++;f.className='fb ok';f.textContent='Correct. '+s[2]}else{f.className='fb no';f.textContent='Not quite. '+s[2]}});
+    var m=$('score');m.hidden=false;m.className=n===S.length?'msg':'msg warn';m.textContent=n+' of '+S.length+' graded as the case record supports.'};
+  $('rst').onclick=ex;
+  route();
+})();
+</script>
+
+</body>
+</html>
