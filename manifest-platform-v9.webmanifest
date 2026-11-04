@@ -1,0 +1,18 @@
+{
+  "id": "./platform-v9.html",
+  "name": "Industrial Asset Reliability & Integrity Platform",
+  "short_name": "Reliability",
+  "description": "Courses, case practice and engineering tools for rotating equipment reliability and integrity. Prototype.",
+  "start_url": "./platform-v9.html",
+  "scope": "./platform-v9.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0B1B52",
+  "theme_color": "#FFFFFF",
+  "lang": "en",
+  "icons": [
+    {"src": "platform-icon-192.png?v=1", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "platform-icon-512.png?v=1", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "platform-icon-maskable-512.png?v=1", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
