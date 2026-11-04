@@ -1,10 +1,10 @@
 {
-  "id": "./platform-v10.html",
+  "id": "./platform-v11.html",
   "name": "Industrial Asset Reliability & Integrity Platform",
   "short_name": "Reliability",
   "description": "Courses, case practice and engineering tools for rotating equipment reliability and integrity. Prototype.",
-  "start_url": "./platform-v10.html",
-  "scope": "./platform-v10.html",
+  "start_url": "./platform-v11.html",
+  "scope": "./platform-v11.html",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0B1B52",
